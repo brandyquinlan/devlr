@@ -7,6 +7,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.16.3
+    context: HEROKU
     working_directory: ~/repo
     steps:
       - checkout
@@ -30,10 +31,3 @@ workflows:
           filters:
             branches:
               only: main
-      # - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-      #     app-name: $HEROKU_STAGING_APP_NAME
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: develop

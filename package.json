@@ -4,6 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server/index.js",
+    "start:dev": "concurrently \"nodemon server/index.js\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +26,10 @@
   "homepage": "https://github.com/brandyquinlan/devlr#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
     "passport": "^0.4.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2"
   }
 }

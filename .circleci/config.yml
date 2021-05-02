@@ -14,9 +14,10 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
-      - run: 
-          name: Lint Code
-          command: npm run lint
+          # need to set up lint to be included in our CI/CD
+      # - run: 
+      #     name: Lint Code
+      #     command: npm run lint
       - run: 
           name: Test Build
           command: cd client && npm run build

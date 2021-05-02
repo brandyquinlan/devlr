@@ -270,8 +270,13 @@ li > a:hover,
 li > a:active,
 li > a:focus {
   color: var(--main-text-color);
-  opacity: 0.6;
+  opacity: 0.8;
   text-decoration: none;
+}
+
+.nav-link.active,
+.nav-item.show .nav-link {
+  color: var(--main-text-color)!important;
 }
 
 hr {

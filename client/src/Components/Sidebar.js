@@ -14,7 +14,7 @@ const Sidebar = () => {
           Browse Users
         </li>
         <li className="m-3">
-          <i className="material-icons">dashboard</i> Create Profile
+          <i className="material-icons">dashboard</i> Update Profile
         </li>
         <li className="m-3">
           <i className="material-icons">manage_accounts</i>
@@ -27,6 +27,16 @@ const Sidebar = () => {
           </a>
         </li>
       </ul>
+      <div className="d-flex flex-column align-items-center">
+      <button className="btn btn-lg btn-secondary mt-3" id="newBtn">
+          New Post
+        </button>
+        <div className="circle" id="userPic"></div>
+      <button type="button" className="btn btn-lg btn-secondary mt-3"
+          id="appearanceBtn">
+          <span className="material-icons" style={{fontSize: '24px'}}>palette</span>Appearance
+        </button>
+        </div>
     </div>
   );
 };

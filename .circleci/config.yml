@@ -12,8 +12,14 @@ jobs:
       - checkout
       # install dependencies
       - run:
-          name: Install Dependencies
+          name: Install Server Dependencies
           command: npm install
+      - run: 
+          name: Install Client Dependencies
+          command: cd client && npm install
+      - run: 
+          name: Test Build
+          command: cd client && npm run build
       # ignoring tests for now
       # - run:
       #     name: Run tests
@@ -30,3 +36,4 @@ workflows:
           filters:
             branches:
               only: main
+              

@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/brandyquinlan/devlr#readme",
   "dependencies": {
+    "eslint": "^7.25.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "passport": "^0.4.1"

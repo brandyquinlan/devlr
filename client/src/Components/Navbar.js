@@ -1,8 +1,8 @@
 import { Component } from "react";
-import NavTabs from './NavTabs/NavTabs';
-import Activity from './NavTabs/Activity';
-import Profile from './NavTabs/Profile';
-import Explore from './NavTabs/Explore';
+import NavTabs from './NavTabs';
+import Activity from './Feeds/Activity';
+import Profile from './Feeds/Profile';
+import Explore from './Feeds/Explore';
 
 class Container extends Component {
     state = {

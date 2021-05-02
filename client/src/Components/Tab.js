@@ -1,12 +1,12 @@
-const Tab = (props) => {
+const Tab = ({ title, content }) => {
   return (
-    <div className="tab gradient" style={{width: '400px'}}>
+    <div className="tab gradient">
       <div className="d-flex flex-row align-items-center justify-content-between">
-        <h4>{props.title}</h4>
+        <h4>{title}</h4>
         <span className="material-icons">expand_more</span>
       </div>
       <div className="separator mb-3"></div>
-      <div>{props.content}</div>
+      <div>{content}</div>
     </div>
   );
 };

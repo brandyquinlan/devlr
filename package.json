@@ -8,7 +8,7 @@
     "start:prod": "node server/index.js",
     "start:dev": "concurrently \"nodemon server/index.js\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "install": "npm install && cd client && npm install",
+    "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"

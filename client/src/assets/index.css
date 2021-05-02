@@ -468,6 +468,10 @@ footer {
 
 /* Targeted Styles*/
 
+#side-nav {
+  margin-right: 2rem;
+}
+
 #backgroundWrapper {
   padding-inline-start: 0;
   margin-block-start: 0;

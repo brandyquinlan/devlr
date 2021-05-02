@@ -14,12 +14,12 @@ class Container extends Component {
     };
   
     renderPage = () => {
-      if (this.state.currentPage === 'Activity') {
-        return <Activity />;
+      if (this.state.currentPage === 'Explore') {
+        return <Explore />;
       } else if (this.state.currentPage === 'Profile') {
         return <Profile />;
       } else {
-        return <Explore />;
+        return <Activity />;
       }
     };
   

@@ -1,6 +1,7 @@
 const Sidebar = () => {
   return (
     <div id="side-nav">
+      <h2>devlr</h2>
       <ul className="list-group">
         <li className="m-3">
           <a href="/home">

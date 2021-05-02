@@ -12,17 +12,11 @@ jobs:
       - checkout
       # install dependencies
       - run:
-          name: Install Server Dependencies
+          name: Install Dependencies
           command: npm install
-      - run: 
-          name: Install Client Dependencies
-          command: cd client && npm install
       - run: 
           name: Test Build
           command: cd client && npm run build
-      # - run:
-      #     name: Test Operation
-      #     command: npm start
       # ignoring tests for now
       # - run:
       #     name: Run tests

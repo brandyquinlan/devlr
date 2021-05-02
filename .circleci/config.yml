@@ -20,6 +20,9 @@ jobs:
       - run: 
           name: Test Build
           command: cd client && npm run build
+      - run:
+          name: Test Operation
+          command: npm start
       # ignoring tests for now
       # - run:
       #     name: Run tests

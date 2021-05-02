@@ -15,6 +15,9 @@ jobs:
           name: Install Dependencies
           command: npm install
       - run: 
+          name: Lint Code
+          command: npm run lint
+      - run: 
           name: Test Build
           command: cd client && npm run build
       # ignoring tests for now

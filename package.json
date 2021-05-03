@@ -11,7 +11,8 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '*/**/*.js' --ignore-path .gitignore "
   },
   "repository": {
     "type": "git",
@@ -20,18 +21,31 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "eslintConfig": {
+    "extends": "@imaginary-cloud/react",
+    "root": true
+  },
+  "prettier": "@imaginary-cloud/prettier-config",
   "bugs": {
     "url": "https://github.com/brandyquinlan/devlr/issues"
   },
   "homepage": "https://github.com/brandyquinlan/devlr#readme",
   "dependencies": {
-    "eslint": "^7.25.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "passport": "^0.4.1",
-    "prettier": "^2.2.1"
+    "passport": "^0.4.1"
   },
   "devDependencies": {
-    "concurrently": "^6.0.2"
+    "@imaginary-cloud/eslint-config-react": "^1.0.1",
+    "concurrently": "^6.0.2",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "prettier": "^2.2.1"
   }
 }

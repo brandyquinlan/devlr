@@ -44,7 +44,6 @@
     "passport": "^0.4.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@imaginary-cloud/eslint-config-react": "^1.0.1",
     "concurrently": "^6.0.2",
     "eslint": "^7.25.0",
@@ -56,10 +55,5 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^2.5.1",
     "prettier": "^2.2.1"
-=======
-    "concurrently": "^6.0.2",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.23.2"
->>>>>>> circleci-work
   }
 }

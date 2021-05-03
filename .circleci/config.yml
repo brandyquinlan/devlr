@@ -14,8 +14,9 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
+      # Run esLint
       - run:
-          name: Run esLint
+          name: esLint Check
           command: npm run lint
       # ignoring tests for now
       # - run:

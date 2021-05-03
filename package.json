@@ -23,7 +23,15 @@
   "license": "ISC",
   "eslintConfig": {
     "extends": "@imaginary-cloud/react",
-    "root": true
+    "root": true,
+    "rules": {
+      "camelcase": [
+        2,
+        {
+          "properties": "always"
+        }
+      ]
+    }
   },
   "prettier": "@imaginary-cloud/prettier-config",
   "bugs": {

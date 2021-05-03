@@ -5,7 +5,7 @@ const profileSchema = new Schema({
     //adding the ref to user objectId to associate the profile with the user's id
     user:{
      type: Schema.Types.ObjectId,
-     ref: 'user'
+     ref: 'User'
     },
     name: {
         type: String,

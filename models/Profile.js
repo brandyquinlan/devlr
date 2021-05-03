@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const profileSchema = new Schema({
+    //adding the ref to user objectId to associate the profile with the user's id
+    user:{
+     type: Schema.Types.ObjectId,
+     ref: 'user'
+    },
     name: {
         type: String,
         required: true

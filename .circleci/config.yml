@@ -18,6 +18,13 @@ jobs:
       - run:
           name: esLint Check
           command: npm run lint
+      # - run: 
+      #     name: Lint Code
+      #     command: npm run lint
+      # Test react-scripts build
+      - run: 
+          name: Test Build
+          command: cd client && npm run build
       # ignoring tests for now
       # - run:
       #     name: Run tests
@@ -34,3 +41,4 @@ workflows:
           filters:
             branches:
               only: main
+              

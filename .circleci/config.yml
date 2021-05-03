@@ -10,17 +10,17 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      
       # install dependencies
       - run:
           name: Install Dependencies
           command: npm install
+
       # Run esLint
       - run:
           name: esLint Check
           command: npm run lint
-      # - run: 
-      #     name: Lint Code
-      #     command: npm run lint
+
       # Test react-scripts build
       - run: 
           name: Test Build

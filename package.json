@@ -30,7 +30,8 @@
         {
           "properties": "always"
         }
-      ]
+      ],
+      "react/prop-types": "off"
     }
   },
   "prettier": "@imaginary-cloud/prettier-config",
@@ -41,6 +42,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "if-env": "^1.0.4",
+    "mongoose": "^5.12.7",
     "passport": "^0.4.1"
   },
   "devDependencies": {

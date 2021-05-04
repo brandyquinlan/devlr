@@ -1,18 +1,15 @@
-// import { useState } from 'React';
-import useViewport from '../utils/useViewport'
-import Sidebar from '../Components/Sidebar';
-import MobileSidebar from '../Components/MobileSidebar';
-import Navbar from '../Components/Navbar';
-import Tab from '../Components/Tab';
+import React from 'react'
+import Sidebar from '../Components/Sidebar'
+import Navbar from '../Components/Navbar'
+import Tab from '../Components/Tab'
 
-const Home = () => {
-
-  const { width } = useViewport();
-  const breakpoint = 768;
-
+function Home() {
   return (
-    <div className="d-flex flex-row align-items-top justify-content-around" id="col1">
-      { width < breakpoint ? <MobileSidebar /> : <Sidebar />}
+    <div
+      className="d-flex flex-row align-items-top justify-content-around"
+      id="col1"
+    >
+      <Sidebar />
       <div className="d-flex flex-column align-items-left" id="col2">
         <Navbar />
       </div>
@@ -23,7 +20,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,4 +1,6 @@
-const Sidebar = () => {
+import React from 'react'
+
+function Sidebar() {
   return (
     <div id="side-nav">
       <h2>devlr</h2>
@@ -28,17 +30,27 @@ const Sidebar = () => {
         </li>
       </ul>
       <div className="d-flex flex-column align-items-center">
-      <button className="btn btn-lg btn-secondary mt-3" id="newBtn">
+        <button
+          type="button"
+          className="btn btn-lg btn-secondary mt-3"
+          id="newBtn"
+        >
           New Post
         </button>
         <div className="circle" id="userPic"></div>
-      <button type="button" className="btn btn-lg btn-secondary mt-3"
-          id="appearanceBtn">
-          <span className="material-icons" style={{fontSize: '24px'}}>palette</span>Appearance
+        <button
+          type="button"
+          className="btn btn-lg btn-secondary mt-3"
+          id="appearanceBtn"
+        >
+          <span className="material-icons" style={{ fontSize: '24px' }}>
+            palette
+          </span>
+          Appearance
         </button>
-        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

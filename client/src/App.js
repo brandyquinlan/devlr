@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './Pages/Home';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/index.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from './Pages/Home'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/index.css'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

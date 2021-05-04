@@ -1,15 +1,22 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from './Pages/Home'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/index.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Welcome to the home of devlr</p>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <Switch>
+          <Route exact path="/" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/home" component={Home} />
+        </Switch>
+      </div>
+    </Router>
   )
 }
 

@@ -1,4 +1,6 @@
-const Tab = ({ title, content }) => {
+import React from 'react'
+
+function Tab({ title, content }) {
   return (
     <div className="tab gradient">
       <div className="d-flex flex-row align-items-center justify-content-between">
@@ -8,7 +10,7 @@ const Tab = ({ title, content }) => {
       <div className="separator mb-3"></div>
       <div>{content}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Tab;
+export default Tab

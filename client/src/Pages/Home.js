@@ -1,11 +1,14 @@
-// import { useState } from 'React';
-import Sidebar from '../Components/Sidebar';
-import Navbar from '../Components/Navbar';
-import Tab from '../Components/Tab';
+import React from 'react'
+import Sidebar from '../Components/Sidebar'
+import Navbar from '../Components/Navbar'
+import Tab from '../Components/Tab'
 
-const Home = () => {
+function Home() {
   return (
-    <div className="d-flex flex-row align-items-top justify-content-around" id="col1">
+    <div
+      className="d-flex flex-row align-items-top justify-content-around"
+      id="col1"
+    >
       <Sidebar />
       <div className="d-flex flex-column align-items-left" id="col2">
         <Navbar />
@@ -17,7 +20,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

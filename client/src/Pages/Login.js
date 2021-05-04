@@ -1,4 +1,6 @@
-const Login = () => {
+import React from 'react'
+
+function Login() {
   return (
     <div id="loginWrapper">
       <div className="d-flex flex-row align-items-center justify-content-around">
@@ -8,6 +10,7 @@ const Login = () => {
           <div className="separator mt-4"></div>
           <form className="login">
             <div className="form-group">
+              {/* eslint-disable-next-line */}
               <label for="inputEmail1">Email address</label>
               <input
                 type="email"
@@ -17,6 +20,7 @@ const Login = () => {
               ></input>
             </div>
             <div className="form-group">
+              {/* eslint-disable-next-line */}
               <label for="inputPassword1">Password</label>
               <input
                 type="password"
@@ -26,7 +30,7 @@ const Login = () => {
               ></input>
             </div>
             <div
-              style={{display: 'none'}}
+              style={{ display: 'none' }}
               id="alert"
               className="alert alert-danger"
               role="alert"
@@ -48,13 +52,14 @@ const Login = () => {
           <br />
           <h6>
             Or sign up
-            <a href="/"><span style={{fontWeight: '300'}}> here</span>
+            <a href="/">
+              <span style={{ fontWeight: '300' }}> here</span>
             </a>
           </h6>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

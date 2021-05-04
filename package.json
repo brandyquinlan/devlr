@@ -25,10 +25,12 @@
   },
   "homepage": "https://github.com/brandyquinlan/devlr#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.12.7",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^6.0.2"

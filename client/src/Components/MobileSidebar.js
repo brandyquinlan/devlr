@@ -1,7 +1,7 @@
 const MobileSidebar = () => {
     return (
-      <div id="side-nav">
-        <h2>devlr</h2>
+      <div id="mobile-side-nav">
+        <div className="circle" style={{width: '44px', height: '44px', background: 'linen'}}></div>
         <ul className="list-group">
           <li className="m-3">
             <a href="/home">

@@ -12,7 +12,7 @@ function Signup() {
             <form className="signup">
               <div className="form-group">
                 {/* eslint-disable-next-line */}
-                <label for="inputEmail2">Email address</label>
+                <label htmlFor="inputEmail2">Email address</label>
                 <input
                   type="email"
                   className="form-control"
@@ -22,7 +22,7 @@ function Signup() {
               </div>
               <div className="form-group">
                 {/* eslint-disable-next-line */}
-                <label for="inputPassword2">Password</label>
+                <label htmlFor="inputPassword2">Password</label>
                 <input
                   type="password"
                   className="form-control"

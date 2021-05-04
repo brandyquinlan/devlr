@@ -1,4 +1,4 @@
-const Tab = ({ title, content }) => {
+const Tab = ({ title, children }) => {
   return (
     <div className="tab gradient">
       <div className="d-flex flex-row align-items-center justify-content-between">
@@ -6,7 +6,7 @@ const Tab = ({ title, content }) => {
         <span className="material-icons">expand_more</span>
       </div>
       <div className="separator mb-3"></div>
-      <div>{content}</div>
+      <div>{children}</div>
     </div>
   );
 };

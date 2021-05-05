@@ -1,7 +1,7 @@
 import React from 'react'
 import useViewport from '../utils/useViewport'
-import Sidebar from '../Components/Sidenav/Sidenav'
-import MobileSidebar from '../Components/Sidenav/MobileSidenav'
+import Sidenav from '../Components/Sidenav/Sidenav'
+import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 
@@ -14,7 +14,7 @@ const Home = () => {
       className="d-flex flex-row align-items-top justify-content-around"
       id="col1"
     >
-      {width < breakpoint ? <MobileSidebar /> : <Sidebar />}
+      {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
       <div className="d-flex flex-column align-items-left" id="col2">
         <Navbar />
       </div>

@@ -17,8 +17,8 @@ module.exports = (app) => {
         response.sendStatus(200)
       })
     } catch (error) {
-      response.sendStatus(400)
       // Deatiled error loging will be important for everyones sake in the dev process
+      response.send(error)
       throw new Error(
         `Error adding Post to databse --- server/api.js --- ERROR: ${error}`,
       )
@@ -34,9 +34,26 @@ module.exports = (app) => {
         response.send(res)
       })
     } catch (error) {
-      response.sendStatus(400)
+      response.send(error)
       throw new Error(
         `Error adding new User in databse --- server/api.js --- ERROR: ${error}`,
+      )
+    }
+  })
+
+  app.post('/api/newProfile', ({ body }, response) => {
+    // NOT SURE WHAT THIS SHOULD ACTUALLY LOOK LIKE. JUST SETTING IT UP
+    // TO MATCH THE OTHERS FOR NOW
+    const profile = body
+
+    try {
+      db.Profile.create(profile).then((res) => {
+        response.send(res)
+      })
+    } catch (error) {
+      response.send(error)
+      throw new Error(
+        `Error adding Profile to databse --- server/api.js --- ERROR: ${error}`,
       )
     }
   })

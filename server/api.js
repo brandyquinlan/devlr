@@ -7,9 +7,9 @@ module.exports = (app) => {
     response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
   })
 
-  app.post('/api/newPost', async ({ body }, response) => {
+  app.post('/api/newPost', async (request, response) => {
     // assuming that the post will be send in its object from from the client
-    const post = body
+    const { post } = request.body
 
     // we simply attempt to store it to the database
     try {
@@ -25,9 +25,9 @@ module.exports = (app) => {
     }
   })
 
-  app.post('/api/newUser', ({ body }, response) => {
+  app.post('/api/newUser', (request, response) => {
     // Again assuming that information is being sent in its object form from the client
-    const user = body
+    const { user } = request.body
 
     try {
       db.User.create(user).then((res) => {
@@ -41,10 +41,10 @@ module.exports = (app) => {
     }
   })
 
-  app.post('/api/newProfile/:id', ({ body }, response) => {
+  app.post('/api/newProfile/:id', (request, response) => {
     // NOT SURE WHAT THIS SHOULD ACTUALLY LOOK LIKE. JUST SETTING IT UP
     // TO MATCH THE OTHERS FOR NOW
-    const profile = body
+    const { profile } = request.body
 
     try {
       db.Profile.create(profile).then((res) => {
@@ -59,10 +59,11 @@ module.exports = (app) => {
   })
 
   app.put('/api/updateProfile/:id', ({ body, params }, response) => {
+    const { newProfile } = body
     const { id } = params
 
     try {
-      db.Profile.findOneAndUpdate({ user: id }, body).then((res) => {
+      db.Profile.findOneAndUpdate({ user: id }, newProfile).then((res) => {
         response.send(res)
       })
     } catch (error) {

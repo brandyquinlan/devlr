@@ -58,9 +58,9 @@ module.exports = (app) => {
     }
   })
 
-  app.put('/api/updateProfile/:id', ({ body, params }, response) => {
-    const { newProfile } = body
-    const { id } = params
+  app.put('/api/updateProfile/:id', (request, response) => {
+    const { newProfile } = request.body
+    const { id } = request.params
 
     try {
       db.Profile.findOneAndUpdate({ user: id }, newProfile).then((res) => {

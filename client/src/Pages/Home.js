@@ -18,11 +18,9 @@ const Home = () => {
       <div className="d-flex flex-column align-items-left" id="col2">
         <Navbar />
       </div>
-      <div className="d-flex flex-column align-items-right">
-        <div className="ml-4" id="col3">
-          <Tab title="Featured Devs" />
-          <Tab title="Ad" />
-        </div>
+      <div className="d-flex flex-column align-items-right ml-4" id="col3">
+        <Tab title="Featured Devs" />
+        <Tab title="Ad" />
       </div>
     </div>
   )

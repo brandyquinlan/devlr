@@ -1,10 +1,14 @@
 import React from 'react'
 import User from '../User/User'
+import Logo from '../../assets/img/logo.png'
 
 function Sidenav() {
   return (
     <div id="side-nav">
-      <h2>devlr</h2>
+      <div className="d-flex flex-column align-items-start justify-content-start">
+        <img src={Logo} style={{ width: '60px' }} alt="devlr logo"></img>
+        <h2 className="mt-3">devlr</h2>
+      </div>
       <ul className="list-group">
         <li className="m-3">
           <a href="/home">

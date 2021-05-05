@@ -47,9 +47,17 @@ body {
   border: 1px solid var(--main-text-color);
 }
 
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
 .nav-link,
 .nav-link.active,
 .nav-item.show .nav-link {
+  color: var(--main-text-color) !important;
   background-color: transparent !important;
   border-color: var(--main-text-color) !important;
   margin-right: 0.5rem;
@@ -59,35 +67,11 @@ body {
   border-bottom: 1px solid var(--main-text-color);
 }
 
-.list-group {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-}
-
 .material-icons {
   display: inline-flex;
   vertical-align: text-bottom;
   font-size: 22px;
   margin-right: 0.5rem;
-}
-
-.dropdown-menu {
-  background-color: var(--main-bg-color) !important;
-}
-
-.dropdown-menu .dropdown-item > a:hover {
-  background-image: none !important;
-  background-color: var(--main-bg-color) !important;
-}
-
-.dropdown-item {
-  color: var(--main-text-color) !important;
-}
-
-.dropdown-content a:hover {
-  background-color: transparent !important;
 }
 
 .language.disabled {
@@ -113,13 +97,8 @@ body {
   width: 100%;
 }
 
-#signUp,
-#logIn {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.logo {
+  max-width: 100px;
 }
 
 /* HTML element styles*/
@@ -201,6 +180,23 @@ input::placeholder {
   border: 1px solid linen !important;
 }
 
+.dropdown-menu {
+  background-color: var(--main-bg-color) !important;
+}
+
+.dropdown-menu .dropdown-item > a:hover {
+  background-image: none !important;
+  background-color: var(--main-bg-color) !important;
+}
+
+.dropdown-item {
+  color: var(--main-text-color) !important;
+}
+
+.dropdown-content a:hover {
+  background-color: transparent !important;
+}
+
 div.pp-scroll {
   width: 100%;
   max-height: 750px;
@@ -246,11 +242,6 @@ li,
   font-weight: 400;
 }
 
-p {
-  margin-bottom: 0;
-  text-align: left;
-}
-
 li > a {
   color: var(--main-text-color);
 }
@@ -263,9 +254,9 @@ li > a:focus {
   text-decoration: none;
 }
 
-.nav-link.active,
-.nav-item.show .nav-link {
-  color: var(--main-text-color) !important;
+p {
+  margin-bottom: 0;
+  text-align: left;
 }
 
 hr {
@@ -284,10 +275,6 @@ footer {
     rgba(245, 245, 245, 0.2) 0%,
     rgba(250, 240, 230, 0.2) 49.48%
   );
-}
-
-.logo {
-  max-width: 100px;
 }
 
 /* Color Utilities*/
@@ -478,7 +465,7 @@ footer {
 /* Targeted Styles*/
 
 #side-nav {
-  margin-right: 2rem;
+margin-right: 1.5rem;
 }
 
 #mobileBtn {
@@ -491,6 +478,15 @@ footer {
       rgba(245, 245, 245, 0.1) 0%,
       rgba(250, 240, 230, 0.1) 49.48%
     );
+}
+
+#signUp,
+#logIn {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #backgroundWrapper {
@@ -579,6 +575,8 @@ footer {
   }
   #col2 {
     margin-top: 1.5rem;
+    margin-left: .5rem;
+    margin-right: 1rem;
   }
   #col3 {
     display: none!important;

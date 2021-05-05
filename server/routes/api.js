@@ -8,7 +8,7 @@ router.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
 })
 
-router.get('/api/profile/:userID', (request, response) => {
+router.get('/profile/:userID', (request, response) => {
   const { userID } = request.params
 
   try {
@@ -24,7 +24,7 @@ router.get('/api/profile/:userID', (request, response) => {
 })
 
 //* POSTS::
-router.post('/api/newPost', async (request, response) => {
+router.post('/newPost', async (request, response) => {
   // assuming that the post will be send in its object from from the client
   const { post } = request.body
 
@@ -42,7 +42,7 @@ router.post('/api/newPost', async (request, response) => {
   }
 })
 
-router.post('/api/newUser', (request, response) => {
+router.post('/newUser', (request, response) => {
   // Again assuming that information is being sent in its object form from the client
   const { user } = request.body
 
@@ -58,7 +58,7 @@ router.post('/api/newUser', (request, response) => {
   }
 })
 
-router.post('/api/newProfile/:id', (request, response) => {
+router.post('/newProfile/:id', (request, response) => {
   // NOT SURE WHAT THIS SHOULD ACTUALLY LOOK LIKE. JUST SETTING IT UP
   // TO MATCH THE OTHERS FOR NOW
   const { profile } = request.body
@@ -76,7 +76,7 @@ router.post('/api/newProfile/:id', (request, response) => {
 })
 
 //* PUTS::
-router.put('/api/updateProfile/:id', (request, response) => {
+router.put('/updateProfile/:id', (request, response) => {
   // To update profile, create a new profile object, and send it as the request body,
   // and include the users Id in the request params
   const { newProfile } = request.body
@@ -94,7 +94,7 @@ router.put('/api/updateProfile/:id', (request, response) => {
   }
 })
 
-router.put('/api/likePost', (request, response) => {
+router.put('/likePost', (request, response) => {
   // To like a post, pass an object into the reqeust body, with a property postID
   // ALONG with the user who liked it, property userID
   const { userID, postID } = request.body

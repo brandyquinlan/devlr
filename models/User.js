@@ -35,8 +35,8 @@ User.prototype.validPassword = (password) =>
 
 // Hooks are automatic methods that run during various phases of the Users Model lifecycle
 // In this case, before a Users is created, we will automatically hash their password
-User.addHook('beforeCreate', (user) => {
-  User.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null)
-})
+// User.addHook('beforeCreate', (user) => {
+//   User.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null)
+// })
 
 module.exports = User

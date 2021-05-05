@@ -2,7 +2,7 @@ import React from 'react'
 import useViewport from '../utils/useViewport'
 import Sidebar from '../Components/Sidenav/Sidenav'
 import MobileSidebar from '../Components/Sidenav/MobileSidenav'
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 
 const Home = () => {

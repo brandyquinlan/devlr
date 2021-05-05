@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
+const router = require('./routes')
 
 const PORT = process.env.PORT || 3001
 const app = express()
@@ -12,8 +13,7 @@ app.use(
 )
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, '../client/build')))
-
-require('./api')(app)
+app.use(router)
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/database', {
   useNewUrlParser: true,

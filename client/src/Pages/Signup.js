@@ -1,4 +1,6 @@
-const Signup = () => {
+import React from 'react'
+
+function Signup() {
   return (
     <div>
       <div id="signupWrapper">
@@ -9,7 +11,8 @@ const Signup = () => {
             <div className="separator mt-4"></div>
             <form className="signup">
               <div className="form-group">
-                <label for="inputEmail2">Email address</label>
+                {/* eslint-disable-next-line */}
+                <label htmlFor="inputEmail2">Email address</label>
                 <input
                   type="email"
                   className="form-control"
@@ -18,7 +21,8 @@ const Signup = () => {
                 ></input>
               </div>
               <div className="form-group">
-                <label for="inputPassword2">Password</label>
+                {/* eslint-disable-next-line */}
+                <label htmlFor="inputPassword2">Password</label>
                 <input
                   type="password"
                   className="form-control"
@@ -39,7 +43,10 @@ const Signup = () => {
                 <span className="sr-only">Error:</span>
                 <span className="msg"></span>
               </div>
-              <button type="submit" className="btn btn-secondary gradient float-right">
+              <button
+                type="submit"
+                className="btn btn-secondary gradient float-right"
+              >
                 Sign Up
               </button>
             </form>
@@ -54,7 +61,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup

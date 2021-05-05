@@ -1,4 +1,6 @@
-const Login = () => {
+import React from 'react'
+
+function Login() {
   return (
     <div id="loginWrapper">
       <div className="d-flex flex-row align-items-center justify-content-around">
@@ -6,27 +8,29 @@ const Login = () => {
           <h1>devlr</h1>
           <h4>Log In</h4>
           <div className="separator mt-4"></div>
-          <form className="login">
-            <div className="form-group">
+          <htmlFor className="login">
+            <div className="htmlFor-group">
+              {/* eslint-disable-next-line */}
               <label for="inputEmail1">Email address</label>
               <input
                 type="email"
-                className="form-control"
+                className="htmlFor-control"
                 id="email-input"
                 placeholder="Email"
               ></input>
             </div>
-            <div className="form-group">
+            <div className="htmlFor-group">
+              {/* eslint-disable-next-line */}
               <label for="inputPassword1">Password</label>
               <input
                 type="password"
-                className="form-control"
+                className="htmlFor-control"
                 id="password-input"
                 placeholder="Password"
               ></input>
             </div>
             <div
-              style={{display: 'none'}}
+              style={{ display: 'none' }}
               id="alert"
               className="alert alert-danger"
               role="alert"
@@ -44,17 +48,18 @@ const Login = () => {
             <button type="submit" className="btn btn-secondary gradient">
               Login
             </button>
-          </form>
+          </htmlFor>
           <br />
           <h6>
             Or sign up
-            <a href="/"><span style={{fontWeight: '300'}}> here</span>
+            <a href="/">
+              <span style={{ fontWeight: '300' }}> here</span>
             </a>
           </h6>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

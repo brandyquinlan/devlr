@@ -1,7 +1,7 @@
 import React from 'react'
 import User from '../User/User'
 
-function Sidebar() {
+function Sidenav() {
   return (
     <div id="side-nav">
       <h2>devlr</h2>
@@ -35,4 +35,4 @@ function Sidebar() {
   )
 }
 
-export default Sidebar
+export default Sidenav

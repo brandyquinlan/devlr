@@ -1,6 +1,7 @@
 import React from 'react'
+import MobileUser from '../User/MobileUser'
 
-function MobileSidebar() {
+function MobileSidenav() {
   return (
     <div id="mobile-side-nav">
       <div
@@ -28,8 +29,9 @@ function MobileSidebar() {
           </a>
         </li>
       </ul>
+      <MobileUser />
     </div>
   )
 }
 
-export default MobileSidebar
+export default MobileSidenav

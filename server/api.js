@@ -20,7 +20,7 @@ module.exports = (app) => {
       // Deatiled error loging will be important for everyones sake in the dev process
       response.send(error)
       throw new Error(
-        `Error adding Post to databse --- server/api.js --- ERROR: ${error}`,
+        `Error adding Post to database --- server/api.js --- ERROR: ${error}`,
       )
     }
   })
@@ -36,12 +36,12 @@ module.exports = (app) => {
     } catch (error) {
       response.send(error)
       throw new Error(
-        `Error adding new User in databse --- server/api.js --- ERROR: ${error}`,
+        `Error adding new User in database --- server/api.js --- ERROR: ${error}`,
       )
     }
   })
 
-  app.post('/api/newProfile', ({ body }, response) => {
+  app.post('/api/newProfile/:id', ({ body }, response) => {
     // NOT SURE WHAT THIS SHOULD ACTUALLY LOOK LIKE. JUST SETTING IT UP
     // TO MATCH THE OTHERS FOR NOW
     const profile = body
@@ -53,7 +53,22 @@ module.exports = (app) => {
     } catch (error) {
       response.send(error)
       throw new Error(
-        `Error adding Profile to databse --- server/api.js --- ERROR: ${error}`,
+        `Error adding Profile to database --- server/api.js --- ERROR: ${error}`,
+      )
+    }
+  })
+
+  app.put('/api/updateProfile/:id', ({ body, params }, response) => {
+    const { id } = params
+
+    try {
+      db.Profile.findOneAndUpdate({ user: id }, body).then((res) => {
+        response.send(res)
+      })
+    } catch (error) {
+      response.send(error)
+      throw new Error(
+        `Error updating Profile in database  --- server/api.js --- ERROR: ${error}`,
       )
     }
   })

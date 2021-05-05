@@ -1,13 +1,11 @@
 import React from 'react'
 import MobileUser from '../User/MobileUser'
+import Logo from '../../assets/img/logo.png'
 
 function MobileSidenav() {
   return (
     <div id="mobile-side-nav">
-      <div
-        className="circle"
-        style={{ width: '44px', height: '44px', background: 'linen' }}
-      ></div>
+      <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       <ul className="list-group">
         <li className="m-3">
           <a href="/home">

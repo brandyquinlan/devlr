@@ -29,11 +29,6 @@ const userSchema = new Schema({
 userSchema.methods.validPassword = (password) =>
   bcrypt.compareSync(password, this.password)
 
-userSchema.pre('save', (user) => {
-  // eslint-disable-next-line no-param-reassign
-  user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null)
-})
-
 const User = mongoose.model('User', userSchema)
 
 module.exports = User

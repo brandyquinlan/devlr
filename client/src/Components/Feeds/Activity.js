@@ -1,9 +1,10 @@
 import React from 'react'
+import PostContainer from '../Posts/PostContainer'
 
 function Activity() {
   return (
     <div className="tab gradient">
-      Perform some actions to get more notifications here!
+      <PostContainer />
     </div>
   )
 }

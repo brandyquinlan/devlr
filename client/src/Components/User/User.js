@@ -1,16 +1,22 @@
 import React from 'react'
-import Btn from '../Btn'
+import { Button } from 'react-bootstrap'
 
 function User() {
   return (
     <div className="d-flex flex-column align-items-center">
-      <Btn id="newBtn" text="New Post" />
+      <Button variant="secondary" size="lg" id="newBtn">
+        <span className="material-icons" style={{ fontSize: '26px' }}>
+          post_add
+        </span>
+        New Post
+      </Button>
       <div className="circle" id="userPic"></div>
-      <Btn id="appearanceBtn" text="Appearance">
+      <Button variant="secondary" size="lg" id="appearanceBtn">
         <span className="material-icons" style={{ fontSize: '26px' }}>
           palette
         </span>
-      </Btn>
+        Appearance
+      </Button>
     </div>
   )
 }

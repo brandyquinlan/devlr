@@ -1,19 +1,19 @@
 import React from 'react'
-import Btn from '../Btn'
+import { Button } from 'react-bootstrap'
 
 function User() {
   return (
     <div className="d-flex flex-column align-items-center">
-      <Btn id="mobileBtn">
+      <Button type="button" variant="secondary" id="mobileBtn">
         <span className="material-icons" style={{ fontSize: '26px' }}>
           post_add
         </span>
-      </Btn>
-      <Btn id="mobileBtn">
+      </Button>
+      <Button type="button" variant="secondary" id="mobileBtn">
         <span className="material-icons" style={{ fontSize: '26px' }}>
           palette
         </span>
-      </Btn>
+      </Button>
     </div>
   )
 }

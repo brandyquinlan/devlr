@@ -17,7 +17,7 @@ function Sidenav() {
           Browse Users
         </li>
         <li className="m-3">
-          <i className="material-icons">dashboard</i> Update Profile
+          <i className="material-icons">dashboard</i>Update Profile
         </li>
         <li className="m-3">
           <i className="material-icons">manage_accounts</i>

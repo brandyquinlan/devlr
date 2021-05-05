@@ -580,6 +580,6 @@ footer {
     margin-top: 1.5rem;
   }
   #col3 {
-    display: none;
+    display: none!important;
   }
 }

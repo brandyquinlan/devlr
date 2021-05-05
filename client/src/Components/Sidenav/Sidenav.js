@@ -1,4 +1,5 @@
 import React from 'react'
+import User from '../User/User'
 
 function Sidebar() {
   return (
@@ -29,26 +30,7 @@ function Sidebar() {
           </a>
         </li>
       </ul>
-      <div className="d-flex flex-column align-items-center">
-        <button
-          type="button"
-          className="btn btn-lg btn-secondary mt-3"
-          id="newBtn"
-        >
-          New Post
-        </button>
-        <div className="circle" id="userPic"></div>
-        <button
-          type="button"
-          className="btn btn-lg btn-secondary mt-3"
-          id="appearanceBtn"
-        >
-          <span className="material-icons" style={{ fontSize: '24px' }}>
-            palette
-          </span>
-          Appearance
-        </button>
-      </div>
+      <User />
     </div>
   )
 }

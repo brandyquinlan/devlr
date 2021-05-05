@@ -480,6 +480,18 @@ footer {
   margin-right: 2rem;
 }
 
+#mobileBtn {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    background: rgb(245, 245, 245);
+    background: linear-gradient(
+      180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%
+    );
+}
+
 #backgroundWrapper {
   padding-inline-start: 0;
   margin-block-start: 0;

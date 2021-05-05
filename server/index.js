@@ -22,6 +22,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/database', {
   useUnifiedTopology: true,
 })
 
-app.listen(PORT, () => {
-  console.log(`Server online and listening on ${PORT}`)
-})
+try {
+  app.listen(PORT)
+} catch (error) {
+  throw new Error(
+    `Error initializing server --- /server/index.js --- ERROR: ${error}`,
+  )
+}

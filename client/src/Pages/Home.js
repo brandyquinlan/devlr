@@ -1,15 +1,20 @@
 import React from 'react'
+import useViewport from '../utils/useViewport'
 import Sidebar from '../Components/Sidebar'
+import MobileSidebar from '../Components/MobileSidebar'
 import Navbar from '../Components/Navbar'
 import Tab from '../Components/Tab'
 
-function Home() {
+const Home = () => {
+  const { width } = useViewport()
+  const breakpoint = 768
+
   return (
     <div
       className="d-flex flex-row align-items-top justify-content-around"
       id="col1"
     >
-      <Sidebar />
+      {width < breakpoint ? <MobileSidebar /> : <Sidebar />}
       <div className="d-flex flex-column align-items-left" id="col2">
         <Navbar />
       </div>

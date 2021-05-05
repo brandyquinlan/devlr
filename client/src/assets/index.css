@@ -533,8 +533,8 @@ footer {
 
 #userPic {
     background-color: var(--main-text-color);
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin-top: 3rem;
     margin-bottom: 1rem;
     vertical-align: middle;
@@ -553,4 +553,23 @@ footer {
 
 .devPic:hover {
     box-shadow: 0 0 0 0.2rem linen !important;
+}
+
+#col2 {
+    width: 100%;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 0;
+    }
+
+    #col2 {
+        margin-top: 1.5rem;
+    }
+
+    #col3 {
+        display: none;
+    }
 }

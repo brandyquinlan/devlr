@@ -12,7 +12,8 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint '*/**/*.js' --ignore-path .gitignore"
+    "lint": "eslint '*/**/*.js' --ignore-path .gitignore",
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",

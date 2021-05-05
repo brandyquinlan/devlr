@@ -1,9 +1,11 @@
 import React from 'react'
+import MobileUser from '../User/MobileUser'
+import Logo from '../../assets/img/logo.png'
 
-function MobileSidebar() {
+function MobileSidenav() {
   return (
-    <div id="side-nav">
-      <h2>devlr</h2>
+    <div id="mobile-side-nav">
+      <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       <ul className="list-group">
         <li className="m-3">
           <a href="/home">
@@ -25,8 +27,9 @@ function MobileSidebar() {
           </a>
         </li>
       </ul>
+      <MobileUser />
     </div>
   )
 }
 
-export default MobileSidebar
+export default MobileSidenav

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import NavTabs from './NavTabs'
-import Activity from './Feeds/Activity'
-import Profile from './Feeds/Profile'
-import Explore from './Feeds/Explore'
+import Activity from '../Feeds/Activity'
+import Profile from '../Feeds/Profile'
+import Explore from '../Feeds/Explore'
 
 function Navbar() {
   const [page, setPage] = useState('About')

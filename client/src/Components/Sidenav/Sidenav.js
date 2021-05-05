@@ -1,9 +1,14 @@
 import React from 'react'
+import User from '../User/User'
+import Logo from '../../assets/img/logo.png'
 
-function Sidebar() {
+function Sidenav() {
   return (
     <div id="side-nav">
-      <h2>devlr</h2>
+      <div className="d-flex flex-column align-items-start justify-content-start">
+        <img src={Logo} style={{ width: '60px' }} alt="devlr logo"></img>
+        <h2 className="mt-3">devlr</h2>
+      </div>
       <ul className="list-group">
         <li className="m-3">
           <a href="/home">
@@ -16,7 +21,7 @@ function Sidebar() {
           Browse Users
         </li>
         <li className="m-3">
-          <i className="material-icons">dashboard</i> Update Profile
+          <i className="material-icons">dashboard</i>Update Profile
         </li>
         <li className="m-3">
           <i className="material-icons">manage_accounts</i>
@@ -29,28 +34,9 @@ function Sidebar() {
           </a>
         </li>
       </ul>
-      <div className="d-flex flex-column align-items-center">
-        <button
-          type="button"
-          className="btn btn-lg btn-secondary mt-3"
-          id="newBtn"
-        >
-          New Post
-        </button>
-        <div className="circle" id="userPic"></div>
-        <button
-          type="button"
-          className="btn btn-lg btn-secondary mt-3"
-          id="appearanceBtn"
-        >
-          <span className="material-icons" style={{ fontSize: '24px' }}>
-            palette
-          </span>
-          Appearance
-        </button>
-      </div>
+      <User />
     </div>
   )
 }
 
-export default Sidebar
+export default Sidenav

@@ -492,8 +492,8 @@ footer {
 }
 
 #mobileBtn {
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background: rgb(245, 245, 245);
   background: linear-gradient(
@@ -519,7 +519,6 @@ footer {
 }
 
 #newBtn {
-  width: 144px;
   border-radius: 20px;
   background: rgb(245, 245, 245);
   background: linear-gradient(

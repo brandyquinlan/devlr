@@ -12,10 +12,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  githubUsername: {
-    type: String,
-    required: true,
-  },
+
   accessToken: {
     type: String,
   },

@@ -1,19 +1,42 @@
 import React from 'react'
-import Btn from '../Btn'
+import { Button } from 'react-bootstrap'
+import AppearanceModal from '../Modals/AppearanceModal'
+import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
+  const [postModalShow, setPostModalShow] = React.useState(false)
+  const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
+
   return (
     <div className="d-flex flex-column align-items-center">
-      <Btn id="mobileBtn">
+      <Button
+        type="button"
+        variant="secondary"
+        id="mobileBtn"
+        onClick={() => setPostModalShow(true)}
+      >
         <span className="material-icons" style={{ fontSize: '26px' }}>
           post_add
         </span>
-      </Btn>
-      <Btn id="mobileBtn">
+      </Button>
+      <NewPostModal
+        show={postModalShow}
+        onHide={() => setPostModalShow(false)}
+      />
+      <Button
+        type="button"
+        variant="secondary"
+        id="mobileBtn"
+        onClick={() => setAppearanceModalShow(true)}
+      >
         <span className="material-icons" style={{ fontSize: '26px' }}>
           palette
         </span>
-      </Btn>
+      </Button>
+      <AppearanceModal
+        show={appearanceModalShow}
+        onHide={() => setAppearanceModalShow(false)}
+      />
     </div>
   )
 }

@@ -12,12 +12,6 @@ const Reducer = (state, action) => {
           themePref: action.payload,
         },
       }
-    case 'login':
-      return {
-        ...state,
-        user: action.payload.user,
-        profile: action.payload.profile,
-      }
     default:
       throw new Error('something went wrong with Reducer switch case')
   }

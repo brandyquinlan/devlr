@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy
 
 const db = require('../models')
 passport.use(
+  'local',
   new LocalStrategy({
     usernameField: 'email',
   }), // When a user tries to sign in this code runs

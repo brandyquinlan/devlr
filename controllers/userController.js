@@ -11,7 +11,6 @@ module.exports = (app) => {
       db.User.create({
         email: request.body.email,
         password: request.body.password,
-        githubUsername: request.body.githubUsername,
       }).then((result) => response.status(200).send(result))
     } catch (error) {
       // console.log(error)

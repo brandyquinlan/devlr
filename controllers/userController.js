@@ -35,7 +35,7 @@ module.exports = (app) => {
         }
         response.json(user)
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         response.json(error)
       }
     },

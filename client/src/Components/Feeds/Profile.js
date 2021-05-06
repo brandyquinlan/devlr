@@ -1,11 +1,12 @@
 import React from 'react'
 import Tab from '../Tab'
+import LanguagesContainer from '../Languages/LanguagesContainer'
 
 function Profile() {
   return (
     <>
       <Tab title="My Background" content="figuring it out" />
-      <Tab title="My Languages" content="more content with prop types?" />
+      <LanguagesContainer />
       <Tab title="My Projects" content="la la la" />
     </>
   )

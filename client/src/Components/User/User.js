@@ -1,0 +1,47 @@
+import React from 'react'
+import { Button } from 'react-bootstrap'
+import AppearanceModal from '../Modals/AppearanceModal'
+import NewPostModal from '../Modals/NewPostModal'
+
+function User() {
+  const [postModalShow, setPostModalShow] = React.useState(false)
+  const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
+
+  return (
+    <div className="d-flex flex-column align-items-center">
+      <Button
+        variant="secondary"
+        size="lg"
+        id="newBtn"
+        onClick={() => setPostModalShow(true)}
+      >
+        <span className="material-icons" style={{ fontSize: '26px' }}>
+          post_add
+        </span>
+        New Post
+      </Button>
+      <NewPostModal
+        show={postModalShow}
+        onHide={() => setPostModalShow(false)}
+      />
+      <div className="circle" id="userPic"></div>
+      <Button
+        variant="secondary"
+        size="lg"
+        id="appearanceBtn"
+        onClick={() => setAppearanceModalShow(true)}
+      >
+        <span className="material-icons" style={{ fontSize: '26px' }}>
+          palette
+        </span>
+        Appearance
+      </Button>
+      <AppearanceModal
+        show={appearanceModalShow}
+        onHide={() => setAppearanceModalShow(false)}
+      />
+    </div>
+  )
+}
+
+export default User

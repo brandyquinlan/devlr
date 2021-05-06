@@ -26,7 +26,6 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-require('./api')(app)
 require('../controllers/userController')(app)
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/devlr', {
@@ -40,3 +39,11 @@ app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Server online and listening on ${PORT}`)
 })
+
+try {
+  app.listen(PORT)
+} catch (error) {
+  throw new Error(
+    `Error initializing server --- /server/index.js --- ERROR: ${error}`,
+  )
+}

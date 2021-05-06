@@ -8,23 +8,23 @@ function Login() {
           <h1>devlr</h1>
           <h4>Log In</h4>
           <div className="separator mt-4"></div>
-          <htmlFor className="login">
-            <div className="htmlFor-group">
+          <form className="signup">
+            <div className="form-group">
               {/* eslint-disable-next-line */}
               <label for="inputEmail1">Email address</label>
               <input
                 type="email"
-                className="htmlFor-control"
+                className="form-control"
                 id="email-input"
                 placeholder="Email"
               ></input>
             </div>
-            <div className="htmlFor-group">
+            <div className="form-group">
               {/* eslint-disable-next-line */}
               <label for="inputPassword1">Password</label>
               <input
                 type="password"
-                className="htmlFor-control"
+                className="form-control"
                 id="password-input"
                 placeholder="Password"
               ></input>
@@ -45,10 +45,13 @@ function Login() {
                 correctly
               </span>
             </div>
-            <button type="submit" className="btn btn-secondary gradient">
+            <button
+              type="submit"
+              className="btn btn-secondary gradient float-right"
+            >
               Login
             </button>
-          </htmlFor>
+          </form>
           <br />
           <h6>
             Or sign up

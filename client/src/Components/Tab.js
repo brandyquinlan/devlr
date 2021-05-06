@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Tab({ title, content }) {
+function Tab({ title, children }) {
   return (
     <div className="tab gradient">
       <div className="d-flex flex-row align-items-center justify-content-between">
@@ -8,7 +8,7 @@ function Tab({ title, content }) {
         <span className="material-icons">expand_more</span>
       </div>
       <div className="separator mb-3"></div>
-      <div>{content}</div>
+      <div>{children}</div>
     </div>
   )
 }

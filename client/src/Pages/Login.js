@@ -8,7 +8,7 @@ function Login() {
           <h1>devlr</h1>
           <h4>Log In</h4>
           <div className="separator mt-4"></div>
-          <form className="signup">
+          <form className="login">
             <div className="form-group">
               {/* eslint-disable-next-line */}
               <label for="inputEmail1">Email address</label>

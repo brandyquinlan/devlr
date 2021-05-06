@@ -38,7 +38,6 @@ function Signup() {
             <div className="separator mt-4"></div>
             <form className="signup">
               <div className="form-group">
-                {/* eslint-disable-next-line */}
                 <label htmlFor="inputEmail2">Email address</label>
                 <input
                   ref={emailRef}
@@ -50,7 +49,6 @@ function Signup() {
                 ></input>
               </div>
               <div className="form-group">
-                {/* eslint-disable-next-line */}
                 <label htmlFor="inputPassword2">Password</label>
                 <input
                   ref={passwordRef}

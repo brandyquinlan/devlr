@@ -5,6 +5,13 @@ const Reducer = (state, action) => {
         ...state,
         this: 'is an example',
       }
+    case 'change theme':
+      return {
+        ...state,
+        profile: {
+          themePref: action.payload,
+        },
+      }
     default:
       throw new Error('something went wrong with Reducer switch case')
   }

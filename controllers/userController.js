@@ -11,7 +11,6 @@ module.exports = (app) => {
       db.User.create({
         email: request.body.email,
         password: request.body.password,
-        githubUsername: request.body.githubUsername,
       }).then((result) => response.status(200).send(result))
     } catch (error) {
       // console.log(error)
@@ -19,26 +18,11 @@ module.exports = (app) => {
     }
   })
 
-  app.post(
-    '/api/login',
-    passport.authenticate('local'),
-    // eslint-disable-next-line consistent-return
-    async (request, response) => {
-      try {
-        const user = await db.User.findOne({ email: request.body.email })
-          .select('-password')
-          .exec()
-        if (!user) {
-          return response.status(400).send({ msg: 'user does not exist' })
-        }
-        if (!bcrypt.compareSync(request.body.password, user.password)) {
-          return response.status(400).send({ msg: 'invalid password' })
-        }
-        response.json(user)
-      } catch (error) {
-        console.log(error)
-        response.json(error)
-      }
-    },
-  )
+  app.post('/api/login', passport.authenticate('local'), (req, res) => {
+    res.json({
+      email: req.user.email,
+      // eslint-disable-next-line no-underscore-dangle
+      id: req.user._id,
+    })
+  })
 }

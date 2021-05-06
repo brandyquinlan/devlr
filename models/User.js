@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-const bcrypt = require('bcryptjs')
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -12,10 +12,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  githubUsername: {
-    type: String,
-    required: true,
-  },
+
   accessToken: {
     type: String,
   },
@@ -24,10 +21,6 @@ const userSchema = new Schema({
     default: Date.now,
   },
 })
-/* Creating a custom method for our Users model. This will check if an un-hashed password
-  entered by the user can be compared to the hashed password stored in our database */
-userSchema.methods.validPassword = (password) =>
-  bcrypt.compareSync(password, this.password)
 
 const User = mongoose.model('User', userSchema)
 

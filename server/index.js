@@ -26,6 +26,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+require('./api')(app)
 require('../controllers/userController')(app)
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/devlr', {

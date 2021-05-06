@@ -3,9 +3,12 @@ const session = require('express-session')
 const path = require('path')
 const passport = require('passport')
 const mongoose = require('mongoose')
+// eslint-disable-next-line import/no-unresolved
+const dotenv = require('dotenv')
 
 const PORT = process.env.PORT || 3001
 const app = express()
+dotenv.config()
 
 app.use(
   express.urlencoded({

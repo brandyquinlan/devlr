@@ -3,7 +3,9 @@ import React, { createContext, useReducer } from 'react'
 import Reducer from './Reducer'
 
 const initialState = {
-  user: {},
+  profile: {
+    themePref: '222222',
+  },
 }
 
 const Store = ({ children }) => {

@@ -21,10 +21,12 @@ function Signup() {
   }
 
   function signUp() {
-    axios.post('api/signup', {
-      email: state.email,
-      password: state.password,
-    })
+    axios
+      .post('/api/signup', {
+        email: state.email,
+        password: state.password,
+      })
+      .then((res) => console.log(res))
   }
 
   return (
@@ -76,6 +78,7 @@ function Signup() {
               <button
                 type="submit"
                 className="btn btn-secondary gradient float-right"
+                onClick={signUp}
               >
                 Sign Up
               </button>

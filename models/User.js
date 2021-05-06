@@ -14,7 +14,6 @@ const userSchema = new Schema({
   },
   githubUsername: {
     type: String,
-    required: true,
   },
   accessToken: {
     type: String,

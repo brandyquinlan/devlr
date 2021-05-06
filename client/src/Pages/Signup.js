@@ -1,6 +1,33 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
+import axios from 'axios'
 
 function Signup() {
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  })
+
+  const emailRef = useRef()
+  const passwordRef = useRef()
+
+  function handleInputChange(event) {
+    event.preventDefault()
+
+    setState({
+      ...state,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    })
+  }
+
+  function signUp() {
+    axios.post('/api/signup', {
+      email: state.email,
+      password: state.password,
+    })
+    // .then((res) => console.log(res))
+  }
+
   return (
     <div>
       <div id="signupWrapper">
@@ -13,6 +40,8 @@ function Signup() {
               <div className="form-group">
                 <label htmlFor="inputEmail2">Email address</label>
                 <input
+                  ref={emailRef}
+                  onChange={handleInputChange}
                   type="email"
                   className="form-control"
                   id="email-input"
@@ -22,6 +51,8 @@ function Signup() {
               <div className="form-group">
                 <label htmlFor="inputPassword2">Password</label>
                 <input
+                  ref={passwordRef}
+                  onChange={handleInputChange}
                   type="password"
                   className="form-control"
                   id="password-input"
@@ -44,6 +75,7 @@ function Signup() {
               <button
                 type="submit"
                 className="btn btn-secondary gradient float-right"
+                onClick={signUp}
               >
                 Sign Up
               </button>

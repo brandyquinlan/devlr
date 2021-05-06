@@ -17,7 +17,7 @@ module.exports = (app) => {
         password: request.body.password,
       }).then(
         response.redirect(
-          `https://github.com/login/oauth/authorize?client_id=${clientId}`,
+          `https://github.com/login/oauth/authorize?client_id=${process.env.clientId}`,
         ),
       )
     } catch (error) {

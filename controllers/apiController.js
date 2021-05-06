@@ -9,10 +9,6 @@ router.get((request, response) => {
 })
 
 //* GETS::
-// This is for heroku so that React Router works
-router.get('*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
-})
 
 router.get('/api/profile/:userID', (request, response) => {
   const { userID } = request.params
@@ -22,10 +18,7 @@ router.get('/api/profile/:userID', (request, response) => {
       response.send(res).status(200)
     })
   } catch (error) {
-    response.send(error).status(400)
-    throw new Error(
-      `Error getting Profile from database --- server/api.js --- ERROR: ${error}`,
-    )
+    response.send(error).status(500)
   }
 })
 
@@ -40,10 +33,7 @@ router.post('/api/newPost', async (request, response) => {
       response.sendStatus(200)
     })
   } catch (error) {
-    response.sendStatus(400)
-    throw new Error(
-      `Error adding Post to database --- server/api.js --- ERROR: ${error}`,
-    )
+    response.sendStatus(500)
   }
 })
 
@@ -57,10 +47,7 @@ router.post('/api/newProfile/:id', (request, response) => {
       response.send(res)
     })
   } catch (error) {
-    response.sendStatus(400)
-    throw new Error(
-      `Error adding Profile to database --- server/api.js --- ERROR: ${error}`,
-    )
+    response.sendStatus(500)
   }
 })
 
@@ -76,10 +63,7 @@ router.put('/api/updateProfile/:id', (request, response) => {
       response.send(res)
     })
   } catch (error) {
-    response.sendStatus(400)
-    throw new Error(
-      `Error updating Profile in database  --- server/api.js --- ERROR: ${error}`,
-    )
+    response.sendStatus(500)
   }
 })
 
@@ -95,10 +79,7 @@ router.put('/api/likePost', (request, response) => {
       },
     )
   } catch (error) {
-    response.sendStatus(400)
-    throw new Error(
-      `Error updating Post in database  --- server/api.js --- ERROR: ${error}`,
-    )
+    response.sendStatus(500)
   }
 })
 

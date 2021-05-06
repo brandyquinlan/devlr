@@ -34,7 +34,6 @@ passport.use(
       })
     },
   ),
-
 )
 
 passport.serializeUser((user, cb) => {

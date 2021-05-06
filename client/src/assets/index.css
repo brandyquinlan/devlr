@@ -103,6 +103,19 @@ body {
 
 /* HTML element styles*/
 
+button {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--main-text-color);
+  background: transparent;
+  border: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
 form.signup,
 form.login {
   margin-top: 2rem;
@@ -465,19 +478,29 @@ footer {
 /* Targeted Styles*/
 
 #side-nav {
-margin-right: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+#modalCloseBtn {
+  background: rgb(245, 245, 245);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 245, 245, 0.1) 0%,
+    rgba(250, 240, 230, 0.1) 49.48%
+  );
+
 }
 
 #mobileBtn {
-    height: 55px;
-    width: 55px;
-    border-radius: 50%;
-    background: rgb(245, 245, 245);
-    background: linear-gradient(
-      180deg,
-      rgba(245, 245, 245, 0.1) 0%,
-      rgba(250, 240, 230, 0.1) 49.48%
-    );
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: rgb(245, 245, 245);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 245, 245, 0.1) 0%,
+    rgba(250, 240, 230, 0.1) 49.48%
+  );
 }
 
 #signUp,
@@ -496,7 +519,6 @@ margin-right: 1.5rem;
 }
 
 #newBtn {
-  width: 144px;
   border-radius: 20px;
   background: rgb(245, 245, 245);
   background: linear-gradient(
@@ -575,10 +597,10 @@ margin-right: 1.5rem;
   }
   #col2 {
     margin-top: 1.5rem;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
     margin-right: 1rem;
   }
   #col3 {
-    display: none!important;
+    display: none !important;
   }
 }

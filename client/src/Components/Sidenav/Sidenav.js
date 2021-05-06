@@ -1,8 +1,15 @@
 import React from 'react'
 import User from '../User/User'
+import BrowseUsersModal from '../Modals/BrowseUsersModal'
+import UpdateProfileModal from '../Modals/UpdateProfileModal'
+import ManageAccountModal from '../Modals/ManageAccountModal'
 import Logo from '../../assets/img/logo.png'
 
 function Sidenav() {
+  const [usersModalShow, setUsersModalShow] = React.useState(false)
+  const [profileModalShow, setProfileModalShow] = React.useState(false)
+  const [accountModalShow, setAccountModalShow] = React.useState(false)
+
   return (
     <div id="side-nav">
       <div className="d-flex flex-column align-items-start justify-content-start">
@@ -10,28 +17,46 @@ function Sidenav() {
         <h2 className="mt-3">devlr</h2>
       </div>
       <ul className="list-group">
-        <li className="m-3">
-          <a href="/home">
+        <li>
+          <button type="button" href="/home">
             <i className="material-icons">home</i>
             Home
-          </a>
+          </button>
         </li>
-        <li className="m-3">
-          <i className="material-icons">groups</i>
-          Browse Users
+        <li>
+          <button type="button" onClick={() => setUsersModalShow(true)}>
+            <i className="material-icons">groups</i>
+            Browse Users
+          </button>
         </li>
-        <li className="m-3">
-          <i className="material-icons">dashboard</i>Update Profile
+        <BrowseUsersModal
+          show={usersModalShow}
+          onHide={() => setUsersModalShow(false)}
+        />
+        <li>
+          <button type="button" onClick={() => setProfileModalShow(true)}>
+            <i className="material-icons">dashboard</i>Update Profile
+          </button>
         </li>
-        <li className="m-3">
-          <i className="material-icons">manage_accounts</i>
-          Account
+        <UpdateProfileModal
+          show={profileModalShow}
+          onHide={() => setProfileModalShow(false)}
+        />
+        <li>
+          <button type="button" onClick={() => setAccountModalShow(true)}>
+            <i className="material-icons">manage_accounts</i>
+            Account
+          </button>
+          <ManageAccountModal
+            show={accountModalShow}
+            onHide={() => setAccountModalShow(false)}
+          />
         </li>
-        <li className="m-3">
-          <a href="/logout">
+        <li>
+          <button type="button" href="/logout">
             <i className="material-icons">keyboard_return</i>
             Logout
-          </a>
+          </button>
         </li>
       </ul>
       <User />

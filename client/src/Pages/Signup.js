@@ -21,11 +21,10 @@ function Signup() {
   }
 
   function signUp() {
-    axios.post('/api/signup', {
+    axios.post('/api/users/signup', {
       email: state.email,
       password: state.password,
     })
-    // .then((res) => console.log(res))
   }
 
   return (

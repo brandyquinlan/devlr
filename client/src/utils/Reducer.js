@@ -1,3 +1,6 @@
+import API from './API'
+
+// eslint-disable-next-line
 const Reducer = (state, action) => {
   switch (action.type) {
     case 'init':
@@ -12,17 +15,30 @@ const Reducer = (state, action) => {
           themePref: action.payload,
         },
       }
-    case 'login':
-      window.location.href = '/home'
+    case 'set user':
       return {
         ...state,
         user: action.payload,
       }
     case 'sign up':
-      window.location.href = '/home'
       return {
         ...state,
         user: action.payload,
+      }
+    case 'set user access token':
+      return {
+        ...state,
+        user: {
+          accessToken: action.payload,
+        },
+      }
+    case 'logout':
+      API.logout()
+      return {
+        user: {},
+        profile: {
+          themePref: '222222',
+        },
       }
     default:
       throw new Error('something went wrong with Reducer switch case')

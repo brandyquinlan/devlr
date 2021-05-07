@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StoreContext } from '../../utils/GlobalState'
 import User from '../User/User'
 import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
@@ -6,6 +7,8 @@ import ManageAccountModal from '../Modals/ManageAccountModal'
 import Logo from '../../assets/img/logo.png'
 
 function Sidenav() {
+  // eslint-disable-next-line
+  const [store, dispatch] = useContext(StoreContext)
   const [usersModalShow, setUsersModalShow] = React.useState(false)
   const [profileModalShow, setProfileModalShow] = React.useState(false)
   const [accountModalShow, setAccountModalShow] = React.useState(false)
@@ -53,7 +56,11 @@ function Sidenav() {
           />
         </li>
         <li>
-          <button type="button" href="/logout">
+          <button
+            type="button"
+            href="/"
+            onClick={() => dispatch({ type: 'logout' })}
+          >
             <i className="material-icons">keyboard_return</i>
             Logout
           </button>

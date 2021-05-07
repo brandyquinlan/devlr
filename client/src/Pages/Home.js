@@ -1,34 +1,19 @@
 import React, { useEffect, useContext } from 'react'
-import { useLocation } from 'react-router-dom'
-import axios from 'axios'
 import { StoreContext } from '../utils/GlobalState'
-import Signup from './Signup'
+import Login from './Login'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search)
-}
-
 const Home = () => {
-  const code = useQuery().get('code')
-  console.log(code)
   // eslint-disable-next-line no-unused-vars
   const [store, dispatch] = useContext(StoreContext)
+  console.log(store)
   const { width } = useViewport()
   const breakpoint = 768
-
   const { themePref } = store.profile
-
-  useEffect(() => {
-    axios.post('/api/users/getAccessToken', { code }).then((token) => {
-      console.log(token, store.user)
-      window.history.pushState({}, null, '/home')
-    })
-  }, [])
 
   useEffect(() => {
     // console.log(themePref);
@@ -51,7 +36,8 @@ const Home = () => {
 
   return (
     <div>
-      {code ? (
+      {/* eslint-disable-next-line */}
+      {store.user._id ? (
         <div
           className="d-flex flex-row align-items-top justify-content-around"
           id="col1"
@@ -66,7 +52,7 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <Signup />
+        <Login />
       )}
     </div>
   )

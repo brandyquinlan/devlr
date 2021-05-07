@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react'
-import axios from 'axios'
+import API from '../utils/API'
 import { StoreContext } from '../utils/GlobalState'
 
 function Signup() {
@@ -25,16 +25,19 @@ function Signup() {
 
   function signUp(event) {
     event.preventDefault()
+    const userInfo = {
+      email: state.email,
+      password: state.password,
+    }
 
-    axios
-      .post('/api/users/signup', {
-        email: state.email,
-        password: state.password,
+    API.signUp(userInfo)
+      .then(() => {
+        window.location.href = '/login'
+        // 'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
+        // dispatch({ type: 'sign up', payload: userInfo })
       })
-      .then((user) => {
-        dispatch({ type: 'sign up', payload: user })
-        window.location.href =
-          'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
+      .catch((err) => {
+        throw new Error('error on signup', err)
       })
   }
 

@@ -7,7 +7,7 @@ const db = require('../models')
 dotenv.config()
 
 // github redirects the user back to url that we provided during setting up our oauth app
-router.get('/getAccessToken', (req, res) => {
+router.post('/getAccessToken', (req, res) => {
   const body = {
     // eslint-disable-next-line camelcase
     client_id: process.env.clientId,
@@ -20,15 +20,28 @@ router.get('/getAccessToken', (req, res) => {
     .post(`https://github.com/login/oauth/access_token`, body, opts)
 
     // eslint-disable-next-line dot-notation
-    .then((response) => {
-      console.log(response.data.access_token)
-      return response.data.access_token
-    })
+    .then((response) => response.data.access_token)
     .then((token) => {
-      console.log('My token:', token)
       res.json({ token })
     })
     .catch((err) => res.status(500).json({ message: err.message }))
+})
+
+router.put('/setAccessToken', (req, res) => {
+  const { _id } = req.user
+  const { token } = req.body
+
+  console.log(_id)
+  try {
+    // eslint-disable-next-line
+    db.User.findOneAndUpdate({ _id }, { accessToken: token }).then(
+      (updatedUser) => {
+        res.status(200).json(updatedUser)
+      },
+    )
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 })
 
 // registering new user
@@ -50,9 +63,26 @@ router.post('/signup', (request, response) => {
 
 // login route
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.json({
-    user: req.user,
-  })
+  res.send(req.user)
+})
+
+// Route for checking if a user is logged in
+router.get('/getUser', (request, response) => {
+  try {
+    response.send(request.user)
+  } catch (err) {
+    response.send(err)
+  }
+})
+
+// logout route
+router.get('/logout', (request, response) => {
+  try {
+    request.logout()
+    response.sendStatus(200)
+  } catch (err) {
+    response.send(err).status(500)
+  }
 })
 
 module.exports = router

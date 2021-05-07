@@ -26,6 +26,9 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 // Going for the router methods with express, makes for slightly easier to read code
+app.get('/api/hello', (req, res) => {
+  res.sendStatus(200)
+})
 app.use(router)
 // If no API routes are hit, send the React app
 if (process.env.NODE_ENV === 'production') {

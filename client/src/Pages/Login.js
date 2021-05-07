@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react'
-import axios from 'axios'
+import API from '../utils/API'
 import { StoreContext } from '../utils/GlobalState'
 
 function Login() {
@@ -26,14 +26,17 @@ function Login() {
   function login(event) {
     event.preventDefault()
 
-    axios
-      .post('/api/users/login', {
-        email: state.email,
-        password: state.password,
-      })
-      .then((user) => {
-        dispatch({ type: 'login', payload: user })
-      })
+    const userInfo = {
+      email: state.email,
+      password: state.password,
+    }
+    API.login(userInfo).then(() => {
+      // const { user } = response.data
+      // dispatch({ type: 'login', payload: user })
+      window.location.href =
+        'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
+      // '/home'
+    })
   }
 
   return (

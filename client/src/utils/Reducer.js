@@ -19,11 +19,6 @@ const Reducer = (state, action) => {
         ...state,
         user: action.payload,
       }
-    case 'sign up':
-      return {
-        ...state,
-        user: action.payload,
-      }
     case 'set user access token':
       return {
         ...state,

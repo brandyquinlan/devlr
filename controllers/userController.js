@@ -9,8 +9,8 @@ dotenv.config()
 // github redirects the user back to url that we provided during setting up our oauth app
 router.post('/getAccessToken', (req, res) => {
   const body = {
-    client_id: process.env.clientId,
-    client_secret: process.env.clientSecret,
+    client_id: process.env.CLIENT_ID,
+    client_secret: process.env.CLIENT_SECRET,
     code: req.body.code,
   }
   const opts = { headers: { accept: 'application/json' } }
@@ -21,21 +21,28 @@ router.post('/getAccessToken', (req, res) => {
     .then((token) => {
       res.json({ token })
     })
-    .catch((err) => res.status(500).json({ message: err.message }))
+    .catch((err) => {
+      console.error('get token error', err)
+      res.status(500).json({ message: err.message })
+    })
 })
 
 router.put('/setAccessToken', (req, res) => {
-  const { _id } = req.user
-  const { token } = req.body
+  const { token, _id } = req.body
 
-  // console.log(_id)
   try {
     db.User.findOneAndUpdate({ _id }, { accessToken: token }).then(
       (updatedUser) => {
+        updatedUser.save()
+        console.log(
+          'Added access token to user, userController line 37',
+          updatedUser,
+        )
         res.status(200).json(updatedUser)
       },
     )
   } catch (err) {
+    console.error(err)
     res.status(500).json({ message: err.message })
   }
 })
@@ -77,7 +84,7 @@ router.get('/logout', (request, response) => {
     request.logout()
     response.sendStatus(200)
   } catch (err) {
-    response.send(err).status(500)
+    response.status(500).json({ error: err.message })
   }
 })
 

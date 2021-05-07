@@ -31,11 +31,9 @@ function Login() {
       password: state.password,
     }
     API.login(userInfo).then(() => {
-      // const { user } = response.data
-      // dispatch({ type: 'login', payload: user })
-      window.location.href =
-        'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
-      // '/home'
+      if (store.firstSignIn) {
+        window.location.href = '/home'
+      }
     })
   }
 

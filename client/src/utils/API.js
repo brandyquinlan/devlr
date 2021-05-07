@@ -16,8 +16,8 @@ const API = {
   getUserAccessToken(code) {
     return axios.post('/api/users/getAccessToken', { code })
   },
-  setUserAccessToken(token) {
-    return axios.put('/api/users/setAccessToken', { token })
+  setUserAccessToken(token, _id) {
+    return axios.put('/api/users/setAccessToken', { token, _id })
   },
   getUser() {
     return axios.get('/api/users/getUser')

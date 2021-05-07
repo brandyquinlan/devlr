@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     API.getUser().then((user) => {
-      // console.log(user.data)
+      console.log('App.js useEffect, user data: ', user.data)
       dispatch({ type: 'set user', payload: user.data })
     })
   }, [])

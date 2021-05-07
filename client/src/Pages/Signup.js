@@ -31,9 +31,9 @@ function Signup() {
 
     API.signUp(userInfo)
       .then(() => {
-        window.location.href = '/login'
-        // 'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
-        // dispatch({ type: 'sign up', payload: userInfo })
+        API.login(userInfo)
+        window.location.href =
+          'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })
       .catch((err) => {
         throw new Error('error on signup', err)

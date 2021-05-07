@@ -28,7 +28,7 @@
     "rules": {
       "react/prop-types": "off",
       "no-underscore-dangle": "off",
-      "no-unused-vars": "warn",
+      "no-unused-vars": "off",
       "no-console": "off"
     }
   },

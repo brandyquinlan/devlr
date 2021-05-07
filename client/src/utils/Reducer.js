@@ -1,6 +1,5 @@
 import API from './API'
 
-// eslint-disable-next-line
 const Reducer = (state, action) => {
   switch (action.type) {
     case 'init':

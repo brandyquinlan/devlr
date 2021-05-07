@@ -8,7 +8,6 @@ import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 
 const Home = () => {
-  // eslint-disable-next-line no-unused-vars
   const [store, dispatch] = useContext(StoreContext)
   // console.log(store)
   const { width } = useViewport()
@@ -36,7 +35,6 @@ const Home = () => {
 
   return (
     <div>
-      {/* eslint-disable-next-line */}
       {store.user._id ? (
         <div
           className="d-flex flex-row align-items-top justify-content-around"

@@ -15,7 +15,7 @@ async function useAuth() {
   let authenticated = false
   const user = await API.getUser()
   if (user.data) authenticated = true
-  // eslint-disable-next-line
+
   //   const [store, dispatch] = useContext(StoreContext)
   //   // This could probably be cleaned up and turned into its own hook
   //   // If we have a code in the URL, take that code and get an access token from github

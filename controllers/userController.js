@@ -9,9 +9,7 @@ dotenv.config()
 // github redirects the user back to url that we provided during setting up our oauth app
 router.post('/getAccessToken', (req, res) => {
   const body = {
-    // eslint-disable-next-line camelcase
     client_id: process.env.clientId,
-    // eslint-disable-next-line camelcase
     client_secret: process.env.clientSecret,
     code: req.body.code,
   }
@@ -19,7 +17,6 @@ router.post('/getAccessToken', (req, res) => {
   axios
     .post(`https://github.com/login/oauth/access_token`, body, opts)
 
-    // eslint-disable-next-line dot-notation
     .then((response) => response.data.access_token)
     .then((token) => {
       res.json({ token })
@@ -33,7 +30,6 @@ router.put('/setAccessToken', (req, res) => {
 
   // console.log(_id)
   try {
-    // eslint-disable-next-line
     db.User.findOneAndUpdate({ _id }, { accessToken: token }).then(
       (updatedUser) => {
         res.status(200).json(updatedUser)

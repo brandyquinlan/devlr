@@ -26,13 +26,10 @@
     "extends": "@imaginary-cloud/react",
     "root": true,
     "rules": {
-      "camelcase": [
-        2,
-        {
-          "properties": "always"
-        }
-      ],
-      "react/prop-types": "off"
+      "react/prop-types": "off",
+      "no-underscore-dangle": "off",
+      "no-unused-vars": "warn",
+      "no-console": "off"
     }
   },
   "prettier": "@imaginary-cloud/prettier-config",

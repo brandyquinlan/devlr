@@ -3,7 +3,6 @@ import API from '../utils/API'
 import { StoreContext } from '../utils/GlobalState'
 
 function Signup() {
-  // eslint-disable-next-line
   const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',

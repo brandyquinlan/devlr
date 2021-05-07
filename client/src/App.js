@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/index.css'
 
 function App() {
-  // eslint-disable-next-line
   const [store, dispatch] = useContext(StoreContext)
   dotenv.config()
 

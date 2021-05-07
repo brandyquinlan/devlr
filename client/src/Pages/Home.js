@@ -10,7 +10,7 @@ import Tab from '../Components/Tab'
 const Home = () => {
   // eslint-disable-next-line no-unused-vars
   const [store, dispatch] = useContext(StoreContext)
-  console.log(store)
+  // console.log(store)
   const { width } = useViewport()
   const breakpoint = 768
   const { themePref } = store.profile

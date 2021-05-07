@@ -31,7 +31,7 @@ router.put('/setAccessToken', (req, res) => {
   const { _id } = req.user
   const { token } = req.body
 
-  console.log(_id)
+  // console.log(_id)
   try {
     // eslint-disable-next-line
     db.User.findOneAndUpdate({ _id }, { accessToken: token }).then(

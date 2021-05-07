@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const axios = require('axios')
+
 const posts = require('./postController')
 const users = require('./userController')
 const profile = require('./profileController')
 
 router.use('/api/posts', posts)
 router.use('/api/users', users)
-router.use('/api/profile', profile)
+router.use('/api/profiles', profile)
 
 // github redirects the user back to url that we provided during setting up our oauth app
 let token = null

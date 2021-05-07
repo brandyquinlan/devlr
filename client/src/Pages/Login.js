@@ -1,6 +1,40 @@
-import React from 'react'
+import React, { useState, useRef, useContext } from 'react'
+import axios from 'axios'
+import { StoreContext } from '../utils/GlobalState'
 
 function Login() {
+  const [store, dispatch] = useContext(StoreContext)
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  })
+
+  const emailRef = useRef()
+  const passwordRef = useRef()
+
+  function handleInputChange(event) {
+    event.preventDefault()
+
+    setState({
+      ...state,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    })
+  }
+
+  function login(event) {
+    event.preventDefault()
+
+    axios
+      .post('/api/users/login', {
+        email: state.email,
+        password: state.password,
+      })
+      .then((user) => {
+        dispatch({ type: 'login', payload: user })
+      })
+  }
+
   return (
     <div id="loginWrapper">
       <div className="d-flex flex-row align-items-center justify-content-around">
@@ -8,11 +42,13 @@ function Login() {
           <h1>devlr</h1>
           <h4>Log In</h4>
           <div className="separator mt-4"></div>
-          <form className="login">
+          <form className="login" onSubmit={login}>
             <div className="form-group">
               {/* eslint-disable-next-line */}
               <label for="inputEmail1">Email address</label>
               <input
+                ref={emailRef}
+                onChange={handleInputChange}
                 type="email"
                 className="form-control"
                 id="email-input"
@@ -23,6 +59,8 @@ function Login() {
               {/* eslint-disable-next-line */}
               <label for="inputPassword1">Password</label>
               <input
+                ref={passwordRef}
+                onChange={handleInputChange}
                 type="password"
                 className="form-control"
                 id="password-input"

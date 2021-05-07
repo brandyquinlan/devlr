@@ -13,11 +13,9 @@ router.post('/signup', (request, response) => {
     db.User.create({
       email: request.body.email,
       password: request.body.password,
-    }).then(
-      response.redirect(
-        `https://github.com/login/oauth/authorize?client_id=${process.env.clientId}`,
-      ),
-    )
+    }).then(() => {
+      response.sendStatus(200)
+    })
   } catch (error) {
     // console.log(error)
     response.status(500).send(error)
@@ -27,9 +25,7 @@ router.post('/signup', (request, response) => {
 // login route
 router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json({
-    email: req.user.email,
-    // eslint-disable-next-line no-underscore-dangle
-    id: req.user._id,
+    user: req.user,
   })
 })
 

@@ -20,11 +20,19 @@ function Signup() {
     })
   }
 
-  function signUp() {
-    axios.post('/api/users/signup', {
-      email: state.email,
-      password: state.password,
-    })
+  function signUp(event) {
+    event.preventDefault()
+
+    axios
+      .post('/api/users/signup', {
+        email: state.email,
+        password: state.password,
+      })
+      .then(() => {
+        // Not a big deal if the client id is exposed
+        window.location.href =
+          'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
+      })
   }
 
   return (
@@ -35,7 +43,7 @@ function Signup() {
             <h1>devlr</h1>
             <h4>Sign Up</h4>
             <div className="separator mt-4"></div>
-            <form className="signup">
+            <form className="signup" onSubmit={signUp}>
               <div className="form-group">
                 <label htmlFor="inputEmail2">Email address</label>
                 <input

@@ -1,7 +1,10 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import axios from 'axios'
+import { StoreContext } from '../utils/GlobalState'
 
 function Signup() {
+  // eslint-disable-next-line
+  const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -28,8 +31,8 @@ function Signup() {
         email: state.email,
         password: state.password,
       })
-      .then(() => {
-        // Not a big deal if the client id is exposed
+      .then((user) => {
+        dispatch({ type: 'sign up', payload: user })
         window.location.href =
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { StoreContext } from '../utils/GlobalState'
 
 function Login() {
+  // eslint-disable-next-line
   const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',

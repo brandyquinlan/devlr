@@ -13,6 +13,13 @@ const Reducer = (state, action) => {
         },
       }
     case 'login':
+      window.location.href = '/home'
+      return {
+        ...state,
+        user: action.payload,
+      }
+    case 'sign up':
+      window.location.href = '/home'
       return {
         ...state,
         user: action.payload,

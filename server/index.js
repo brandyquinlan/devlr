@@ -25,15 +25,17 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+// Going for the router methods with express, makes for slightly easier to read code
 app.use(router)
 // If no API routes are hit, send the React app
-const root = path.join(__dirname, '../client', 'build')
-app.use(express.static(root))
-// This likes to throw "no such file or directory found" error in the console, but it is needed for heroku to work...
-app.get('*', (req, res) => {
-  res.sendFile(path.join(root, 'index.html'))
-})
-// Going for the router methods with express, makes for slightly easier to read code
+if (process.env.NODE_ENV === 'production') {
+  const root = path.join(__dirname, '../client', 'build')
+  app.use(express.static(root))
+  // This likes to throw "no such file or directory found" error in the console, but it is needed for heroku to work...
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(root, 'index.html'))
+  })
+}
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/devlr', {

@@ -1,3 +1,5 @@
+import API from './API'
+
 const Reducer = (state, action) => {
   switch (action.type) {
     case 'init':
@@ -10,6 +12,27 @@ const Reducer = (state, action) => {
         ...state,
         profile: {
           themePref: action.payload,
+        },
+      }
+    case 'set user':
+      return {
+        ...state,
+        user: action.payload,
+      }
+    case 'set user access token':
+      return {
+        ...state,
+        user: {
+          accessToken: action.payload,
+        },
+      }
+    case 'logout':
+      API.logout()
+      window.location.href = '/login'
+      return {
+        user: {},
+        profile: {
+          themePref: '222222',
         },
       }
     default:

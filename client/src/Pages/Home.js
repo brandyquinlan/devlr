@@ -24,7 +24,6 @@ const Home = () => {
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
-    if (store.user.accessToken) return
     if (!code) return
 
     API.getUser().then((resUser) => {

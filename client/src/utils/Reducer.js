@@ -28,6 +28,7 @@ const Reducer = (state, action) => {
       }
     case 'logout':
       API.logout()
+      window.location.href = '/login'
       return {
         user: {},
         profile: {

@@ -1,8 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import dotenv from 'dotenv'
 import { StoreContext } from './utils/GlobalState'
-// import useAuth from './utils/useAuth'
 import API from './utils/API'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
@@ -12,11 +10,9 @@ import './assets/index.css'
 
 function App() {
   const [store, dispatch] = useContext(StoreContext)
-  dotenv.config()
 
   useEffect(() => {
     API.getUser().then((user) => {
-      console.log('App.js useEffect, user data: ', user.data)
       dispatch({ type: 'set user', payload: user.data })
     })
   }, [])

@@ -29,13 +29,13 @@ router.post('/getAccessToken', (req, res) => {
 
 router.put('/setAccessToken', async (req, res) => {
   const { token, _id } = req.body
-  console.log(token, _id)
 
   try {
-    const user = await db.User.findOneAndUpdate({ _id }, { accessToken: token })
-    // user.accessToken = token
-    // await user.save()
-    console.log('Added access token to user, userController line 37', user)
+    let user = await db.User.findOneAndUpdate({ _id }, { accessToken: token })
+    user = {
+      email: user.email,
+      _id: user._id,
+    }
     res.status(200).json(user)
   } catch (err) {
     console.error(err)

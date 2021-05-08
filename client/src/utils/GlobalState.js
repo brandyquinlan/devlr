@@ -2,7 +2,12 @@ import React, { createContext, useReducer } from 'react'
 
 import Reducer from './Reducer'
 
-const initialState = {}
+const initialState = {
+  user: {},
+  profile: {
+    themePref: '222222',
+  },
+}
 
 const Store = ({ children }) => {
   const [store, dispatch] = useReducer(Reducer, initialState)

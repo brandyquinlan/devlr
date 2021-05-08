@@ -13,55 +13,59 @@ function PostContainer() {
       body: 'So this is my first post! Woohoo!',
       likes: [
         {
-          // does this need to be an array so we can have multiple likes?
-          // and maybe a count? Or just do a count by doing likes.user.length?
+          // can this be an array so we can have multiple likes?
           user: 'katsign',
+        },
+        {
+          user: 'liztownd',
         },
       ],
       comments: [
         {
           user: 'katsign',
           text: 'This is a crazy idea! I love it!',
-          date: Date.now(),
+          date: 'May 4, 2021',
         },
       ],
-      date: Date.now(),
+      date: 'May 4, 2021',
     },
     {
       id: 2,
       user: 'liztownd',
       title: 'Great Post',
       body: 'OMG - you guys, this project is the BOMB!',
-      likes: [
-        {
-          user: 'selvivini',
-        },
-      ],
+      //   likes: [
+      //     {
+      //       user: 'selvivini',
+      //     },
+      // ],
       comments: [
         {
           user: 'katsign',
           text: 'I know! It is so exciting',
-          date: Date.now(),
+          date: 'May 5, 2021',
         },
       ],
-      date: Date.now(),
+      date: 'May 5, 2021',
     },
   ]
 
   return (
-    <Tab title="Posts">
+    <div>
       {posts.map((p) => (
-        <PostBox
-          key={p.id}
-          user={p.user}
-          title={p.title}
-          body={p.body}
-          date={p.date}
-          comments={p.comments}
-          likes={p.likes}
-        />
+        <Tab title={p.title}>
+          <PostBox
+            key={p.id}
+            user={p.user}
+            title={p.title}
+            body={p.body}
+            date={p.date}
+            comments={p.comments}
+            likes={p.likes}
+          />
+        </Tab>
       ))}
-    </Tab>
+    </div>
   )
 }
 

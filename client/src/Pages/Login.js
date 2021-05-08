@@ -1,10 +1,7 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef } from 'react'
 import API from '../utils/API'
-import { StoreContext } from '../utils/GlobalState'
 
 function Login() {
-  // eslint-disable-next-line
-  const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -44,8 +41,7 @@ function Login() {
           <div className="separator mt-4"></div>
           <form className="login" onSubmit={login}>
             <div className="form-group">
-              {/* eslint-disable-next-line */}
-              <label for="inputEmail1">Email address</label>
+              <label htmlFor="inputEmail1">Email address</label>
               <input
                 ref={emailRef}
                 onChange={handleInputChange}
@@ -56,8 +52,7 @@ function Login() {
               ></input>
             </div>
             <div className="form-group">
-              {/* eslint-disable-next-line */}
-              <label for="inputPassword1">Password</label>
+              <label htmlFor="inputPassword1">Password</label>
               <input
                 ref={passwordRef}
                 onChange={handleInputChange}

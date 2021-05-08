@@ -1,9 +1,7 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef } from 'react'
 import API from '../utils/API'
-import { StoreContext } from '../utils/GlobalState'
 
 function Signup() {
-  const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',
     password: '',

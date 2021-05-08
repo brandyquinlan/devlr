@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 function UpdateProfileModal(props) {
   const { register, handleSubmit } = useForm()
   const onSubmit = (data) => {
-    alert(JSON.stringify(data))
+    console.log(JSON.stringify(data))
   }
 
   return (

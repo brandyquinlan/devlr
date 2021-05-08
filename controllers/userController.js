@@ -16,7 +16,6 @@ router.post('/getAccessToken', (req, res) => {
   const opts = { headers: { accept: 'application/json' } }
   axios
     .post(`https://github.com/login/oauth/access_token`, body, opts)
-
     .then((response) => response.data.access_token)
     .then((token) => {
       res.json({ token })

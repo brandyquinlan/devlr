@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Spinner } from 'react-bootstrap'
 import { StoreContext } from '../utils/GlobalState'
 import API from '../utils/API'
-import Login from './Login'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
@@ -72,7 +72,7 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <Login />
+        <Spinner animation="border" />
       )}
     </div>
   )

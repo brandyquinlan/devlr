@@ -1,6 +1,9 @@
 import axios from 'axios'
 
 const API = {
+  post(postData) {
+    return axios.post('/api/posts/newPost', postData)
+  },
   login(userInfo) {
     return axios.post('/api/users/login', {
       email: userInfo.email,

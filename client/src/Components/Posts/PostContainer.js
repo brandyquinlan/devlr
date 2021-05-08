@@ -53,6 +53,7 @@ function PostContainer() {
       {posts.map((p) => (
         <PostBox
           key={p.id}
+          id={p.id}
           user={p.user}
           title={p.title}
           body={p.body}

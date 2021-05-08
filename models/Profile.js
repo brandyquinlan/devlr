@@ -39,6 +39,10 @@ const profileSchema = new Schema({
     type: Date,
     required: true,
   },
+  githubUsername: {
+    type: String,
+    required: true,
+  },
   languages: {
     type: [String],
   },

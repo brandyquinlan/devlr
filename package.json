@@ -26,13 +26,10 @@
     "extends": "@imaginary-cloud/react",
     "root": true,
     "rules": {
-      "camelcase": [
-        2,
-        {
-          "properties": "always"
-        }
-      ],
-      "react/prop-types": "off"
+      "react/prop-types": "off",
+      "no-underscore-dangle": "off",
+      "no-unused-vars": "off",
+      "no-console": "off"
     }
   },
   "prettier": "@imaginary-cloud/prettier-config",
@@ -43,7 +40,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^8.5.1",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",

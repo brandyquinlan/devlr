@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StoreContext } from '../../utils/GlobalState'
 import MobileUser from '../User/MobileUser'
 import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
@@ -6,6 +7,7 @@ import ManageAccountModal from '../Modals/ManageAccountModal'
 import Logo from '../../assets/img/logo.png'
 
 function MobileSidenav() {
+  const [store, dispatch] = useContext(StoreContext)
   const [usersModalShow, setUsersModalShow] = React.useState(false)
   const [profileModalShow, setProfileModalShow] = React.useState(false)
   const [accountModalShow, setAccountModalShow] = React.useState(false)
@@ -47,7 +49,11 @@ function MobileSidenav() {
           />
         </li>
         <li>
-          <button type="button" href="/logout">
+          <button
+            type="button"
+            href="/"
+            onClick={() => dispatch({ type: 'logout' })}
+          >
             <i className="material-icons">keyboard_return</i>
           </button>
         </li>

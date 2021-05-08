@@ -1,8 +1,8 @@
 import React from 'react'
 
-function PostBox({ key, user, title, body, date, likes, comments }) {
+function PostBox({ id, user, title, body, date, likes, comments }) {
   return (
-    <div className="mt-3" id={key}>
+    <div className="mt-3" id={id}>
       <h5>{title}</h5>
       <p>{body}</p>
       <p className="small">

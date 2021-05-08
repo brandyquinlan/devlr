@@ -13,7 +13,6 @@ passport.use(
       db.User.findOne({
         email,
       }).then((user) => {
-        console.log(user)
         // If there's no user with the given email
         if (!user) {
           return done(null, false, {

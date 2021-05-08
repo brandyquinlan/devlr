@@ -7,7 +7,6 @@ import ManageAccountModal from '../Modals/ManageAccountModal'
 import Logo from '../../assets/img/logo.png'
 
 function Sidenav() {
-  // eslint-disable-next-line
   const [store, dispatch] = useContext(StoreContext)
   const [usersModalShow, setUsersModalShow] = React.useState(false)
   const [profileModalShow, setProfileModalShow] = React.useState(false)

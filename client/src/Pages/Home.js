@@ -35,7 +35,7 @@ const Home = () => {
       })
     })
     window.history.pushState({}, null, '/home')
-  }, [store.user])
+  }, [code])
 
   useEffect(() => {
     // console.log(themePref);

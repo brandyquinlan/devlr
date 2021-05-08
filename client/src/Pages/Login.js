@@ -31,9 +31,7 @@ function Login() {
       password: state.password,
     }
     API.login(userInfo).then(() => {
-      if (store.firstSignIn) {
-        window.location.href = '/home'
-      }
+      window.location.href = '/home'
     })
   }
 

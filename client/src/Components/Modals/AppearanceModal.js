@@ -3,7 +3,6 @@ import { Modal, Button } from 'react-bootstrap'
 import { StoreContext } from '../../utils/GlobalState'
 
 function AppearanceModal(props) {
-  // eslint-disable-next-line no-unused-vars
   const [store, dispatch] = useContext(StoreContext)
 
   return (

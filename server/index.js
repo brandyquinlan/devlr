@@ -34,7 +34,6 @@ app.use(router)
 if (process.env.NODE_ENV === 'production') {
   const root = path.join(__dirname, '../client', 'build')
   app.use(express.static(root))
-  // This likes to throw "no such file or directory found" error in the console, but it is needed for heroku to work...
   app.get('*', (req, res) => {
     res.sendFile(path.join(root, 'index.html'))
   })

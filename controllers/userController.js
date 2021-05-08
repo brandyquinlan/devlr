@@ -27,20 +27,16 @@ router.post('/getAccessToken', (req, res) => {
     })
 })
 
-router.put('/setAccessToken', (req, res) => {
+router.put('/setAccessToken', async (req, res) => {
   const { token, _id } = req.body
+  console.log(token, _id)
 
   try {
-    db.User.findOneAndUpdate({ _id }, { accessToken: token }).then(
-      (updatedUser) => {
-        updatedUser.save()
-        console.log(
-          'Added access token to user, userController line 37',
-          updatedUser,
-        )
-        res.status(200).json(updatedUser)
-      },
-    )
+    const user = await db.User.findOneAndUpdate({ _id }, { accessToken: token })
+    // user.accessToken = token
+    // await user.save()
+    console.log('Added access token to user, userController line 37', user)
+    res.status(200).json(user)
   } catch (err) {
     console.error(err)
     res.status(500).json({ message: err.message })
@@ -49,13 +45,17 @@ router.put('/setAccessToken', (req, res) => {
 
 // registering new user
 // should modify this route to redirect the user to github and get the token back and save it in db
-router.post('/signup', (request, response) => {
+router.post('/signup', async (request, response) => {
   try {
     request.body.password = bcrypt.hashSync(request.body.password, 10)
     db.User.create({
       email: request.body.email,
       password: request.body.password,
-    }).then((user) => {
+    }).then((res) => {
+      const user = {
+        email: res.email,
+        _id: res._id,
+      }
       response.json(user)
     })
   } catch (error) {

@@ -30,7 +30,6 @@ function Login() {
       password: state.password,
     }
     API.login(userInfo).then(() => {
-      dispatch({ type: 'login' })
       window.location.href = '/home'
     })
   }

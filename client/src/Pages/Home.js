@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { StoreContext } from '../utils/GlobalState'
@@ -15,8 +15,22 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(StoreContext)
+  const [authenticating, setAuthenticating] = useState(true)
+  const [authenticated, setAuthenticated] = useState(false)
   const code = useQuery().get('code')
-  const { isAuthenticated } = store
+
+  useEffect(() => {
+    async function authenticateUser() {
+      await API.getUser().then(({ data }) => {
+        console.log(data)
+        if (data._id) setAuthenticated(true)
+        setAuthenticating(false)
+      })
+    }
+    if (authenticating) {
+      authenticateUser()
+    }
+  }, [])
 
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
@@ -58,22 +72,31 @@ const Home = () => {
 
   return (
     <div>
-      {isAuthenticated === true ? (
-        <div
-          className="d-flex flex-row align-items-top justify-content-around"
-          id="col1"
-        >
-          {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
-          <div className="d-flex flex-column align-items-left" id="col2">
-            <Navbar />
-          </div>
-          <div className="d-flex flex-column align-items-right ml-4" id="col3">
-            <Tab title="Featured Devs" />
-            <Tab title="Ad" />
-          </div>
-        </div>
+      {authenticating ? (
+        <Spinner animation="border" />
       ) : (
-        <Redirect to="/" />
+        [
+          authenticated === true ? (
+            <div
+              className="d-flex flex-row align-items-top justify-content-around"
+              id="col1"
+            >
+              {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+              <div className="d-flex flex-column align-items-left" id="col2">
+                <Navbar />
+              </div>
+              <div
+                className="d-flex flex-column align-items-right ml-4"
+                id="col3"
+              >
+                <Tab title="Featured Devs" />
+                <Tab title="Ad" />
+              </div>
+            </div>
+          ) : (
+            <Redirect to="/" />
+          ),
+        ]
       )}
     </div>
   )

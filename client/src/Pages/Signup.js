@@ -32,7 +32,6 @@ function Signup() {
     API.signUp(userInfo)
       .then(() => {
         API.login(userInfo)
-        dispatch({ type: 'login' })
         window.location.href =
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })

@@ -14,11 +14,6 @@ const Reducer = (state, action) => {
         ...state,
         user: action.payload,
       }
-    case 'login':
-      return {
-        ...state,
-        isAuthenticated: true,
-      }
     case 'logout':
       API.logout()
       window.location.href = '/login'

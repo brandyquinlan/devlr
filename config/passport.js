@@ -13,6 +13,7 @@ passport.use(
       db.User.findOne({
         email,
       }).then((user) => {
+        console.log(user)
         // If there's no user with the given email
         if (!user) {
           return done(null, false, {
@@ -20,15 +21,11 @@ passport.use(
           })
         }
         // checking the users password in db with the entered password
-
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-          if (err) throw err
-          if (isMatch) {
-            return done(null, user)
-          }
-          return done(null, false, { message: 'Incorrect Password!' })
-        })
-
+        if (!bcrypt.compareSync(password, user.password)) {
+          return done(null, false, {
+            message: 'Incorrect password.',
+          })
+        }
         // If none of the above, return the user
         return done(null, user)
       })

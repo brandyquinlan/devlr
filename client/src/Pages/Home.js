@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { StoreContext } from '../utils/GlobalState'
 import API from '../utils/API'
@@ -16,10 +16,7 @@ function useQuery() {
 const Home = () => {
   const [store, dispatch] = useContext(StoreContext)
   const code = useQuery().get('code')
-
-  const { width } = useViewport()
-  const breakpoint = 768
-  const { themePref } = store.profile
+  const { isAuthenticated } = store
 
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
@@ -35,6 +32,10 @@ const Home = () => {
     })
     window.history.pushState({}, null, '/home')
   }, [code])
+
+  const { width } = useViewport()
+  const breakpoint = 768
+  const { themePref } = store.profile
 
   useEffect(() => {
     // console.log(themePref);
@@ -57,7 +58,7 @@ const Home = () => {
 
   return (
     <div>
-      {store.user._id ? (
+      {isAuthenticated === true ? (
         <div
           className="d-flex flex-row align-items-top justify-content-around"
           id="col1"
@@ -72,7 +73,7 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <Spinner animation="border" />
+        <Redirect to="/" />
       )}
     </div>
   )

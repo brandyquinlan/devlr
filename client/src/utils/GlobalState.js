@@ -7,6 +7,7 @@ const initialState = {
   profile: {
     themePref: '222222',
   },
+  isAuthenticated: false,
 }
 
 const Store = ({ children }) => {

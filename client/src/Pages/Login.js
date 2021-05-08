@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
+import { StoreContext } from '../utils/GlobalState'
 import API from '../utils/API'
 
 function Login() {
+  const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -28,6 +30,7 @@ function Login() {
       password: state.password,
     }
     API.login(userInfo).then(() => {
+      dispatch({ type: 'login' })
       window.location.href = '/home'
     })
   }

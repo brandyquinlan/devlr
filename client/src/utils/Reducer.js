@@ -2,11 +2,6 @@ import API from './API'
 
 const Reducer = (state, action) => {
   switch (action.type) {
-    case 'init':
-      return {
-        ...state,
-        this: 'is an example',
-      }
     case 'change theme':
       return {
         ...state,
@@ -18,13 +13,6 @@ const Reducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
-      }
-    case 'set user access token':
-      return {
-        ...state,
-        user: {
-          accessToken: action.payload,
-        },
       }
     case 'logout':
       API.logout()

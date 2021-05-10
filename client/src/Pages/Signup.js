@@ -93,10 +93,10 @@ function Signup() {
               </button>
             </form>
             <br />
-            <h6>
-              Or log in
+            <h6 style={{ fontWeight: '100' }}>
+              Or log in{' '}
               <a href="/login">
-                <span style={{ fontWeight: '300' }}> here</span>
+                <span style={{ fontWeight: '400' }}>here</span>
               </a>
             </h6>
           </div>

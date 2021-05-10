@@ -13,7 +13,6 @@ function PostContainer() {
       body: 'So this is my first post! Woohoo!',
       likes: [
         {
-          // can this be an array so we can have multiple likes?
           user: 'katsign',
         },
         {
@@ -45,6 +44,11 @@ function PostContainer() {
           text: 'I know! It is so exciting',
           date: 'May 5, 2021',
         },
+        {
+          user: 'brandyquinlan',
+          text: 'I love it!',
+          date: 'May 5, 2021',
+        },
       ],
       date: 'May 5, 2021',
     },
@@ -56,6 +60,7 @@ function PostContainer() {
         <Tab title={p.title}>
           <PostBox
             key={p.id}
+            id={p.id}
             user={p.user}
             title={p.title}
             body={p.body}

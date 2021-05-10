@@ -1,50 +1,39 @@
 import React, { useRef, useState, useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { StoreContext } from '../../utils/GlobalState'
+import CurrentComments from '../CurrentComments/CurrentComments'
 // import API from '../../utils/API'
 
-function NewPostModal(props) {
+function PostCommentModal(props) {
   const [store, dispatch] = useContext(StoreContext)
-  const [newPost, setNewPost] = useState({
-    title: '',
-    body: '',
+  const [newComment, setNewComment] = useState({
+    text: '',
     author: '',
   })
 
   const userId = store.user._id
 
-  const titleRef = useRef()
-  const bodyRef = useRef()
+  const textRef = useRef()
 
   function handleInputChange() {
-    setNewPost({
-      ...newPost,
-      title: titleRef.current.value,
-      body: bodyRef.current.value,
+    setNewComment({
+      ...newComment,
+      text: textRef.current.value,
       author: userId,
     })
   }
 
-  function createPost(event) {
+  function createComment(event) {
     event.preventDefault()
-    const postData = {
-      title: titleRef.current.value,
-      body: bodyRef.current.value,
+    const commentData = {
+      text: textRef.current.value,
       // I don't actually want the userId here - I'd like the userName from the profile
       // which we should have in the state with the initial get call on the home page, yes?
       author: userId,
     }
-    console.log(postData)
+    console.log(commentData)
     // need to have a profile created first to access the userName before saving
     // also update the main post state in context so it'll show up on the page immediately, right?
-
-    // API.post(postData)
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    //   .catch((err) => {
-    //     throw new Error('error saving post', err)
-    //   })
   }
 
   return (
@@ -55,39 +44,38 @@ function NewPostModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">New Post</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Comments</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="tab bg-secondary mt-3 mb-1 gradient" id="modalPostBox">
+        <div>
+          {
+            !props.comments ? (
+              'No Comments Yet'
+            ) : (
+              <CurrentComments comments={props.comments} />
+            )
+            //   ))}
+          }
+        </div>
+        <div className="tab bg-secondary mt-3 mb-1 gradient" id="commentBox">
           <textarea
-            ref={titleRef}
-            id="postTitle"
-            placeholder="Enter Post Title"
+            ref={textRef}
+            id="comment"
+            placeholder="Add comment"
             onChange={handleInputChange}
-            rows="1"
-          ></textarea>
-          <hr className="m-0"></hr>
-          <textarea
-            id="postBody"
-            ref={bodyRef}
-            className="mt-1"
-            placeholder="What's on your mind?"
-            onChange={handleInputChange}
-            rows="5"
           ></textarea>
         </div>
-      </Modal.Body>
-      <Modal.Footer>
         <Button
           variant="secondary"
           type="button"
           onClick={(e) => {
-            createPost(e)
-            props.onHide()
+            createComment(e)
           }}
         >
-          Save
+          Add Comment
         </Button>
+      </Modal.Body>
+      <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>
           Close
         </Button>
@@ -96,4 +84,4 @@ function NewPostModal(props) {
   )
 }
 
-export default NewPostModal
+export default PostCommentModal

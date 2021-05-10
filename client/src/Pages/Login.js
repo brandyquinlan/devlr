@@ -1,5 +1,6 @@
 import React, { useState, useRef, useContext } from 'react'
 import { StoreContext } from '../utils/GlobalState'
+import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
     email: '',
     password: '',
   })
+  const [passwordModal, setPasswordModal] = useState(false)
 
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -33,6 +35,8 @@ function Login() {
       window.location.href = '/home'
     })
   }
+
+  function forgotPassword() {}
 
   return (
     <div id="loginWrapper">
@@ -87,6 +91,7 @@ function Login() {
               Login
             </button>
           </form>
+
           <br />
           <h6>
             Or sign up
@@ -94,6 +99,13 @@ function Login() {
               <span style={{ fontWeight: '300' }}> here</span>
             </a>
           </h6>
+          <button type="button" onClick={() => setPasswordModal(true)}>
+            Forgot Your Password?
+          </button>
+          <ForgotPasswordModal
+            show={passwordModal}
+            onHide={() => setPasswordModal(false)}
+          />
         </div>
       </div>
     </div>

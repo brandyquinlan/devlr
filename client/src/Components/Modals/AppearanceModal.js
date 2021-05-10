@@ -28,6 +28,7 @@ function AppearanceModal(props) {
         </Button>
         <Button
           type="button"
+          variant="secondary"
           className="btn btn-keycap theme m-2"
           id="90959A"
           onClick={() => dispatch({ type: 'change theme', payload: '90959A' })}
@@ -36,6 +37,7 @@ function AppearanceModal(props) {
         </Button>
         <Button
           type="button"
+          variant="secondary"
           className="btn btn-sand theme m-2"
           id="BBB092"
           onClick={() => dispatch({ type: 'change theme', payload: 'BBB092' })}
@@ -44,6 +46,7 @@ function AppearanceModal(props) {
         </Button>
         <Button
           type="button"
+          variant="secondary"
           className="btn btn-putty theme m-2"
           id="D4ADA9"
           onClick={() => dispatch({ type: 'change theme', payload: 'D4ADA9' })}
@@ -52,6 +55,7 @@ function AppearanceModal(props) {
         </Button>
         <Button
           type="button"
+          variant="secondary"
           className="btn btn-seaglass theme m-2"
           id="8FBC8F"
           onClick={() => dispatch({ type: 'change theme', payload: '8FBC8F' })}
@@ -60,6 +64,7 @@ function AppearanceModal(props) {
         </Button>
         <Button
           type="button"
+          variant="secondary"
           className="btn btn-lagoon theme m-2"
           id="7FAEB9"
           onClick={() => dispatch({ type: 'change theme', payload: '7FAEB9' })}
@@ -68,6 +73,7 @@ function AppearanceModal(props) {
         </Button>
         <Button
           type="button"
+          variant="secondary"
           className="btn btn-thistle theme m-2"
           id="9F879F"
           onClick={() => dispatch({ type: 'change theme', payload: '9F879F' })}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
-import { Spinner } from 'react-bootstrap'
+import { Spinner, Button } from 'react-bootstrap'
 import API from '../utils/API'
 import ResetPasswordModal from '../Components/Modals/ResetPasswordModal'
 
@@ -21,7 +21,10 @@ export default function Settings() {
       await API.getUser().then(({ data }) => {
         if (data._id) setAuthenticated(true)
 
-        setUser(data)
+        setUser({
+          email: data.email,
+          _id: data._id,
+        })
         setAuthenticating(false)
       })
     }
@@ -65,6 +68,9 @@ export default function Settings() {
                   onHide={() => setResetPasswordModal(false)}
                   user={user}
                 />
+                <Button onClick={() => setResetPasswordModal(true)}>
+                  Reset Password
+                </Button>
               </div>
               <div
                 className="d-flex flex-column align-items-right ml-4"

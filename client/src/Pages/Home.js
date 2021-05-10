@@ -19,6 +19,8 @@ const Home = () => {
   const [authenticated, setAuthenticated] = useState(false)
   const code = useQuery().get('code')
 
+  // checking if the user just came from a redirect by searching the url for a code
+  // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
     async function authenticateUser() {
       await API.getUser().then(({ data }) => {
@@ -26,24 +28,18 @@ const Home = () => {
         setAuthenticating(false)
       })
     }
-    if (authenticating) {
+    if (code) {
+      API.getUser().then((resUser) => {
+        const { _id } = resUser.data
+        API.getUserAccessToken(code).then((resToken) => {
+          const { token } = resToken.data
+          API.setUserAccessToken(token, _id)
+        })
+      })
+      window.history.pushState({}, null, '/home')
+    } else {
       authenticateUser()
     }
-  }, [])
-
-  // checking if the user just came from a redirect by searching the url for a code
-  // If there is a code, its what we use to get an access token and set it on the user
-  useEffect(() => {
-    if (!code) return
-
-    API.getUser().then((resUser) => {
-      const { _id } = resUser.data
-      API.getUserAccessToken(code).then((resToken) => {
-        const { token } = resToken.data
-        API.setUserAccessToken(token, _id)
-      })
-    })
-    window.history.pushState({}, null, '/home')
   }, [code])
 
   const { width } = useViewport()

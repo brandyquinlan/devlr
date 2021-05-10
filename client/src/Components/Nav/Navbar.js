@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { StoreContext } from '../../utils/GlobalState'
+import API from '../../utils/API'
 import NavTabs from './NavTabs'
 import Activity from '../Feeds/Activity'
 import Profile from '../Feeds/Profile'
 import Explore from '../Feeds/Explore'
 
 function Navbar() {
+  const [store, dispatch] = useContext(StoreContext)
   const [page, setPage] = useState('About')
 
   function handlePageChange(newPage) {
@@ -20,6 +23,12 @@ function Navbar() {
     }
     return <Activity />
   }
+
+  useEffect(() => {
+    API.getUserInfo().then((user) => {
+      console.log(user)
+    })
+  }, [])
 
   return (
     <>

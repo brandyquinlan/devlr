@@ -23,20 +23,23 @@ const Home = () => {
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
     async function authenticateUser() {
-      await API.getUser().then(({ data }) => {
+      await API.checkUser().then(({ data }) => {
         if (data._id) setAuthenticated(true)
         setAuthenticating(false)
       })
     }
+
     if (code) {
-      API.getUser().then((resUser) => {
-        const { _id } = resUser.data
+      API.checkUser().then(({ data }) => {
+        const { _id } = data
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
         })
       })
+      setAuthenticated(true)
       window.history.pushState({}, null, '/home')
+      setAuthenticating(false)
     } else {
       authenticateUser()
     }

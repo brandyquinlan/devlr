@@ -16,6 +16,12 @@ const API = {
   logout() {
     return axios.get('/api/users/logout')
   },
+  async getUserInfo() {
+    const { data } = await axios.get('/api/users/checkUser')
+    console.log('API', data)
+    const userInfo = await axios.get(`/api/users/getUserInfo/${data._id}`)
+    return userInfo
+  },
   getUserAccessToken(code) {
     return axios.post('/api/users/getAccessToken', { code })
   },
@@ -35,8 +41,8 @@ const API = {
   getPosts(_id) {
     return axios.get(`api/posts/getPosts/${_id}`)
   },
-  getUser() {
-    return axios.get('/api/users/getUser')
+  checkUser() {
+    return axios.get('/api/users/checkUser')
   },
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)

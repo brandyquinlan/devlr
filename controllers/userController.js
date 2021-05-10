@@ -23,7 +23,6 @@ router.post('/getAccessToken', (req, res) => {
       res.json({ token })
     })
     .catch((err) => {
-      console.error('get token error', err)
       res.status(500).json({ message: err.message })
     })
 })
@@ -70,8 +69,10 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.sendStatus(200)
 })
 
+router.get('/getUserInfo', (request, response) => {})
+
 // Route for checking if a user is logged in
-router.get('/getUser', (request, response) => {
+router.get('/checkUser', (request, response) => {
   try {
     const user = {
       email: request.user.email,
@@ -137,7 +138,6 @@ router.get('/verifyResetCode/:resetCode', (request, response) => {
   const { resetCode } = request.params
   try {
     db.User.findOne({ resetCode }).then((user) => {
-      console.log(user)
       if (user.resetCodeExpires > Date.now()) {
         const userInfo = {
           email: user.email,

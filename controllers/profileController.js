@@ -13,10 +13,11 @@ router.get('/:userID', (request, response) => {
   }
 })
 
-router.post('/newProfile/:id', (request, response) => {
+router.post('/newProfile/:_id', (request, response) => {
   // NOT SURE WHAT THIS SHOULD ACTUALLY LOOK LIKE. JUST SETTING IT UP
   // TO MATCH THE OTHERS FOR NOW
   const { profile } = request.body
+  const { _id } = request.params
 
   try {
     db.Profile.create(profile).then((res) => {
@@ -27,14 +28,14 @@ router.post('/newProfile/:id', (request, response) => {
   }
 })
 
-router.put('/updateProfile/:id', (request, response) => {
+router.put('/updateProfile/:_id', (request, response) => {
   // To update profile, create a new profile object, and send it as the request body,
   // and include the users Id in the request params
   const { newProfile } = request.body
-  const { id } = request.params
+  const { _id } = request.params
 
   try {
-    db.Profile.findOneAndUpdate({ user: id }, newProfile).then((res) => {
+    db.Profile.findOneAndUpdate({ user: _id }, newProfile).then((res) => {
       response.send(res)
     })
   } catch (error) {

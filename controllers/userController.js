@@ -2,6 +2,8 @@ const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const axios = require('axios')
 const dotenv = require('dotenv')
+const { v4: uuid } = require('uuid')
+const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
 dotenv.config()
@@ -65,13 +67,17 @@ router.post('/signup', async (request, response) => {
 
 // login route
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send(req.user)
+  res.sendStatus(200)
 })
 
 // Route for checking if a user is logged in
 router.get('/getUser', (request, response) => {
   try {
-    response.send(request.user)
+    const user = {
+      email: request.user.email,
+      _id: request.user._id,
+    }
+    response.send(user)
   } catch (err) {
     response.send(err)
   }
@@ -84,6 +90,82 @@ router.get('/logout', (request, response) => {
     response.sendStatus(200)
   } catch (err) {
     response.status(500).json({ error: err.message })
+  }
+})
+
+// this is the endpoint that handles the back end of resetting the user password
+router.get('/sendResetLink/:userEmail', (request, response) => {
+  const { userEmail } = request.params
+  const uniqueCode = uuid()
+  const resetLink = `http://localhost:3000/home/settings/?reset=${uniqueCode}`
+
+  const mail = {
+    to: userEmail,
+    from: process.env.DEVLR_EMAIL,
+    subject: 'Reset your password',
+    text: `Just follow this link to reset the password to your devlr account! ${resetLink}`,
+  }
+
+  mailer.verify((err, success) => {
+    if (err) throw new Error(err)
+  })
+
+  try {
+    db.User.findOneAndUpdate(
+      { email: userEmail },
+      { resetCode: uniqueCode, resetCodeExpires: Date.now() + 360000 },
+    )
+      .then((user) => {
+        const userInfo = {
+          email: user.email,
+          _id: user._id,
+          resetCode: user.resetCode,
+        }
+        mailer.sendMail(mail)
+        response.sendStatus(200)
+      })
+      .catch((err) => {
+        console.error(err)
+        response.sendStatus(404)
+      })
+  } catch (error) {
+    response.sendStatus(500)
+  }
+})
+
+router.get('/verifyResetCode/:resetCode', (request, response) => {
+  const { resetCode } = request.params
+  try {
+    db.User.findOne({ resetCode }).then((user) => {
+      console.log(user)
+      if (user.resetCodeExpires > Date.now()) {
+        const userInfo = {
+          email: user.email,
+          _id: user._id,
+        }
+        response.send(userInfo).status(200)
+      } else {
+        response.send('No user found').status(404)
+      }
+    })
+  } catch (error) {
+    response.send(500)
+  }
+})
+
+router.put('/resetPassword', (request, response) => {
+  const { newPassword, _id } = request.body
+  const hashedPassword = bcrypt.hashSync(newPassword, 10)
+  try {
+    db.User.findOneAndUpdate({ _id }, { password: hashedPassword })
+      .then(() => {
+        response.send('Password updated').status(200)
+      })
+      .catch((e) => {
+        response.send(e).status(401)
+      })
+  } catch (error) {
+    response.send(error).status(500)
   }
 })
 

@@ -1,13 +1,15 @@
 import React, { useState, useRef, useContext } from 'react'
 import { StoreContext } from '../utils/GlobalState'
+import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
 
 function Login() {
   const [store, dispatch] = useContext(StoreContext)
-  const [state, setState] = useState({
+  const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
   })
+  const [passwordModal, setPasswordModal] = useState(false)
 
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -15,8 +17,8 @@ function Login() {
   function handleInputChange(event) {
     event.preventDefault()
 
-    setState({
-      ...state,
+    setUserInfo({
+      ...userInfo,
       email: emailRef.current.value,
       password: passwordRef.current.value,
     })
@@ -25,10 +27,6 @@ function Login() {
   function login(event) {
     event.preventDefault()
 
-    const userInfo = {
-      email: state.email,
-      password: state.password,
-    }
     API.login(userInfo).then(() => {
       window.location.href = '/home'
     })
@@ -87,6 +85,7 @@ function Login() {
               Login
             </button>
           </form>
+
           <br />
           <h6 style={{ fontWeight: '100' }}>
             Or sign up{' '}
@@ -94,6 +93,13 @@ function Login() {
               <span style={{ fontWeight: '400' }}>here</span>
             </a>
           </h6>
+          <button type="button" onClick={() => setPasswordModal(true)}>
+            Forgot Your Password?
+          </button>
+          <ForgotPasswordModal
+            show={passwordModal}
+            onHide={() => setPasswordModal(false)}
+          />
         </div>
       </div>
     </div>

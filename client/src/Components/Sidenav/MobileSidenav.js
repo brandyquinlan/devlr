@@ -40,7 +40,13 @@ function MobileSidenav() {
           onHide={() => setProfileModalShow(false)}
         />
         <li>
-          <button type="button" onClick={() => setAccountModalShow(true)}>
+          <button
+            type="button"
+            onClick={(event) => {
+              event.preventDefault()
+              window.location.href = '/home/settings'
+            }}
+          >
             <i className="material-icons">manage_accounts</i>
           </button>
           <ManageAccountModal

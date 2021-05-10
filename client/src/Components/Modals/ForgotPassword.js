@@ -69,7 +69,7 @@ function ManageAccountModal(props) {
             show={errorAlert}
             setShow={setErrorAlert}
             heading="Whoops, we couldnt find that user. Please try again"
-            variant="error"
+            variant="danger"
           />
         </Modal.Footer>
       </Modal>

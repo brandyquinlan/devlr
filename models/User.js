@@ -21,6 +21,7 @@ const userSchema = new Schema({
   },
   following: Array,
   followers: Array,
+  resetCode: String,
 })
 
 const User = mongoose.model('User', userSchema)

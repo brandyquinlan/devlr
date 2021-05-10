@@ -2,6 +2,8 @@ const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const axios = require('axios')
 const dotenv = require('dotenv')
+const { v4: uuid } = require('uuid')
+const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
 dotenv.config()
@@ -90,14 +92,31 @@ router.get('/logout', (request, response) => {
 // this is the endpoint that handles the back end of resetting the user password
 router.get('/sendResetLink/:userEmail', (request, response) => {
   const { userEmail } = request.params
+  const uniqueCode = uuid()
+  const resetLink = `http://localhost:3000/home/resetPassword/code=${uniqueCode}`
+
+  const mail = {
+    to: userEmail,
+    from: process.env.DEVLR_EMAIL,
+    subject: 'Reset your password',
+    text: `Just follow this link to reset the password to your devlr account! ${resetLink}`,
+  }
+
+  mailer.verify((err, success) => {
+    if (err) throw new Error(err)
+  })
 
   try {
-    db.User.findOne({ email: userEmail }).then((user) => {
+    db.User.findOneAndUpdate(
+      { email: userEmail },
+      { resetCode: uniqueCode },
+    ).then((user) => {
       const userInfo = {
         email: user.email,
         _id: user._id,
+        resetCode: user.resetCode,
       }
-      console.log(userInfo)
+      mailer.sendMail(mail)
       response.sendStatus(200)
     })
   } catch (error) {

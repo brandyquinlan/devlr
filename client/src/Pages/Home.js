@@ -71,7 +71,7 @@ const Home = () => {
   }, [themePref]) // setTheme end tag
 
   return (
-    <div>
+    <div className="container">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (

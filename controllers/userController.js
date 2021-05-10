@@ -111,18 +111,21 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
   })
 
   try {
-    db.User.findOneAndUpdate({ email: userEmail }, { resetCode: uniqueCode })
+    db.User.findOneAndUpdate(
+      { email: userEmail },
+      { resetCode: uniqueCode, resetCodeExpires: Date.now() + 360000 },
+    )
       .then((user) => {
         const userInfo = {
           email: user.email,
           _id: user._id,
           resetCode: user.resetCode,
-          resetCodeExpires: Date.now() + 360000,
         }
         mailer.sendMail(mail)
         response.sendStatus(200)
       })
       .catch((err) => {
+        console.error(err)
         response.sendStatus(404)
       })
   } catch (error) {
@@ -134,6 +137,7 @@ router.get('/verifyResetCode/:resetCode', (request, response) => {
   const { resetCode } = request.params
   try {
     db.User.findOne({ resetCode }).then((user) => {
+      console.log(user)
       if (user.resetCodeExpires > Date.now()) {
         const userInfo = {
           email: user.email,
@@ -141,7 +145,7 @@ router.get('/verifyResetCode/:resetCode', (request, response) => {
         }
         response.send(userInfo).status(200)
       } else {
-        response.send('Verification code invalid').status(404)
+        response.send('No user found').status(404)
       }
     })
   } catch (error) {

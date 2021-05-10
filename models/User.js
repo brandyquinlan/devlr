@@ -22,7 +22,7 @@ const userSchema = new Schema({
   following: Array,
   followers: Array,
   resetCode: String,
-  resetCodeExpires: Date,
+  resetCodeExpires: Number,
 })
 
 const User = mongoose.model('User', userSchema)

@@ -134,14 +134,14 @@ router.get('/verifyResetCode/:resetCode', (request, response) => {
   const { resetCode } = request.params
   try {
     db.User.findOne({ resetCode }).then((user) => {
-      if (user) {
+      if (user.resetCodeExpires > Date.now()) {
         const userInfo = {
           email: user.email,
           _id: user._id,
         }
         response.send(userInfo).status(200)
       } else {
-        response.send('No user found').status(404)
+        response.send('Verification code invalid').status(404)
       }
     })
   } catch (error) {

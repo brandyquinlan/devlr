@@ -332,18 +332,31 @@ footer {
   background-color: transparent;
   border-color: linen;
 }
-
 .btn-secondary:hover {
   background-color: transparent;
   border-color: linen;
-  box-shadow: 0 0 0 0.2rem transparent !important;
 }
-
-.btn-secondary:active,
-.btn-secondary:focus {
+.btn-secondary:focus,
+.btn-secondary.focus {
   background-color: transparent;
-  border-color: linen !important;
-  box-shadow: 0 0 0 0.2rem transparent !important;
+  border-color: linen;
+  box-shadow: 0 0 0 0.2rem transparent!important;
+}
+.btn-secondary.disabled,
+.btn-secondary:disabled {
+  background-color: transparent;
+  border-color: linen;
+}
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  background-color: transparent;
+  border-color: linen;
+}
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem transparent!important;
 }
 
 .btn-dark {

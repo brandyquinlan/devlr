@@ -11,9 +11,11 @@ import './assets/index.css'
 function App() {
   const [store, dispatch] = useContext(StoreContext)
 
+  // this is doing nothing
   useEffect(() => {
     API.getUser().then((user) => {
       dispatch({ type: 'set user', payload: user.data })
+      console.log(store)
     })
   }, [])
 

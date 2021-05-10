@@ -22,7 +22,6 @@ const Home = () => {
   useEffect(() => {
     async function authenticateUser() {
       await API.getUser().then(({ data }) => {
-        console.log(data)
         if (data._id) setAuthenticated(true)
         setAuthenticating(false)
       })

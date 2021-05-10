@@ -87,4 +87,22 @@ router.get('/logout', (request, response) => {
   }
 })
 
+// this is the endpoint that handles the back end of resetting the user password
+router.get('/sendResetLink/:userEmail', (request, response) => {
+  const { userEmail } = request.params
+
+  try {
+    db.User.findOne({ email: userEmail }).then((user) => {
+      const userInfo = {
+        email: user.email,
+        _id: user._id,
+      }
+      console.log(userInfo)
+      response.sendStatus(200)
+    })
+  } catch (error) {
+    response.sendStatus(404)
+  }
+})
+
 module.exports = router

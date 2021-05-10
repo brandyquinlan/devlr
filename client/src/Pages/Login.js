@@ -5,7 +5,7 @@ import API from '../utils/API'
 
 function Login() {
   const [store, dispatch] = useContext(StoreContext)
-  const [state, setState] = useState({
+  const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
   })
@@ -17,8 +17,8 @@ function Login() {
   function handleInputChange(event) {
     event.preventDefault()
 
-    setState({
-      ...state,
+    setUserInfo({
+      ...userInfo,
       email: emailRef.current.value,
       password: passwordRef.current.value,
     })
@@ -27,16 +27,10 @@ function Login() {
   function login(event) {
     event.preventDefault()
 
-    const userInfo = {
-      email: state.email,
-      password: state.password,
-    }
     API.login(userInfo).then(() => {
       window.location.href = '/home'
     })
   }
-
-  function forgotPassword() {}
 
   return (
     <div id="loginWrapper">

@@ -38,6 +38,9 @@ const API = {
   getUser() {
     return axios.get('/api/users/getUser')
   },
+  sendResetLink(user) {
+    return axios.get(`/api/users/sendResetLink/${user}`)
+  },
 }
 
 export default API

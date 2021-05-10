@@ -47,6 +47,7 @@ const Home = () => {
 
   const { width } = useViewport()
   const breakpoint = 768
+  console.log(store)
   const { themePref } = store.profile
 
   useEffect(() => {

@@ -25,8 +25,11 @@ function Navbar() {
   }
 
   useEffect(() => {
-    API.getUserInfo().then((user) => {
-      console.log(user)
+    API.getUserInfo().then(([data, profile]) => {
+      console.log(data, profile)
+      // dispatch({
+      //   type: 'set user',
+      // })
     })
   }, [])
 

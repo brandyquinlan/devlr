@@ -56,6 +56,9 @@ router.post('/signup', async (request, response) => {
         email: res.email,
         _id: res._id,
       }
+      db.Profile.create({ user: user._id }).catch((e) => {
+        throw new Error()
+      })
       response.json(user)
     })
   } catch (error) {
@@ -69,7 +72,18 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.sendStatus(200)
 })
 
-router.get('/getUserInfo', (request, response) => {})
+//! Need ot have a profile already created when useres sign up
+router.get('/getUserInfo/:userId', (request, response) => {
+  const { userId } = request.params
+
+  try {
+    db.Profile.findOne({ user: userId }).then((profile) => {
+      response.send(profile)
+    })
+  } catch (error) {
+    response.sendStatus(500)
+  }
+})
 
 // Route for checking if a user is logged in
 router.get('/checkUser', (request, response) => {

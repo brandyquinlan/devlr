@@ -34,7 +34,6 @@ function NewPostModal(props) {
       // which we should have in the state with the initial get call on the home page, yes?
       author: userId,
     }
-    console.log(postData)
     // need to have a profile created first to access the userName before saving
     // also update the main post state in context so it'll show up on the page immediately, right?
 

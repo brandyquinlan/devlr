@@ -18,8 +18,8 @@ const API = {
   },
   async getUserInfo() {
     const { data } = await axios.get('/api/users/checkUser')
-    const profile = await axios.get(`/api/users/getUserInfo/${data._id}`)
-    return [data, profile.data]
+    const user = await axios.get(`/api/users/getUserInfo/${data._id}`)
+    return user
   },
   getUserAccessToken(code) {
     return axios.post('/api/users/getAccessToken', { code })

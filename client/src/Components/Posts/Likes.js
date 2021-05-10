@@ -7,7 +7,6 @@ function Likes({ likes }) {
 
   function incrementLike(event) {
     event.preventDefault()
-    console.log('click')
   }
 
   return (

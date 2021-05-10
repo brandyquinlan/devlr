@@ -72,14 +72,27 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.sendStatus(200)
 })
 
-//! Need ot have a profile already created when useres sign up
-router.get('/getUserInfo/:userId', (request, response) => {
+router.get('/getUserInfo/:userId', async (request, response) => {
   const { userId } = request.params
 
+  // having to destructure and restructure so that the password does not get sent to the client
   try {
-    db.Profile.findOne({ user: userId }).then((profile) => {
-      response.send(profile)
-    })
+    const {
+      accessToken,
+      email,
+      followers,
+      following,
+      _id,
+    } = await db.User.findOne({ _id: userId })
+    const user = {
+      accessToken,
+      email,
+      followers,
+      following,
+      _id,
+    }
+    const profile = await db.Profile.findOne({ user: userId })
+    response.send([user, profile])
   } catch (error) {
     response.sendStatus(500)
   }

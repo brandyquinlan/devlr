@@ -25,12 +25,13 @@ function Navbar() {
   }
 
   useEffect(() => {
-    API.getUserInfo().then(([data, profile]) => {
-      console.log(data, profile)
-      // dispatch({
-      //   type: 'set user',
-      // })
-    })
+    API.getUserInfo()
+      .then(({ data }) => {
+        const [user, profile] = data
+        dispatch({ type: 'set user', payload: user })
+        dispatch({ type: 'set profile', payload: profile })
+      })
+      .catch((err) => console.error('error in state set, navbar.js', err))
   }, [])
 
   return (

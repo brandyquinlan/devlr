@@ -42,7 +42,7 @@ function Signup() {
 
   return (
     <div>
-      <div id="signupWrapper">
+      <div id="signUp">
         <div className="d-flex flex-row align-items-center justify-content-around">
           <div className="tab bg-secondary gradient">
             <h1>devlr</h1>

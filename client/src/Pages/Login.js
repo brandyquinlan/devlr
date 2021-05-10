@@ -35,7 +35,7 @@ function Login() {
   }
 
   return (
-    <div id="loginWrapper">
+    <div id="logIn">
       <div className="d-flex flex-row align-items-center justify-content-around">
         <div className="tab bg-secondary gradient">
           <h1>devlr</h1>

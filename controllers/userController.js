@@ -67,13 +67,17 @@ router.post('/signup', async (request, response) => {
 
 // login route
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send(req.user)
+  res.sendStatus(200)
 })
 
 // Route for checking if a user is logged in
 router.get('/getUser', (request, response) => {
   try {
-    response.send(request.user)
+    const user = {
+      email: request.user.email,
+      _id: request.user._id,
+    }
+    response.send(user)
   } catch (err) {
     response.send(err)
   }
@@ -93,7 +97,7 @@ router.get('/logout', (request, response) => {
 router.get('/sendResetLink/:userEmail', (request, response) => {
   const { userEmail } = request.params
   const uniqueCode = uuid()
-  const resetLink = `http://localhost:3000/home/resetPassword/code=${uniqueCode}`
+  const resetLink = `http://localhost:3000/home/settings/?reset=${uniqueCode}`
 
   const mail = {
     to: userEmail,
@@ -107,20 +111,57 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
   })
 
   try {
-    db.User.findOneAndUpdate(
-      { email: userEmail },
-      { resetCode: uniqueCode },
-    ).then((user) => {
-      const userInfo = {
-        email: user.email,
-        _id: user._id,
-        resetCode: user.resetCode,
+    db.User.findOneAndUpdate({ email: userEmail }, { resetCode: uniqueCode })
+      .then((user) => {
+        const userInfo = {
+          email: user.email,
+          _id: user._id,
+          resetCode: user.resetCode,
+          resetCodeExpires: Date.now() + 360000,
+        }
+        mailer.sendMail(mail)
+        response.sendStatus(200)
+      })
+      .catch((err) => {
+        response.sendStatus(404)
+      })
+  } catch (error) {
+    response.sendStatus(500)
+  }
+})
+
+router.get('/verifyResetCode/:resetCode', (request, response) => {
+  const { resetCode } = request.params
+  try {
+    db.User.findOne({ resetCode }).then((user) => {
+      if (user) {
+        const userInfo = {
+          email: user.email,
+          _id: user._id,
+        }
+        response.send(userInfo).status(200)
+      } else {
+        response.send('No user found').status(404)
       }
-      mailer.sendMail(mail)
-      response.sendStatus(200)
     })
   } catch (error) {
-    response.sendStatus(404)
+    response.send(500)
+  }
+})
+
+router.put('/resetPassword', (request, response) => {
+  const { newPassword, _id } = request.body
+  const hashedPassword = bcrypt.hashSync(newPassword, 10)
+  try {
+    db.User.findOneAndUpdate({ _id }, { password: hashedPassword })
+      .then(() => {
+        response.send('Password updated').status(200)
+      })
+      .catch((e) => {
+        response.send(e).status(401)
+      })
+  } catch (error) {
+    response.send(error).status(500)
   }
 })
 

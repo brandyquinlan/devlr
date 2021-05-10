@@ -1,24 +1,13 @@
-import React, { useEffect, useContext } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { StoreContext } from './utils/GlobalState'
-import API from './utils/API'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
+import Settings from './Pages/Settings'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/index.css'
 
 function App() {
-  const [store, dispatch] = useContext(StoreContext)
-
-  // this is doing nothing
-  useEffect(() => {
-    API.getUser().then((user) => {
-      dispatch({ type: 'set user', payload: user.data })
-      console.log(store)
-    })
-  }, [])
-
   return (
     <Router>
       <div className="container">
@@ -26,6 +15,7 @@ function App() {
           <Route exact path="/" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/home/settings" component={Settings} />
         </Switch>
       </div>
     </Router>

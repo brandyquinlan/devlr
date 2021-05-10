@@ -93,7 +93,7 @@ const Home = () => {
               </div>
             </div>
           ) : (
-            <Redirect to="/" />
+            <Redirect to="/login" />
           ),
         ]
       )}

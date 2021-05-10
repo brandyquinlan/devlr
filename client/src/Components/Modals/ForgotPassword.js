@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react'
-import { Modal, Button, DropdownButton } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import API from '../../utils/API'
 import Alert from '../Alert'
 
-function ManageAccountModal(props) {
+function ForgotPasswordModal(props) {
   const [email, setEmail] = useState('')
   const [errorAlert, setErrorAlert] = useState(false)
   const [successAlert, setSuccessAlert] = useState(false)
@@ -77,4 +77,4 @@ function ManageAccountModal(props) {
   )
 }
 
-export default ManageAccountModal
+export default ForgotPasswordModal

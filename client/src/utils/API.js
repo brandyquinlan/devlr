@@ -41,6 +41,12 @@ const API = {
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)
   },
+  verifyResetCode(resetCode) {
+    return axios.get(`/api/users/verifyResetCode/${resetCode}`)
+  },
+  resetPassword(newPassword, _id) {
+    return axios.put('/api/users/resetPassword', { newPassword, _id })
+  },
 }
 
 export default API

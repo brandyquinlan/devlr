@@ -33,7 +33,6 @@ router.put('/updateProfile/:_id', (request, response) => {
   // and include the users Id in the request params
   const { newProfile } = request.body
   const { _id } = request.params
-  console.log(newProfile)
 
   try {
     db.Profile.findOneAndUpdate({ user: _id }, newProfile)

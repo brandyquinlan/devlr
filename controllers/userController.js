@@ -77,19 +77,13 @@ router.get('/getUserInfo/:userId', async (request, response) => {
 
   // having to destructure and restructure so that the password does not get sent to the client
   try {
-    const {
-      accessToken,
-      email,
-      followers,
-      following,
-      _id,
-    } = await db.User.findOne({ _id: userId })
-    const user = {
-      accessToken,
-      email,
-      followers,
-      following,
-      _id,
+    let user = await db.User.findOne({ _id: userId })
+    user = {
+      acessToken: user.accessToken,
+      email: user.email,
+      followers: user.followers,
+      following: user.following,
+      _id: user._id,
     }
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])

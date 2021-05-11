@@ -13,7 +13,8 @@
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '*/**/*.js' --ignore-path .gitignore",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "seed": "node seeders/seed.js"
   },
   "repository": {
     "type": "git",
@@ -51,7 +52,7 @@
   "devDependencies": {
     "@imaginary-cloud/eslint-config-react": "^1.0.1",
     "concurrently": "^6.0.2",
-    "eslint": "^7.25.0",
+    "eslint": "^7.26.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
@@ -59,6 +60,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^2.5.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.0"
   }
 }

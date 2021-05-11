@@ -20,6 +20,7 @@ const API = {
   async getUserInfo() {
     const { data } = await axios.get('/api/users/checkUser')
     const user = await axios.get(`/api/users/getUserInfo/${data._id}`)
+    // NOTE THAT THIS USER VARIABLE IS AN ARRAY [USER, PROFILE], SO THAT YOU CAN GET USER AND PROFILE DATA IN ONE CALL
     return user
   },
   getUserAccessToken(code) {

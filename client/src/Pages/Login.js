@@ -11,7 +11,7 @@ function Login() {
     email: '',
     password: '',
   })
-  const [passwordModal, setPasswordModal] = useState(false)
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false)
 
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -106,12 +106,12 @@ function Login() {
               <span style={{ fontWeight: '400' }}>here</span>
             </a>
           </h6>
-          <button type="button" onClick={() => setPasswordModal(true)}>
+          <button type="button" onClick={() => setForgotPasswordModal(true)}>
             Forgot Your Password?
           </button>
           <ForgotPasswordModal
-            show={passwordModal}
-            onHide={() => setPasswordModal(false)}
+            show={ForgotPasswordModal}
+            onHide={() => setForgotPasswordModal(false)}
           />
         </div>
       </div>

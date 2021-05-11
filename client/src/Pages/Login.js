@@ -110,7 +110,7 @@ function Login() {
             Forgot Your Password?
           </button>
           <ForgotPasswordModal
-            show={ForgotPasswordModal}
+            show={forgotPasswordModal}
             onHide={() => setForgotPasswordModal(false)}
           />
         </div>

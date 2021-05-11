@@ -23,11 +23,13 @@ const Home = () => {
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
     async function authenticateUser() {
-      await API.checkUser().then(({ data }) => {
-        if (data._id) {
-          setAuthenticated(true)
-        }
-      })
+      await API.checkUser()
+        .then(({ data }) => {
+          if (data._id) {
+            setAuthenticated(true)
+          }
+        })
+        .catch(() => setAuthenticating(false))
     }
 
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,

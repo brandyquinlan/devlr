@@ -190,4 +190,22 @@ router.put('/resetPassword', (request, response) => {
   }
 })
 
+router.delete('/destroy', async (request, response) => {
+  const { user, profile } = request.query
+
+  try {
+    db.Profile.deleteOne({ _id: profile })
+      .then(() => {
+        db.User.deleteOne({ _id: user }).then(() => {
+          response.send(200)
+        })
+      })
+      .catch((err) => {
+        response.json({ error: err.message }).status(404)
+      })
+  } catch (err) {
+    response.json({ error: err.message }).status(500)
+  }
+})
+
 module.exports = router

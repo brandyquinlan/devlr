@@ -52,6 +52,11 @@ const API = {
   resetPassword(newPassword, _id) {
     return axios.put('/api/users/resetPassword', { newPassword, _id })
   },
+  deleteUser(userId, profileId) {
+    return axios.delete(
+      `/api/users/destroy/?user=${userId}&profile=${profileId}`,
+    )
+  },
 }
 
 export default API

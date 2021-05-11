@@ -1,12 +1,11 @@
 import React, { useState, useRef } from 'react'
-import { Modal, Button, DropdownButton } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
+import { ToastContainer, toast } from 'react-toastify'
 import API from '../../utils/API'
-import Alert from '../Alert'
+import 'react-toastify/dist/ReactToastify.css'
 
 function ResetPasswordModal(props) {
   const [password, setPassword] = useState({})
-  const [errorAlert, setErrorAlert] = useState(false)
-  const [successAlert, setSuccessAlert] = useState(false)
   const { user } = props
 
   const passwordRef = useRef()
@@ -19,11 +18,33 @@ function ResetPasswordModal(props) {
       passwordConfirm: passwordConfirm.current.value,
     })
   }
+  function passwordsMustMatch() {
+    toast.error('Passwords must match!', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
+  function success() {
+    toast.success('Your password has been reset!', {
+      position: 'top-center',
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
 
   function resetPassword(event) {
     event.preventDefault()
     if (password.password !== password.passwordConfirm) {
-      setErrorAlert(true)
+      passwordsMustMatch()
       return
     }
 
@@ -33,13 +54,24 @@ function ResetPasswordModal(props) {
           email: user.email,
           password: password.password,
         })
-        setSuccessAlert(true)
+        success()
       })
       .catch((err) => console.error(err))
   }
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Modal
         {...props}
         size="md"
@@ -74,24 +106,16 @@ function ResetPasswordModal(props) {
                 id="confirm"
                 placeholder="confirm password"
               ></input>
-              <Button type="submit">Save</Button>
+              <Button
+                type="submit"
+                variant="secondary"
+                className="gradient ml-2"
+              >
+                Save
+              </Button>
             </div>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Alert
-            show={successAlert}
-            setShow={setSuccessAlert}
-            heading="Your password has been reset!"
-            variant="success"
-          />
-          <Alert
-            show={errorAlert}
-            setShow={setErrorAlert}
-            heading="Please make sure your passwords are matching."
-            variant="danger"
-          />
-        </Modal.Footer>
       </Modal>
     </>
   )

@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '*/**/*.js' --ignore-path .gitignore",
     "server": "nodemon server/index.js",
-    "seed": "node seeders/Seed.js"
+    "seed": "node seeders/seed.js"
   },
   "repository": {
     "type": "git",
@@ -46,7 +46,6 @@
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.12.7",
-    "mongoose-data-seed": "^2.1.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
   },
@@ -64,4 +63,3 @@
     "prettier": "^2.3.0"
 }
 }
-

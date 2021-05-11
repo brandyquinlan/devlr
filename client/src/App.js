@@ -10,14 +10,12 @@ import './assets/index.css'
 function App() {
   return (
     <Router>
-      <div className="container">
-        <Switch>
-          <Route exact path="/" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/home/settings" component={Settings} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/home/settings" component={Settings} />
+      </Switch>
     </Router>
   )
 }

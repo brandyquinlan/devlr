@@ -80,7 +80,7 @@ const Home = () => {
   }, [store.profile]) // setTheme end tag
 
   return (
-    <div>
+    <div className="container">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (

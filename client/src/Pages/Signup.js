@@ -1,11 +1,9 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
-import { StoreContext } from '../utils/GlobalState'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
 
 function Signup() {
-  const [store, dispatch] = useContext(StoreContext)
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -105,10 +103,10 @@ function Signup() {
               </button>
             </form>
             <br />
-            <h6>
-              Or log in
+            <h6 style={{ fontWeight: '100' }}>
+              Or log in{' '}
               <a href="/login">
-                <span style={{ fontWeight: '300' }}> here</span>
+                <span style={{ fontWeight: '400' }}>here</span>
               </a>
             </h6>
           </div>

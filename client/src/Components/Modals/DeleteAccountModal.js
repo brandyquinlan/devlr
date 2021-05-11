@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
-function ManageAccountModal(props) {
+function DeleteAccountModal(props) {
   return (
     <Modal
       {...props}
@@ -11,7 +11,7 @@ function ManageAccountModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Manage Account
+          Delete Account
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -26,4 +26,4 @@ function ManageAccountModal(props) {
   )
 }
 
-export default ManageAccountModal
+export default DeleteAccountModal

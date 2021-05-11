@@ -41,10 +41,11 @@ const Home = () => {
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
-          API.getAndSaveProfilePic(githubUsername, token, _id)
+          API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
+            setAuthenticated(true)
+          })
         })
       })
-      setAuthenticated(true)
       window.history.pushState({}, null, '/home')
     } else {
       authenticateUser()

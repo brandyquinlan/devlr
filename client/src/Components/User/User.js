@@ -9,7 +9,9 @@ function User() {
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
 
-  console.log(store)
+  setTimeout(() => {
+    console.log(store)
+  }, 2000)
 
   return (
     <div className="d-flex flex-column align-items-center">

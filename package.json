@@ -7,15 +7,14 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server/index.js",
     "start:dev": "concurrently \"nodemon server/index.js\" \"npm run client\"",
-    "seed": "node models/seeder.js",
+    "seed": "node seeders/seed.js",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '*/**/*.js' --ignore-path .gitignore",
-    "server": "nodemon server/index.js",
-    "seed": "node seeders/seed.js"
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",

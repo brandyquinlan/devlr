@@ -5,35 +5,8 @@ import CurrentComments from '../CurrentComments/CurrentComments'
 // import API from '../../utils/API'
 
 function PostCommentModal(props) {
-  const [store, dispatch] = useContext(StoreContext)
-  const [newComment, setNewComment] = useState({
-    text: '',
-    author: '',
-  })
-
-  const userId = store.user._id
-
+  // Do I use this here and pass as props or on the modal page where the text box actually is?
   const textRef = useRef()
-
-  function handleInputChange() {
-    setNewComment({
-      ...newComment,
-      text: textRef.current.value,
-      author: userId,
-    })
-  }
-
-  function createComment(event) {
-    event.preventDefault()
-    const commentData = {
-      text: textRef.current.value,
-      // I don't actually want the userId here - I'd like the userName from the profile
-      // which we should have in the state with the initial get call on the home page, yes?
-      author: userId,
-    }
-    // need to have a profile created first to access the userName before saving
-    // also update the main post state in context so it'll show up on the page immediately, right?
-  }
 
   return (
     <Modal
@@ -61,14 +34,14 @@ function PostCommentModal(props) {
             ref={textRef}
             id="comment"
             placeholder="Add comment"
-            onChange={handleInputChange}
+            onChange={props.handleInputChange}
           ></textarea>
         </div>
         <Button
           variant="secondary"
           type="button"
           onClick={(e) => {
-            createComment(e)
+            props.createComment(e, textRef.current.value, props.postId)
           }}
         >
           Add Comment

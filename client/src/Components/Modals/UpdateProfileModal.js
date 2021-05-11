@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import { StoreContext } from '../../utils/GlobalState'
 
 function UpdateProfileModal(props) {
+  const [store, dispatch] = useContext(StoreContext)
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data) => {}
+
+  // const handleSubmit = (event)  {
+  //   event.preventDefault()
+  //   console.log(register)
+  //   dispatch({ type: 'set user profile', payload: data })
+  // }
+  // can we access the store and get current profile data to pre-populate so the user can update it?
+  // if we put it in as a conditional for placeholder text will it save if they don't retype it?
 
   return (
     <Modal
@@ -20,7 +29,7 @@ function UpdateProfileModal(props) {
       </Modal.Header>
       <Modal.Body>
         <div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit}>
             <div className="small mb-2">
               For initial creation, all fields are required.
             </div>

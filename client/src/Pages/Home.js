@@ -46,6 +46,7 @@ const Home = () => {
       authenticateUser()
     }
 
+    // ? may not need this here
     API.getUserInfo()
       .then(({ userInfo }) => {
         const [user, profile] = userInfo

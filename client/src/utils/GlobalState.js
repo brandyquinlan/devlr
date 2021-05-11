@@ -5,7 +5,19 @@ import Reducer from './Reducer'
 const initialState = {
   user: {},
   profile: {
+    user: '',
+    name: '',
+    highestGraduation: '',
+    school: '',
+    skills: [],
+    totalYearsofExperience: '',
+    currentPosition: '',
+    from: '',
+    to: '',
+    githubUsername: '',
+    languages: [],
     themePref: '222222',
+    profilePic: '',
   },
 }
 

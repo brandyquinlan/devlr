@@ -38,7 +38,7 @@ const API = {
   },
   // passing the user id so that we can filter the results to only include posts from people the user is following
   getPosts(_id) {
-    return axios.get(`api/posts/getPosts/${_id}`)
+    return axios.get(`/api/posts/getPosts/${_id}`)
   },
   checkUser() {
     return axios.get('/api/users/checkUser')

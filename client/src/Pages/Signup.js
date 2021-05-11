@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, Flip, toast } from 'react-toastify'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -92,6 +92,7 @@ function Signup() {
     <div>
       <div id="signupWrapper">
         <ToastContainer
+          transition={Flip}
           position="top-center"
           autoClose={5000}
           hideProgressBar={false}

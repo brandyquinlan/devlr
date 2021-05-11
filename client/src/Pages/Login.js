@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, Flip, toast } from 'react-toastify'
 import { StoreContext } from '../utils/GlobalState'
 import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
@@ -53,6 +53,7 @@ function Login() {
   return (
     <div id="loginWrapper">
       <ToastContainer
+        transition={Flip}
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}

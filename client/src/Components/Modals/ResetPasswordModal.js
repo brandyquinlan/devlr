@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, Flip, toast } from 'react-toastify'
 import API from '../../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -62,6 +62,7 @@ function ResetPasswordModal(props) {
   return (
     <>
       <ToastContainer
+        transition={Flip}
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}

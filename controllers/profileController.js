@@ -33,13 +33,18 @@ router.put('/updateProfile/:_id', (request, response) => {
   // and include the users Id in the request params
   const { newProfile } = request.body
   const { _id } = request.params
+  console.log(newProfile)
 
   try {
-    db.Profile.findOneAndUpdate({ user: _id }, newProfile).then((res) => {
-      response.send(res)
-    })
+    db.Profile.findOneAndUpdate({ user: _id }, newProfile)
+      .then((res) => {
+        response.send('Profile updated')
+      })
+      .catch((error) => {
+        response.json({ errMessage: error.message }).status(401)
+      })
   } catch (error) {
-    response.sendStatus(500)
+    response.sendStatus(404)
   }
 })
 

@@ -1,9 +1,19 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { StoreContext } from '../../utils/GlobalState'
+import API from '../../utils/API'
 
 function AppearanceModal(props) {
   const [store, dispatch] = useContext(StoreContext)
+  const { themePref } = store.profile
+
+  function saveTheme(event) {
+    event.preventDefault()
+
+    API.updateProfile({ themePref }, store.user._id).then((succ) =>
+      console.log(succ),
+    )
+  }
 
   return (
     <Modal
@@ -76,6 +86,9 @@ function AppearanceModal(props) {
         </Button>
       </Modal.Body>
       <Modal.Footer>
+        <Button variant="success" onClick={saveTheme}>
+          Save
+        </Button>
         <Button variant="secondary" onClick={props.onHide}>
           Close
         </Button>

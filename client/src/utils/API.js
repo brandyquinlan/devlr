@@ -5,6 +5,7 @@ const API = {
     return axios.post('/api/users/signup', {
       email: userInfo.email,
       password: userInfo.password,
+      githubUsername: userInfo.githubUsername,
     })
   },
   login(userInfo) {
@@ -40,9 +41,10 @@ const API = {
   getPosts(_id) {
     return axios.get(`/api/posts/getPosts/${_id}`)
   },
-  checkUser() {
-    return axios.get('/api/users/checkUser')
-  },
+  // ! may not need this route
+  // checkUser() {
+  //   return axios.get('/api/users/checkUser')
+  // },
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)
   },
@@ -56,6 +58,32 @@ const API = {
     return axios.delete(
       `/api/users/destroy/?user=${userId}&profile=${profileId}`,
     )
+  },
+  async getGithubInfo(githubUsername, accessToken) {
+    const queryResult = await axios.post(`https://api.github.com/graphql`, {
+      headers: {
+        Authorization: `bearer ${accessToken}`,
+        ContentType: 'Application/json',
+      },
+      data: {
+        query: `{ 
+                  user(login : ${githubUsername}) {
+                  avatarUrl
+                  pinnedItems(first: 6, types: REPOSITORY) {
+                    nodes {
+                      ... on Repository {
+                        name
+                        projectsUrl
+                        description
+                        }
+                      }
+                    }
+                  }
+                }`,
+      },
+    })
+    return queryResult
+    // console.log(queryResult.data.data)
   },
 }
 

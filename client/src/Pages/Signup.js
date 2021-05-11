@@ -7,10 +7,13 @@ function Signup() {
   const [state, setState] = useState({
     email: '',
     password: '',
+    githubUsername: '',
   })
 
   const emailRef = useRef()
   const passwordRef = useRef()
+  const confirmRef = useRef()
+  const githubRef = useRef()
 
   function handleInputChange(event) {
     event.preventDefault()
@@ -19,6 +22,7 @@ function Signup() {
       ...state,
       email: emailRef.current.value,
       password: passwordRef.current.value,
+      githubUsername: githubRef.current.value,
     })
   }
 
@@ -34,16 +38,31 @@ function Signup() {
     })
   }
 
+  function matchError() {
+    toast.error('Your passwords must match', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
+
   function signUp(event) {
     event.preventDefault()
-    const userInfo = {
-      email: state.email,
-      password: state.password,
+    if (passwordRef.current.value !== confirmRef.current.value) {
+      matchError()
+      return
     }
 
-    API.signUp(userInfo)
+    API.signUp(state)
       .then(() => {
-        API.login(userInfo)
+        API.login({
+          email: state.email,
+          password: state.password,
+        })
         window.location.href =
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })
@@ -80,18 +99,40 @@ function Signup() {
                   type="email"
                   className="form-control"
                   id="email-input"
-                  placeholder="Email"
+                  placeholder="email"
                 ></input>
               </div>
               <div className="form-group">
-                <label htmlFor="inputPassword2">Password</label>
+                <label htmlFor="passwordInput">Password</label>
                 <input
                   ref={passwordRef}
                   onChange={handleInputChange}
                   type="password"
                   className="form-control"
-                  id="password-input"
-                  placeholder="Password"
+                  id="passawordInput"
+                  placeholder="password"
+                ></input>
+              </div>
+              <div className="form-group">
+                <label htmlFor="passwordInput2">Confirm password</label>
+                <input
+                  ref={confirmRef}
+                  onChange={handleInputChange}
+                  type="password"
+                  className="form-control"
+                  id="passawordInput2"
+                  placeholder="confirm password"
+                ></input>
+              </div>
+              <div className="form-group">
+                <label htmlFor="githubUsername">Github username</label>
+                <input
+                  ref={githubRef}
+                  onChange={handleInputChange}
+                  type="text"
+                  className="form-control"
+                  id="passawordInput"
+                  placeholder="github username"
                 ></input>
               </div>
               <button

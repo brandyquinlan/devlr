@@ -51,6 +51,7 @@ router.post('/signup', async (request, response) => {
     db.User.create({
       email: request.body.email,
       password: request.body.password,
+      githubUsername: request.body.githubUsername,
     }).then((res) => {
       const user = {
         email: res.email,
@@ -84,6 +85,7 @@ router.get('/getUserInfo/:userId', async (request, response) => {
       followers: user.followers,
       following: user.following,
       _id: user._id,
+      githubUsername: user.githubUsername,
     }
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])

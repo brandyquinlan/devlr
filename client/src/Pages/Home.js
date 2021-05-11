@@ -35,11 +35,16 @@ const Home = () => {
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
-      API.checkUser().then(({ data }) => {
-        const { _id } = data
+      API.getUserInfo().then(({ data }) => {
+        const [user, profile] = data
+        const { _id, githubUsername } = user
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
+          console.log(githubUsername, token)
+          API.getGithubInfo(githubUsername, token).then((info) =>
+            console.log(info),
+          )
         })
       })
       setAuthenticated(true)

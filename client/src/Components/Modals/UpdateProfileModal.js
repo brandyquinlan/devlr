@@ -31,7 +31,7 @@ function UpdateProfileModal(props) {
       </Modal.Header>
       <Modal.Body>
         <div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={() => handleSubmit(onSubmit)}>
             <div className="small mb-2">
               For initial creation, all fields are required.
             </div>

@@ -35,7 +35,10 @@ function ForgotPasswordModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Reset your password
+            Reset Password{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              restart_alt
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -43,7 +46,7 @@ function ForgotPasswordModal(props) {
             <div className="form-group">
               <label htmlFor="inputEmail1">
                 Enter the email address associated with your account, and we
-                will send you an email with a link to reset your password
+                will send you an email with a link to reset your password.
               </label>
               <input
                 required
@@ -54,7 +57,13 @@ function ForgotPasswordModal(props) {
                 id="email-input"
                 placeholder="Email"
               ></input>
-              <Button type="submit">Send link</Button>
+              <Button
+                type="submit"
+                variant="secondary"
+                className="gradient float-right"
+              >
+                Send Link
+              </Button>
             </div>
           </form>
         </Modal.Body>
@@ -62,13 +71,13 @@ function ForgotPasswordModal(props) {
           <Alert
             show={successAlert}
             setShow={setSuccessAlert}
-            heading="A link has been sent, please check your email!"
+            heading="A link has been sent, please check your email."
             variant="success"
           />
           <Alert
             show={errorAlert}
             setShow={setErrorAlert}
-            heading="Whoops, we couldnt find that user. Please try again"
+            heading="Oops! We couldn't find that user. Please try again."
             variant="danger"
           />
         </Modal.Footer>

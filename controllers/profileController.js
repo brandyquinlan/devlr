@@ -19,8 +19,6 @@ router.put('/updateProfile/:_id', (request, response) => {
   const { newProfile } = request.body
   const { _id } = request.params
 
-  console.log(newProfile, _id)
-
   try {
     db.Profile.findOneAndUpdate({ user: _id }, newProfile)
       .then(() => {

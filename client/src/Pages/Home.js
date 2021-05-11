@@ -23,9 +23,9 @@ const Home = () => {
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
     async function authenticateUser() {
-      await API.checkUser()
+      await API.getUserInfo()
         .then(({ data }) => {
-          if (data._id) {
+          if (data[0]._id) {
             setAuthenticated(true)
           }
         })
@@ -41,10 +41,7 @@ const Home = () => {
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
-          console.log(githubUsername, token)
-          API.getGithubInfo(githubUsername, token).then((info) =>
-            console.log(info),
-          )
+          API.getAndSaveProfilePic(githubUsername, token, _id)
         })
       })
       setAuthenticated(true)

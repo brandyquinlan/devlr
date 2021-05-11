@@ -19,16 +19,18 @@ router.put('/updateProfile/:_id', (request, response) => {
   const { newProfile } = request.body
   const { _id } = request.params
 
+  console.log(newProfile, _id)
+
   try {
     db.Profile.findOneAndUpdate({ user: _id }, newProfile)
-      .then((res) => {
+      .then(() => {
         response.send('Profile updated')
       })
       .catch((error) => {
-        response.json({ errMessage: error.message }).status(401)
+        response.json({ errMessage: error }).status(401)
       })
   } catch (error) {
-    response.sendStatus(404)
+    response.json({ errMessage: error }).status(500)
   }
 })
 

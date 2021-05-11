@@ -22,7 +22,7 @@ function AppearanceModal(props) {
   }
 
   function saveTheme() {
-    API.updateProfile({ themePref }, store.user._id).then((succ) => success())
+    API.updateProfile({ themePref }, store.user._id).then(() => success())
   }
 
   return (

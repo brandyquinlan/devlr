@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
+import { StoreContext } from '../../utils/GlobalState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
+  const [store, dispatch] = useContext(StoreContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
+
+  console.log(store)
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -24,7 +28,9 @@ function User() {
         show={postModalShow}
         onHide={() => setPostModalShow(false)}
       />
-      <div className="circle" id="userPic"></div>
+      <div className="circle" id="userPic">
+        <img src={store.profile.avatarUrl} alt="User profile" />
+      </div>
       <Button
         variant="secondary"
         size="lg"

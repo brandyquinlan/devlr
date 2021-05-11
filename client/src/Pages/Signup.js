@@ -50,10 +50,27 @@ function Signup() {
     })
   }
 
+  function emptyError() {
+    toast.error('Your password cannot be empty', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
+
   function signUp(event) {
     event.preventDefault()
     if (passwordRef.current.value !== confirmRef.current.value) {
       matchError()
+      return
+    }
+
+    if (passwordRef.current.value === '') {
+      emptyError()
       return
     }
 

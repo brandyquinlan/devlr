@@ -55,15 +55,31 @@ const API = {
       `/api/users/destroy/?user=${userId}&profile=${profileId}`,
     )
   },
-  async getGithubInfo(githubUsername, accessToken) {
-    const queryResult = await axios.post(`https://api.github.com/graphql`, {
-      headers: {
-        Authorization: `bearer ${accessToken}`,
-        ContentType: 'Application/json',
-      },
-      data: {
+  async getAndSaveProfilePic(githubUsername, accessToken, _id) {
+    const queryResult = await axios.post(
+      `https://api.github.com/graphql`,
+      {
         query: `{ 
-                  user(login : ${githubUsername}) {
+                  user(login : "${githubUsername}") {
+                  avatarUrl
+                  }
+                }`,
+      },
+      {
+        headers: {
+          Authorization: `token ${accessToken}`,
+        },
+      },
+    )
+    const { avatarUrl } = queryResult.data.data.user
+    return this.updateProfile({ avatarUrl }, _id)
+  },
+  async getGithubInfo(githubUsername, accessToken) {
+    const queryResult = await axios.post(
+      `https://api.github.com/graphql`,
+      {
+        query: `{ 
+                  user(login : "${githubUsername}") {
                   avatarUrl
                   pinnedItems(first: 6, types: REPOSITORY) {
                     nodes {
@@ -77,9 +93,13 @@ const API = {
                   }
                 }`,
       },
-    })
-    return queryResult
-    // console.log(queryResult.data.data)
+      {
+        headers: {
+          Authorization: `token ${accessToken}`,
+        },
+      },
+    )
+    return queryResult.data.data
   },
 }
 

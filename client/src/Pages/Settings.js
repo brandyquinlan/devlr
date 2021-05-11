@@ -23,9 +23,9 @@ export default function Settings() {
   // This is an if else. if the user is coming from a reset link we sent them, we need to immediately open the reset password modal
   useEffect(() => {
     async function authenticateUser() {
-      await API.checkUser()
+      await API.getUserInfo()
         .then(({ data }) => {
-          if (data._id) setAuthenticated(true)
+          if (data[0]._id) setAuthenticated(true)
         })
         .catch(() => setAuthenticating(false))
     }

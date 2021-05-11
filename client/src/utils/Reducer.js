@@ -6,6 +6,7 @@ function Reducer(state, action) {
       return {
         ...state,
         profile: {
+          ...state.profile,
           themePref: action.payload,
         },
       }

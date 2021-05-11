@@ -30,6 +30,8 @@ const Home = () => {
       })
     }
 
+    // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
+    // and then set their access token on them.
     if (code) {
       API.checkUser().then(({ data }) => {
         const { _id } = data

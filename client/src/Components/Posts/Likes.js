@@ -32,7 +32,7 @@ function Likes({ likes, incrementLike, postId }) {
               <Tooltip id="likes" {...props}>
                 <ul>
                   {likes.map((l) => (
-                    <li>{l.user}</li>
+                    <li key={l.user}>{l.userName}</li>
                   ))}
                 </ul>
               </Tooltip>

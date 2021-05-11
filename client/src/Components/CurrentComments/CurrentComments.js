@@ -7,7 +7,7 @@ function CurrentComments({ comments }) {
         <div>
           <p>{c.text}</p>
           <p className="small text-muted">
-            Posted by {c.user}, {c.date}
+            Posted by {c.userName}, {c.date}
           </p>
           <hr className="75"></hr>
         </div>

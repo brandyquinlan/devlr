@@ -12,6 +12,7 @@ const initialState = {
     skills: [],
     totalYearsofExperience: '',
     currentPosition: '',
+    company: '',
     from: '',
     to: '',
     githubUsername: '',

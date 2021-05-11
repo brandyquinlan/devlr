@@ -21,15 +21,15 @@ function PostContainer() {
       body: 'So this is my first post! Woohoo!',
       likes: [
         {
-          user: 'katsign',
+          userName: 'katsign',
         },
         {
-          user: 'liztownd',
+          userName: 'liztownd',
         },
       ],
       comments: [
         {
-          user: 'katsign',
+          userName: 'katsign',
           text: 'This is a crazy idea! I love it!',
           date: 'May 4, 2021',
         },
@@ -48,12 +48,12 @@ function PostContainer() {
       // ],
       comments: [
         {
-          user: 'katsign',
+          userName: 'katsign',
           text: 'I know! It is so exciting',
           date: 'May 5, 2021',
         },
         {
-          user: 'brandyquinlan',
+          userName: 'brandyquinlan',
           text: 'I love it!',
           date: 'May 5, 2021',
         },
@@ -67,8 +67,8 @@ function PostContainer() {
     const newComment = {
       // where/how do I set the postID for this specific comment?
       text: textRef,
-      author: userName,
-      authorID: userId,
+      userName,
+      user: userId,
     }
 
     // send to DB as an update on the post with postID
@@ -83,8 +83,8 @@ function PostContainer() {
   function incrementLike(event, postId) {
     event.preventDefault()
     const newLike = {
-      user: userName,
-      userId,
+      user: userId,
+      userName,
     }
     // send to DB as an update on the post with postID
     console.log(newLike, postId)
@@ -98,7 +98,7 @@ function PostContainer() {
           <PostBox
             key={p.id}
             postId={p.id}
-            user={p.user}
+            userName={p.userName}
             title={p.title}
             body={p.body}
             date={p.date}

@@ -45,8 +45,8 @@ const Home = () => {
     }
   }, [code])
 
+  // load all data and then set authenticated(true) to render the page
   useEffect(() => {
-    // ? may not need this here
     API.getUserInfo()
       .then(({ data }) => {
         const [user, profile] = data

@@ -55,6 +55,7 @@ function ResetPasswordModal(props) {
           password: password.password,
         })
         success()
+        props.onHide()
       })
       .catch((err) => console.error(err))
   }

@@ -41,10 +41,6 @@ const API = {
   getPosts(_id) {
     return axios.get(`/api/posts/getPosts/${_id}`)
   },
-  // ! may not need this route
-  // checkUser() {
-  //   return axios.get('/api/users/checkUser')
-  // },
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)
   },

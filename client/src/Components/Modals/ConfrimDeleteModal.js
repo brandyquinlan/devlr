@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { ToastContainer, Flip, toast } from 'react-toastify'
 import { StoreContext } from '../../utils/GlobalState'
 import API from '../../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
@@ -8,46 +7,18 @@ import 'react-toastify/dist/ReactToastify.css'
 function DeleteAccountModal(props) {
   const [store, dispatch] = useContext(StoreContext)
 
-  function errorToast() {
-    toast.error('Incorrect email or password', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
   function deleteAccount(event) {
     event.preventDefault()
     const userId = store.user._id
     const profileId = store.profile._id
 
-    API.deleteUser(userId, profileId)
-      .then(() => {
-        window.location.href = '/'
-      })
-      .catch(() => {
-        errorToast()
-      })
+    API.deleteUser(userId, profileId).then(() => {
+      window.location.href = '/'
+    })
   }
 
   return (
     <>
-      <ToastContainer
-        transition={Flip}
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Modal
         {...props}
         size="md"

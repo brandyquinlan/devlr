@@ -1,13 +1,36 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { ToastContainer, Flip, toast } from 'react-toastify'
 import API from '../../utils/API'
 import Alert from '../Alert'
 
 function ForgotPasswordModal(props) {
   const [email, setEmail] = useState('')
-  const [errorAlert, setErrorAlert] = useState(false)
-  const [successAlert, setSuccessAlert] = useState(false)
   const emailRef = useRef()
+
+  function errorToast() {
+    toast.error('User not found', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
+
+  function successToast() {
+    toast.success('A link has been sent to your email address', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
 
   function handleInputChange(event) {
     event.preventDefault()
@@ -19,14 +42,26 @@ function ForgotPasswordModal(props) {
 
     API.sendResetLink(email)
       .then(() => {
-        setSuccessAlert(true)
+        successToast()
       })
       .catch((e) => {
-        setErrorAlert(true)
+        errorToast()
       })
   }
   return (
     <>
+      <ToastContainer
+        transition={Flip}
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Modal
         {...props}
         size="md"
@@ -58,20 +93,6 @@ function ForgotPasswordModal(props) {
             </div>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Alert
-            show={successAlert}
-            setShow={setSuccessAlert}
-            heading="A link has been sent, please check your email!"
-            variant="success"
-          />
-          <Alert
-            show={errorAlert}
-            setShow={setErrorAlert}
-            heading="Whoops, we couldnt find that user. Please try again"
-            variant="danger"
-          />
-        </Modal.Footer>
       </Modal>
     </>
   )

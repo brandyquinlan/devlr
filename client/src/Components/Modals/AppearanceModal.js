@@ -91,7 +91,8 @@ function AppearanceModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button
-          variant="success"
+          variant="secondary"
+          className="gradient"
           onClick={(event) => {
             event.preventDefault()
             saveTheme()

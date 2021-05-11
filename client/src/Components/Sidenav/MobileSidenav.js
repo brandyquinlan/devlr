@@ -3,14 +3,12 @@ import { StoreContext } from '../../utils/GlobalState'
 import MobileUser from '../User/MobileUser'
 import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
-import ManageAccountModal from '../Modals/ManageAccountModal'
 import Logo from '../../assets/img/logo.png'
 
 function MobileSidenav() {
   const [store, dispatch] = useContext(StoreContext)
   const [usersModalShow, setUsersModalShow] = React.useState(false)
   const [profileModalShow, setProfileModalShow] = React.useState(false)
-  const [accountModalShow, setAccountModalShow] = React.useState(false)
 
   return (
     <div id="mobile-side-nav">
@@ -49,10 +47,6 @@ function MobileSidenav() {
           >
             <i className="material-icons">manage_accounts</i>
           </button>
-          <ManageAccountModal
-            show={accountModalShow}
-            onHide={() => setAccountModalShow(false)}
-          />
         </li>
         <li>
           <button

@@ -51,7 +51,7 @@ function Login() {
   }
 
   return (
-    <div id="loginWrapper">
+    <div id="logIn">
       <ToastContainer
         position="top-center"
         autoClose={5000}

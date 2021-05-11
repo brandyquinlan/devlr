@@ -54,7 +54,7 @@ function Signup() {
 
   return (
     <div>
-      <div id="signupWrapper">
+      <div id="signUp">
         <ToastContainer
           position="top-center"
           autoClose={5000}

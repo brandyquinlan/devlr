@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import { StoreContext } from '../../utils/GlobalState'
 
 function UpdateProfileModal(props) {
-  const { register, handleSubmit } = useForm()
+  const [store, dispatch] = useContext(StoreContext)
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: store.profile.name,
+      highestGraduation: store.profile.highestGraduation,
+      school: store.profile.school,
+      skills: store.profile.skills,
+      totalYearsofExperience: store.profile.totalYearsofExperience,
+      currentPosition: store.profile.currentPosition,
+      company: store.profile.company,
+      from: store.profile.from,
+      to: store.profile.to,
+      githubUsername: store.profile.githubUsername,
+      languages: store.profile.languages,
+    },
+  })
+
   const onSubmit = (data) => {
     console.log(JSON.stringify(data))
   }
+  // can we access the store and get current profile data to pre-populate so the user can update it?
+  // if we put it in as a conditional for placeholder text will it save if they don't retype it?
 
   return (
     <Modal
@@ -31,10 +50,10 @@ function UpdateProfileModal(props) {
               <input
                 type="text"
                 className="form-control"
-                id="userName"
+                id="name"
                 required="true"
                 placeholder="Dev Doe"
-                {...register('userName')}
+                {...register('name')}
               />
             </div>
             <div className="form-group">
@@ -42,10 +61,10 @@ function UpdateProfileModal(props) {
               <input
                 type="text"
                 className="form-control"
-                id="userGraduation"
+                id="highestGraduation"
                 required="true"
                 placeholder="Masters"
-                {...register('userGraduation')}
+                {...register('highestGraduation')}
               />
             </div>
             <div className="form-group">
@@ -53,43 +72,60 @@ function UpdateProfileModal(props) {
               <input
                 type="text"
                 className="form-control"
-                id="userSchool"
+                id="school"
                 required="true"
                 placeholder="Dev University"
-                {...register('userSchool')}
+                {...register('school')}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="skills">Skills</label>
+              <label htmlFor="skills">
+                Skills <p className="small">Separate skills with commas</p>
+              </label>
               <input
                 type="text"
                 className="form-control"
-                id="userSkills"
+                id="skills"
                 required="true"
                 placeholder="Relevant Skills"
-                {...register('userSkills')}
+                {...register('skills')}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="experience">Experience</label>
+              <label htmlFor="languages">
+                Languages
+                <p className="small">Separate languages with commas</p>
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="languages"
+                required="true"
+                placeholder="Languages"
+                {...register('languages')}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="totalYearsofExperience">Experience</label>
               <input
                 type="number"
                 className="form-control"
-                id="userExperience"
+                id="totalYearsofExperience"
                 required="true"
                 placeholder="Years of Experience"
-                {...register('userExperience')}
+                {...register('totalYearsofExperience')}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="position">Position</label>
+              <label htmlFor="currentPosition">Position</label>
               <input
                 type="text"
                 className="form-control"
-                id="userPosition"
+                id="currentPosition"
                 required="true"
                 placeholder="Current Position"
-                {...register('userPosition')}
+                {...register('currentPosition')}
               />
             </div>
             <div className="form-group">
@@ -97,36 +133,36 @@ function UpdateProfileModal(props) {
               <input
                 type="text"
                 className="form-control"
-                id="userCompany"
+                id="company"
                 required="true"
                 placeholder="Company"
-                {...register('userCompany')}
+                {...register('company')}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="startDate">Start Date</label>
+              <label htmlFor="from">Start Date</label>
               <input
                 type="date"
                 className="form-control"
-                id="userStartDate"
+                id="from"
                 required="true"
                 placeholder="MM/DD/YYYY"
-                {...register('userStartDate')}
+                {...register('from')}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="endDate">End Date</label>
+              <label htmlFor="to">End Date</label>
               <input
                 type="date"
                 className="form-control"
-                id="userEndDate"
+                id="to"
                 required="true"
                 placeholder="MM/DD/YYYY"
-                {...register('userEndDate')}
+                {...register('to')}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="gitUserName">GitHub Username</label>
+              <label htmlFor="githubUsername">GitHub Username</label>
               <div className="input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="at-addon">
@@ -136,12 +172,12 @@ function UpdateProfileModal(props) {
                 <input
                   type="text"
                   className="form-control"
-                  id="userGitHub"
+                  id="githubUsername"
                   aria-label="username"
                   aria-describedby="at-addon"
                   required="true"
                   placeholder="username"
-                  {...register('userGitHub')}
+                  {...register('githubUsername')}
                 />
               </div>
             </div>

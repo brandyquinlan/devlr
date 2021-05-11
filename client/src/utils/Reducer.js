@@ -1,6 +1,6 @@
 import API from './API'
 
-const Reducer = (state, action) => {
+function Reducer(state, action) {
   switch (action.type) {
     case 'change theme':
       return {
@@ -14,14 +14,24 @@ const Reducer = (state, action) => {
         ...state,
         user: action.payload,
       }
+    case 'set profile':
+      return {
+        ...state,
+        profile: action.payload,
+      }
+    case 'set user token':
+      return {
+        ...state,
+        accessToken: action.payload,
+      }
     case 'logout':
       API.logout()
       window.location.href = '/login'
+      break
+    case 'set user profile':
       return {
-        user: {},
-        profile: {
-          themePref: '222222',
-        },
+        ...state,
+        profile: [...state, action.payload],
       }
     default:
       throw new Error('something went wrong with Reducer switch case')

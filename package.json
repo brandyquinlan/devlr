@@ -7,6 +7,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server/index.js",
     "start:dev": "concurrently \"nodemon server/index.js\" \"npm run client\"",
+    "seed": "node seeders/seed.js",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
@@ -45,13 +46,15 @@
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.12.7",
+    "nodemailer": "^6.6.0",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@imaginary-cloud/eslint-config-react": "^1.0.1",
     "concurrently": "^6.0.2",
-    "eslint": "^7.25.0",
+    "eslint": "^7.26.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
@@ -59,6 +62,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^2.5.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.0"
   }
 }

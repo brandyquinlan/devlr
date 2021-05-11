@@ -19,40 +19,55 @@ const Home = () => {
   const [authenticated, setAuthenticated] = useState(false)
   const code = useQuery().get('code')
 
-  useEffect(() => {
-    async function authenticateUser() {
-      await API.getUser().then(({ data }) => {
-        console.log(data)
-        if (data._id) setAuthenticated(true)
-        setAuthenticating(false)
-      })
-    }
-    if (authenticating) {
-      authenticateUser()
-    }
-  }, [])
-
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
-    if (!code) return
-
-    API.getUser().then((resUser) => {
-      const { _id } = resUser.data
-      API.getUserAccessToken(code).then((resToken) => {
-        const { token } = resToken.data
-        API.setUserAccessToken(token, _id)
+    async function authenticateUser() {
+      await API.checkUser().then(({ data }) => {
+        if (data._id) {
+          setAuthenticated(true)
+        }
       })
-    })
-    window.history.pushState({}, null, '/home')
+    }
+
+    // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
+    // and then set their access token on them.
+    if (code) {
+      API.checkUser().then(({ data }) => {
+        const { _id } = data
+        API.getUserAccessToken(code).then((resToken) => {
+          const { token } = resToken.data
+          API.setUserAccessToken(token, _id)
+        })
+      })
+      setAuthenticated(true)
+      window.history.pushState({}, null, '/home')
+    } else {
+      authenticateUser()
+    }
   }, [code])
+
+  // load all user data and then set authenticating(false) to render the page
+  useEffect(() => {
+    API.getUserInfo()
+      .then(({ data }) => {
+        const [user, profile] = data
+        // Storing the user and the profile in the context seperately, since that is how they are in the db
+        dispatch({ type: 'set user', payload: user })
+        dispatch({ type: 'set profile', payload: profile })
+        setAuthenticating(false)
+      })
+      .catch((err) => {
+        console.error('Failed to get use information', err)
+        setAuthenticating(false)
+      })
+  }, [authenticated])
 
   const { width } = useViewport()
   const breakpoint = 768
   const { themePref } = store.profile
 
   useEffect(() => {
-    // console.log(themePref);
     if (!themePref);
     else {
       const r = document.querySelector(':root')
@@ -68,10 +83,10 @@ const Home = () => {
         r.style.setProperty('--secondary-bg-color', 'transparent')
       } // nested if else end tag
     } // main if else end tag
-  }, [themePref]) // setTheme end tag
+  }, [store.profile]) // setTheme end tag
 
   return (
-    <div>
+    <div className="container">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (
@@ -94,7 +109,7 @@ const Home = () => {
               </div>
             </div>
           ) : (
-            <Redirect to="/" />
+            <Redirect to="/login" />
           ),
         ]
       )}

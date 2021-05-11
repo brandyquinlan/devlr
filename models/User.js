@@ -19,6 +19,10 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  resetCode: String,
+  resetCodeExpires: Number,
 })
 
 const User = mongoose.model('User', userSchema)

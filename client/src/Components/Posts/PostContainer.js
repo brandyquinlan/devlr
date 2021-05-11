@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { StoreContext } from '../../utils/GlobalState'
 import Tab from '../Tab'
 import PostBox from './PostBox'
 
 function PostContainer() {
-  // get posts from DB
+  const [store, dispatch] = useContext(StoreContext)
+  // const [postStore, setPost] = useState()
+
+  const userId = store.user._id
+  const { userName } = store.profile
+
+  // get posts from DB,
+  // then set post state
   // for now here's some dummy text
   const posts = [
     {
@@ -13,15 +21,15 @@ function PostContainer() {
       body: 'So this is my first post! Woohoo!',
       likes: [
         {
-          user: 'katsign',
+          userName: 'katsign',
         },
         {
-          user: 'liztownd',
+          userName: 'liztownd',
         },
       ],
       comments: [
         {
-          user: 'katsign',
+          userName: 'katsign',
           text: 'This is a crazy idea! I love it!',
           date: 'May 4, 2021',
         },
@@ -40,12 +48,12 @@ function PostContainer() {
       // ],
       comments: [
         {
-          user: 'katsign',
+          userName: 'katsign',
           text: 'I know! It is so exciting',
           date: 'May 5, 2021',
         },
         {
-          user: 'brandyquinlan',
+          userName: 'brandyquinlan',
           text: 'I love it!',
           date: 'May 5, 2021',
         },
@@ -54,19 +62,50 @@ function PostContainer() {
     },
   ]
 
+  function createComment(event, textRef, postId) {
+    event.preventDefault()
+    const newComment = {
+      // where/how do I set the postID for this specific comment?
+      text: textRef,
+      userName,
+      user: userId,
+    }
+
+    // send to DB as an update on the post with postID
+
+    // update state?? socket.io?
+
+    console.log(newComment, postId)
+    // need to have a profile created first to access the userName before saving
+    // also update the main post state in context so it'll show up on the page immediately, right?
+  }
+
+  function incrementLike(event, postId) {
+    event.preventDefault()
+    const newLike = {
+      user: userId,
+      userName,
+    }
+    // send to DB as an update on the post with postID
+    console.log(newLike, postId)
+    // update state - or socket.io?
+  }
+
   return (
     <div>
       {posts.map((p) => (
         <Tab title={p.title}>
           <PostBox
             key={p.id}
-            id={p.id}
-            user={p.user}
+            postId={p.id}
+            userName={p.userName}
             title={p.title}
             body={p.body}
             date={p.date}
             comments={p.comments}
             likes={p.likes}
+            createComment={createComment}
+            incrementLike={incrementLike}
           />
         </Tab>
       ))}

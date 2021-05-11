@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { StoreContext } from '../../utils/GlobalState'
+
 import NavTabs from './NavTabs'
 import Activity from '../Feeds/Activity'
 import Profile from '../Feeds/Profile'

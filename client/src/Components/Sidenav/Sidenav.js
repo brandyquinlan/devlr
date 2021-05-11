@@ -3,14 +3,12 @@ import { StoreContext } from '../../utils/GlobalState'
 import User from '../User/User'
 import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
-import ManageAccountModal from '../Modals/ManageAccountModal'
 import Logo from '../../assets/img/logo.png'
 
 function Sidenav() {
   const [store, dispatch] = useContext(StoreContext)
   const [usersModalShow, setUsersModalShow] = React.useState(false)
   const [profileModalShow, setProfileModalShow] = React.useState(false)
-  const [accountModalShow, setAccountModalShow] = React.useState(false)
 
   return (
     <div id="side-nav">
@@ -45,14 +43,16 @@ function Sidenav() {
           onHide={() => setProfileModalShow(false)}
         />
         <li>
-          <button type="button" onClick={() => setAccountModalShow(true)}>
+          <button
+            type="button"
+            onClick={(event) => {
+              event.preventDefault()
+              window.location.href = '/home/settings'
+            }}
+          >
             <i className="material-icons">manage_accounts</i>
             Account
           </button>
-          <ManageAccountModal
-            show={accountModalShow}
-            onHide={() => setAccountModalShow(false)}
-          />
         </li>
         <li>
           <button

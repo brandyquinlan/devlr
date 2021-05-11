@@ -5,9 +5,21 @@ import Reducer from './Reducer'
 const initialState = {
   user: {},
   profile: {
+    user: '',
+    name: '',
+    highestGraduation: '',
+    school: '',
+    skills: [],
+    totalYearsofExperience: '',
+    currentPosition: '',
+    company: '',
+    from: '',
+    to: '',
+    githubUsername: '',
+    languages: [],
     themePref: '222222',
+    profilePic: '',
   },
-  isAuthenticated: false,
 }
 
 const Store = ({ children }) => {

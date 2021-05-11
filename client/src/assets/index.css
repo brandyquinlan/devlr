@@ -499,12 +499,17 @@ footer {
 }
 
 #signUp,
-#logIn  {
+#logIn,
+#settings  {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#accountMsg {
+  max-width: 260px;
 }
 
 #backgroundWrapper {

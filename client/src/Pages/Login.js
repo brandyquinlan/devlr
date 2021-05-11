@@ -1,7 +1,9 @@
 import React, { useState, useRef, useContext } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import { StoreContext } from '../utils/GlobalState'
 import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login() {
   const [store, dispatch] = useContext(StoreContext)
@@ -27,13 +29,40 @@ function Login() {
   function login(event) {
     event.preventDefault()
 
-    API.login(userInfo).then(() => {
-      window.location.href = '/home'
+    API.login(userInfo)
+      .then(() => {
+        window.location.href = '/home'
+      })
+      .catch(() => {
+        errorToast()
+      })
+  }
+
+  function errorToast() {
+    toast.error('Incorrect email or password', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     })
   }
 
   return (
     <div id="loginWrapper">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="d-flex flex-row align-items-center justify-content-around">
         <div className="tab bg-secondary gradient">
           <h1>devlr</h1>
@@ -61,22 +90,6 @@ function Login() {
                 id="password-input"
                 placeholder="Password"
               ></input>
-            </div>
-            <div
-              style={{ display: 'none' }}
-              id="alert"
-              className="alert alert-danger"
-              role="alert"
-            >
-              <span
-                className="glyphicon glyphicon-exclamation-sign"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Error:</span>
-              <span>
-                Login error. Make sure your email and password are entered
-                correctly
-              </span>
             </div>
             <button
               type="submit"

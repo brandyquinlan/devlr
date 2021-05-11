@@ -1,6 +1,8 @@
 import React, { useState, useRef, useContext } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import { StoreContext } from '../utils/GlobalState'
 import API from '../utils/API'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Signup() {
   const [store, dispatch] = useContext(StoreContext)
@@ -22,6 +24,18 @@ function Signup() {
     })
   }
 
+  function errorToast() {
+    toast.error('That user already exists', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  }
+
   function signUp(event) {
     event.preventDefault()
     const userInfo = {
@@ -35,14 +49,25 @@ function Signup() {
         window.location.href =
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })
-      .catch((err) => {
-        throw new Error('error on signup', err)
+      .catch(() => {
+        errorToast()
       })
   }
 
   return (
     <div>
       <div id="signupWrapper">
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className="d-flex flex-row align-items-center justify-content-around">
           <div className="tab bg-secondary gradient">
             <h1>devlr</h1>
@@ -70,19 +95,6 @@ function Signup() {
                   id="password-input"
                   placeholder="Password"
                 ></input>
-              </div>
-              <div
-                style={{ display: 'none' }}
-                id="alert"
-                className="alert alert-danger"
-                role="alert"
-              >
-                <span
-                  className="glyphicon glyphicon-exclamation-sign"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Error:</span>
-                <span className="msg"></span>
               </div>
               <button
                 type="submit"

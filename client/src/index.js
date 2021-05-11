@@ -4,10 +4,9 @@ import Store from './utils/GlobalState'
 import App from './App'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Store>
-      <App />
-    </Store>
-  </React.StrictMode>,
+  <Store>
+    <App />
+  </Store>,
+
   document.getElementById('root'),
 )

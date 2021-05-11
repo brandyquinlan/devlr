@@ -27,7 +27,6 @@ const Home = () => {
         if (data._id) {
           setAuthenticated(true)
         }
-        setAuthenticating(false)
       })
     }
 
@@ -41,28 +40,28 @@ const Home = () => {
       })
       setAuthenticated(true)
       window.history.pushState({}, null, '/home')
-      setAuthenticating(false)
     } else {
       authenticateUser()
     }
+  }, [code])
 
+  useEffect(() => {
     // ? may not need this here
     API.getUserInfo()
-      .then(({ userInfo }) => {
-        const [user, profile] = userInfo
+      .then(({ data }) => {
+        const [user, profile] = data
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
+        setAuthenticating(false)
       })
       .catch((err) => console.error('error in state set, navbar.js', err))
-  }, [code])
+  }, [authenticated])
 
   const { width } = useViewport()
   const breakpoint = 768
-  console.log(store)
   const { themePref } = store.profile
 
   useEffect(() => {
-    // console.log(themePref);
     if (!themePref);
     else {
       const r = document.querySelector(':root')
@@ -78,7 +77,7 @@ const Home = () => {
         r.style.setProperty('--secondary-bg-color', 'transparent')
       } // nested if else end tag
     } // main if else end tag
-  }, [themePref]) // setTheme end tag
+  }, [store.profile]) // setTheme end tag
 
   return (
     <div>

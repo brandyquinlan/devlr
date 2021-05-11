@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '*/**/*.js' --ignore-path .gitignore",
     "server": "nodemon server/index.js",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/userSeed.js"
   },
   "repository": {
     "type": "git",

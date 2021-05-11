@@ -26,13 +26,6 @@ const Home = () => {
       await API.checkUser().then(({ data }) => {
         if (data._id) {
           setAuthenticated(true)
-          API.getUserInfo()
-            .then(({ userInfo }) => {
-              const [user, profile] = userInfo
-              dispatch({ type: 'set user', payload: user })
-              dispatch({ type: 'set profile', payload: profile })
-            })
-            .catch((err) => console.error('error in state set, navbar.js', err))
         }
         setAuthenticating(false)
       })
@@ -52,6 +45,14 @@ const Home = () => {
     } else {
       authenticateUser()
     }
+
+    API.getUserInfo()
+      .then(({ userInfo }) => {
+        const [user, profile] = userInfo
+        dispatch({ type: 'set user', payload: user })
+        dispatch({ type: 'set profile', payload: profile })
+      })
+      .catch((err) => console.error('error in state set, navbar.js', err))
   }, [code])
 
   const { width } = useViewport()

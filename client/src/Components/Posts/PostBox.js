@@ -4,7 +4,7 @@ import PostCommentModal from '../Modals/PostCommentModal'
 
 function PostBox({
   postId,
-  user,
+  userName,
   body,
   date,
   likes,
@@ -19,7 +19,7 @@ function PostBox({
       <div id={postId}>
         <p>{body}</p>
         <p className="small">
-          Posted by {user}, {date}
+          Posted by {userName}, {date}
         </p>
       </div>
       <hr className="75"></hr>

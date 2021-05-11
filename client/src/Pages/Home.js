@@ -42,6 +42,7 @@ const Home = () => {
       API.getUserAccessToken(code).then((resToken) => {
         const { token } = resToken.data
         API.setUserAccessToken(token, _id)
+        dispatch({ type: 'set user token', payload: token })
       })
     })
     window.history.pushState({}, null, '/home')

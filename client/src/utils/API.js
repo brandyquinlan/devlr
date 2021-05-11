@@ -28,6 +28,9 @@ const API = {
   logout() {
     return axios.get('/api/users/logout')
   },
+  // createProfile() {
+  //   return axios.post('/api/profiles/newProfile')
+  // },
 }
 
 export default API

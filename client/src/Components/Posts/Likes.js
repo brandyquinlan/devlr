@@ -1,19 +1,18 @@
 import React, { useState, useRef } from 'react'
 import { Overlay, Tooltip } from 'react-bootstrap'
 
-function Likes({ likes }) {
+function Likes({ likes, incrementLike, postId }) {
   const [show, setShow] = useState(false)
   const target = useRef(null)
-
-  function incrementLike(event) {
-    event.preventDefault()
-    console.log('click')
-  }
 
   return (
     <div>
       {!likes ? (
-        <button type="button" className="p-0" onClick={(e) => incrementLike(e)}>
+        <button
+          type="button"
+          className="p-0"
+          onClick={(e) => incrementLike(e, postId)}
+        >
           <span className="material-icons">auto_awesome</span>0
         </button>
       ) : (
@@ -23,7 +22,7 @@ function Likes({ likes }) {
             type="button"
             onMouseEnter={() => setShow(!show)}
             onMouseLeave={() => setShow(!show)}
-            onClick={(e) => incrementLike(e)}
+            onClick={(e) => incrementLike(e, postId)}
           >
             <span className="material-icons">auto_awesome</span>
             {likes.length}

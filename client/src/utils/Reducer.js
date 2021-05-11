@@ -14,6 +14,11 @@ const Reducer = (state, action) => {
         ...state,
         user: action.payload,
       }
+    case 'set user token':
+      return {
+        ...state,
+        accessToken: action.payload,
+      }
     case 'logout':
       API.logout()
       window.location.href = '/login'
@@ -22,6 +27,11 @@ const Reducer = (state, action) => {
         profile: {
           themePref: '222222',
         },
+      }
+    case 'set user profile':
+      return {
+        ...state,
+        profile: [...state, action.payload],
       }
     default:
       throw new Error('something went wrong with Reducer switch case')

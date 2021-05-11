@@ -13,7 +13,7 @@ router.get('/:userID', (request, response) => {
   }
 })
 
-router.post('/newProfile/:id', (request, response) => {
+router.post('/newProfile/:userID', (request, response) => {
   // NOT SURE WHAT THIS SHOULD ACTUALLY LOOK LIKE. JUST SETTING IT UP
   // TO MATCH THE OTHERS FOR NOW
   const { profile } = request.body

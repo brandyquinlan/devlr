@@ -15,20 +15,22 @@ function DeleteAccountModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h3>
-          WARNING: Once your account has been delted, it cannot be recovered.
-          Proceed at your own risk
-        </h3>
-        <Button
-          type="button"
-          variant="danger"
-          onClick={() => {
-            props.onHide()
-            props.setConfirmDeleteModal(true)
-          }}
-        >
-          CONTINUE
-        </Button>
+        <div className="d-flex flex-column align-items-center">
+          <h4>
+            WARNING: Once your account has been deleted, it cannot be recovered.
+            Proceed at your own risk
+          </h4>
+          <Button
+            type="button"
+            variant="danger"
+            onClick={() => {
+              props.onHide()
+              props.setConfirmDeleteModal(true)
+            }}
+          >
+            I understand. Continue
+          </Button>
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>

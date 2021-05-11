@@ -104,10 +104,6 @@ export default function Settings() {
                   user={store.user}
                   setConfirmDeleteModal={setConfirmDeleteModal}
                 />
-                <ConfirmDeleteModal
-                  show={confrimDeleteModal}
-                  onHide={() => setConfirmDeleteModal(false)}
-                />
                 <Button
                   type="button"
                   variant="secondary"
@@ -116,6 +112,10 @@ export default function Settings() {
                 >
                   Delete Account
                 </Button>
+                <ConfirmDeleteModal
+                  show={confrimDeleteModal}
+                  onHide={() => setConfirmDeleteModal(false)}
+                />
               </div>
             </div>
           ) : (

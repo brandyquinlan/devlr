@@ -59,9 +59,11 @@ function DeleteAccountModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Button type="button" variant="danger" onClick={deleteAccount}>
-            Yes, I am sure. Do it.
-          </Button>
+          <div className="d-flex flex-column align-items-center">
+            <Button type="button" variant="danger" onClick={deleteAccount}>
+              DELETE ACCOUNT
+            </Button>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>

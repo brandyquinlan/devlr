@@ -52,11 +52,15 @@ const Home = () => {
     API.getUserInfo()
       .then(({ data }) => {
         const [user, profile] = data
+        // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
         setAuthenticating(false)
       })
-      .catch((err) => console.error('error in state set, navbar.js', err))
+      .catch((err) => {
+        console.error('Failed to get use information', err)
+        setAuthenticating(false)
+      })
   }, [authenticated])
 
   const { width } = useViewport()

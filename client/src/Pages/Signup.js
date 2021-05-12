@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ToastContainer, Flip, toast } from 'react-toastify'
+import { Badge } from 'react-bootstrap'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -9,11 +10,37 @@ function Signup() {
     password: '',
     githubUsername: '',
   })
+  const [pWordMatch, setPWordMatch] = useState({
+    password: '',
+    confirm: '',
+    var: '',
+    msg: '',
+  })
 
   const emailRef = useRef()
   const passwordRef = useRef()
   const confirmRef = useRef()
   const githubRef = useRef()
+
+  useEffect(() => {
+    if (!passwordRef.current.value) {
+      setPWordMatch({})
+      return
+    }
+    if (state.password === confirmRef.current.value) {
+      setPWordMatch({
+        ...pWordMatch,
+        var: 'success',
+        msg: 'passwords match',
+      })
+    } else {
+      setPWordMatch({
+        ...pWordMatch,
+        var: 'danger',
+        msg: 'passwords do not match',
+      })
+    }
+  }, [pWordMatch])
 
   function handleInputChange(event) {
     event.preventDefault()
@@ -23,6 +50,12 @@ function Signup() {
       email: emailRef.current.value,
       password: passwordRef.current.value,
       githubUsername: githubRef.current.value,
+    })
+
+    setPWordMatch({
+      ...pWordMatch,
+      password: passwordRef.current.value,
+      confirm: confirmRef.current.value,
     })
   }
 
@@ -132,7 +165,6 @@ function Signup() {
                 ></input>
               </div>
               <div className="form-group">
-                <label htmlFor="passwordInput2">Confirm password</label>
                 <input
                   ref={confirmRef}
                   onChange={handleInputChange}
@@ -142,6 +174,9 @@ function Signup() {
                   placeholder="confirm password"
                 ></input>
               </div>
+              <Badge className="float-right" variant={pWordMatch.var}>
+                {pWordMatch.msg}
+              </Badge>
               <div className="form-group">
                 <label htmlFor="githubUsername">Github username</label>
                 <input

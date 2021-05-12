@@ -51,7 +51,6 @@ router.post('/signup', async (request, response) => {
     db.User.create({
       email: request.body.email,
       password: request.body.password,
-      githubUsername: request.body.githubUsername,
     }).then((res) => {
       const user = {
         email: res.email,
@@ -68,7 +67,7 @@ router.post('/signup', async (request, response) => {
         company: '',
         from: '',
         to: '',
-        githubUsername: '',
+        githubUsername: request.body.githubUsername,
         languages: [],
         themePref: '222222',
         avatarUrl: '',

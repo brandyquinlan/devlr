@@ -19,7 +19,7 @@ function UpdateProfileModal(props) {
       company: store.profile.company,
       from: store.profile.from,
       to: store.profile.to,
-      githubUsername: store.user.githubUsername,
+      githubUsername: store.profile.githubUsername,
       languages: store.profile.languages,
     },
   })

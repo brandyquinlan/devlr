@@ -40,7 +40,8 @@ const Home = () => {
     if (code) {
       API.getUserInfo().then(({ data }) => {
         const [user, profile] = data
-        const { _id, githubUsername } = user
+        const { _id } = user
+        const { githubUsername } = profile
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)

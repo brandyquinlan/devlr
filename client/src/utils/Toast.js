@@ -6,7 +6,7 @@ export default function Toast(variant, text, duration) {
       return toast.error(`${text}`, {
         position: 'top-center',
         autoClose: duration,
-        hideProgressBar: false,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -16,7 +16,7 @@ export default function Toast(variant, text, duration) {
       return toast.success(`${text}`, {
         position: 'top-center',
         autoClose: duration,
-        hideProgressBar: false,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,

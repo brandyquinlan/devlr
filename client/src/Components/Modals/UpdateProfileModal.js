@@ -33,6 +33,7 @@ function UpdateProfileModal(props) {
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      scrollable
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">

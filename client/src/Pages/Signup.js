@@ -103,6 +103,11 @@ function Signup() {
       return
     }
 
+    if (!githubRef.current.value) {
+      Toast('error', 'You must provide your github account', 2000)
+      return
+    }
+
     API.signUp(state)
       .then(() => {
         API.login({

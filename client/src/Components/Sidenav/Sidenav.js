@@ -18,10 +18,10 @@ function Sidenav() {
       </div>
       <ul className="list-group">
         <li>
-          <button type="button" href="/home">
+          <a href="/home">
             <i className="material-icons">home</i>
             Home
-          </button>
+          </a>
         </li>
         <li>
           <button type="button" onClick={() => setUsersModalShow(true)}>

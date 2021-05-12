@@ -15,9 +15,9 @@ function MobileSidenav() {
       <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       <ul className="list-group">
         <li>
-          <button type="button" href="/home">
+          <a href="/home">
             <i className="material-icons">home</i>
-          </button>
+          </a>
         </li>
         <li>
           <button type="button" onClick={() => setUsersModalShow(true)}>

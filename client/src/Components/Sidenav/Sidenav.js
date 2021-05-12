@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
+import { ModalContext } from '../../utils/ModalState'
 import User from '../User/User'
 import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
 import Logo from '../../assets/img/logo.png'
 
 function Sidenav() {
-  const [store, dispatch] = useContext(StoreContext)
-  const [usersModalShow, setUsersModalShow] = React.useState(false)
-  const [profileModalShow, setProfileModalShow] = React.useState(false)
+  const [store, dispatch] = useContext(UserContext)
+  const [modals, updateModal] = useContext(ModalContext)
 
   return (
     <div id="side-nav">
@@ -24,23 +24,29 @@ function Sidenav() {
           </a>
         </li>
         <li>
-          <button type="button" onClick={() => setUsersModalShow(true)}>
+          <button
+            type="button"
+            onClick={() => updateModal({ type: 'show user modal' })}
+          >
             <i className="material-icons">groups</i>
             Browse Users
           </button>
         </li>
         <BrowseUsersModal
-          show={usersModalShow}
-          onHide={() => setUsersModalShow(false)}
+          show={modals.userModalShow}
+          onHide={() => updateModal({ type: 'hide user modal' })}
         />
         <li>
-          <button type="button" onClick={() => setProfileModalShow(true)}>
+          <button
+            type="button"
+            onClick={() => updateModal({ type: 'show profile modal' })}
+          >
             <i className="material-icons">dashboard</i>Update Profile
           </button>
         </li>
         <UpdateProfileModal
-          show={profileModalShow}
-          onHide={() => setProfileModalShow(false)}
+          show={modals.profileModalShow}
+          onHide={() => updateModal({ type: 'hide profile modal' })}
         />
         <li>
           <button

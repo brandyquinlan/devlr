@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
 import Tab from '../Tab'
 import PostBox from './PostBox'
 
 function PostContainer() {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   // const [postStore, setPost] = useState()
 
   const userId = store.user._id

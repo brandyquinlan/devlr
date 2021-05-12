@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
 function DeleteAccountModal(props) {
@@ -38,7 +38,15 @@ function DeleteAccountModal(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" className="gradient">
+        <Button
+          type="button"
+          variant="secondary"
+          className="gradient"
+          onClick={() => {
+            props.onHide()
+            props.setConfirmDeleteModal(true)
+          }}
+        >
           Delete and Logout
         </Button>
         <Button variant="secondary" onClick={props.onHide}>

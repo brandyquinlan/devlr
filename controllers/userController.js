@@ -56,7 +56,22 @@ router.post('/signup', async (request, response) => {
         email: res.email,
         _id: res._id,
       }
-      db.Profile.create({ user: user._id }).catch((e) => {
+      db.Profile.create({
+        user: user._id,
+        name: '',
+        highestGraduation: '',
+        school: '',
+        skills: [],
+        totalYearsofExperience: '',
+        currentPosition: '',
+        company: '',
+        from: '',
+        to: '',
+        githubUsername: request.body.githubUsername,
+        languages: [],
+        themePref: '222222',
+        avatarUrl: '',
+      }).catch((e) => {
         throw new Error()
       })
       response.json(user)
@@ -84,6 +99,7 @@ router.get('/getUserInfo/:userId', async (request, response) => {
       followers: user.followers,
       following: user.following,
       _id: user._id,
+      githubUsername: user.githubUsername,
     }
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])
@@ -187,6 +203,24 @@ router.put('/resetPassword', (request, response) => {
       })
   } catch (error) {
     response.send(error).status(500)
+  }
+})
+
+router.delete('/destroy', async (request, response) => {
+  const { user, profile } = request.query
+
+  try {
+    db.Profile.deleteOne({ _id: profile })
+      .then(() => {
+        db.User.deleteOne({ _id: user }).then(() => {
+          response.send(200)
+        })
+      })
+      .catch((err) => {
+        response.json({ error: err.message }).status(404)
+      })
+  } catch (err) {
+    response.json({ error: err.message }).status(500)
   }
 })
 

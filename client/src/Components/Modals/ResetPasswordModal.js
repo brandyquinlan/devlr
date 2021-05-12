@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
-import { Modal, Button, DropdownButton } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
+import { ToastContainer, Flip } from 'react-toastify'
 import API from '../../utils/API'
-import Alert from '../Alert'
+import Toast from '../../utils/Toast'
+import 'react-toastify/dist/ReactToastify.css'
 
 function ResetPasswordModal(props) {
   const [password, setPassword] = useState({})
-  const [errorAlert, setErrorAlert] = useState(false)
-  const [successAlert, setSuccessAlert] = useState(false)
   const { user } = props
 
   const passwordRef = useRef()
@@ -23,7 +23,7 @@ function ResetPasswordModal(props) {
   function resetPassword(event) {
     event.preventDefault()
     if (password.password !== password.passwordConfirm) {
-      setErrorAlert(true)
+      Toast('error', 'Passwords must match', 2000)
       return
     }
 
@@ -33,13 +33,26 @@ function ResetPasswordModal(props) {
           email: user.email,
           password: password.password,
         })
-        setSuccessAlert(true)
+        Toast('success', 'Your password has been reset', 4000)
+        props.onHide()
       })
       .catch((err) => console.error(err))
   }
 
   return (
     <>
+      <ToastContainer
+        transition={Flip}
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Modal
         {...props}
         size="md"
@@ -79,6 +92,13 @@ function ResetPasswordModal(props) {
                 id="confirm"
                 placeholder="password"
               ></input>
+              <Button
+                type="submit"
+                variant="secondary"
+                className="gradient ml-2"
+              >
+                Save
+              </Button>
             </div>
             <Button
               type="submit"
@@ -96,20 +116,6 @@ function ResetPasswordModal(props) {
             </Button>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Alert
-            show={successAlert}
-            setShow={setSuccessAlert}
-            body="Password successfully reset!"
-            variant="success"
-          />
-          <Alert
-            show={errorAlert}
-            setShow={setErrorAlert}
-            body="Please make sure passwords match."
-            variant="danger"
-          />
-        </Modal.Footer>
       </Modal>
     </>
   )

@@ -21,14 +21,14 @@ router.put('/updateProfile/:_id', (request, response) => {
 
   try {
     db.Profile.findOneAndUpdate({ user: _id }, newProfile)
-      .then((res) => {
+      .then(() => {
         response.send('Profile updated')
       })
       .catch((error) => {
-        response.json({ errMessage: error.message }).status(401)
+        response.json({ errMessage: error }).status(401)
       })
   } catch (error) {
-    response.sendStatus(404)
+    response.json({ errMessage: error }).status(500)
   }
 })
 

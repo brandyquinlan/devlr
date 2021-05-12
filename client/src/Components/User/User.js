@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
+import { UserContext } from '../../utils/UserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
+  const [store, dispatch] = useContext(UserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
 
@@ -24,7 +26,9 @@ function User() {
         show={postModalShow}
         onHide={() => setPostModalShow(false)}
       />
-      <div className="circle" id="userPic"></div>
+      <div className="circle" id="userPic">
+        <img src={store.profile.avatarUrl} alt="User profile" />
+      </div>
       <Button
         variant="secondary"
         size="lg"

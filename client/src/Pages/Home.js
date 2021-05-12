@@ -1,20 +1,23 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
-import { StoreContext } from '../utils/GlobalState'
+import { UserContext } from '../utils/UserState'
+import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
+import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
 const Home = () => {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
+  const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const code = useQuery().get('code')
@@ -23,24 +26,31 @@ const Home = () => {
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
     async function authenticateUser() {
-      await API.checkUser().then(({ data }) => {
-        if (data._id) {
-          setAuthenticated(true)
-        }
-      })
+      await API.getUserInfo()
+        .then(({ data }) => {
+          if (data[0]._id) {
+            setAuthenticated(true)
+          }
+        })
+        .catch(() => setAuthenticating(false))
     }
 
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
-      API.checkUser().then(({ data }) => {
-        const { _id } = data
+      API.getUserInfo().then(({ data }) => {
+        const [user, profile] = data
+        const { _id } = user
+        const { githubUsername } = profile
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
+          API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
+            setAuthenticated(true)
+            udpateModal({ type: 'show initial modal' })
+          })
         })
       })
-      setAuthenticated(true)
       window.history.pushState({}, null, '/home')
     } else {
       authenticateUser()
@@ -55,7 +65,10 @@ const Home = () => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
-        setAuthenticating(false)
+        // Had to add set timeout so that use data has time to load
+        setTimeout(() => {
+          setAuthenticating(false)
+        }, 1000)
       })
       .catch((err) => {
         console.error('Failed to get use information', err)
@@ -92,17 +105,10 @@ const Home = () => {
       ) : (
         [
           authenticated === true ? (
-            <div
-              className="d-flex flex-row align-items-top justify-content-around"
-              id="col1"
-            >
-              {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
-              <div className="d-flex flex-column align-items-left" id="col2">
-                <Navbar />
-              </div>
+            <>
               <div
-                className="d-flex flex-column align-items-right ml-4"
-                id="col3"
+                className="d-flex flex-row align-items-top justify-content-around"
+                id="col1"
               >
                 <Tab title="Featured Devs">
                   <a href="/profile">
@@ -114,7 +120,13 @@ const Home = () => {
                 </Tab>
                 <Tab title="Ad" />
               </div>
-            </div>
+              <InitialLoginModal
+                show={modals.initialModalShow}
+                onHide={() => {
+                  udpateModal({ type: 'hide initial modal' })
+                }}
+              />
+            </>
           ) : (
             <Redirect to="/login" />
           ),

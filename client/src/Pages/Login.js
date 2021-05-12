@@ -1,13 +1,13 @@
 import React, { useState, useRef, useContext } from 'react'
 import { ToastContainer, Flip } from 'react-toastify'
-import { StoreContext } from '../utils/GlobalState'
+import { UserContext } from '../utils/UserState'
 import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
 import Toast from '../utils/Toast'
 
 function Login() {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner, Button } from 'react-bootstrap'
-import { StoreContext } from '../utils/GlobalState'
+import { UserContext } from '../utils/UserState'
 import API from '../utils/API'
 import ResetPasswordModal from '../Components/Modals/ResetPasswordModal'
 import DeleteAccountModal from '../Components/Modals/DeleteAccountModal'
@@ -12,7 +12,7 @@ function useQuery() {
 }
 
 export default function Settings() {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const [resetPasswordModal, setResetPasswordModal] = useState(false)

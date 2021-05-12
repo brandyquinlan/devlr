@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import { StoreContext } from '../../utils/GlobalState'
+import API from '../../utils/API'
+import { UserContext } from '../../utils/UserState'
+import Toast from '../../utils/Toast'
 
 function UpdateProfileModal(props) {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: store.profile.name,
@@ -16,13 +18,17 @@ function UpdateProfileModal(props) {
       company: store.profile.company,
       from: store.profile.from,
       to: store.profile.to,
-      githubUsername: store.profile.githubUsername,
+      githubUsername: store.user.githubUsername,
       languages: store.profile.languages,
     },
   })
 
   const onSubmit = (data) => {
-    console.log(JSON.stringify(data))
+    API.updateProfile(data, store.user._id)
+      .then((res) => {
+        Toast('success', 'Your profile has been updated', 2000)
+      })
+      .catch(() => Toast('error', 'Error updating your profile', 3000))
   }
   // can we access the store and get current profile data to pre-populate so the user can update it?
   // if we put it in as a conditional for placeholder text will it save if they don't retype it?
@@ -42,9 +48,6 @@ function UpdateProfileModal(props) {
       <Modal.Body>
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="small mb-2">
-              For initial creation, all fields are required.
-            </div>
             <div className="form-group">
               <label htmlFor="name"> Name</label>
               <input

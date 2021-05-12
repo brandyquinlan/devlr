@@ -1,10 +1,10 @@
 import React, { useRef, useState, useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
 // import API from '../../utils/API'
 
 function NewPostModal(props) {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const [newPost, setNewPost] = useState({
     title: '',
     body: '',

@@ -1,11 +1,11 @@
 import React, { createContext, useReducer } from 'react'
 
-import Reducer from './Reducer'
+import UserReducer from './UserReducer'
 
 const initialState = {
   user: {},
   profile: {
-    user: '',
+    user: 0,
     name: '',
     highestGraduation: '',
     school: '',
@@ -23,14 +23,14 @@ const initialState = {
 }
 
 const Store = ({ children }) => {
-  const [store, dispatch] = useReducer(Reducer, initialState)
+  const [store, dispatch] = useReducer(UserReducer, initialState)
 
   return (
-    <StoreContext.Provider value={[store, dispatch]}>
+    <UserContext.Provider value={[store, dispatch]}>
       {children}
-    </StoreContext.Provider>
+    </UserContext.Provider>
   )
 }
 
-export const StoreContext = createContext(initialState)
+export const UserContext = createContext(initialState)
 export default Store

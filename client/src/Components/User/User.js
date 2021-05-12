@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
 

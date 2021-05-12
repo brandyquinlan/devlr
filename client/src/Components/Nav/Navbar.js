@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
 
 import NavTabs from './NavTabs'
 import Activity from '../Feeds/Activity'

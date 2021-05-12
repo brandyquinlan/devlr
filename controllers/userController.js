@@ -57,7 +57,22 @@ router.post('/signup', async (request, response) => {
         email: res.email,
         _id: res._id,
       }
-      db.Profile.create({ user: user._id }).catch((e) => {
+      db.Profile.create({
+        user: user._id,
+        name: '',
+        highestGraduation: '',
+        school: '',
+        skills: [],
+        totalYearsofExperience: '',
+        currentPosition: '',
+        company: '',
+        from: '',
+        to: '',
+        githubUsername: '',
+        languages: [],
+        themePref: '222222',
+        avatarUrl: '',
+      }).catch((e) => {
         throw new Error()
       })
       response.json(user)

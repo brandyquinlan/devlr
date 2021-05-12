@@ -1,20 +1,23 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
-import { StoreContext } from '../utils/GlobalState'
+import { UserContext } from '../utils/UserState'
+import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
+import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
 const Home = () => {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
+  const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const code = useQuery().get('code')
@@ -43,6 +46,7 @@ const Home = () => {
           API.setUserAccessToken(token, _id)
           API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
             setAuthenticated(true)
+            udpateModal({ type: 'show initial modal' })
           })
         })
       })
@@ -100,22 +104,30 @@ const Home = () => {
       ) : (
         [
           authenticated === true ? (
-            <div
-              className="d-flex flex-row align-items-top justify-content-around"
-              id="col1"
-            >
-              {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
-              <div className="d-flex flex-column align-items-left" id="col2">
-                <Navbar />
-              </div>
+            <>
               <div
-                className="d-flex flex-column align-items-right ml-4"
-                id="col3"
+                className="d-flex flex-row align-items-top justify-content-around"
+                id="col1"
               >
-                <Tab title="Featured Devs" />
-                <Tab title="Ad" />
+                {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                <div className="d-flex flex-column align-items-left" id="col2">
+                  <Navbar />
+                </div>
+                <div
+                  className="d-flex flex-column align-items-right ml-4"
+                  id="col3"
+                >
+                  <Tab title="Featured Devs" />
+                  <Tab title="Ad" />
+                </div>
               </div>
-            </div>
+              <InitialLoginModal
+                show={modals.initialModalShow}
+                onHide={() => {
+                  udpateModal({ type: 'hide initial modal' })
+                }}
+              />
+            </>
           ) : (
             <Redirect to="/login" />
           ),

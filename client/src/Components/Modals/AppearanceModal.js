@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { ToastContainer, Flip } from 'react-toastify'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 
 function AppearanceModal(props) {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const { themePref } = store.profile
 
   function saveTheme() {

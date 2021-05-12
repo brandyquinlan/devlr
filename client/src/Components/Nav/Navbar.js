@@ -7,7 +7,7 @@ import Profile from '../Feeds/Profile'
 import Explore from '../Feeds/Explore'
 
 function Navbar() {
-  const [page, setPage] = useState('About')
+  const [page, setPage] = useState('Activity')
 
   function handlePageChange(newPage) {
     setPage(newPage)

@@ -24,6 +24,11 @@ function Signup() {
 
   useEffect(() => {
     if (!passwordRef.current.value) {
+      setPWordMatch({
+        ...pWordMatch,
+        var: '',
+        msg: '',
+      })
       return
     }
     if (state.password === confirmRef.current.value) {

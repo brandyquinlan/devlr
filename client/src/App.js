@@ -4,6 +4,7 @@ import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import Settings from './Pages/Settings'
+import Profile from './Pages/Profile'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/index.css'
 
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/home/settings" component={Settings} />
+        <Route exact path="/profile" component={Profile} />
       </Switch>
     </Router>
   )

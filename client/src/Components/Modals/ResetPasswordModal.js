@@ -100,13 +100,13 @@ function ResetPasswordModal(props) {
           <Alert
             show={successAlert}
             setShow={setSuccessAlert}
-            heading="Password successfully reset!"
+            body="Password successfully reset!"
             variant="success"
           />
           <Alert
             show={errorAlert}
             setShow={setErrorAlert}
-            heading="Please make sure passwords match."
+            body="Please make sure passwords match."
             variant="danger"
           />
         </Modal.Footer>

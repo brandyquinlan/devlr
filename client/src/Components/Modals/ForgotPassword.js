@@ -71,13 +71,13 @@ function ForgotPasswordModal(props) {
           <Alert
             show={successAlert}
             setShow={setSuccessAlert}
-            heading="A link has been sent, please check your email."
+            body="A link has been sent, please check your email."
             variant="success"
           />
           <Alert
             show={errorAlert}
             setShow={setErrorAlert}
-            heading="Oops! We couldn't find that user. Please try again."
+            body="Oops! We couldn't find that user. Please try again."
             variant="danger"
           />
         </Modal.Footer>

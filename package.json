@@ -30,8 +30,7 @@
       "react/prop-types": "off",
       "no-underscore-dangle": "off",
       "no-unused-vars": "off",
-      "no-console": "off",
-      "consistent-return": "off"
+      "no-console": "off"
     }
   },
   "prettier": "@imaginary-cloud/prettier-config",

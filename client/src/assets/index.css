@@ -184,13 +184,10 @@ input::placeholder {
   border-radius: 20px;
 }
 
-.toast-header,
-.toast-body {
-  background-color: var(--main-bg-color) !important;
-}
-
-.toast {
-  border: 1px solid linen !important;
+.tooltip ul {
+  max-width: min-content;
+  padding: 0;
+  margin: 0;
 }
 
 .dropdown-menu {
@@ -238,6 +235,9 @@ a:focus {
 }
 
 li > a {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--main-text-color);
 }
 
@@ -310,7 +310,7 @@ footer {
 .btn-secondary.focus {
   background-color: transparent;
   border-color: linen;
-  box-shadow: 0 0 0 0.2rem transparent!important;
+  box-shadow: 0 0 0 0.2rem transparent !important;
 }
 .btn-secondary.disabled,
 .btn-secondary:disabled {
@@ -326,7 +326,7 @@ footer {
 .btn-secondary:not(:disabled):not(.disabled):active:focus,
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-secondary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem transparent!important;
+  box-shadow: 0 0 0 0.2rem transparent !important;
 }
 
 .btn-dark {
@@ -476,6 +476,15 @@ footer {
   margin-right: 1.5rem;
 }
 
+#profile-side-nav {
+  margin-right: 1.5rem;
+  min-width: 160px;
+}
+
+button.disabled {
+  opacity: 0.8;
+}
+
 #modalCloseBtn {
   background: rgb(245, 245, 245);
   background: linear-gradient(
@@ -483,7 +492,6 @@ footer {
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
-
 }
 
 #mobileBtn {
@@ -500,7 +508,7 @@ footer {
 
 #signUp,
 #logIn,
-#settings  {
+#settings {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -568,6 +576,15 @@ footer {
   vertical-align: middle;
 }
 
+#mobileUserPic {
+  background-color: var(--main-text-color);
+  width: 50px;
+  height: 50px;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+  vertical-align: middle;
+}
+
 #PinnedProjects {
   min-width: 275px;
 }
@@ -592,12 +609,15 @@ footer {
   .container {
     margin: 0.25rem;
   }
+  .tab {
+    max-width: 340px;
+  }
   #mobile-side-nav {
     margin-top: 2rem;
   }
   #col2 {
     margin-top: 1.5rem;
-    margin-left: 0.5rem;
+    margin-left: 0.75rem;
     margin-right: 1rem;
   }
   #col3 {

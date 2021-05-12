@@ -44,7 +44,7 @@ const userSeed = [
 const profileSeed = [
   {
     _id: 1,
-    user: 1,
+    // user: 1,
     name: 'Brandy Quinlan',
     highestGraduation: 'Masters',
     school: 'KU',
@@ -59,7 +59,7 @@ const profileSeed = [
   },
   {
     _id: 2,
-    user: 2,
+    // user: 2,
     name: 'Brenna McLeod',
     highestGraduation: 'Masters',
     school: 'KU',
@@ -74,7 +74,7 @@ const profileSeed = [
   },
   {
     _id: 3,
-    user: 3,
+    // user: 3,
     name: 'Maggie May Wilder',
     highestGraduation: 'Masters',
     school: 'KU',
@@ -89,7 +89,7 @@ const profileSeed = [
   },
   {
     _id: 4,
-    user: 4,
+    // user: 4,
     name: 'Kolton Decker',
     highestGraduation: 'Masters',
     school: 'KU',
@@ -104,7 +104,7 @@ const profileSeed = [
   },
   {
     _id: 5,
-    user: 5,
+    // user: 5,
     name: 'Steve Babb',
     highestGraduation: 'Masters',
     school: 'KU',

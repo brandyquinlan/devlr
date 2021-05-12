@@ -12,7 +12,7 @@ export default function InitialLoginModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           <h3>Welcome to devlr!</h3>
         </Modal.Title>
@@ -26,6 +26,7 @@ export default function InitialLoginModal(props) {
           onClick={() => {
             updateModal({ type: 'lets go' })
           }}
+          className="btn-block"
         >
           Lets go!
         </Button>

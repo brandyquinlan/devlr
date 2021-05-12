@@ -1,36 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { ToastContainer, Flip, toast } from 'react-toastify'
+import { ToastContainer, Flip } from 'react-toastify'
 import API from '../../utils/API'
-import Alert from '../Alert'
+import Toast from '../../utils/Toast'
 
 function ForgotPasswordModal(props) {
   const [email, setEmail] = useState('')
   const emailRef = useRef()
-
-  function errorToast() {
-    toast.error('User not found', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
-  function successToast() {
-    toast.success('A link has been sent to your email address', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
 
   function handleInputChange(event) {
     event.preventDefault()
@@ -42,10 +18,10 @@ function ForgotPasswordModal(props) {
 
     API.sendResetLink(email)
       .then(() => {
-        successToast()
+        Toast('success', 'A link has been sent to your email address', 2000)
       })
       .catch((e) => {
-        errorToast()
+        Toast('error', 'User not found', 2000)
       })
   }
   return (

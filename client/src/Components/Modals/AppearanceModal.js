@@ -1,28 +1,19 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { ToastContainer, Flip, toast } from 'react-toastify'
+import { ToastContainer, Flip } from 'react-toastify'
 import { StoreContext } from '../../utils/GlobalState'
 import API from '../../utils/API'
+import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 
 function AppearanceModal(props) {
   const [store, dispatch] = useContext(StoreContext)
   const { themePref } = store.profile
 
-  function success() {
-    toast.success('Theme saved', {
-      position: 'top-center',
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
   function saveTheme() {
-    API.updateProfile({ themePref }, store.user._id).then(() => success())
+    API.updateProfile({ themePref }, store.user._id).then(() =>
+      Toast('success', 'Theme saved', 1000),
+    )
   }
 
   return (

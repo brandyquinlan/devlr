@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { ToastContainer, Flip, toast } from 'react-toastify'
+import { ToastContainer, Flip } from 'react-toastify'
 import API from '../../utils/API'
+import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 
 function ResetPasswordModal(props) {
@@ -18,33 +19,11 @@ function ResetPasswordModal(props) {
       passwordConfirm: passwordConfirm.current.value,
     })
   }
-  function passwordsMustMatch() {
-    toast.error('Passwords must match!', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-  function success() {
-    toast.success('Your password has been reset!', {
-      position: 'top-center',
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
 
   function resetPassword(event) {
     event.preventDefault()
     if (password.password !== password.passwordConfirm) {
-      passwordsMustMatch()
+      Toast('error', 'Passwords must match', 2000)
       return
     }
 
@@ -54,7 +33,7 @@ function ResetPasswordModal(props) {
           email: user.email,
           password: password.password,
         })
-        success()
+        Toast('success', 'Your password has been reset', 4000)
         props.onHide()
       })
       .catch((err) => console.error(err))

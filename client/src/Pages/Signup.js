@@ -147,6 +147,7 @@ function Signup() {
                   className="form-control"
                   id="email-input"
                   placeholder="email"
+                  required
                 ></input>
               </div>
               <div className="form-group">
@@ -182,6 +183,7 @@ function Signup() {
                   className="form-control"
                   id="githubUsername"
                   placeholder="github username"
+                  required
                 ></input>
               </div>
               <button

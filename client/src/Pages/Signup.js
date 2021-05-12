@@ -1,8 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { ToastContainer, Flip, toast } from 'react-toastify'
+import { ToastContainer, Flip } from 'react-toastify'
 import { Badge } from 'react-bootstrap'
+import PasswordValidator from 'password-validator'
+import Toast from '../utils/Toast'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
+
+const schema = new PasswordValidator()
+
+schema
+  .is()
+  .min(8) // Minimum length 8
+  .is()
+  .max(100) // Maximum length 100
+  .has()
+  .digits(1) // Must have at least 2 digits
+  .has()
+  .not()
+  .spaces() // Should not have spaces
+  .is()
+  .not()
+  .oneOf(['Passw0rd', 'Password123'])
 
 function Signup() {
   const [state, setState] = useState({
@@ -63,51 +81,25 @@ function Signup() {
     })
   }
 
-  function errorToast() {
-    toast.error('That user already exists', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
-  function matchError() {
-    toast.error('Your passwords must match', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
-  function emptyError() {
-    toast.error('Your password cannot be empty', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
   function signUp(event) {
     event.preventDefault()
     if (passwordRef.current.value !== confirmRef.current.value) {
-      matchError()
+      Toast('error', 'Your passwords must match', 2000)
+
       return
     }
 
     if (passwordRef.current.value === '') {
-      emptyError()
+      Toast('error', 'Your password cannot be empty', 2000)
+
+      return
+    }
+
+    if (!schema.validate(state.password)) {
+      Toast(
+        'error',
+        'Your password must be at lest 8 characters long, cannot contain spaces, and must include one number ',
+      )
       return
     }
 
@@ -121,7 +113,7 @@ function Signup() {
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })
       .catch(() => {
-        errorToast()
+        Toast('error', 'That user already exists', 2000)
       })
   }
 

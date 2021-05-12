@@ -53,7 +53,10 @@ export default function Settings() {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
-        setAuthenticating(false)
+        // Had to add a timeout so user data has enough time to load
+        setTimeout(() => {
+          setAuthenticating(false)
+        }, 1000)
       })
       .catch((err) => {
         console.error('Failed to get use information', err)

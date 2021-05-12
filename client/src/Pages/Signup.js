@@ -149,7 +149,7 @@ function Signup() {
                   onChange={handleInputChange}
                   type="text"
                   className="form-control"
-                  id="passawordInput"
+                  id="githubUsername"
                   placeholder="github username"
                 ></input>
               </div>

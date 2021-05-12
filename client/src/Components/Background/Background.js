@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Background({ profile }) {
   return (
-    <div>
+    <div style={{ columnCount: 2 }}>
       <h5>GitHub</h5>
       <p>{profile.gitUserName}</p>
       <hr className="75"></hr>
@@ -18,9 +18,9 @@ export default function Background({ profile }) {
       <p>{profile.companyName}</p>
       <h5 className="my-2">Position</h5>
       <p>{profile.currentPosition}</p>
-      <p>
-        From: {profile.fromDate} to {profile.toDate}
-      </p>
+      <small>
+        {profile.fromDate} — {profile.toDate}
+      </small>
     </div>
   )
 }

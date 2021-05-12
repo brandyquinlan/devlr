@@ -24,7 +24,6 @@ function Signup() {
 
   useEffect(() => {
     if (!passwordRef.current.value) {
-      setPWordMatch({})
       return
     }
     if (state.password === confirmRef.current.value) {
@@ -40,7 +39,7 @@ function Signup() {
         msg: 'passwords do not match',
       })
     }
-  }, [pWordMatch])
+  }, [pWordMatch.password, pWordMatch.confirm])
 
   function handleInputChange(event) {
     event.preventDefault()

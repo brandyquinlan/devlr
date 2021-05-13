@@ -21,6 +21,7 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
+  const [posts, setPosts] = useState()
   const code = useQuery().get('code')
 
   // checking if the user just came from a redirect by searching the url for a code
@@ -48,7 +49,12 @@ const Home = () => {
       API.getUserInfo()
         .then(({ data }) => {
           if (data[0]._id) {
-            setAuthenticated(true).then(() => setLoadingData(false))
+            API.getPosts().then((response) => {
+              setPosts(response.data)
+              console.log(response.data)
+              setAuthenticated(true)
+              setLoadingData(false)
+            })
           }
         })
         .catch(() => {
@@ -66,7 +72,6 @@ const Home = () => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
-        // Had to add set timeout so that user data has time to load
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -78,6 +83,27 @@ const Home = () => {
   const { width } = useViewport()
   const breakpoint = 768
   const { themePref } = store.profile
+
+  function createComment(event, textRef, postId) {
+    event.preventDefault()
+    const newComment = {
+      text: textRef,
+      userName: store.profile.name,
+      userId: store.user.id,
+    }
+    console.log(newComment, postId)
+  }
+
+  function incrementLike(event, postId) {
+    event.preventDefault()
+    const newLike = {
+      user: store.user.id,
+      userName: store.profile.name,
+    }
+    // send to DB as an update on the post with postID
+    console.log(newLike, postId)
+    // update state - or socket.io?
+  }
 
   useEffect(() => {
     if (!themePref);
@@ -118,7 +144,11 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar />
+                      <Navbar
+                        posts={posts}
+                        createComment={createComment}
+                        incrementLike={incrementLike}
+                      />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

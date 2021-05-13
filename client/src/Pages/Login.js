@@ -40,7 +40,7 @@ function Login() {
   }
 
   return (
-    <div id="loginWrapper">
+    <div id="logIn">
       <ToastContainer
         transition={Flip}
         position="top-center"

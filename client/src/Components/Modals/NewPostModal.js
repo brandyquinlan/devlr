@@ -61,18 +61,19 @@ function NewPostModal(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
+        <Button variant="secondary" onClick={props.onHide}>
+          Close
+        </Button>
         <Button
           variant="secondary"
+          className="gradient"
           type="button"
           onClick={(e) => {
             createPost(e)
             props.onHide()
           }}
         >
-          Save
-        </Button>
-        <Button variant="secondary" onClick={props.onHide}>
-          Close
+          Post
         </Button>
       </Modal.Footer>
     </Modal>

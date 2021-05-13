@@ -124,7 +124,7 @@ function Signup() {
 
   return (
     <div>
-      <div id="signupWrapper">
+      <div id="signUp">
         <ToastContainer
           transition={Flip}
           position="top-center"

@@ -61,13 +61,16 @@ function ResetPasswordModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Reset your password
+            Reset Password{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              restart_alt
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={resetPassword}>
             <div className="form-group">
-              <label htmlFor="password">Enter your new password</label>
+              <label htmlFor="password">Enter New Password</label>
               <input
                 required
                 ref={passwordRef}
@@ -75,9 +78,11 @@ function ResetPasswordModal(props) {
                 type="password"
                 className="form-control"
                 id="password"
-                placeholder="new password"
+                placeholder="password"
               ></input>
-              <label htmlFor="confirm">Confirm new password</label>
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirm">Confirm New Password</label>
               <input
                 required
                 ref={passwordConfirm}
@@ -85,7 +90,7 @@ function ResetPasswordModal(props) {
                 type="password"
                 className="form-control"
                 id="confirm"
-                placeholder="confirm password"
+                placeholder="password"
               ></input>
               <Button
                 type="submit"
@@ -95,6 +100,20 @@ function ResetPasswordModal(props) {
                 Save
               </Button>
             </div>
+            <Button
+              type="submit"
+              variant="secondary"
+              className="gradient float-right"
+            >
+              Reset
+            </Button>
+            <Button
+              variant="secondary"
+              className="float-right mr-2"
+              onClick={props.onHide}
+            >
+              Close
+            </Button>
           </form>
         </Modal.Body>
       </Modal>

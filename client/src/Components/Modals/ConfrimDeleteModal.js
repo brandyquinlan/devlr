@@ -26,19 +26,24 @@ function DeleteAccountModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          This is your last chance to turn back
+          So long, Dev! <span className="material-icons">waving_hand</span>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex flex-column align-items-center">
-          <Button type="button" variant="danger" onClick={deleteAccount}>
-            DELETE ACCOUNT
+          <Button
+            type="button"
+            variant="danger"
+            size="lg"
+            onClick={deleteAccount}
+          >
+            Delete Account
           </Button>
         </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>
-          I changed my mind...
+          Nevermind
         </Button>
       </Modal.Footer>
     </Modal>

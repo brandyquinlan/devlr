@@ -19,7 +19,7 @@ export default function Background({ profile }) {
       <h5 className="my-2">Position</h5>
       <p>{profile.currentPosition}</p>
       <small>
-        {profile.fromDate} — {profile.toDate}
+        {profile.from} — {profile.to}
       </small>
     </div>
   )

@@ -38,9 +38,9 @@ const API = {
   post(post) {
     return axios.post('/api/posts/newPost', { post })
   },
-  // passing the user id so that we can filter the results to only include posts from people the user is following
-  getPosts() {
-    return axios.get(`/api/posts/getPosts`)
+  getPosts(_id) {
+    // I switched this back. On second thought, it didn't make sense to write two functions that essesntially do the same thing
+    return axios.get(`/api/posts/getPosts/${_id}`)
   },
   async getAllUsers() {
     const { data } = await axios.get('/api/users/getAllUsers')

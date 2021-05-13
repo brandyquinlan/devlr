@@ -31,9 +31,9 @@ router.put('/likePost', (request, response) => {
   }
 })
 
-router.get('/getPosts', async (request, response) => {
-  // the id of the user currently signed in, used for filtering post results
-  const { _id } = request.user
+// Get the posts of the users specefied in the ID
+router.get('/getPosts/:_id', async (request, response) => {
+  const { _id } = request.params
 
   try {
     db.Post.find({ user: _id }).then((posts) => {
@@ -44,8 +44,8 @@ router.get('/getPosts', async (request, response) => {
   }
 })
 
+// Get the posts of all the people you are following
 router.get('/getPosts/following', async (request, response) => {
-  // the id of the user currently signed in, used for filtering post results
   const { _id } = request.user
   const user = await db.User.find({ _id })
 

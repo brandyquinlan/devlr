@@ -48,10 +48,11 @@ const Home = () => {
     } else {
       API.getUserInfo()
         .then(({ data }) => {
-          if (data[0]._id) {
-            API.getPosts().then((response) => {
+          const { _id } = data[0]
+          if (_id) {
+            API.getPosts(_id).then((response) => {
               setPosts(response.data)
-              console.log(response.data)
+              console.log('getPosts response (Home.js)', response.data)
               setAuthenticated(true)
               setLoadingData(false)
             })

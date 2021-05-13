@@ -31,9 +31,9 @@ router.put('/likePost', (request, response) => {
   }
 })
 
-router.get('/getPosts/:_id', async (request, response) => {
+router.get('/getPosts', async (request, response) => {
   // the id of the user currently signed in, used for filtering post results
-  const { _id } = request.params
+  const { _id } = request.user
   const user = await db.User.find({ _id })
 
   try {

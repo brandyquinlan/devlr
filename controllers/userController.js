@@ -121,6 +121,16 @@ router.get('/checkUser', (request, response) => {
   }
 })
 
+router.get('/getAllUsers', (request, response) => {
+  try {
+    db.Profile.find({}).then((users) => {
+      response.send(users)
+    })
+  } catch (err) {
+    response.json({ error: err }).status(500)
+  }
+})
+
 // logout route
 router.get('/logout', (request, response) => {
   try {

@@ -42,6 +42,10 @@ const API = {
   getPosts(_id) {
     return axios.get(`/api/posts/getPosts/${_id}`)
   },
+  async getAllUsers() {
+    const { data } = await axios.get('/api/users/getAllUsers')
+    return data
+  },
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)
   },

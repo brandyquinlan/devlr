@@ -27,7 +27,17 @@ function User() {
         onHide={() => setPostModalShow(false)}
       />
       <div className="circle" id="userPic">
-        <img src={store.profile.avatarUrl} alt="User profile" />
+        <img
+          src={store.profile.avatarUrl}
+          alt="User profile"
+          className="img-fluid circle"
+          height="250"
+          width="250"
+        />
+      </div>
+      <div>
+        <h5 className="text-center">{store.profile.name}</h5>
+        <h6 className="text-center">GitHub: {store.profile.githubUsername}</h6>
       </div>
       <Button
         variant="secondary"

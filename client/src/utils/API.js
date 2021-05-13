@@ -35,8 +35,8 @@ const API = {
   updateProfile(newProfile, _id) {
     return axios.put(`/api/profiles/updateProfile/${_id}`, { newProfile })
   },
-  post(postData) {
-    return axios.post('/api/posts/newPost', postData)
+  post(post) {
+    return axios.post('/api/posts/newPost', { post })
   },
   // passing the user id so that we can filter the results to only include posts from people the user is following
   getPosts(_id) {

@@ -50,7 +50,7 @@ router.get('/getPosts/following', async (request, response) => {
   const user = await db.User.find({ _id })
 
   try {
-    db.Post.find({ user: _id }).then((posts) => {
+    db.Post.find({ user: { $in: user.following } }).then((posts) => {
       response.send(posts)
     })
   } catch (err) {

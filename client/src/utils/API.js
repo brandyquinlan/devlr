@@ -41,13 +41,10 @@ const API = {
   // passing the user id so that we can filter the results to only include posts from people the user is following
   getPosts() {
     return axios.get(`/api/posts/getPosts`)
-<<<<<<< HEAD
   },
   async getAllUsers() {
     const { data } = await axios.get('/api/users/getAllUsers')
     return data
-=======
->>>>>>> origin/posts
   },
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)

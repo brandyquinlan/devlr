@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function Background({ profile }) {
   return (
-    <div>
-      <h5>GitHub</h5>
-      <p>{profile.gitUserName}</p>
+    <div style={{ columnCount: 2 }}>
+      <h5>{profile.name}</h5>
+      <p>{profile.githubUsername}</p>
       <hr className="75"></hr>
       <h5>Highest Level of Education</h5>
       <p>{profile.highestGraduation}</p>
@@ -12,15 +12,15 @@ export default function Background({ profile }) {
       <p>{profile.school}</p>
       <hr className="75"></hr>
       <h5 className="mt-2">Years of Experience</h5>
-      <p>{profile.TotalYearsOfexp}</p>
+      <p>{profile.totalYearsofExperience}</p>
       <hr className="75"></hr>
       <h5>Company</h5>
-      <p>{profile.companyName}</p>
+      <p>{profile.company}</p>
       <h5 className="my-2">Position</h5>
       <p>{profile.currentPosition}</p>
-      <p>
-        From: {profile.fromDate} to {profile.toDate}
-      </p>
+      <small>
+        {profile.from.split('T')[0]} — {profile.to.split('T')[0]}
+      </small>
     </div>
   )
 }

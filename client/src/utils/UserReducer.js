@@ -1,11 +1,12 @@
 import API from './API'
 
-function Reducer(state, action) {
+function UserReducer(state, action) {
   switch (action.type) {
     case 'change theme':
       return {
         ...state,
         profile: {
+          ...state.profile,
           themePref: action.payload,
         },
       }
@@ -34,8 +35,8 @@ function Reducer(state, action) {
         profile: [...state, action.payload],
       }
     default:
-      throw new Error('something went wrong with Reducer switch case')
+      throw new Error('something went wrong with UserReducer switch case')
   }
 }
 
-export default Reducer
+export default UserReducer

@@ -56,7 +56,7 @@ const profileSchema = new Schema({
     type: String,
     default: '222222',
   },
-  profilePic: {
+  avatarUrl: {
     type: String,
   },
 })

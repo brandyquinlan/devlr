@@ -1,57 +1,70 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner, Button } from 'react-bootstrap'
+import { UserContext } from '../utils/UserState'
 import API from '../utils/API'
 import ResetPasswordModal from '../Components/Modals/ResetPasswordModal'
 import DeleteAccountModal from '../Components/Modals/DeleteAccountModal'
+import ConfirmDeleteModal from '../Components/Modals/ConfrimDeleteModal'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
 export default function Settings() {
+  const [store, dispatch] = useContext(UserContext)
   const [authenticating, setAuthenticating] = useState(true)
+  const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const [resetPasswordModal, setResetPasswordModal] = useState(false)
   const [deleteAccountModal, setDeleteAccountModal] = useState(false)
+  const [confrimDeleteModal, setConfirmDeleteModal] = useState(false)
   const resetCode = useQuery().get('reset')
-  const [user, setUser] = useState({})
 
   // This is an if else. if the user is coming from a reset link we sent them, we need to immediately open the reset password modal
   useEffect(() => {
-    async function authenticateUser() {
-      await API.checkUser().then(({ data }) => {
-        if (data._id) setAuthenticated(true)
-
-        setUser({
-          email: data.email,
-          _id: data._id,
-        })
-        setAuthenticating(false)
-      })
-    }
-
     if (resetCode) {
       API.verifyResetCode(resetCode)
         .then(({ data }) => {
-          if (data._id) setAuthenticated(true)
-
-          setUser({
-            email: data.email,
-            _id: data._id,
-          })
-          setAuthenticating(false)
+          if (data._id) setAuthenticated(true).then(() => setLoadingData(false))
         })
         .catch((err) => {
           setAuthenticating(false)
+          setLoadingData(false)
           console.error(err)
         })
       setResetPasswordModal(true)
       window.history.pushState({}, null, '/home/settings')
     } else {
-      authenticateUser()
+      API.getUserInfo()
+        .then(({ data }) => {
+          if (data[0]._id) {
+            setAuthenticated(true).then(() => setLoadingData(false))
+          }
+        })
+        .catch(() => {
+          setAuthenticating(false)
+          setLoadingData(false)
+        })
     }
   }, [resetCode])
+
+  useEffect(() => {
+    API.getUserInfo()
+      .then(({ data }) => {
+        const [user, profile] = data
+        // Storing the user and the profile in the context seperately, since that is how they are in the db
+        dispatch({ type: 'set user', payload: user })
+        dispatch({ type: 'set profile', payload: profile })
+        // Had to add a timeout so user data has enough time to load
+
+        setAuthenticating(false)
+      })
+      .catch((err) => {
+        console.error('Failed to get use information', err)
+        setAuthenticating(false)
+      })
+  }, [authenticated])
 
   return (
     <div id="settings">
@@ -74,13 +87,13 @@ export default function Settings() {
                 <hr />
                 <p className="small" id="accountMsg">
                   Use the buttons below to manage your devlr account settings.
-                  These actions have no effect on your linked GitHub account.
+                  These actions will have no effect your linked GitHub account.
                 </p>
                 <div className="separator mt-4"></div>
                 <ResetPasswordModal
                   show={resetPasswordModal}
                   onHide={() => setResetPasswordModal(false)}
-                  user={user}
+                  user={store.user}
                 />
                 <Button
                   type="button"
@@ -93,7 +106,8 @@ export default function Settings() {
                 <DeleteAccountModal
                   show={deleteAccountModal}
                   onHide={() => setDeleteAccountModal(false)}
-                  user={user}
+                  user={store.user}
+                  setConfirmDeleteModal={setConfirmDeleteModal}
                 />
                 <Button
                   type="button"
@@ -103,6 +117,10 @@ export default function Settings() {
                 >
                   Delete Account
                 </Button>
+                <ConfirmDeleteModal
+                  show={confrimDeleteModal}
+                  onHide={() => setConfirmDeleteModal(false)}
+                />
               </div>
             </div>
           ) : (

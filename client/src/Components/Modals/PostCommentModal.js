@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { StoreContext } from '../../utils/GlobalState'
+import { UserContext } from '../../utils/UserState'
 import CurrentComments from '../CurrentComments/CurrentComments'
 // import API from '../../utils/API'
 

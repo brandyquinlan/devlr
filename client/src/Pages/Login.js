@@ -1,12 +1,13 @@
 import React, { useState, useRef, useContext } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
-import { StoreContext } from '../utils/GlobalState'
+import { ToastContainer, Flip } from 'react-toastify'
+import { UserContext } from '../utils/UserState'
 import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
+import Toast from '../utils/Toast'
 
 function Login() {
-  const [store, dispatch] = useContext(StoreContext)
+  const [store, dispatch] = useContext(UserContext)
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -34,28 +35,17 @@ function Login() {
         window.location.href = '/home'
       })
       .catch(() => {
-        errorToast()
+        Toast('error', 'Incorrect email or password', 2000)
       })
   }
 
-  function errorToast() {
-    toast.error('Incorrect email or password', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
-  }
-
   return (
-    <div id="loginWrapper">
+    <div id="logIn">
       <ToastContainer
+        transition={Flip}
         position="top-center"
         autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar
         newestOnTop={false}
         closeOnClick
         rtl={false}

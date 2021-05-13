@@ -1,12 +1,11 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { ToastContainer, Flip } from 'react-toastify'
 import API from '../../utils/API'
-import Alert from '../Alert'
+import Toast from '../../utils/Toast'
 
 function ForgotPasswordModal(props) {
   const [email, setEmail] = useState('')
-  const [errorAlert, setErrorAlert] = useState(false)
-  const [successAlert, setSuccessAlert] = useState(false)
   const emailRef = useRef()
 
   function handleInputChange(event) {
@@ -19,14 +18,26 @@ function ForgotPasswordModal(props) {
 
     API.sendResetLink(email)
       .then(() => {
-        setSuccessAlert(true)
+        Toast('success', 'A link has been sent to your email address', 2000)
       })
       .catch((e) => {
-        setErrorAlert(true)
+        Toast('error', 'User not found', 2000)
       })
   }
   return (
     <>
+      <ToastContainer
+        transition={Flip}
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Modal
         {...props}
         size="md"
@@ -35,7 +46,10 @@ function ForgotPasswordModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Reset your password
+            Reset Password{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              restart_alt
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -43,7 +57,7 @@ function ForgotPasswordModal(props) {
             <div className="form-group">
               <label htmlFor="inputEmail1">
                 Enter the email address associated with your account, and we
-                will send you an email with a link to reset your password
+                will send you an email with a link to reset your password.
               </label>
               <input
                 required
@@ -54,24 +68,16 @@ function ForgotPasswordModal(props) {
                 id="email-input"
                 placeholder="Email"
               ></input>
-              <Button type="submit">Send link</Button>
+              <Button
+                type="submit"
+                variant="secondary"
+                className="gradient float-right"
+              >
+                Send Link
+              </Button>
             </div>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Alert
-            show={successAlert}
-            setShow={setSuccessAlert}
-            heading="A link has been sent, please check your email!"
-            variant="success"
-          />
-          <Alert
-            show={errorAlert}
-            setShow={setErrorAlert}
-            heading="Whoops, we couldnt find that user. Please try again"
-            variant="danger"
-          />
-        </Modal.Footer>
       </Modal>
     </>
   )

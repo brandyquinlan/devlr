@@ -27,7 +27,7 @@ function Likes({ likes, incrementLike, postId }) {
             <span className="material-icons">auto_awesome</span>
             {likes.length}
           </button>
-          <Overlay target={target.current} show={show} placement="bottom">
+          <Overlay target={target.current} show={show} placement="left">
             {(props) => (
               <Tooltip id="likes" {...props}>
                 <ul>

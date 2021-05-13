@@ -47,7 +47,7 @@ function DeleteAccountModal(props) {
             props.setConfirmDeleteModal(true)
           }}
         >
-          Delete and Logout
+          I understand. Continue
         </Button>
         <Button variant="secondary" onClick={props.onHide}>
           Go Back

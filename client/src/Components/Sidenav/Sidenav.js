@@ -13,7 +13,7 @@ function Sidenav() {
   return (
     <div id="side-nav">
       <div className="d-flex flex-column align-items-start justify-content-start">
-        <img src={Logo} style={{ width: '60px' }} alt="devlr logo"></img>
+        <img src={Logo} style={{ width: '80px' }} alt="devlr logo"></img>
         <h2 className="mt-3">devlr</h2>
       </div>
       <ul className="list-group">

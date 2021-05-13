@@ -533,12 +533,14 @@ button.disabled {
 
 #newBtn {
   border-radius: 20px;
+  color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
+  font-size: 1rem;
 }
 
 #postBox {
@@ -553,23 +555,26 @@ button.disabled {
 #postBtn {
   width: 100px;
   border-radius: 20px;
+  color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
+  font-size: 1rem;
 }
 
 #appearanceBtn {
   display: inline-flex;
   border-radius: 20px;
-  background-color: var(--main-text-color);
+  color: var(--main-text-color) !important;
   background: linear-gradient(
     180deg,
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
+  font-size: 1rem;
 }
 
 #userPic {

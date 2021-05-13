@@ -6,9 +6,10 @@ function Languages({ languages }) {
   return (
     <div>
       <Tab title="My Languages">
-        {languages.map((lang) => (
+        {/* {languages.map((lang) => (
           <LangBtn key={lang} lang={lang} />
-        ))}
+        ))} */}
+        {languages}
       </Tab>
     </div>
   )

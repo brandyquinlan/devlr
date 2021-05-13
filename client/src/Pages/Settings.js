@@ -14,6 +14,7 @@ function useQuery() {
 export default function Settings() {
   const [store, dispatch] = useContext(UserContext)
   const [authenticating, setAuthenticating] = useState(true)
+  const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const [resetPasswordModal, setResetPasswordModal] = useState(false)
   const [deleteAccountModal, setDeleteAccountModal] = useState(false)
@@ -22,27 +23,29 @@ export default function Settings() {
 
   // This is an if else. if the user is coming from a reset link we sent them, we need to immediately open the reset password modal
   useEffect(() => {
-    async function authenticateUser() {
-      await API.getUserInfo()
-        .then(({ data }) => {
-          if (data[0]._id) setAuthenticated(true)
-        })
-        .catch(() => setAuthenticating(false))
-    }
-
     if (resetCode) {
       API.verifyResetCode(resetCode)
         .then(({ data }) => {
-          if (data._id) setAuthenticated(true)
+          if (data._id) setAuthenticated(true).then(() => setLoadingData(false))
         })
         .catch((err) => {
           setAuthenticating(false)
+          setLoadingData(false)
           console.error(err)
         })
       setResetPasswordModal(true)
       window.history.pushState({}, null, '/home/settings')
     } else {
-      authenticateUser()
+      API.getUserInfo()
+        .then(({ data }) => {
+          if (data[0]._id) {
+            setAuthenticated(true).then(() => setLoadingData(false))
+          }
+        })
+        .catch(() => {
+          setAuthenticating(false)
+          setLoadingData(false)
+        })
     }
   }, [resetCode])
 
@@ -54,9 +57,8 @@ export default function Settings() {
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
         // Had to add a timeout so user data has enough time to load
-        setTimeout(() => {
-          setAuthenticating(false)
-        }, 1000)
+
+        setAuthenticating(false)
       })
       .catch((err) => {
         console.error('Failed to get use information', err)

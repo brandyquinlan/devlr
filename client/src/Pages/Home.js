@@ -19,26 +19,18 @@ const Home = () => {
   const [store, dispatch] = useContext(UserContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
+  const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const code = useQuery().get('code')
 
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
-    async function authenticateUser() {
-      await API.getUserInfo()
-        .then(({ data }) => {
-          if (data[0]._id) {
-            setAuthenticated(true)
-          }
-        })
-        .catch(() => setAuthenticating(false))
-    }
-
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
       API.getUserInfo().then(({ data }) => {
+        setAuthenticated(true)
         const [user, profile] = data
         const { _id } = user
         const { githubUsername } = profile
@@ -46,14 +38,23 @@ const Home = () => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
           API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
-            setAuthenticated(true)
+            setLoadingData(false)
             udpateModal({ type: 'show initial modal' })
           })
         })
       })
       window.history.pushState({}, null, '/home')
     } else {
-      authenticateUser()
+      API.getUserInfo()
+        .then(({ data }) => {
+          if (data[0]._id) {
+            setAuthenticated(true).then(() => setLoadingData(false))
+          }
+        })
+        .catch(() => {
+          setAuthenticating(false)
+          setLoadingData(false)
+        })
     }
   }, [code])
 
@@ -66,9 +67,7 @@ const Home = () => {
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
         // Had to add set timeout so that user data has time to load
-        setTimeout(() => {
-          setAuthenticating(false)
-        }, 1000)
+        setAuthenticating(false)
       })
       .catch((err) => {
         console.error('Failed to get use information', err)
@@ -104,33 +103,42 @@ const Home = () => {
         <Spinner animation="border" />
       ) : (
         [
-          authenticated === true ? (
-            <>
-              <div
-                className="d-flex flex-row align-items-top justify-content-around"
-                id="col1"
-              >
-                {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
-                <div className="d-flex flex-column align-items-left" id="col2">
-                  <Navbar />
-                </div>
-                <div
-                  className="d-flex flex-column align-items-right ml-4"
-                  id="col3"
-                >
-                  <Tab title="Featured Devs" />
-                  <Tab title="Ad" />
-                </div>
-              </div>
-              <InitialLoginModal
-                show={modals.initialModalShow}
-                onHide={() => {
-                  udpateModal({ type: 'hide initial modal' })
-                }}
-              />
-            </>
+          loadingData ? (
+            <Spinner animation="border" />
           ) : (
-            <Redirect to="/login" />
+            [
+              authenticated === true ? (
+                <>
+                  <div
+                    className="d-flex flex-row align-items-top justify-content-around"
+                    id="col1"
+                  >
+                    {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                    <div
+                      className="d-flex flex-column align-items-left"
+                      id="col2"
+                    >
+                      <Navbar />
+                    </div>
+                    <div
+                      className="d-flex flex-column align-items-right ml-4"
+                      id="col3"
+                    >
+                      <Tab title="Featured Devs" />
+                      <Tab title="Ad" />
+                    </div>
+                  </div>
+                  <InitialLoginModal
+                    show={modals.initialModalShow}
+                    onHide={() => {
+                      udpateModal({ type: 'hide initial modal' })
+                    }}
+                  />
+                </>
+              ) : (
+                <Redirect to="/login" />
+              ),
+            ]
           ),
         ]
       )}

@@ -110,15 +110,24 @@ const Home = () => {
                 className="d-flex flex-row align-items-top justify-content-around"
                 id="col1"
               >
-                <Tab title="Featured Devs">
-                  <a href="/profile">
-                    <div className="row align-items-center justify-content-between">
-                      <div className="circle devPic"></div>
-                      <span>@katsign</span>
-                    </div>
-                  </a>
-                </Tab>
-                <Tab title="Ad" />
+                {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                <div className="d-flex flex-column align-items-left" id="col2">
+                  <Navbar />
+                </div>
+                <div
+                  className="d-flex flex-column align-items-right ml-4"
+                  id="col3"
+                >
+                  <Tab title="Featured Devs">
+                    <a href="/profile">
+                      <div className="row align-items-center justify-content-between">
+                        <div className="circle devPic"></div>
+                        <span>@katsign</span>
+                      </div>
+                    </a>
+                  </Tab>
+                  <Tab title="Ad" />
+                </div>
               </div>
               <InitialLoginModal
                 show={modals.initialModalShow}

@@ -188,7 +188,7 @@ function Signup() {
                   className="form-control"
                   id="githubUsername"
                   placeholder="github username"
-                  required
+                  required="true"
                 ></input>
               </div>
               <button

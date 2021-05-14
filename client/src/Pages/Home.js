@@ -23,6 +23,7 @@ const Home = () => {
   const [authenticated, setAuthenticated] = useState(false)
   const [posts, setPosts] = useState()
   const code = useQuery().get('code')
+  const [projects, setProjects] = useState([])
 
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
@@ -48,7 +49,14 @@ const Home = () => {
     } else {
       API.getUserInfo()
         .then(({ data }) => {
-          const { _id } = data[0]
+          const { _id, acessToken } = data[0]
+          const { githubUsername } = data[1]
+          API.getGithubInfo(githubUsername, acessToken).then((info) => {
+            setProjects(info.user.pinnedItems.nodes)
+            // console.log('projects', info.user.pinnedItems.nodes)
+            setAuthenticated(true)
+            setLoadingData(false)
+          })
           if (_id) {
             API.getPosts(_id).then((response) => {
               setPosts(response.data)
@@ -147,6 +155,7 @@ const Home = () => {
                     >
                       <Navbar
                         posts={posts}
+                        projects={projects}
                         createComment={createComment}
                         incrementLike={incrementLike}
                       />

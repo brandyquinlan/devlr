@@ -79,7 +79,7 @@ const API = {
     const { avatarUrl } = queryResult.data.data.user
     return this.updateProfile({ avatarUrl }, _id)
   },
-  async getGithubInfo(githubUsername, accessToken) {
+  async getGithubInfo(githubUsername, acessToken) {
     const queryResult = await axios.post(
       `https://api.github.com/graphql`,
       {
@@ -90,7 +90,7 @@ const API = {
                     nodes {
                       ... on Repository {
                         name
-                        projectsUrl
+                        url
                         description
                         }
                       }
@@ -100,7 +100,7 @@ const API = {
       },
       {
         headers: {
-          Authorization: `token ${accessToken}`,
+          Authorization: `token ${acessToken}`,
         },
       },
     )

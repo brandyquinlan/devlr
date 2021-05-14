@@ -19,7 +19,7 @@ function Tab({ title, children }) {
         </button>
       </div>
       <div className="separator mb-3"></div>
-      <Collapse in={open}>
+      <Collapse in={!open}>
         <div id="children">{children}</div>
       </Collapse>
     </div>

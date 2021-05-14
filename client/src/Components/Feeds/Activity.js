@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useRef, useContext } from 'react'
 import PostContainer from '../Posts/PostContainer'
 
-function Activity({ posts, createComment, incrementLike }) {
-  console.log('activity', posts)
+function Activity({ posts, createComment, incrementLike, createPost }) {
   return (
     <PostContainer
       posts={posts}
+      createPost={createPost}
       createComment={createComment}
       incrementLike={incrementLike}
     />

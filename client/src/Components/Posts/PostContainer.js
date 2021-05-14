@@ -1,17 +1,30 @@
 import React from 'react'
 import Tab from '../Tab'
 import PostBox from './PostBox'
+import NewPostBox from './NewPostBox'
 
-function PostContainer({ posts, createComment, incrementLike }) {
+function PostContainer({ posts, createComment, incrementLike, createPost }) {
+  let postsNewOrder = []
+
+  function reversePosts() {
+    if (!posts) {
+      postsNewOrder = []
+    } else {
+      postsNewOrder = posts.reverse()
+    }
+  }
+
   return (
     <div>
+      <NewPostBox createPost={createPost} />
       {posts ? (
         [
-          posts.map((p) => (
+          reversePosts(posts),
+          postsNewOrder.map((p) => (
             <Tab title={p.title}>
               <PostBox
                 key={p.id}
-                postId={p.id}
+                postId={p._id}
                 author={p.author}
                 user={p.user}
                 title={p.title}

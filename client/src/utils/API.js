@@ -42,6 +42,9 @@ const API = {
     // I switched this back. On second thought, it didn't make sense to write two functions that essesntially do the same thing
     return axios.get(`/api/posts/getPosts/${_id}`)
   },
+  addLike(newLike) {
+    return axios.put('/api/posts/likePost', newLike)
+  },
   async getAllUsers() {
     const { data } = await axios.get('/api/users/getAllUsers')
     return data

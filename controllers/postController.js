@@ -7,8 +7,8 @@ router.post('/newPost', async (request, response) => {
 
   // we simply attempt to store it to the database
   try {
-    db.Post.create(post).then(() => {
-      response.sendStatus(200)
+    db.Post.create(post).then((res) => {
+      response.send(res).status(200)
     })
   } catch (error) {
     response.sendStatus(500)
@@ -18,10 +18,9 @@ router.post('/newPost', async (request, response) => {
 router.put('/likePost', (request, response) => {
   // To like a post, pass an object into the reqeust body, with a property postID
   // ALONG with the user who liked it, property userID
-  const { userID, postID } = request.body
-
+  const { like, postID } = request.body
   try {
-    db.Post.findOneAndUpdate({ id: postID }, { $push: { likes: userID } }).then(
+    db.Post.findOneAndUpdate({ _id: postID }, { $push: { likes: like } }).then(
       (res) => {
         response.send(res)
       },
@@ -31,8 +30,21 @@ router.put('/likePost', (request, response) => {
   }
 })
 
-router.get('/getPosts', async (request, response) => {
-  // the id of the user currently signed in, used for filtering post results
+// Get the posts of the users specefied in the ID
+router.get('/getPosts/:_id', async (request, response) => {
+  const { _id } = request.params
+
+  try {
+    db.Post.find({ user: _id }).then((posts) => {
+      response.send(posts)
+    })
+  } catch (err) {
+    response.senjson(err)
+  }
+})
+
+// Get the posts of all the people you are following
+router.get('/getPosts/following', async (request, response) => {
   const { _id } = request.user
   const user = await db.User.find({ _id })
 

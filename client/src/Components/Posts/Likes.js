@@ -4,10 +4,9 @@ import { Overlay, Tooltip } from 'react-bootstrap'
 function Likes({ likes, incrementLike, postId }) {
   const [show, setShow] = useState(false)
   const target = useRef(null)
-
   return (
     <div>
-      {!likes ? (
+      {likes.length === 0 ? (
         <button
           type="button"
           className="p-0"

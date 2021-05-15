@@ -6,9 +6,11 @@ function Languages({ languages }) {
   return (
     <div>
       <Tab title="My Languages">
-        {languages.map((lang) => (
+        {/* I went ahead and reverted the changes on the profile modal, but we need to talk about how we want to handle this */}
+        {/* {languages.map((lang) => (
           <LangBtn key={lang} lang={lang} />
-        ))}
+        ))} */}
+        {languages}
       </Tab>
     </div>
   )

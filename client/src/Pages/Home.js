@@ -21,7 +21,9 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
+  const [posts, setPosts] = useState([])
   const code = useQuery().get('code')
+  const [projects, setProjects] = useState([])
 
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
@@ -29,14 +31,16 @@ const Home = () => {
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
-      API.getUserInfo().then(({ data }) => {
+      API.getUserInfo().then(([user, profile]) => {
         setAuthenticated(true)
-        const [user, profile] = data
         const { _id } = user
         const { githubUsername } = profile
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
+          API.getGithubInfo(githubUsername, token).then((info) => {
+            setProjects(info.user.pinnedItems.nodes)
+          })
           API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
             setLoadingData(false)
             udpateModal({ type: 'show initial modal' })
@@ -46,9 +50,18 @@ const Home = () => {
       window.history.pushState({}, null, '/home')
     } else {
       API.getUserInfo()
-        .then(({ data }) => {
-          if (data[0]._id) {
-            setAuthenticated(true).then(() => setLoadingData(false))
+        .then(([user, profile]) => {
+          const { _id, accessToken } = user
+          const { githubUsername } = profile
+          if (_id) {
+            API.getGithubInfo(githubUsername, accessToken).then((info) => {
+              setProjects(info.user.pinnedItems.nodes)
+            })
+            API.getPosts(_id).then((postRes) => {
+              setPosts(postRes.reverse())
+              setAuthenticated(true)
+              setLoadingData(false)
+            })
           }
         })
         .catch(() => {
@@ -61,23 +74,70 @@ const Home = () => {
   // load all user data and then set authenticating(false) to render the page
   useEffect(() => {
     API.getUserInfo()
-      .then(({ data }) => {
-        const [user, profile] = data
+      .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
-        // Had to add set timeout so that user data has time to load
         setAuthenticating(false)
       })
       .catch((err) => {
         console.error('Failed to get use information', err)
         setAuthenticating(false)
       })
-  }, [authenticated])
+  }, [loadingData])
 
   const { width } = useViewport()
   const breakpoint = 768
   const { themePref } = store.profile
+
+  function createPost(event, title, body) {
+    event.preventDefault()
+    const postData = {
+      title,
+      body,
+      author: store.profile.name,
+      user: store.user._id,
+    }
+
+    API.post(postData)
+      .then((res) => {
+        setPosts([res, ...posts])
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
+  function createComment(event, textRef, postId) {
+    event.preventDefault()
+    const newComment = {
+      text: textRef,
+      userName: store.profile.name,
+      userId: store.user._id,
+    }
+    console.log(newComment, postId)
+  }
+
+  function incrementLike(event, postId) {
+    event.preventDefault()
+    const newLike = {
+      postID: postId,
+      like: {
+        user: store.user._id,
+        userName: store.profile.name,
+      },
+    }
+    // send to DB as an update on the post with postID
+    API.addLike(newLike)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.error('Failed to add like', err)
+      })
+
+    // update state - or socket.io?
+  }
 
   useEffect(() => {
     if (!themePref);
@@ -118,7 +178,13 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar />
+                      <Navbar
+                        posts={posts}
+                        createPost={createPost}
+                        createComment={createComment}
+                        incrementLike={incrementLike}
+                        projects={projects}
+                      />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

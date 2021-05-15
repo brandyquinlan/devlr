@@ -37,8 +37,8 @@ export default function Settings() {
       window.history.pushState({}, null, '/home/settings')
     } else {
       API.getUserInfo()
-        .then(({ data }) => {
-          if (data[0]._id) {
+        .then(([user, profile]) => {
+          if (user._id) {
             setAuthenticated(true).then(() => setLoadingData(false))
           }
         })
@@ -51,8 +51,7 @@ export default function Settings() {
 
   useEffect(() => {
     API.getUserInfo()
-      .then(({ data }) => {
-        const [user, profile] = data
+      .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
@@ -64,7 +63,7 @@ export default function Settings() {
         console.error('Failed to get use information', err)
         setAuthenticating(false)
       })
-  }, [authenticated])
+  }, [loadingData])
 
   return (
     <div id="settings">

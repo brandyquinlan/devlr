@@ -1,12 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { UserContext } from '../../utils/UserState'
-
 import NavTabs from './NavTabs'
 import Activity from '../Feeds/Activity'
 import Profile from '../Feeds/Profile'
 import Explore from '../Feeds/Explore'
 
-function Navbar() {
+function Navbar({ posts, createComment, incrementLike, projects, createPost }) {
   const [page, setPage] = useState('Activity')
 
   function handlePageChange(newPage) {
@@ -18,9 +16,16 @@ function Navbar() {
       return <Explore />
     }
     if (page === 'Profile') {
-      return <Profile />
+      return <Profile projects={projects} />
     }
-    return <Activity />
+    return (
+      <Activity
+        posts={posts}
+        createPost={createPost}
+        createComment={createComment}
+        incrementLike={incrementLike}
+      />
+    )
   }
 
   return (

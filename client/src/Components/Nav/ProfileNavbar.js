@@ -4,7 +4,7 @@ import Posts from '../Feeds/Posts'
 import Profile from '../Feeds/Profile'
 import Network from '../Feeds/Network'
 
-function ProfileNavbar() {
+function ProfileNavbar({ projects }) {
   const [page, setPage] = useState('Posts')
 
   function handlePageChange(newPage) {
@@ -23,7 +23,11 @@ function ProfileNavbar() {
 
   return (
     <>
-      <ProfileNavTabs currentPage={page} handlePageChange={handlePageChange} />
+      <ProfileNavTabs
+        currentPage={page}
+        handlePageChange={handlePageChange}
+        projects={projects}
+      />
       {renderPage()}
     </>
   )

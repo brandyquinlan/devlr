@@ -21,7 +21,7 @@ const API = {
     const { data } = await axios.get('/api/users/checkUser')
     const user = await axios.get(`/api/users/getUserInfo/${data._id}`)
     // NOTE THAT THIS USER VARIABLE IS AN ARRAY [USER, PROFILE], SO THAT YOU CAN GET USER AND PROFILE DATA IN ONE CALL
-    return user
+    return user.data
   },
   getUserAccessToken(code) {
     return axios.post('/api/users/getAccessToken', { code })
@@ -35,12 +35,22 @@ const API = {
   updateProfile(newProfile, _id) {
     return axios.put(`/api/profiles/updateProfile/${_id}`, { newProfile })
   },
-  post(post) {
-    return axios.post('/api/posts/newPost', { post })
+  async post(post) {
+    const res = await axios.post('/api/posts/newPost', { post })
+    return res.data
   },
-  // passing the user id so that we can filter the results to only include posts from people the user is following
-  getPosts(_id) {
-    return axios.get(`/api/posts/getPosts/${_id}`)
+  async getPosts(_id) {
+    // I switched this back. On second thought, it didn't make sense to write two functions that essesntially do the same thing
+    const posts = await axios.get(`/api/posts/getPosts/${_id}`)
+    return posts.data
+  },
+  async addLike(newLike) {
+    const like = await axios.put('/api/posts/likePost', newLike)
+    return like.data
+  },
+  async getAllUsers() {
+    const { data } = await axios.get('/api/users/getAllUsers')
+    return data
   },
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)
@@ -86,7 +96,7 @@ const API = {
                     nodes {
                       ... on Repository {
                         name
-                        projectsUrl
+                        url
                         description
                         }
                       }

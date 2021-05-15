@@ -11,7 +11,7 @@ function User() {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <Button
+      {/* <Button
         variant="secondary"
         size="lg"
         id="newBtn"
@@ -25,7 +25,7 @@ function User() {
       <NewPostModal
         show={postModalShow}
         onHide={() => setPostModalShow(false)}
-      />
+      /> */}
       <div className="circle" id="userPic">
         <img
           src={store.profile.avatarUrl}
@@ -37,7 +37,16 @@ function User() {
       </div>
       <div>
         <h5 className="text-center">{store.profile.name}</h5>
-        <h6 className="text-center">GitHub: {store.profile.githubUsername}</h6>
+        <h6 className="text-center">
+          GitHub:{' '}
+          <a
+            href={`https://github.com/${store.profile.githubUsername}`}
+            target="_blank"
+          >
+            {' '}
+            {store.profile.githubUsername}
+          </a>
+        </h6>
       </div>
       <Button
         variant="secondary"

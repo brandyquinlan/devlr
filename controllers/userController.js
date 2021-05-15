@@ -65,14 +65,14 @@ router.post('/signup', async (request, response) => {
         totalYearsofExperience: '',
         currentPosition: '',
         company: '',
-        from: '',
-        to: '',
+        from: new Date('1995-12-17T03:24:00'),
+        to: new Date('1995-12-17T03:24:00'),
         githubUsername: request.body.githubUsername,
         languages: [],
         themePref: '222222',
         avatarUrl: '',
       }).catch((e) => {
-        throw new Error()
+        throw new Error(e)
       })
       response.json(user)
     })
@@ -94,7 +94,7 @@ router.get('/getUserInfo/:userId', async (request, response) => {
   try {
     let user = await db.User.findOne({ _id: userId })
     user = {
-      acessToken: user.accessToken,
+      accessToken: user.accessToken,
       email: user.email,
       followers: user.followers,
       following: user.following,
@@ -118,6 +118,16 @@ router.get('/checkUser', (request, response) => {
     response.send(user)
   } catch (err) {
     response.send(err)
+  }
+})
+
+router.get('/getAllUsers', (request, response) => {
+  try {
+    db.Profile.find({}).then((users) => {
+      response.send(users)
+    })
+  } catch (err) {
+    response.json({ error: err }).status(500)
   }
 })
 

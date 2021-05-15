@@ -1,6 +1,7 @@
 import React from 'react'
 import Tab from '../Tab'
-import PostBox from './PostBox'
+// import PostBox from './PostBox'
+import LazyPostBox from './LazyPostBox'
 import NewPostBox from './NewPostBox'
 
 function PostContainer({ posts, createComment, incrementLike, createPost }) {
@@ -13,12 +14,11 @@ function PostContainer({ posts, createComment, incrementLike, createPost }) {
         [
           posts.map((p) => (
             <Tab title={p.title} expanded>
-              <PostBox
+              <LazyPostBox
                 key={p.id}
                 postId={p._id}
                 author={p.author}
                 user={p.user}
-                title={p.title}
                 body={p.body}
                 date={p.date}
                 comments={p.comments}

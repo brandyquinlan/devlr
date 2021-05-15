@@ -34,6 +34,11 @@
       "import/no-named-as-default-member": "off",
       "consistent-return": "off",
       "no-case-declarations": "off"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
     }
   },
   "prettier": "@imaginary-cloud/prettier-config",

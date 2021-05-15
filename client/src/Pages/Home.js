@@ -57,8 +57,8 @@ const Home = () => {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
             })
-            API.getPosts(_id).then((posts) => {
-              setPosts(posts.reverse())
+            API.getPosts(_id).then((postRes) => {
+              setPosts(postRes.reverse())
               setAuthenticated(true)
               setLoadingData(false)
             })

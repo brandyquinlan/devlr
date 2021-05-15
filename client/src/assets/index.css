@@ -251,6 +251,8 @@ li > a {
   display: inline-block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  padding-left: 6px;
+  padding-right: 6px;
   color: var(--main-text-color);
 }
 

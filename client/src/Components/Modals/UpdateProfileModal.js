@@ -13,22 +13,18 @@ function UpdateProfileModal(props) {
       name: store.profile.name,
       highestGraduation: store.profile.highestGraduation,
       school: store.profile.school,
-      skills: store.profile.skills,
       totalYearsofExperience: store.profile.totalYearsofExperience,
       currentPosition: store.profile.currentPosition,
       company: store.profile.company,
       from: store.profile.from,
       to: store.profile.to,
       githubUsername: store.profile.githubUsername,
-      languages: store.profile.languages,
     },
   })
 
   const onSubmit = (data) => {
     API.updateProfile(data, store.user._id)
       .then((res) => {
-        // ! this is going to be breaking because skills and languages are arrays on the Profile model, but here we are treating them as strings.
-        // ! We need to set up a different way to adjust that information...
         dispatch({ type: 'update profile', payload: data })
         Toast('success', 'Your profile has been updated', 2000)
       })

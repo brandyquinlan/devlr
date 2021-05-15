@@ -11,6 +11,7 @@ import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
+import Toast from '../utils/Toast'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -22,8 +23,8 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  // const [postStore, dispatchPost] = useContext(PostContext)
-  const [posts, setPosts] = useState()
+  const [posts, dispatchPost] = useContext(PostContext)
+  // const [posts, setPosts] = useState()
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -60,9 +61,13 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-              setPosts(postRes.reverse())
+              console.log('postRes', postRes)
+              // setPosts(postRes.reverse())
+              dispatchPost({ type: 'get posts', payload: postRes })
               setAuthenticated(true)
-              setLoadingData(false)
+              setTimeout(() => {
+                setLoadingData(false)
+              }, 1000)
             })
           }
         })
@@ -104,7 +109,7 @@ const Home = () => {
 
     API.post(postData)
       .then((res) => {
-        setPosts([res, ...posts])
+        dispatchPost({ type: 'new post', payload: [res, ...posts] })
         // dispatchPost({ type: 'new post', payload: postData })
         // console.log('inside setPosts after new post', postStore)
         console.log(res)
@@ -128,10 +133,16 @@ const Home = () => {
     // dispatchPost({ type: 'add comment', payload: updatedPost })
   }
 
-  function incrementLike(event, postId) {
+  function incrementLike(event, postID) {
     event.preventDefault()
+    const index = posts.findIndex((p) => p._id === postID)
+    // if (posts[index].likes.findIndex((l) => l.user === store.user._id) > -1) {
+    //   Toast('error', 'youve already liked this', 1000)
+    //   return
+    // }
+
     const newLike = {
-      postID: postId,
+      postID,
       like: {
         user: store.user._id,
         userName: store.profile.name,
@@ -140,7 +151,12 @@ const Home = () => {
     // send to DB as an update on the post with postID
     API.addLike(newLike)
       .then((res) => {
-        console.log(res)
+        const updatedPost = posts.find((p) => p._id === postID)
+        updatedPost.likes.push(res)
+        const postsCopy = posts
+        postsCopy[index] = updatedPost
+        // setPosts(postsCopy)
+        dispatchPost({ type: 'add like', payload: postsCopy })
       })
       .catch((err) => {
         console.error('Failed to add like', err)

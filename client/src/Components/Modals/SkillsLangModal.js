@@ -5,7 +5,7 @@ import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
-import AddSkills from '../AddSkillsLangs.js/AddSkills'
+import AddSkills from '../AddSkillsLangs/AddSkills'
 
 function SkillsLangModal(props) {
   const [store, dispatch] = useContext(UserContext)

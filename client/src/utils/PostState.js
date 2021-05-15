@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 
-import PostReducer from './UserReducer'
+import PostReducer from './PostReducer'
 
 const initialState = {
   posts: [],

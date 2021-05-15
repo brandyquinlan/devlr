@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Tab from '../Tab'
 // import PostBox from './PostBox'
 import LazyPostBox from './LazyPostBox'
 import NewPostBox from './NewPostBox'
 
 function PostContainer({ posts, createComment, incrementLike, createPost }) {
-  // I just moved the reverse function to the top level api call so that it reverses it before ever even setting the state
+  const [viewPosts, setViewPosts] = useState([])
+
+  useEffect(() => {
+    setViewPosts(posts)
+  }, [posts])
 
   return (
     <div>
       <NewPostBox createPost={createPost} />
-      {posts ? (
+      {viewPosts.length > 0 ? (
         [
-          posts.map((p) => (
+          viewPosts.map((p) => (
             <Tab title={p.title} expanded>
               <LazyPostBox
                 key={p.id}

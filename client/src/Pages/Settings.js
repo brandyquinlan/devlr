@@ -64,7 +64,7 @@ export default function Settings() {
         console.error('Failed to get use information', err)
         setAuthenticating(false)
       })
-  }, [authenticated])
+  }, [loadingData])
 
   return (
     <div id="settings">

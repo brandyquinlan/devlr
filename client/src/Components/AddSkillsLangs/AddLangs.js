@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import NoExpandTab from '../NoExpandTab'
-import SkillsEntryBox from './SkillsEntryBox'
 
 function AddLangs(props) {
   const langRef = useRef()

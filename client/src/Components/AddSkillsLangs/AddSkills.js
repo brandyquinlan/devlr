@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import NoExpandTab from '../NoExpandTab'
-import SkillsEntryBox from './SkillsEntryBox'
 
 function AddSkills(props) {
   const skillRef = useRef()

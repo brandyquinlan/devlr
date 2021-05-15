@@ -101,10 +101,10 @@ const Home = () => {
 
     API.post(postData)
       .then((res) => {
-        console.log(res)
+        setPosts([res, ...posts])
       })
       .catch((err) => {
-        throw new Error('error saving post', err)
+        console.error(err)
       })
   }
 

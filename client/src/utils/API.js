@@ -35,8 +35,9 @@ const API = {
   updateProfile(newProfile, _id) {
     return axios.put(`/api/profiles/updateProfile/${_id}`, { newProfile })
   },
-  post(post) {
-    return axios.post('/api/posts/newPost', { post })
+  async post(post) {
+    const res = await axios.post('/api/posts/newPost', { post })
+    return res.data
   },
   getPosts(_id) {
     // I switched this back. On second thought, it didn't make sense to write two functions that essesntially do the same thing

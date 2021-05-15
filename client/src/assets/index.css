@@ -531,7 +531,7 @@ button.disabled {
   margin-block-end: 0;
 }
 
-#newBtn {
+.newBtn {
   border-radius: 20px;
   color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);

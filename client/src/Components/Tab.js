@@ -22,25 +22,6 @@ function Tab({ title, children, projects, expanded }) {
       <Collapse in={open}>
         <div id="children">{children}</div>
       </Collapse>
-      {projects
-        ? projects.map((project) => (
-            <Row key={project.name}>
-              <Col key={project.name}>
-                <h5>{project.name}</h5>
-
-                <p>
-                  {project.description
-                    ? project.description
-                    : 'The project does not have description yet'}
-                </p>
-                <a href={project.url} target="_blank" rel="noreferrer">
-                  Project repo
-                </a>
-                <hr />
-              </Col>
-            </Row>
-          ))
-        : null}
     </div>
   )
 }

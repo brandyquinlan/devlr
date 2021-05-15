@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import NavTabs from './NavTabs'
+import PostStore from '../../utils/PostState'
 import Activity from '../Feeds/Activity'
 import Profile from '../Feeds/Profile'
 import Explore from '../Feeds/Explore'
@@ -19,12 +20,14 @@ function Navbar({ posts, createComment, incrementLike, projects, createPost }) {
       return <Profile projects={projects} />
     }
     return (
-      <Activity
-        posts={posts}
-        createPost={createPost}
-        createComment={createComment}
-        incrementLike={incrementLike}
-      />
+      <PostStore>
+        <Activity
+          posts={posts}
+          createPost={createPost}
+          createComment={createComment}
+          incrementLike={incrementLike}
+        />
+      </PostStore>
     )
   }
 

@@ -100,7 +100,7 @@ function UpdateProfileModal(props) {
                   {...register('school')}
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="skills">
                   Skills <p className="small">Separate skills with commas</p>
                 </label>
@@ -126,7 +126,7 @@ function UpdateProfileModal(props) {
                   placeholder="Languages"
                   {...register('languages')}
                 />
-              </div>
+              </div> */}
 
               <div className="form-group">
                 <label htmlFor="totalYearsofExperience">Experience</label>

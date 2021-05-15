@@ -8,7 +8,7 @@ function PostContainer({ posts, createComment, incrementLike }) {
       {posts ? (
         [
           posts.map((p) => (
-            <Tab title={p.title}>
+            <Tab title={p.title} key={p.id}>
               <PostBox
                 key={p.id}
                 postId={p.id}

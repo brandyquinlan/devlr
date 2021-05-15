@@ -25,7 +25,7 @@ function Tab({ title, children, projects }) {
       {projects
         ? projects.map((project) => (
             <Row key={project.name}>
-              <Col>
+              <Col key={project.name}>
                 <h5>{project.name}</h5>
 
                 <p>

@@ -4,7 +4,8 @@ function CurrentComments({ comments }) {
   return (
     <div>
       {comments.map((c) => (
-        <div>
+        // Dont forget to add a key
+        <div key={c}>
           <p>{c.text}</p>
           <p className="small text-muted">
             Posted by {c.userName}, {c.date}

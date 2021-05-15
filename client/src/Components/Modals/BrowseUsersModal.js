@@ -67,7 +67,7 @@ function BrowseUsersModal(props) {
         <div>
           {/* This should be replaces by a custom componant, taking in props to display user information */}
           {filteredUsers.map((user) => (
-            <>
+            <div key={user._id}>
               <h4>{user.name}</h4>
               <img
                 src={user.avatarUrl}
@@ -76,7 +76,7 @@ function BrowseUsersModal(props) {
                 height="150"
                 width="150"
               />
-            </>
+            </div>
           ))}
         </div>
       </Modal.Body>

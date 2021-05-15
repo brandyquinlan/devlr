@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../utils/UserState'
-import Tab from '../Tab'
+import Projects from '../Projects/Projects'
 import LanguagesContainer from '../Languages/LanguagesContainer'
 import BackgroundContainer from '../Background/BackgroundContainer'
 import SkillsContainer from '../Skills/SkillsContainer'
@@ -18,7 +18,7 @@ function Profile({ projects }) {
       <BackgroundContainer profile={profile} />
       <SkillsContainer skills={profile.skills} />
       <LanguagesContainer languages={profile.languages} />
-      <Tab title="My Projects" content="la la la" projects={projects} />
+      <Projects projects={projects} profile={profile} />
     </>
   )
 }

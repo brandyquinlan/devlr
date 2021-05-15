@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
+import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -64,9 +65,10 @@ const Home = () => {
             })
           }
         })
-        .catch(() => {
+        .catch((err) => {
           setAuthenticating(false)
           setLoadingData(false)
+          console.log(err)
         })
     }
   }, [code])
@@ -116,6 +118,9 @@ const Home = () => {
       userId: store.user._id,
     }
     console.log(newComment, postId)
+    // const updatedPost = postStore.find((p) => p._id === postId)
+    // updatedPost.comments = [...updatedPost.comments, newComment]
+    // dispatchPost({ type: 'add comment', payload: updatedPost })
   }
 
   function incrementLike(event, postId) {
@@ -136,7 +141,7 @@ const Home = () => {
         console.error('Failed to add like', err)
       })
 
-    // update state - or socket.io?
+    // socket.io?
   }
 
   useEffect(() => {
@@ -181,8 +186,8 @@ const Home = () => {
                       <Navbar
                         posts={posts}
                         createPost={createPost}
-                        createComment={createComment}
                         incrementLike={incrementLike}
+                        createComment={createComment}
                         projects={projects}
                       />
                     </div>

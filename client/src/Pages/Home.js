@@ -39,6 +39,9 @@ const Home = () => {
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
+          API.getGithubInfo(githubUsername, token).then((info) => {
+            setProjects(info.user.pinnedItems.nodes)
+          })
           API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
             setLoadingData(false)
             udpateModal({ type: 'show initial modal' })
@@ -49,11 +52,11 @@ const Home = () => {
     } else {
       API.getUserInfo()
         .then(({ data }) => {
-          const { _id, acessToken } = data[0]
+          const { _id, accessToken } = data[0]
           const { githubUsername } = data[1]
           if (_id) {
             setAuthenticated(true)
-            API.getGithubInfo(githubUsername, acessToken).then((info) => {
+            API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
               API.getPosts(_id).then(({ data2 }) => {
                 setPosts(data2)
@@ -185,6 +188,7 @@ const Home = () => {
                         createPost={createPost}
                         createComment={createComment}
                         incrementLike={incrementLike}
+                        projects={projects}
                       />
                     </div>
                     <div

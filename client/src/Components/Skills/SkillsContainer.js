@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import Tab from '../Tab'
 import Skills from './Skills'
-import SkillsLangModal from '../Modals/SkillsLangModal'
+import SkillsModal from '../Modals/SkillsModal'
 
 function SkillsContainer({ skills }) {
-  const [skillsLangsModalShow, setSkillsLangsModalShow] = React.useState(false)
+  const [skillsModalShow, setSkillsModalShow] = React.useState(false)
 
   return (
     <div>
@@ -18,13 +18,13 @@ function SkillsContainer({ skills }) {
           variant="secondary"
           size="sm"
           className="newBtn"
-          onClick={() => setSkillsLangsModalShow(true)}
+          onClick={() => setSkillsModalShow(true)}
         >
           Add/Update Skills
         </Button>
-        <SkillsLangModal
-          show={skillsLangsModalShow}
-          onHide={() => setSkillsLangsModalShow(false)}
+        <SkillsModal
+          show={skillsModalShow}
+          onHide={() => setSkillsModalShow(false)}
         />
       </Tab>
     </div>

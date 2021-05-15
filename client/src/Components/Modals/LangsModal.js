@@ -6,32 +6,34 @@ import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 import AddSkills from '../AddSkillsLangs/AddSkills'
+import AddLangs from '../AddSkillsLangs/AddLangs'
 
-function SkillsLangModal(props) {
+function LangsModal(props) {
   const [store, dispatch] = useContext(UserContext)
-  const [newSkills, setNewSkills] = useState(store.profile.skills)
+  const [newLangs, setNewLangs] = useState(store.profile.languages)
   // const { skills, languages } = store.profile
   // const newSkills = store.profile.skills
 
-  function saveSkillsLangs() {
-    // API.updateProfile({ skills, languages }, store.user._id).then(() =>
-    //   Toast('success', 'Skills & Languages Saves', 1000),
-    // )
+  function saveLangs() {
+    API.updateProfile({ languages: newLangs }, store.user._id).then(() =>
+      Toast('success', 'Skills & Languages Saves', 1000),
+    )
   }
 
-  function addSkill(e, skill) {
+  function addLang(e, lang) {
     e.preventDefault()
-    console.log(skill)
-    newSkills.push(skill)
-    setNewSkills(newSkills)
-    console.log(newSkills)
+    console.log(lang)
+    newLangs.push(lang)
+    setNewLangs(newLangs)
+    console.log(newLangs)
+    dispatch({ type: 'update profile', payload: { languages: newLangs } })
   }
-
-  function removeSkill(e, index) {
+  function removeLang(e, index) {
     e.preventDefault()
-    newSkills.splice([index], 1)
-    setNewSkills(newSkills)
-    console.log(newSkills)
+    newLangs.splice([index], 1)
+    setNewLangs(newLangs)
+    console.log(newLangs)
+    dispatch({ type: 'update profile', payload: { languages: newLangs } })
   }
 
   return (
@@ -60,10 +62,10 @@ function SkillsLangModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddSkills
-            newSkills={newSkills}
-            addSkill={addSkill}
-            removeSkill={removeSkill}
+          <AddLangs
+            newLangs={newLangs}
+            addLang={addLang}
+            removeLang={removeLang}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -72,7 +74,7 @@ function SkillsLangModal(props) {
             className="gradient"
             onClick={(event) => {
               event.preventDefault()
-              saveSkillsLangs()
+              saveLangs()
               props.onHide()
             }}
           >
@@ -87,4 +89,4 @@ function SkillsLangModal(props) {
   )
 }
 
-export default SkillsLangModal
+export default LangsModal

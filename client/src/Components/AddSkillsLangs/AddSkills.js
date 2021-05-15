@@ -7,11 +7,6 @@ function AddSkills(props) {
   return (
     <div>
       <NoExpandTab title="Add Skills">
-        {/* <SkillsEntryBox
-          newSkills2={props.newSkills}
-          addSkill={props.addSkill}
-          removeSkill={props.removeSkill}
-        /> */}
         <div className="input-group mb-3">
           <input
             type="text"

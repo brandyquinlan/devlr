@@ -14,7 +14,7 @@ function component({
   incrementLike,
 }) {
   return (
-    <Suspense fallback={Loading}>
+    <Suspense fallback={<Loading />}>
       <LazyPostBox
         postId={postId}
         author={author}

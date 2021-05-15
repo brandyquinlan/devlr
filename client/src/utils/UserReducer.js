@@ -29,10 +29,21 @@ function UserReducer(state, action) {
       API.logout()
       window.location.href = '/login'
       break
+    // Set user profile should be used for inital sign ups / logins
     case 'set user profile':
       return {
         ...state,
-        profile: [...state, action.payload],
+        profile: action.payload,
+      }
+    // Make sure to use this type if you are only UPDATING the profile in the state
+    case 'update profile':
+      const newProfile = { ...state.profile }
+      Object.keys(action.payload).forEach((key) => {
+        newProfile[key] = action.payload[key]
+      })
+      return {
+        ...state,
+        profile: newProfile,
       }
     default:
       throw new Error('something went wrong with UserReducer switch case')

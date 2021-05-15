@@ -32,7 +32,6 @@ function BrowseUsersModal(props) {
 
     setFilteredUsers(
       users.filter((user) => {
-        console.log(user)
         const searchCredentials =
           user.name.toLowerCase() + user.githubUsername.toLowerCase()
         return searchCredentials.includes(search.toLowerCase())

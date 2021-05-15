@@ -21,8 +21,6 @@ function UpdateProfileModal(props) {
       to: store.profile.to,
       githubUsername: store.profile.githubUsername,
       languages: store.profile.languages,
-      themePref: store.profile.themePref,
-      avatarUrl: store.profile.avatarUrl,
     },
   })
 
@@ -31,13 +29,14 @@ function UpdateProfileModal(props) {
       .then((res) => {
         // ! this is going to be breaking because skills and languages are arrays on the Profile model, but here we are treating them as strings.
         // ! We need to set up a different way to adjust that information...
-        dispatch({ type: 'set profile', payload: data })
+        dispatch({ type: 'update profile', payload: data })
         Toast('success', 'Your profile has been updated', 2000)
       })
       .catch(() => Toast('error', 'Error updating your profile', 3000))
   }
   // can we access the store and get current profile data to pre-populate so the user can update it?
   // if we put it in as a conditional for placeholder text will it save if they don't retype it?
+  // I believe this got this up?^^^^^^^ -Keaton
 
   return (
     <>

@@ -72,7 +72,7 @@ router.post('/signup', async (request, response) => {
         themePref: '222222',
         avatarUrl: '',
       }).catch((e) => {
-        throw new Error()
+        throw new Error(e)
       })
       response.json(user)
     })

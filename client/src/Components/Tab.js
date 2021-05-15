@@ -1,8 +1,8 @@
 import { React, useState } from 'react'
 import { Button as button, Collapse, Row, Col } from 'react-bootstrap'
 
-function Tab({ title, children, projects }) {
-  const [open, setOpen] = useState(true)
+function Tab({ title, children, projects, expanded }) {
+  const [open, setOpen] = useState(!!expanded)
   const [icon, setIcon] = useState('expand_less')
 
   return (
@@ -19,7 +19,7 @@ function Tab({ title, children, projects }) {
         </button>
       </div>
       <div className="separator mb-3"></div>
-      <Collapse in={!open}>
+      <Collapse in={open}>
         <div id="children">{children}</div>
       </Collapse>
       {projects

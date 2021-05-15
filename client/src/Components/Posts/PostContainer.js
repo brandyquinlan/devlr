@@ -21,7 +21,7 @@ function PostContainer({ posts, createComment, incrementLike, createPost }) {
         [
           reversePosts(posts),
           postsNewOrder.map((p) => (
-            <Tab title={p.title}>
+            <Tab title={p.title} expanded>
               <PostBox
                 key={p.id}
                 postId={p._id}

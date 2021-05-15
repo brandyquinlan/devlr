@@ -88,14 +88,6 @@ const Home = () => {
       })
   }, [loadingData])
 
-  // This effect loads in a small group of random users to show as featured Devs.
-  // It may make sense to move it into another function, just writing it solo for now
-  // useEffect(() => {
-  //   API.getFeaturedDevs().then((devs) => {
-  //     console.log(devs)
-  //   })
-  // }, [modals])
-
   const { width } = useViewport()
   const breakpoint = 768
   const { themePref } = store.profile

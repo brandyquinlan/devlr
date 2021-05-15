@@ -7,8 +7,8 @@ router.post('/newPost', async (request, response) => {
 
   // we simply attempt to store it to the database
   try {
-    db.Post.create(post).then(() => {
-      response.sendStatus(200)
+    db.Post.create(post).then((res) => {
+      response.send(res).status(200)
     })
   } catch (error) {
     response.sendStatus(500)
@@ -20,7 +20,7 @@ router.put('/likePost', (request, response) => {
   // ALONG with the user who liked it, property userID
   const { like, postID } = request.body
   try {
-    db.Post.findOneAndUpdate({ id: postID }, { $push: { likes: like } }).then(
+    db.Post.findOneAndUpdate({ _id: postID }, { $push: { likes: like } }).then(
       (res) => {
         response.send(res)
       },

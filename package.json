@@ -32,7 +32,14 @@
       "no-unused-vars": "off",
       "no-console": "off",
       "import/no-named-as-default-member": "off",
-      "consistent-return": "off"
+      "consistent-return": "off",
+      "no-case-declarations": "off",
+      "no-restricted-globals": "off"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
     }
   },
   "prettier": "@imaginary-cloud/prettier-config",
@@ -42,6 +49,7 @@
   "homepage": "https://github.com/brandyquinlan/devlr#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "babel-eslint": "^10.1.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",

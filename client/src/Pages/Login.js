@@ -22,7 +22,7 @@ function Login() {
 
     setUserInfo({
       ...userInfo,
-      email: emailRef.current.value,
+      email: emailRef.current.value.toLowerCase(),
       password: passwordRef.current.value,
     })
   }

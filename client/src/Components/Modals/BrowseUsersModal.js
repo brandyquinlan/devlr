@@ -32,7 +32,6 @@ function BrowseUsersModal(props) {
 
     setFilteredUsers(
       users.filter((user) => {
-        console.log(user)
         const searchCredentials =
           user.name.toLowerCase() + user.githubUsername.toLowerCase()
         return searchCredentials.includes(search.toLowerCase())
@@ -68,7 +67,7 @@ function BrowseUsersModal(props) {
         <div>
           {/* This should be replaces by a custom componant, taking in props to display user information */}
           {filteredUsers.map((user) => (
-            <>
+            <div key={user._id}>
               <h4>{user.name}</h4>
               <img
                 src={user.avatarUrl}
@@ -77,7 +76,9 @@ function BrowseUsersModal(props) {
                 height="150"
                 width="150"
               />
-            </>
+              {/*  Need to set up another "home" that we will use for displaying another users Info */}
+              <a href={`/home/?user=${user._id}`}>profile</a>
+            </div>
           ))}
         </div>
       </Modal.Body>

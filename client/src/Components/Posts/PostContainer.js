@@ -1,33 +1,24 @@
 import React from 'react'
 import Tab from '../Tab'
-import PostBox from './PostBox'
+// import PostBox from './PostBox'
+import LazyPostBox from './LazyPostBox'
 import NewPostBox from './NewPostBox'
 
 function PostContainer({ posts, createComment, incrementLike, createPost }) {
-  let postsNewOrder = []
-
-  function reversePosts() {
-    if (!posts) {
-      postsNewOrder = []
-    } else {
-      postsNewOrder = posts.reverse()
-    }
-  }
+  // I just moved the reverse function to the top level api call so that it reverses it before ever even setting the state
 
   return (
     <div>
       <NewPostBox createPost={createPost} />
       {posts ? (
         [
-          reversePosts(posts),
-          postsNewOrder.map((p) => (
-            <Tab title={p.title}>
-              <PostBox
+          posts.map((p) => (
+            <Tab title={p.title} expanded>
+              <LazyPostBox
                 key={p.id}
                 postId={p._id}
                 author={p.author}
                 user={p.user}
-                title={p.title}
                 body={p.body}
                 date={p.date}
                 comments={p.comments}

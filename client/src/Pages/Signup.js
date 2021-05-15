@@ -111,7 +111,7 @@ function Signup() {
     API.signUp(state)
       .then(() => {
         API.login({
-          email: state.email,
+          email: state.email.toLowerCase(),
           password: state.password,
         })
         window.location.href =
@@ -188,7 +188,7 @@ function Signup() {
                   className="form-control"
                   id="githubUsername"
                   placeholder="github username"
-                  required="true"
+                  required
                 ></input>
               </div>
               <button

@@ -5,7 +5,7 @@ import Activity from '../Feeds/Activity'
 import Profile from '../Feeds/Profile'
 import Explore from '../Feeds/Explore'
 
-function Navbar({ posts, createPost, createComment, incrementLike }) {
+function Navbar({ posts, createComment, incrementLike, projects, createPost }) {
   const [page, setPage] = useState('Activity')
 
   function handlePageChange(newPage) {
@@ -17,7 +17,7 @@ function Navbar({ posts, createPost, createComment, incrementLike }) {
       return <Explore />
     }
     if (page === 'Profile') {
-      return <Profile />
+      return <Profile projects={projects} />
     }
     return (
       <PostStore>

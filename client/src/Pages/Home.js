@@ -22,9 +22,9 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  // const [postStore, dispatchPost] = useContext(PostContext)
-  const [posts, setPosts] = useState()
+  const [posts, setPosts] = useState([])
   const code = useQuery().get('code')
+  const [projects, setProjects] = useState([])
 
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
@@ -32,14 +32,16 @@ const Home = () => {
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
-      API.getUserInfo().then(({ data }) => {
+      API.getUserInfo().then(([user, profile]) => {
         setAuthenticated(true)
-        const [user, profile] = data
         const { _id } = user
         const { githubUsername } = profile
         API.getUserAccessToken(code).then((resToken) => {
           const { token } = resToken.data
           API.setUserAccessToken(token, _id)
+          API.getGithubInfo(githubUsername, token).then((info) => {
+            setProjects(info.user.pinnedItems.nodes)
+          })
           API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
             setLoadingData(false)
             udpateModal({ type: 'show initial modal' })
@@ -49,12 +51,15 @@ const Home = () => {
       window.history.pushState({}, null, '/home')
     } else {
       API.getUserInfo()
-        .then(({ data }) => {
-          if (data[0]._id) {
-            API.getPosts(data[0]._id).then((response) => {
-              // dispatchPost({ type: 'get posts', payload: response.data })
-              setPosts(response.data)
-              console.log(response.data)
+        .then(([user, profile]) => {
+          const { _id, accessToken } = user
+          const { githubUsername } = profile
+          if (_id) {
+            API.getGithubInfo(githubUsername, accessToken).then((info) => {
+              setProjects(info.user.pinnedItems.nodes)
+            })
+            API.getPosts(_id).then((postRes) => {
+              setPosts(postRes.reverse())
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -71,8 +76,7 @@ const Home = () => {
   // load all user data and then set authenticating(false) to render the page
   useEffect(() => {
     API.getUserInfo()
-      .then(({ data }) => {
-        const [user, profile] = data
+      .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
@@ -82,7 +86,7 @@ const Home = () => {
         console.error('Failed to get use information', err)
         setAuthenticating(false)
       })
-  }, [authenticated])
+  }, [loadingData])
 
   const { width } = useViewport()
   const breakpoint = 768
@@ -99,13 +103,10 @@ const Home = () => {
 
     API.post(postData)
       .then((res) => {
-        // dispatchPost({ type: 'new post', payload: postData })
-        // console.log('inside setPosts after new post', postStore)
-        console.log(res)
+        setPosts([res, ...posts])
       })
       .catch((err) => {
-        // throw new Error('error saving post', err)
-        console.log(err)
+        console.error(err)
       })
   }
 
@@ -132,7 +133,6 @@ const Home = () => {
       },
     }
     // send to DB as an update on the post with postID
-    console.log(newLike)
     API.addLike(newLike)
       .then((res) => {
         console.log(res)
@@ -188,6 +188,7 @@ const Home = () => {
                         createPost={createPost}
                         incrementLike={incrementLike}
                         createComment={createComment}
+                        projects={projects}
                       />
                     </div>
                     <div

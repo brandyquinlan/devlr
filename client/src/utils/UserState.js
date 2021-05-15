@@ -18,7 +18,7 @@ const initialState = {
     githubUsername: '',
     languages: [],
     themePref: '222222',
-    profilePic: '',
+    avatartUrl: '',
   },
 }
 

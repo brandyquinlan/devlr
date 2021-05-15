@@ -1,8 +1,8 @@
 import { React, useState } from 'react'
-import { Button as button, Collapse } from 'react-bootstrap'
+import { Button as button, Collapse, Row, Col } from 'react-bootstrap'
 
-function Tab({ title, children }) {
-  const [open, setOpen] = useState(true)
+function Tab({ title, children, projects, expanded }) {
+  const [open, setOpen] = useState(!!expanded)
   const [icon, setIcon] = useState('expand_less')
 
   return (
@@ -19,9 +19,28 @@ function Tab({ title, children }) {
         </button>
       </div>
       <div className="separator mb-3"></div>
-      <Collapse in={!open}>
+      <Collapse in={open}>
         <div id="children">{children}</div>
       </Collapse>
+      {projects
+        ? projects.map((project) => (
+            <Row key={project.name}>
+              <Col key={project.name}>
+                <h5>{project.name}</h5>
+
+                <p>
+                  {project.description
+                    ? project.description
+                    : 'The project does not have description yet'}
+                </p>
+                <a href={project.url} target="_blank" rel="noreferrer">
+                  Project repo
+                </a>
+                <hr />
+              </Col>
+            </Row>
+          ))
+        : null}
     </div>
   )
 }

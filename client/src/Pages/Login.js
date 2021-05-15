@@ -92,7 +92,7 @@ function Login() {
           <br />
           <h6 style={{ fontWeight: '100' }}>
             Or sign up{' '}
-            <a href="/">
+            <a href="/" className="switchLink">
               <span style={{ fontWeight: '400' }}>here</span>
             </a>
           </h6>

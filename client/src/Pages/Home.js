@@ -55,13 +55,13 @@ const Home = () => {
           const { _id, accessToken } = data[0]
           const { githubUsername } = data[1]
           if (_id) {
-            setAuthenticated(true)
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
-              API.getPosts(_id).then(({ data2 }) => {
-                setPosts(data2)
-                setLoadingData(false)
-              })
+            })
+            API.getPosts(_id).then((response) => {
+              setPosts(response.data)
+              setAuthenticated(true)
+              setLoadingData(false)
             })
           }
         })
@@ -86,7 +86,15 @@ const Home = () => {
         console.error('Failed to get use information', err)
         setAuthenticating(false)
       })
-  }, [authenticated])
+  }, [loadingData])
+
+  // This effect loads in a small group of random users to show as featured Devs.
+  // It may make sense to move it into another function, just writing it solo for now
+  // useEffect(() => {
+  //   API.getFeaturedDevs().then((devs) => {
+  //     console.log(devs)
+  //   })
+  // }, [modals])
 
   const { width } = useViewport()
   const breakpoint = 768

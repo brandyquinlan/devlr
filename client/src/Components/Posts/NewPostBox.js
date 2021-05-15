@@ -7,7 +7,7 @@ function NewPostBox({ createPost }) {
 
   return (
     <div>
-      <div className="tab bg-secondary mt-3 mb-3 gradient" id="PostBox">
+      <div className="tab bg-secondary mt-2 gradient" id="PostBox">
         <textarea
           ref={titleRef}
           id="postTitle"
@@ -18,7 +18,7 @@ function NewPostBox({ createPost }) {
         <textarea
           id="postBody"
           ref={bodyRef}
-          className="mt-1"
+          className="mt-2"
           placeholder="What's on your mind?"
           rows="3"
         ></textarea>

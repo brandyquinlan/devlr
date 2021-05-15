@@ -176,7 +176,7 @@ input::placeholder {
 
 button.close {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .modal-header,
@@ -236,6 +236,14 @@ a:active,
 a:focus {
   color: var(--main-text-color);
   opacity: 0.8;
+  text-decoration: none;
+}
+
+a.switchLink:hover,
+a.switchLink:active,
+a.switchLink:focus {
+  color: var(--main-text-color);
+  opacity: 0.8;
   text-decoration: underline;
 }
 
@@ -243,6 +251,8 @@ li > a {
   display: inline-block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  padding-left: 6px;
+  padding-right: 6px;
   color: var(--main-text-color);
 }
 
@@ -600,14 +610,19 @@ button.disabled {
 }
 
 .devPic {
-  background-color: var(--main-text-color);
   width: 50px;
   height: 50px;
-  margin-left: 0.5rem;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
 }
 
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
+}
+
+a > span.devLink:hover {
+  text-decoration: none !important;
 }
 
 #col2 {

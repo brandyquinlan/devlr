@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import API from '../../utils/API'
+import DevCard from '../User/DevCard'
 
 function BrowseUsersModal(props) {
   const [users, setUsers] = useState([])
@@ -60,25 +61,18 @@ function BrowseUsersModal(props) {
             ref={searchRef}
             type="text"
             className="form-control"
-            placeholder="Search for other users"
+            placeholder="Dev Doe"
             onChange={handleInputChange}
           />
         </div>
         <div>
-          {/* This should be replaces by a custom componant, taking in props to display user information */}
           {filteredUsers.map((user) => (
-            <div key={user._id}>
-              <h4>{user.name}</h4>
-              <img
-                src={user.avatarUrl}
-                alt="User profile"
-                className="img-fluid circle"
-                height="150"
-                width="150"
-              />
-              {/*  Need to set up another "home" that we will use for displaying another users Info */}
-              <a href={`/home/?user=${user._id}`}>profile</a>
-            </div>
+            <DevCard
+              key={user._id}
+              id={user._id}
+              avatarUrl={user.avatarUrl}
+              name={user.name}
+            />
           ))}
         </div>
       </Modal.Body>

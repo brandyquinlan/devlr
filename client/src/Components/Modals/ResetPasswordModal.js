@@ -92,13 +92,6 @@ function ResetPasswordModal(props) {
                 id="confirm"
                 placeholder="password"
               ></input>
-              <Button
-                type="submit"
-                variant="secondary"
-                className="gradient ml-2"
-              >
-                Save
-              </Button>
             </div>
             <Button
               type="submit"

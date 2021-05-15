@@ -9,7 +9,7 @@ function SkillsContainer({ skills }) {
 
   return (
     <div>
-      <Tab title="My Skills">
+      <Tab title="My Skills" expanded>
         {skills.map((skill) => (
           <Skills skill={skill} key={skill} />
         ))}

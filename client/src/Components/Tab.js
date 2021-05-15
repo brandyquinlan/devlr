@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
-import { Button as button, Collapse } from 'react-bootstrap'
+import { Button as button, Collapse, Row, Col } from 'react-bootstrap'
 
-function Tab({ title, children }) {
+function Tab({ title, children, projects }) {
   const [open, setOpen] = useState(true)
   const [icon, setIcon] = useState('expand_less')
 
@@ -22,6 +22,25 @@ function Tab({ title, children }) {
       <Collapse in={open}>
         <div id="children">{children}</div>
       </Collapse>
+      {projects
+        ? projects.map((project) => (
+            <Row key={project.name}>
+              <Col>
+                <h5>{project.name}</h5>
+
+                <p>
+                  {project.description
+                    ? project.description
+                    : 'The project does not have description yet'}
+                </p>
+                <a href={project.url} target="_blank" rel="noreferrer">
+                  Project repo
+                </a>
+                <hr />
+              </Col>
+            </Row>
+          ))
+        : null}
     </div>
   )
 }

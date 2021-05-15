@@ -14,12 +14,12 @@ function Profile({ projects }) {
   const { profile } = store
 
   return (
-    <>
+    <div>
       <BackgroundContainer profile={profile} />
       <SkillsContainer skills={profile.skills} />
       <LanguagesContainer languages={profile.languages} />
       <Projects projects={projects} profile={profile} />
-    </>
+    </div>
   )
 }
 

@@ -70,7 +70,7 @@ function Activity({ posts, createComment, createPost, incrementLike }) {
   // }
 
   return (
-    <>
+    <div>
       {/* {loadingData ? (
         <PostContainer>Please wait while we get your posts...</PostContainer>
       ) : ( */}
@@ -81,7 +81,7 @@ function Activity({ posts, createComment, createPost, incrementLike }) {
         incrementLike={incrementLike}
       />
       {/* )} */}
-    </>
+    </div>
   )
 }
 

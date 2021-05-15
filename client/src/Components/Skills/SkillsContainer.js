@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import Tab from '../Tab'
 import Skills from './Skills'
+import SkillsLangModal from '../Modals/SkillsLangModal'
 
 function SkillsContainer({ skills }) {
+  const [skillsLangsModalShow, setSkillsLangsModalShow] = React.useState(false)
+
   return (
     <div>
       <Tab title="My Skills">
-        {/* commenting these lines for now! as I updated the profile model for skills to be a string instead of an array */}
-        {/* I went ahead and reverted the changes on the profile modal, but we need to talk about how we want to handle this */}
-        {/* {skills.map((skill) => (
-          <Skills skill={skill} />
-        ))} */}
-        <Skills skill={skills} />
+        {skills.map((skill) => (
+          <Skills skill={skill} key={skill} />
+        ))}
+        <br></br>
+        <Button
+          variant="secondary"
+          size="sm"
+          className="newBtn"
+          onClick={() => setSkillsLangsModalShow(true)}
+        >
+          Add/Update Skills
+        </Button>
+        <SkillsLangModal
+          show={skillsLangsModalShow}
+          onHide={() => setSkillsLangsModalShow(false)}
+        />
       </Tab>
     </div>
   )

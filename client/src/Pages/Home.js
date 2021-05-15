@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
+import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -21,7 +22,8 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, setPosts] = useState([])
+  // const [postStore, dispatchPost] = useContext(PostContext)
+  const [posts, setPosts] = useState()
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -64,9 +66,10 @@ const Home = () => {
             })
           }
         })
-        .catch(() => {
+        .catch((err) => {
           setAuthenticating(false)
           setLoadingData(false)
+          console.log(err)
         })
     }
   }, [code])
@@ -102,9 +105,13 @@ const Home = () => {
     API.post(postData)
       .then((res) => {
         setPosts([res, ...posts])
+        // dispatchPost({ type: 'new post', payload: postData })
+        // console.log('inside setPosts after new post', postStore)
+        console.log(res)
       })
       .catch((err) => {
-        console.error(err)
+        // throw new Error('error saving post', err)
+        console.log(err)
       })
   }
 
@@ -116,6 +123,9 @@ const Home = () => {
       userId: store.user._id,
     }
     console.log(newComment, postId)
+    // const updatedPost = postStore.find((p) => p._id === postId)
+    // updatedPost.comments = [...updatedPost.comments, newComment]
+    // dispatchPost({ type: 'add comment', payload: updatedPost })
   }
 
   function incrementLike(event, postId) {
@@ -136,7 +146,7 @@ const Home = () => {
         console.error('Failed to add like', err)
       })
 
-    // update state - or socket.io?
+    // socket.io?
   }
 
   useEffect(() => {
@@ -181,9 +191,9 @@ const Home = () => {
                       <Navbar
                         posts={posts}
                         createPost={createPost}
-                        createComment={createComment}
                         incrementLike={incrementLike}
                         projects={projects}
+                        createComment={createComment}
                       />
                     </div>
                     <div

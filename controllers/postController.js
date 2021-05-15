@@ -20,7 +20,7 @@ router.put('/likePost', (request, response) => {
   // ALONG with the user who liked it, property userID
   const { like, postID } = request.body
   try {
-    db.Post.findOneAndUpdate({ id: postID }, { $push: { likes: like } }).then(
+    db.Post.findOneAndUpdate({ _id: postID }, { $push: { likes: like } }).then(
       (res) => {
         response.send(res)
       },

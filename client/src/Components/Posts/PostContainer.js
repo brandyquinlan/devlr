@@ -4,23 +4,14 @@ import PostBox from './PostBox'
 import NewPostBox from './NewPostBox'
 
 function PostContainer({ posts, createComment, incrementLike, createPost }) {
-  let postsNewOrder = []
-
-  function reversePosts() {
-    if (!posts) {
-      postsNewOrder = []
-    } else {
-      postsNewOrder = posts.reverse()
-    }
-  }
+  // I just moved the reverse function to the top level api call so that it reverses it before ever even setting the state
 
   return (
     <div>
       <NewPostBox createPost={createPost} />
       {posts ? (
         [
-          reversePosts(posts),
-          postsNewOrder.map((p) => (
+          posts.map((p) => (
             <Tab title={p.title} expanded>
               <PostBox
                 key={p.id}

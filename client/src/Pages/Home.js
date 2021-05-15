@@ -21,7 +21,7 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, setPosts] = useState()
+  const [posts, setPosts] = useState([])
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -31,9 +31,8 @@ const Home = () => {
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
-      API.getUserInfo().then(({ data }) => {
+      API.getUserInfo().then(([user, profile]) => {
         setAuthenticated(true)
-        const [user, profile] = data
         const { _id } = user
         const { githubUsername } = profile
         API.getUserAccessToken(code).then((resToken) => {
@@ -51,15 +50,15 @@ const Home = () => {
       window.history.pushState({}, null, '/home')
     } else {
       API.getUserInfo()
-        .then(({ data }) => {
-          const { _id, accessToken } = data[0]
-          const { githubUsername } = data[1]
+        .then(([user, profile]) => {
+          const { _id, accessToken } = user
+          const { githubUsername } = profile
           if (_id) {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((response) => {
-              setPosts(response.data)
+              setPosts(response.data.reverse())
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -75,8 +74,7 @@ const Home = () => {
   // load all user data and then set authenticating(false) to render the page
   useEffect(() => {
     API.getUserInfo()
-      .then(({ data }) => {
-        const [user, profile] = data
+      .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
         dispatch({ type: 'set profile', payload: profile })
@@ -103,8 +101,6 @@ const Home = () => {
 
     API.post(postData)
       .then((res) => {
-        // setPosts(...posts, postData)
-        console.log('inside setPosts after new post', posts)
         console.log(res)
       })
       .catch((err) => {

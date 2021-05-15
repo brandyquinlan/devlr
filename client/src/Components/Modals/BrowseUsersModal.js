@@ -76,6 +76,8 @@ function BrowseUsersModal(props) {
                 height="150"
                 width="150"
               />
+              {/*  Need to set up another "home" that we will use for displaying another users Info */}
+              <a href={`/home/?user=${user._id}`}>profile</a>
             </div>
           ))}
         </div>

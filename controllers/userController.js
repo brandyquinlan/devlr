@@ -94,7 +94,7 @@ router.get('/getUserInfo/:userId', async (request, response) => {
   try {
     let user = await db.User.findOne({ _id: userId })
     user = {
-      acessToken: user.accessToken,
+      accessToken: user.accessToken,
       email: user.email,
       followers: user.followers,
       following: user.following,

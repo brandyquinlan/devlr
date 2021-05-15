@@ -51,18 +51,14 @@ const Home = () => {
         .then(({ data }) => {
           const { _id, acessToken } = data[0]
           const { githubUsername } = data[1]
-          API.getGithubInfo(githubUsername, acessToken).then((info) => {
-            setProjects(info.user.pinnedItems.nodes)
-            // console.log('projects', info.user.pinnedItems.nodes)
-            setAuthenticated(true)
-            setLoadingData(false)
-          })
           if (_id) {
-            API.getPosts(_id).then((response) => {
-              setPosts(response.data)
-              console.log('getPosts response (Home.js)', response.data)
-              setAuthenticated(true)
-              setLoadingData(false)
+            setAuthenticated(true)
+            API.getGithubInfo(githubUsername, acessToken).then((info) => {
+              setProjects(info.user.pinnedItems.nodes)
+              API.getPosts(_id).then(({ data2 }) => {
+                setPosts(data2)
+                setLoadingData(false)
+              })
             })
           }
         })
@@ -93,12 +89,32 @@ const Home = () => {
   const breakpoint = 768
   const { themePref } = store.profile
 
+  function createPost(event, title, body) {
+    event.preventDefault()
+    const postData = {
+      title,
+      body,
+      author: store.profile.name,
+      user: store.user._id,
+    }
+
+    API.post(postData)
+      .then((res) => {
+        // setPosts(...posts, postData)
+        console.log('inside setPosts after new post', posts)
+        console.log(res)
+      })
+      .catch((err) => {
+        throw new Error('error saving post', err)
+      })
+  }
+
   function createComment(event, textRef, postId) {
     event.preventDefault()
     const newComment = {
       text: textRef,
       userName: store.profile.name,
-      userId: store.user.id,
+      userId: store.user._id,
     }
     console.log(newComment, postId)
   }
@@ -106,11 +122,22 @@ const Home = () => {
   function incrementLike(event, postId) {
     event.preventDefault()
     const newLike = {
-      user: store.user.id,
-      userName: store.profile.name,
+      postID: postId,
+      like: {
+        user: store.user._id,
+        userName: store.profile.name,
+      },
     }
     // send to DB as an update on the post with postID
-    console.log(newLike, postId)
+    console.log(newLike)
+    API.addLike(newLike)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.error('Failed to add like', err)
+      })
+
     // update state - or socket.io?
   }
 
@@ -155,7 +182,7 @@ const Home = () => {
                     >
                       <Navbar
                         posts={posts}
-                        projects={projects}
+                        createPost={createPost}
                         createComment={createComment}
                         incrementLike={incrementLike}
                       />

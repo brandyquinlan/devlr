@@ -18,9 +18,9 @@ function PostBox({
   return (
     <div>
       <div id={postId}>
-        <p>{body}</p>
+        <p className="mb-1">{body}</p>
         <p className="small" id={user}>
-          Posted by {author}, {date}
+          Posted by {author}, {date.split('T')[0]}
         </p>
       </div>
       <hr className="75"></hr>

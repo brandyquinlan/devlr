@@ -4,7 +4,7 @@ import Activity from '../Feeds/Activity'
 import Profile from '../Feeds/Profile'
 import Explore from '../Feeds/Explore'
 
-function Navbar({ posts, createComment, incrementLike, projects }) {
+function Navbar({ posts, createComment, incrementLike, projects, createPost }) {
   const [page, setPage] = useState('Activity')
 
   function handlePageChange(newPage) {
@@ -21,6 +21,7 @@ function Navbar({ posts, createComment, incrementLike, projects }) {
     return (
       <Activity
         posts={posts}
+        createPost={createPost}
         createComment={createComment}
         incrementLike={incrementLike}
       />

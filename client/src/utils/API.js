@@ -39,12 +39,14 @@ const API = {
     const res = await axios.post('/api/posts/newPost', { post })
     return res.data
   },
-  getPosts(_id) {
+  async getPosts(_id) {
     // I switched this back. On second thought, it didn't make sense to write two functions that essesntially do the same thing
-    return axios.get(`/api/posts/getPosts/${_id}`)
+    const posts = await axios.get(`/api/posts/getPosts/${_id}`)
+    return posts.data
   },
-  addLike(newLike) {
-    return axios.put('/api/posts/likePost', newLike)
+  async addLike(newLike) {
+    const like = await axios.put('/api/posts/likePost', newLike)
+    return like.data
   },
   async getAllUsers() {
     const { data } = await axios.get('/api/users/getAllUsers')

@@ -57,8 +57,8 @@ const Home = () => {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
             })
-            API.getPosts(_id).then((response) => {
-              setPosts(response.data.reverse())
+            API.getPosts(_id).then((posts) => {
+              setPosts(posts.reverse())
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -128,7 +128,6 @@ const Home = () => {
       },
     }
     // send to DB as an update on the post with postID
-    console.log(newLike)
     API.addLike(newLike)
       .then((res) => {
         console.log(res)

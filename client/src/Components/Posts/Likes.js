@@ -26,15 +26,14 @@ function Likes({ likes, postId, state }) {
       },
     }
     API.addLike(newLike)
-      .then((res) => {
+      .then(() => {
         setThisPost({
           ...thisPost,
           likes: [newLike, ...thisPost.likes],
         })
-        console.log(res)
       })
-      .catch((err) => {
-        console.error('Failed to add like', err)
+      .catch(() => {
+        Toast('error', 'Something went wrong!', 5000)
       })
 
     // socket.io?

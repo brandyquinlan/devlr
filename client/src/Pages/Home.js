@@ -12,6 +12,7 @@ import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
+import Toast from '../utils/Toast'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -93,6 +94,11 @@ const Home = () => {
 
   function createPost(event, title, body) {
     event.preventDefault()
+    if (!title || !body) {
+      Toast('success', 'Posts require some content, silly', 500)
+      return
+    }
+
     const postData = {
       title,
       body,
@@ -105,8 +111,11 @@ const Home = () => {
         setPosts([res, ...posts])
       })
       .catch((err) => {
-        // throw new Error('error saving post', err)
-        console.log(err)
+        Toast(
+          'error',
+          `We're sorry, we are unable to process this request! Error: ${err}`,
+          3000,
+        )
       })
   }
 

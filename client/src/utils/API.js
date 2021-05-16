@@ -44,9 +44,8 @@ const API = {
     const posts = await axios.get(`/api/posts/getPosts/${_id}`)
     return posts.data
   },
-  async addLike(newLike) {
-    const like = await axios.put('/api/posts/likePost', newLike)
-    return like.data
+  addLike(newLike) {
+    return axios.put('/api/posts/likePost', newLike)
   },
   async getAllUsers() {
     const { data } = await axios.get('/api/users/getAllUsers')

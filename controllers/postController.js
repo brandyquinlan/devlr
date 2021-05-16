@@ -18,13 +18,15 @@ router.post('/newPost', async (request, response) => {
 router.put('/likePost', (request, response) => {
   // To like a post, pass an object into the reqeust body, with a property postID
   // ALONG with the user who liked it, property userID
-  const { like, postID } = request.body
+  const { like, postId } = request.body
   try {
-    db.Post.findOneAndUpdate({ _id: postID }, { $push: { likes: like } }).then(
-      (res) => {
+    db.Post.findOneAndUpdate({ _id: postId }, { $push: { likes: like } })
+      .then((res) => {
         response.send(res)
-      },
-    )
+      })
+      .catch((err) => {
+        response.send(err)
+      })
   } catch (error) {
     response.sendStatus(500)
   }

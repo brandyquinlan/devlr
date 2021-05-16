@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from 'react'
 import { Overlay, Tooltip } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
+import Toast from '../../utils/Toast'
 
 function Likes({ likes, postId, state }) {
   const [store, dispatch] = useContext(UserContext)
@@ -11,11 +12,10 @@ function Likes({ likes, postId, state }) {
 
   function incrementLike(event) {
     event.preventDefault()
-    // const index = posts.findIndex((p) => p._id === postID)
-    // if (posts[index].likes.findIndex((l) => l.user === store.user._id) > -1) {
-    //   Toast('error', 'youve already liked this', 1000)
-    //   return
-    // }
+    if (thisPost.likes.findIndex((l) => l.user === store.user._id) > -1) {
+      Toast('error', 'youve already liked this', 1000)
+      return
+    }
     const newLike = {
       postId,
       like: {
@@ -30,6 +30,7 @@ function Likes({ likes, postId, state }) {
           ...thisPost,
           likes: [newLike, ...thisPost.likes],
         })
+        console.log(res)
       })
       .catch((err) => {
         console.error('Failed to add like', err)
@@ -61,8 +62,8 @@ function Likes({ likes, postId, state }) {
             {(props) => (
               <Tooltip id="likes" {...props}>
                 <ul>
-                  {likes.map((l) => (
-                    <li key={l.user}>{l.userName}</li>
+                  {likes.map((l, i) => (
+                    <li key={i}>{l.userName}</li>
                   ))}
                 </ul>
               </Tooltip>

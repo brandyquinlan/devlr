@@ -3,9 +3,9 @@ import React from 'react'
 function CurrentComments({ comments }) {
   return (
     <div>
-      {comments.map((c) => (
+      {comments.map((c, i) => (
         // Dont forget to add a key
-        <div key={c}>
+        <div key={i}>
           <p>{c.text}</p>
           <p className="small text-muted">
             Posted by {c.userName}, {c.date}

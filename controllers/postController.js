@@ -52,9 +52,11 @@ router.get('/getPosts/:_id', async (request, response) => {
   const { _id } = request.params
 
   try {
-    db.Post.find({ user: _id }).then((posts) => {
-      response.send(posts)
-    })
+    db.Post.find({ user: _id })
+      .sort({ date: -1 })
+      .then((posts) => {
+        response.send(posts)
+      })
   } catch (err) {
     response.senjson(err)
   }

@@ -112,18 +112,6 @@ const Home = () => {
       })
   }
 
-  function createComment(event, textRef, postId) {
-    event.preventDefault()
-    const newComment = {
-      text: textRef,
-      userName: store.profile.name,
-      userId: store.user._id,
-    }
-    console.log(newComment, postId)
-    // const updatedPost = postStore.find((p) => p._id === postId)
-    // updatedPost.comments = [...updatedPost.comments, newComment]
-  }
-
   useEffect(() => {
     if (!themePref);
     else {
@@ -167,7 +155,6 @@ const Home = () => {
                         posts={posts}
                         createPost={createPost}
                         projects={projects}
-                        createComment={createComment}
                       />
                     </div>
                     <div

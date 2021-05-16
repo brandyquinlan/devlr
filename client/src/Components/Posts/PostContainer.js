@@ -2,20 +2,14 @@ import React from 'react'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 
-function PostContainer({ posts, createComment, createPost }) {
+function PostContainer({ posts, createPost }) {
   return (
     <div>
       <NewPostBox createPost={createPost} />
       {posts ? (
         [
           posts.map((post, i) => (
-            <LazyPostTab
-              key={i}
-              title={post.title}
-              expanded
-              post={post}
-              createComment={createComment}
-            />
+            <LazyPostTab key={i} title={post.title} expanded post={post} />
           )),
         ]
       ) : (

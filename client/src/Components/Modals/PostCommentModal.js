@@ -5,8 +5,21 @@ import CurrentComments from '../CurrentComments/CurrentComments'
 // import API from '../../utils/API'
 
 function PostCommentModal(props) {
+  const [store, dispatch] = useContext(UserContext)
   // Do I use this here and pass as props or on the modal page where the text box actually is?
   const textRef = useRef()
+
+  function createComment(event, textRef, postId) {
+    event.preventDefault()
+    const newComment = {
+      text: textRef,
+      userName: store.profile.name,
+      userId: store.user._id,
+    }
+    console.log(newComment, postId)
+    // const updatedPost = postStore.find((p) => p._id === postId)
+    // updatedPost.comments = [...updatedPost.comments, newComment]
+  }
 
   return (
     <Modal
@@ -41,7 +54,7 @@ function PostCommentModal(props) {
           variant="secondary"
           type="button"
           onClick={(e) => {
-            props.createComment(e, textRef.current.value, props.postId)
+            createComment(e, textRef.current.value, props.postId)
           }}
         >
           Add Comment

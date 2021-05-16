@@ -2,7 +2,7 @@ import React, { useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
 const LazyPostTab = lazy(() => import('./PostTab'))
 
-function component({ post, title, createComment }) {
+function component({ post, title }) {
   const { _id, author, user, body, date, comments, likes } = post
   const [thisPost, setThisPost] = useState({
     postId: _id,
@@ -19,7 +19,6 @@ function component({ post, title, createComment }) {
       <LazyPostTab
         post={thisPost}
         title={title}
-        createComment={createComment}
         state={[thisPost, setThisPost]}
       />
     </Suspense>

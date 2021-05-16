@@ -3,7 +3,7 @@ import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
 
-function PostBox({ post, createComment, state }) {
+function PostBox({ post, state }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const { postId, author, user, body, date, likes, comments } = post
 
@@ -22,7 +22,6 @@ function PostBox({ post, createComment, state }) {
           show={commentsModalShow}
           onHide={() => setCommentsModalShow(false)}
           comments={comments}
-          createComment={createComment}
           postId={postId}
         />
         <button

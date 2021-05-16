@@ -3,7 +3,7 @@ import PostContainer from '../Posts/PostContainer'
 
 function Activity({ posts, createComment, createPost }) {
   return (
-    <>
+    <div>
       {/* {loadingData ? (
         <PostContainer>Please wait while we get your posts...</PostContainer>
       ) : ( */}
@@ -13,7 +13,7 @@ function Activity({ posts, createComment, createPost }) {
         createComment={createComment}
       />
       {/* )} */}
-    </>
+    </div>
   )
 }
 

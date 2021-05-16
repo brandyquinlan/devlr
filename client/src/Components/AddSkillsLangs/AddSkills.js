@@ -38,7 +38,7 @@ function AddSkills(props) {
                   <button
                     type="button"
                     data-value={skill}
-                    className="bg-danger"
+                    className="btn-outline-secondary"
                     onClick={(e) => props.removeSkill(e, index)}
                   >
                     x

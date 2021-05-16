@@ -36,7 +36,7 @@ function AddLangs(props) {
                   <button
                     type="button"
                     data-value={lang}
-                    className="bg-danger"
+                    className="btn-outline-secondary"
                     onClick={(e) => props.removeLang(e, index)}
                   >
                     x

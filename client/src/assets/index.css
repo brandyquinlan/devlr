@@ -112,6 +112,24 @@ button {
   border: none;
 }
 
+button#addSkill  {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
+button#addLang  {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
 button:hover {
   opacity: 0.8;
 }
@@ -176,7 +194,7 @@ input::placeholder {
 
 button.close {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .modal-header,
@@ -236,6 +254,14 @@ a:active,
 a:focus {
   color: var(--main-text-color);
   opacity: 0.8;
+  text-decoration: none;
+}
+
+a.switchLink:hover,
+a.switchLink:active,
+a.switchLink:focus {
+  color: var(--main-text-color);
+  opacity: 0.8;
   text-decoration: underline;
 }
 
@@ -243,6 +269,8 @@ li > a {
   display: inline-block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  padding-left: 6px;
+  padding-right: 6px;
   color: var(--main-text-color);
 }
 
@@ -600,18 +628,32 @@ button.disabled {
 }
 
 .devPic {
-  background-color: var(--main-text-color);
   width: 50px;
   height: 50px;
-  margin-left: 0.5rem;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
 }
 
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
 }
 
+a > span.devLink:hover {
+  text-decoration: none !important;
+}
+
 #col2 {
   width: 100%;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+#col3 {
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
+
 }
 
 /* Media Queries */
@@ -619,16 +661,18 @@ button.disabled {
   .container {
     margin: 0.25rem;
   }
-  .tab {
+  /* .tab {
     max-width: 340px;
-  }
+  } */
   #mobile-side-nav {
     margin-top: 2rem;
   }
   #col2 {
     margin-top: 1.5rem;
     margin-left: 0.75rem;
-    margin-right: 1rem;
+    margin-right: 0.25rem;
+    max-width: 350px;
+    min-width: 300px;
   }
   #col3 {
     display: none !important;

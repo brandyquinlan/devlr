@@ -10,7 +10,8 @@ import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
-import Toast from '../utils/Toast'
+import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
+import NoExpandTab from '../Components/NoExpandTab'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -174,7 +175,9 @@ const Home = () => {
                       className="d-flex flex-column align-items-right ml-4"
                       id="col3"
                     >
-                      <Tab title="Featured Devs" />
+                      <NoExpandTab title="Featured Devs">
+                        <FeaturedDevs />
+                      </NoExpandTab>
                       <Tab title="Ad" />
                     </div>
                   </div>

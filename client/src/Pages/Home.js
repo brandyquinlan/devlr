@@ -60,7 +60,6 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-              console.log('postRes', postRes)
               setPosts(postRes.reverse())
               setAuthenticated(true)
               setLoadingData(false)

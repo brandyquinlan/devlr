@@ -12,7 +12,6 @@ function FeaturedDevs() {
         const devIndex = Math.floor(Math.random() * Math.floor(len))
         devUser.push(response[devIndex])
       }
-      console.log(devUser)
       setUsers(devUser)
     })
   }, [])

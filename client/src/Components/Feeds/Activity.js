@@ -1,7 +1,7 @@
 import React from 'react'
 import PostContainer from '../Posts/PostContainer'
 
-function Activity({ posts, createComment, createPost, incrementLike }) {
+function Activity({ posts, createComment, createPost }) {
   return (
     <>
       {/* {loadingData ? (
@@ -11,7 +11,6 @@ function Activity({ posts, createComment, createPost, incrementLike }) {
         posts={posts}
         createPost={createPost}
         createComment={createComment}
-        incrementLike={incrementLike}
       />
       {/* )} */}
     </>

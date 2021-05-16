@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
 
-function PostBox({ post, incrementLike, createComment, state }) {
+function PostBox({ post, createComment, state }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const { postId, author, user, body, date, likes, comments } = post
 
@@ -13,16 +14,10 @@ function PostBox({ post, incrementLike, createComment, state }) {
         <p className="small" id={user}>
           Posted by {author}, {date.split('T')[0]}
         </p>
-        ƒ
       </div>
       <hr className="75"></hr>
       <div className="d-flex justify-content-end vertical-align-center">
-        <Likes
-          likes={likes}
-          postId={postId}
-          incrementLike={incrementLike}
-          state={state}
-        />{' '}
+        <Likes likes={likes} postId={postId} state={state} />{' '}
         <PostCommentModal
           show={commentsModalShow}
           onHide={() => setCommentsModalShow(false)}

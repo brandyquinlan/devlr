@@ -2,7 +2,7 @@ import React from 'react'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 
-function PostContainer({ posts, createComment, incrementLike, createPost }) {
+function PostContainer({ posts, createComment, createPost }) {
   return (
     <div>
       <NewPostBox createPost={createPost} />
@@ -15,7 +15,6 @@ function PostContainer({ posts, createComment, incrementLike, createPost }) {
               expanded
               post={post}
               createComment={createComment}
-              incrementLike={incrementLike}
             />
           )),
         ]

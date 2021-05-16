@@ -1,18 +1,49 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { Overlay, Tooltip } from 'react-bootstrap'
+import { UserContext } from '../../utils/UserState'
+import API from '../../utils/API'
 
-function Likes({ likes, incrementLike, postId }) {
+function Likes({ likes, postId, state }) {
+  const [store, dispatch] = useContext(UserContext)
   const [show, setShow] = useState(false)
+  const [thisPost, setThisPost] = state
   const target = useRef(null)
+
+  function incrementLike(event) {
+    event.preventDefault()
+    // const index = posts.findIndex((p) => p._id === postID)
+    // if (posts[index].likes.findIndex((l) => l.user === store.user._id) > -1) {
+    //   Toast('error', 'youve already liked this', 1000)
+    //   return
+    // }
+    const newLike = {
+      postId,
+      like: {
+        user: store.user._id,
+        userName: store.profile.name,
+      },
+    }
+    // send to DB as an update on the post with postID
+    API.addLike(newLike)
+      .then((res) => {
+        setThisPost({
+          ...thisPost,
+          likes: [newLike, ...thisPost.likes],
+        })
+      })
+      .catch((err) => {
+        console.error('Failed to add like', err)
+      })
+
+    // socket.io?
+  }
+
   return (
     <div>
       {likes.length === 0 ? (
-        <button
-          type="button"
-          className="p-0"
-          onClick={(e) => incrementLike(e, postId)}
-        >
-          <span className="material-icons">auto_awesome</span>0
+        <button type="button" className="p-0" onClick={incrementLike}>
+          <span className="material-icons">auto_awesome</span>
+          {likes}
         </button>
       ) : (
         <>

@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
-import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -23,8 +22,7 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, dispatchPost] = useContext(PostContext)
-  // const [posts, setPosts] = useState()
+  const [posts, setPosts] = useState([])
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -62,12 +60,9 @@ const Home = () => {
             })
             API.getPosts(_id).then((postRes) => {
               console.log('postRes', postRes)
-              // setPosts(postRes.reverse())
-              dispatchPost({ type: 'get posts', payload: postRes })
+              setPosts(postRes.reverse())
               setAuthenticated(true)
-              setTimeout(() => {
-                setLoadingData(false)
-              }, 1000)
+              setLoadingData(false)
             })
           }
         })
@@ -109,10 +104,7 @@ const Home = () => {
 
     API.post(postData)
       .then((res) => {
-        dispatchPost({ type: 'new post', payload: [res, ...posts] })
-        // dispatchPost({ type: 'new post', payload: postData })
-        // console.log('inside setPosts after new post', postStore)
-        console.log(res)
+        setPosts([res, ...posts])
       })
       .catch((err) => {
         // throw new Error('error saving post', err)
@@ -130,39 +122,6 @@ const Home = () => {
     console.log(newComment, postId)
     // const updatedPost = postStore.find((p) => p._id === postId)
     // updatedPost.comments = [...updatedPost.comments, newComment]
-    // dispatchPost({ type: 'add comment', payload: updatedPost })
-  }
-
-  function incrementLike(event, postID) {
-    event.preventDefault()
-    const index = posts.findIndex((p) => p._id === postID)
-    // if (posts[index].likes.findIndex((l) => l.user === store.user._id) > -1) {
-    //   Toast('error', 'youve already liked this', 1000)
-    //   return
-    // }
-
-    const newLike = {
-      postID,
-      like: {
-        user: store.user._id,
-        userName: store.profile.name,
-      },
-    }
-    // send to DB as an update on the post with postID
-    API.addLike(newLike)
-      .then((res) => {
-        const updatedPost = posts.find((p) => p._id === postID)
-        updatedPost.likes.push(res)
-        const postsCopy = posts
-        postsCopy[index] = updatedPost
-        // setPosts(postsCopy)
-        dispatchPost({ type: 'add like', payload: postsCopy })
-      })
-      .catch((err) => {
-        console.error('Failed to add like', err)
-      })
-
-    // socket.io?
   }
 
   useEffect(() => {
@@ -207,7 +166,6 @@ const Home = () => {
                       <Navbar
                         posts={posts}
                         createPost={createPost}
-                        incrementLike={incrementLike}
                         projects={projects}
                         createComment={createComment}
                       />

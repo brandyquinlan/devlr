@@ -15,7 +15,7 @@ router.post('/newPost', async (request, response) => {
   }
 })
 
-router.put('/likePost', (request, response) => {
+router.put('/addLike', (request, response) => {
   // To like a post, pass an object into the reqeust body, with a property postID
   // ALONG with the user who liked it, property userID
   const { like, postId } = request.body
@@ -29,6 +29,25 @@ router.put('/likePost', (request, response) => {
       })
   } catch (error) {
     response.sendStatus(500)
+  }
+})
+
+router.put('/removeLike', (request, response) => {
+  const { userId, postId } = request.body
+
+  try {
+    db.Post.findOneAndUpdate(
+      { _id: postId },
+      { $pull: { likes: { user: userId } } },
+    )
+      .then((res) => {
+        response.send(res)
+      })
+      .catch((err) => {
+        response.send(err).status(404)
+      })
+  } catch (err) {
+    response.send(err).statusMessage(500)
   }
 })
 

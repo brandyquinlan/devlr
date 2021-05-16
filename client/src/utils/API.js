@@ -45,7 +45,10 @@ const API = {
     return posts.data
   },
   addLike(newLike) {
-    return axios.put('/api/posts/likePost', newLike)
+    return axios.put('/api/posts/addLike', newLike)
+  },
+  removeLike(oldLike) {
+    return axios.put('/api/posts/removeLike', oldLike)
   },
   addComment(newComment) {
     return axios.put('/api/posts/addComment', newComment)

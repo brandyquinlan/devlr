@@ -7,17 +7,38 @@ import Toast from '../../utils/Toast'
 function Likes({ likes, postId, state }) {
   const [store, dispatch] = useContext(UserContext)
   const [show, setShow] = useState(false)
+  const [liked, setLiked] = useState(false)
   const [thisPost, setThisPost] = state
   const target = useRef(null)
 
   function incrementLike(event) {
     event.preventDefault()
-    // For now I don't know of a better way to handle what to do if the user has already liked a post
-    // Ideally hitting the button again would 'unlike' it, but I haven't looked into it yet
-    if (thisPost.likes.findIndex((l) => l.user === store.user._id) > -1) {
-      Toast('error', 'youve already liked this', 1000)
+
+    // This is the handler for if you have already liked a post
+    if (
+      thisPost.likes.findIndex((l) => l.user === store.user._id) > -1 ||
+      liked
+    ) {
+      // Have to update the state in a somewhat complicated manner
+      // First find the index of the like belonging to the user
+      const index = thisPost.likes.findIndex((i) => i.user === store.user._id)
+      // Then set up the new array of likes.
+      let splicedLikes
+      // For some reason it gets buggy when the post only has one like, so just check for that first
+      thisPost.likes.length < 2
+        ? (splicedLikes = [])
+        : (splicedLikes = thisPost.likes.splice(index, 1))
+
+      API.removeLike({ userId: store.user._id, postId }).then(() =>
+        setThisPost({
+          ...thisPost,
+          likes: [...splicedLikes],
+        }),
+      )
+      setLiked(false)
       return
     }
+
     const newLike = {
       postId,
       like: {
@@ -25,11 +46,13 @@ function Likes({ likes, postId, state }) {
         userName: store.profile.name,
       },
     }
+
     API.addLike(newLike)
       .then(() => {
+        setLiked(true)
         setThisPost({
           ...thisPost,
-          likes: [newLike, ...thisPost.likes],
+          likes: [newLike.like, ...thisPost.likes],
         })
       })
       .catch(() => {

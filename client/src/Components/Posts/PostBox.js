@@ -21,8 +21,8 @@ function PostBox({ post, state }) {
         <PostCommentModal
           show={commentsModalShow}
           onHide={() => setCommentsModalShow(false)}
-          comments={comments}
           postId={postId}
+          state={state}
         />
         <button
           type="button"

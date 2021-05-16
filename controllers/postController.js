@@ -32,6 +32,21 @@ router.put('/likePost', (request, response) => {
   }
 })
 
+router.put('/addComment', (request, response) => {
+  const { postId, comment } = request.body
+  try {
+    db.Post.findOneAndUpdate({ _id: postId }, { $push: { comments: comment } })
+      .then((res) => {
+        response.send(res).status(200)
+      })
+      .catch(() => {
+        response.sendStatus(404)
+      })
+  } catch (err) {
+    response.send(err).status(500)
+  }
+})
+
 // Get the posts of the users specefied in the ID
 router.get('/getPosts/:_id', async (request, response) => {
   const { _id } = request.params

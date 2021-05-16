@@ -627,6 +627,15 @@ a > span.devLink:hover {
 
 #col2 {
   width: 100%;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+#col3 {
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
+
 }
 
 /* Media Queries */
@@ -634,16 +643,18 @@ a > span.devLink:hover {
   .container {
     margin: 0.25rem;
   }
-  .tab {
+  /* .tab {
     max-width: 340px;
-  }
+  } */
   #mobile-side-nav {
     margin-top: 2rem;
   }
   #col2 {
     margin-top: 1.5rem;
     margin-left: 0.75rem;
-    margin-right: 1rem;
+    margin-right: 0.25rem;
+    max-width: 350px;
+    min-width: 300px;
   }
   #col3 {
     display: none !important;

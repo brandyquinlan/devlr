@@ -112,6 +112,24 @@ button {
   border: none;
 }
 
+button#addSkill  {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
+button#addLang  {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
 button:hover {
   opacity: 0.8;
 }

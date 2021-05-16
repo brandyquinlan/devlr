@@ -6,14 +6,10 @@ import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 import AddSkills from '../AddSkillsLangs/AddSkills'
-import AddLangs from '../AddSkillsLangs/AddLangs'
 
 function SkillsModal(props) {
   const [store, dispatch] = useContext(UserContext)
   const [newSkills, setNewSkills] = useState(store.profile.skills)
-  const [newLangs, setNewLangs] = useState(store.profile.languages)
-  // const { skills, languages } = store.profile
-  // const newSkills = store.profile.skills
 
   function saveSkills() {
     API.updateProfile({ skills: newSkills }, store.user._id).then(() =>

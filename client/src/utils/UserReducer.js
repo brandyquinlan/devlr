@@ -20,11 +20,14 @@ function UserReducer(state, action) {
         ...state,
         profile: action.payload,
       }
-    case 'set user token':
+    case 'set user id for password reset':
       return {
         ...state,
-        accessToken: action.payload,
+        user: {
+          _id: action.payload,
+        },
       }
+
     case 'logout':
       API.logout()
       window.location.href = '/login'

@@ -28,7 +28,7 @@ function ResetPasswordModal(props) {
     }
 
     API.resetPassword(password.password, user._id)
-      .then((res) => {
+      .then(() => {
         API.login({
           email: user.email,
           password: password.password,

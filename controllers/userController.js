@@ -38,7 +38,6 @@ router.put('/setAccessToken', async (req, res) => {
     }
     res.status(200).json(user)
   } catch (err) {
-    console.error(err)
     res.status(500).json({ message: err.message })
   }
 })
@@ -154,7 +153,7 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
     text: `Just follow this link to reset the password to your devlr account! ${resetLink}`,
   }
 
-  mailer.verify((err, success) => {
+  mailer.verify((err) => {
     if (err) throw new Error(err)
   })
 
@@ -163,12 +162,7 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
       { email: userEmail },
       { resetCode: uniqueCode, resetCodeExpires: Date.now() + 360000 },
     )
-      .then((user) => {
-        const userInfo = {
-          email: user.email,
-          _id: user._id,
-          resetCode: user.resetCode,
-        }
+      .then(() => {
         mailer.sendMail(mail)
         response.sendStatus(200)
       })
@@ -187,7 +181,6 @@ router.get('/verifyResetCode/:resetCode', (request, response) => {
     db.User.findOne({ resetCode }).then((user) => {
       if (user.resetCodeExpires > Date.now()) {
         const userInfo = {
-          email: user.email,
           _id: user._id,
         }
         response.send(userInfo).status(200)

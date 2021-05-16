@@ -25,8 +25,11 @@ export default function Settings() {
   useEffect(() => {
     if (resetCode) {
       API.verifyResetCode(resetCode)
-        .then(({ data }) => {
-          if (data._id) setAuthenticated(true).then(() => setLoadingData(false))
+        .then(({ _id }) => {
+          if (_id) {
+            dispatch({ type: 'set user id for password reset', payload: _id })
+            setAuthenticated(true).then(() => setLoadingData(false))
+          }
         })
         .catch((err) => {
           setAuthenticating(false)

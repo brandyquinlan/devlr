@@ -5,19 +5,22 @@ const LazyPostTab = lazy(() => import('./PostTab'))
 function component({ post, title }) {
   const { _id, author, user, body, date, comments, likes } = post
   const [thisPost, setThisPost] = useState({
-    postId: _id,
-    author,
-    user,
-    body,
-    date,
-    comments,
-    likes,
+    comments: comments,
+    likes: likes,
   })
 
   return (
     <Suspense fallback={<Loading />}>
       <LazyPostTab
-        post={thisPost}
+        post={{
+          _id,
+          author,
+          user,
+          body,
+          date,
+          comments: thisPost.çomments,
+          likes: thisPost.likes,
+        }}
         title={title}
         state={[thisPost, setThisPost]}
       />

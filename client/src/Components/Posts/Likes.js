@@ -12,6 +12,8 @@ function Likes({ likes, postId, state }) {
 
   function incrementLike(event) {
     event.preventDefault()
+    // For now I don't know of a better way to handle what to do if the user has already liked a post
+    // Ideally hitting the button again would 'unlike' it, but I haven't looked into it yet
     if (thisPost.likes.findIndex((l) => l.user === store.user._id) > -1) {
       Toast('error', 'youve already liked this', 1000)
       return
@@ -23,7 +25,6 @@ function Likes({ likes, postId, state }) {
         userName: store.profile.name,
       },
     }
-    // send to DB as an update on the post with postID
     API.addLike(newLike)
       .then((res) => {
         setThisPost({

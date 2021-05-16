@@ -19,7 +19,7 @@ export default function Background({ profile }) {
       <h6 className="my-2">Position</h6>
       <p>{profile.currentPosition}</p>
       <small>
-        {profile.from.split('T')[0]} — {profile.to.split('T')[0]}
+        {profile.from?.split('T')[0]} — {profile.to?.split('T')[0]}
       </small>
     </div>
   )

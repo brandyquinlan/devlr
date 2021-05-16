@@ -23,11 +23,9 @@ function Likes({ likes, postId, state }) {
       // First find the index of the like belonging to the user
       const index = thisPost.likes.findIndex((i) => i.user === store.user._id)
       // Then set up the new array of likes.
-      let splicedLikes
-      // For some reason it gets buggy when the post only has one like, so just check for that first
-      thisPost.likes.length < 2
-        ? (splicedLikes = [])
-        : (splicedLikes = thisPost.likes.splice(index, 1))
+      let splicedLikes =
+        // For some reason it gets buggy when the post only has one like, so just check for that first
+        thisPost.likes.length < 2 ? [] : thisPost.likes.splice(index, 1)
 
       API.removeLike({ userId: store.user._id, postId }).then(() =>
         setThisPost({

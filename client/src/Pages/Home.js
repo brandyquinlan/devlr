@@ -66,10 +66,8 @@ const Home = () => {
             })
           }
         })
-        .catch((err) => {
-          setAuthenticating(false)
-          setLoadingData(false)
-          console.log(err)
+        .catch(() => {
+          window.location.href = '/login'
         })
     }
   }, [code])

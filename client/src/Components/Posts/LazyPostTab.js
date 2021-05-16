@@ -13,12 +13,12 @@ function component({ post, title }) {
     <Suspense fallback={<Loading />}>
       <LazyPostTab
         post={{
-          _id,
+          postId: _id,
           author,
           user,
           body,
           date,
-          comments: thisPost.çomments,
+          comments: thisPost.comments,
           likes: thisPost.likes,
         }}
         title={title}

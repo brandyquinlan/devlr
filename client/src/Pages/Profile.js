@@ -50,9 +50,8 @@ const Home = () => {
           })
         }
       })
-      .catch((e) => {
-        console.error(e)
-        // window.location.href = `/login`
+      .catch(() => {
+        window.location.href = `/login`
       })
   }, [])
 

@@ -4,7 +4,6 @@ import { Badge } from 'react-bootstrap'
 import PasswordValidator from 'password-validator'
 import Toast from '../utils/Toast'
 import API from '../utils/API'
-import Footer from '../Components/Footer'
 import 'react-toastify/dist/ReactToastify.css'
 
 const schema = new PasswordValidator()
@@ -212,7 +211,6 @@ function Signup() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
 }

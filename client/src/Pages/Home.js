@@ -34,6 +34,7 @@ const Home = () => {
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
+      window.history.pushState({}, null, '/home')
       API.getUserInfo().then(([user, profile]) => {
         setAuthenticated(true)
         const { _id } = user
@@ -50,7 +51,6 @@ const Home = () => {
           })
         })
       })
-      window.history.pushState({}, null, '/home')
     } else {
       API.getUserInfo()
         .then(([user, profile]) => {
@@ -120,22 +120,21 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (!themePref);
-    else {
-      const r = document.querySelector(':root')
-      const color = themePref
+    if (!themePref) return
 
-      if (color === 'linen') {
-        r.style.setProperty('--main-bg-color', `#${color}`)
-        r.style.setProperty('--main-text-color', '#222222')
-        // r.style.setProperty('--secondary-bg-color', '#979797')
-      } else {
-        r.style.setProperty('--main-bg-color', `#${color}`)
-        r.style.setProperty('--main-text-color', 'linen')
-        r.style.setProperty('--secondary-bg-color', 'transparent')
-      } // nested if else end tag
-    } // main if else end tag
-  }, [store.profile]) // setTheme end tag
+    const r = document.querySelector(':root')
+    const color = themePref
+
+    if (color === 'linen') {
+      r.style.setProperty('--main-bg-color', `#${color}`)
+      r.style.setProperty('--main-text-color', '#222222')
+      // r.style.setProperty('--secondary-bg-color', '#979797')
+    } else {
+      r.style.setProperty('--main-bg-color', `#${color}`)
+      r.style.setProperty('--main-text-color', 'linen')
+      r.style.setProperty('--secondary-bg-color', 'transparent')
+    }
+  }, [store.profile])
 
   return (
     <div className="container">

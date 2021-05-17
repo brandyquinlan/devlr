@@ -21,15 +21,6 @@ function NavTab({ currentPage, handlePageChange }) {
           Profile
         </button>
       </li>
-      <li className="nav-item">
-        <button
-          type="button"
-          onClick={() => handlePageChange('Network')}
-          className={currentPage === 'Network' ? 'nav-link active' : 'nav-link'}
-        >
-          Network
-        </button>
-      </li>
     </ul>
   )
 }

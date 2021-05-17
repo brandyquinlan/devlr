@@ -15,6 +15,11 @@ function UserReducer(state, action) {
         ...state,
         user: action.payload,
       }
+    case 'target user':
+      return {
+        ...state,
+        targetUser: action.payload,
+      }
     case 'set profile':
       return {
         ...state,

@@ -4,7 +4,7 @@ import Posts from '../Feeds/Posts'
 import Profile from '../Feeds/Profile'
 import Network from '../Feeds/Network'
 
-function ProfileNavbar({ projects }) {
+function ProfileNavbar({ posts, projects }) {
   const [page, setPage] = useState('Posts')
 
   function handlePageChange(newPage) {
@@ -12,13 +12,10 @@ function ProfileNavbar({ projects }) {
   }
 
   function renderPage() {
-    if (page === 'Network') {
-      return <Network />
-    }
     if (page === 'Profile') {
       return <Profile />
     }
-    return <Posts />
+    return <Posts posts={posts} />
   }
 
   return (

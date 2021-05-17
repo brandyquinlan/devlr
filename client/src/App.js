@@ -9,7 +9,6 @@ import Settings from './Pages/Settings'
 import Profile from './Pages/Profile'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/index.css'
-import Footer from './Components/Footer'
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
             <Route exact path="/profile" component={Profile} />
           </Switch>
         </Router>
-        <Footer />
       </ModalStore>
     </UserStore>
   )

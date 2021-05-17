@@ -4,6 +4,7 @@ import { Badge } from 'react-bootstrap'
 import PasswordValidator from 'password-validator'
 import Toast from '../utils/Toast'
 import API from '../utils/API'
+import Footer from '../Components/Footer'
 import 'react-toastify/dist/ReactToastify.css'
 
 const schema = new PasswordValidator()
@@ -123,93 +124,96 @@ function Signup() {
   }
 
   return (
-    <div>
-      <div id="signUp">
-        <ToastContainer
-          transition={Flip}
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <div className="d-flex flex-row align-items-center justify-content-around">
-          <div className="tab bg-secondary gradient">
-            <h1>devlr</h1>
-            <h4>Sign Up</h4>
-            <div className="separator mt-4"></div>
-            <form className="signup" onSubmit={signUp}>
-              <div className="form-group">
-                <label htmlFor="inputEmail2">Email address</label>
-                <input
-                  ref={emailRef}
-                  onChange={handleInputChange}
-                  type="email"
-                  className="form-control"
-                  id="email-input"
-                  placeholder="email"
-                  required
-                ></input>
-              </div>
-              <div className="form-group">
-                <label htmlFor="passwordInput">Password</label>
-                <input
-                  ref={passwordRef}
-                  onChange={handleInputChange}
-                  type="password"
-                  className="form-control"
-                  id="passawordInput"
-                  placeholder="password"
-                ></input>
-              </div>
-              <div className="form-group">
-                <input
-                  ref={confirmRef}
-                  onChange={handleInputChange}
-                  type="password"
-                  className="form-control"
-                  id="passawordInput2"
-                  placeholder="confirm password"
-                ></input>
-              </div>
-              <Badge className="float-right" variant={pWordMatch.var}>
-                {pWordMatch.msg}
-              </Badge>
-              <div className="form-group">
-                <label htmlFor="githubUsername">Github username</label>
-                <input
-                  ref={githubRef}
-                  onChange={handleInputChange}
-                  type="text"
-                  className="form-control"
-                  id="githubUsername"
-                  placeholder="github username"
-                  required
-                ></input>
-              </div>
-              <button
-                type="submit"
-                className="btn btn-secondary gradient float-right"
-                onClick={signUp}
-              >
-                Sign Up
-              </button>
-            </form>
-            <br />
-            <h6 style={{ fontWeight: '100' }}>
-              Or log in{' '}
-              <a href="/login" className="switchLink">
-                <span style={{ fontWeight: '400' }}>here</span>
-              </a>
-            </h6>
+    <>
+      <div>
+        <div id="signUp">
+          <ToastContainer
+            transition={Flip}
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <div className="d-flex flex-row align-items-center justify-content-around">
+            <div className="tab bg-secondary gradient">
+              <h1>devlr</h1>
+              <h4>Sign Up</h4>
+              <div className="separator mt-4"></div>
+              <form className="signup" onSubmit={signUp}>
+                <div className="form-group">
+                  <label htmlFor="inputEmail2">Email address</label>
+                  <input
+                    ref={emailRef}
+                    onChange={handleInputChange}
+                    type="email"
+                    className="form-control"
+                    id="email-input"
+                    placeholder="email"
+                    required
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="passwordInput">Password</label>
+                  <input
+                    ref={passwordRef}
+                    onChange={handleInputChange}
+                    type="password"
+                    className="form-control"
+                    id="passawordInput"
+                    placeholder="password"
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <input
+                    ref={confirmRef}
+                    onChange={handleInputChange}
+                    type="password"
+                    className="form-control"
+                    id="passawordInput2"
+                    placeholder="confirm password"
+                  ></input>
+                </div>
+                <Badge className="float-right" variant={pWordMatch.var}>
+                  {pWordMatch.msg}
+                </Badge>
+                <div className="form-group">
+                  <label htmlFor="githubUsername">Github username</label>
+                  <input
+                    ref={githubRef}
+                    onChange={handleInputChange}
+                    type="text"
+                    className="form-control"
+                    id="githubUsername"
+                    placeholder="github username"
+                    required
+                  ></input>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-secondary gradient float-right"
+                  onClick={signUp}
+                >
+                  Sign Up
+                </button>
+              </form>
+              <br />
+              <h6 style={{ fontWeight: '100' }}>
+                Or log in{' '}
+                <a href="/login" className="switchLink">
+                  <span style={{ fontWeight: '400' }}>here</span>
+                </a>
+              </h6>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 

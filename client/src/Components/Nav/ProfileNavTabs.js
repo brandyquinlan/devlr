@@ -6,8 +6,8 @@ function NavTab({ currentPage, handlePageChange }) {
       <li className="nav-item">
         <button
           type="button"
-          onClick={() => handlePageChange('Posts')}
-          className={currentPage === 'Posts' ? 'nav-link active' : 'nav-link'}
+          onClick={() => handlePageChange('ProfilePosts')}
+          className={currentPage === 'ProfilePosts' ? 'nav-link active' : 'nav-link'}
         >
           Posts
         </button>

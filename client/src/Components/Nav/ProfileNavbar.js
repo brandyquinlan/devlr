@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import ProfileNavTabs from './ProfileNavTabs'
-import Posts from '../Feeds/Posts'
+import ProfilePosts from '../Feeds/ProfilePosts'
 import Profile from '../Feeds/Profile'
 import Network from '../Feeds/Network'
 
@@ -15,7 +15,7 @@ function ProfileNavbar({ posts, projects }) {
     if (page === 'Profile') {
       return <Profile />
     }
-    return <Posts posts={posts} />
+    return <ProfilePosts posts={posts} />
   }
 
   return (

@@ -1,8 +1,8 @@
 import React from 'react'
 import PostContainer from '../Posts/PostContainer'
 
-function Posts({ posts }) {
+function ProfilePosts({ posts }) {
   return <PostContainer posts={posts} home={false} />
 }
 
-export default Posts
+export default ProfilePosts

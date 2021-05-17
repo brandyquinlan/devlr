@@ -1,7 +1,7 @@
 import React from 'react'
 import PostContainer from '../Posts/PostContainer'
 
-function Activity({ posts, createPost }) {
+function Posts({ posts, createPost }) {
   return (
     <div>
       {/* {loadingData ? (
@@ -13,4 +13,4 @@ function Activity({ posts, createPost }) {
   )
 }
 
-export default Activity
+export default Posts

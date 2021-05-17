@@ -6,7 +6,7 @@ import API from '../../utils/API'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 
-function PostContainer({ /* posts, */ createPost, home = true }) {
+function PostContainer({ createPost, home = true }) {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)
@@ -30,7 +30,6 @@ function PostContainer({ /* posts, */ createPost, home = true }) {
 
     API.post(postData)
       .then((res) => {
-        // setPosts([res, ...posts])
         postDispatch({ type: 'set posts', payload: [res, ...posts] })
       })
       .catch((err) => {

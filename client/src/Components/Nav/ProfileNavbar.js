@@ -15,7 +15,7 @@ function ProfileNavbar({ posts, projects }) {
     if (page === 'Profile') {
       return <Profile />
     }
-    return <Posts posts={posts} />
+    return <Posts />
   }
 
   return (

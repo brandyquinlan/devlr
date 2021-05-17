@@ -28,7 +28,6 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  // const [posts, setPosts] = useState([])
   const userId = useQuery().get('user')
   const [projects, setProjects] = useState([])
 
@@ -46,7 +45,6 @@ const Home = () => {
             setProjects(info.user.pinnedItems.nodes)
           })
           API.getPosts(_id).then((postRes) => {
-            // setPosts(postRes)
             postDispatch({ type: 'set posts', payload: postRes })
             setAuthenticated(true)
             setLoadingData(false)
@@ -115,7 +113,7 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <ProfileNavbar posts={posts} projects={projects} />
+                      <ProfileNavbar projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

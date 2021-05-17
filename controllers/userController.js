@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const axios = require('axios')
 const dotenv = require('dotenv')
 const { v4: uuid } = require('uuid')
+const mongoose = require('mongoose')
 const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
@@ -87,7 +88,8 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 })
 
 router.get('/getUserInfo/:userId', async (request, response) => {
-  const { userId } = request.params
+  let { userId } = request.params
+  if (request.query.target) userId = mongoose.Types.ObjectId(userId)
 
   // having to destructure and restructure so that the password does not get sent to the client
   try {
@@ -103,6 +105,7 @@ router.get('/getUserInfo/:userId', async (request, response) => {
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])
   } catch (error) {
+    console.error(error)
     response.sendStatus(500)
   }
 })

@@ -19,10 +19,8 @@ function SkillsModal(props) {
 
   function addSkill(e, skill) {
     e.preventDefault()
-    console.log(skill)
     newSkills.push(skill)
     setNewSkills(newSkills)
-    console.log(newSkills)
     dispatch({ type: 'update profile', payload: { skills: newSkills } })
   }
 
@@ -30,7 +28,6 @@ function SkillsModal(props) {
     e.preventDefault()
     newSkills.splice([index], 1)
     setNewSkills(newSkills)
-    console.log(newSkills)
     dispatch({ type: 'update profile', payload: { skills: newSkills } })
   }
 

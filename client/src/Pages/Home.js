@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
+import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -20,11 +21,11 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
+  const [posts, postDispatch] = useContext(PostContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, setPosts] = useState([])
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -34,6 +35,7 @@ const Home = () => {
     // if they came with a code, that means they just signed up, so we want to authenticate them really quick,
     // and then set their access token on them.
     if (code) {
+      window.history.pushState({}, null, '/home')
       API.getUserInfo().then(([user, profile]) => {
         setAuthenticated(true)
         const { _id } = user
@@ -50,7 +52,6 @@ const Home = () => {
           })
         })
       })
-      window.history.pushState({}, null, '/home')
     } else {
       API.getUserInfo()
         .then(([user, profile]) => {
@@ -61,7 +62,7 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-              setPosts(postRes)
+              postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -78,8 +79,14 @@ const Home = () => {
     API.getUserInfo()
       .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
-        dispatch({ type: 'set user', payload: user })
-        dispatch({ type: 'set profile', payload: profile })
+        dispatch({
+          type: 'going home',
+          payload: {
+            user,
+            profile,
+          },
+        })
+        targetDispatch({ type: 'target user', payload: {} })
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -92,50 +99,22 @@ const Home = () => {
   const breakpoint = 768
   const { themePref } = store.profile
 
-  function createPost(event, title, body) {
-    event.preventDefault()
-    if (!title || !body) {
-      Toast('success', 'Posts require some content, silly', 500)
-      return
-    }
-
-    const postData = {
-      title,
-      body,
-      author: store.profile.name,
-      user: store.user._id,
-    }
-
-    API.post(postData)
-      .then((res) => {
-        setPosts([res, ...posts])
-      })
-      .catch((err) => {
-        Toast(
-          'error',
-          `We're sorry, we are unable to process this request! Error: ${err}`,
-          3000,
-        )
-      })
-  }
-
   useEffect(() => {
-    if (!themePref);
-    else {
-      const r = document.querySelector(':root')
-      const color = themePref
+    if (!themePref) return
 
-      if (color === 'linen') {
-        r.style.setProperty('--main-bg-color', `#${color}`)
-        r.style.setProperty('--main-text-color', '#222222')
-        // r.style.setProperty('--secondary-bg-color', '#979797')
-      } else {
-        r.style.setProperty('--main-bg-color', `#${color}`)
-        r.style.setProperty('--main-text-color', 'linen')
-        r.style.setProperty('--secondary-bg-color', 'transparent')
-      } // nested if else end tag
-    } // main if else end tag
-  }, [store.profile]) // setTheme end tag
+    const r = document.querySelector(':root')
+    const color = themePref
+
+    if (color === 'linen') {
+      r.style.setProperty('--main-bg-color', `#${color}`)
+      r.style.setProperty('--main-text-color', '#222222')
+      // r.style.setProperty('--secondary-bg-color', '#979797')
+    } else {
+      r.style.setProperty('--main-bg-color', `#${color}`)
+      r.style.setProperty('--main-text-color', 'linen')
+      r.style.setProperty('--secondary-bg-color', 'transparent')
+    }
+  }, [store.profile])
 
   return (
     <div className="container">
@@ -158,11 +137,7 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar
-                        posts={posts}
-                        createPost={createPost}
-                        projects={projects}
-                      />
+                      <Navbar projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

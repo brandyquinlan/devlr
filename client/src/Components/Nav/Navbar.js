@@ -18,7 +18,7 @@ function Navbar({ posts, projects, createPost }) {
     if (page === 'Profile') {
       return <Profile projects={projects} />
     }
-    return <Activity posts={posts} createPost={createPost} />
+    return <Activity />
   }
 
   return (

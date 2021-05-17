@@ -38,6 +38,8 @@ function BrowseUsersModal(props) {
         return searchCredentials.includes(search.toLowerCase())
       }),
     )
+    console.log(filteredUsers)
+
     return () => {
       setFilteredUsers(users)
     }
@@ -69,7 +71,7 @@ function BrowseUsersModal(props) {
           {filteredUsers.map((user, i) => (
             <DevCard
               key={i}
-              id={user._id}
+              id={user.user}
               avatarUrl={user.avatarUrl}
               name={user.name}
             />

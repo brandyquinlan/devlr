@@ -17,7 +17,14 @@ const API = {
   logout() {
     return axios.get('/api/users/logout')
   },
-  async getUserInfo() {
+  async getUserInfo(userId) {
+    if (userId) {
+      const { data } = await axios.get(
+        `/api/users/getUserInfo/${userId}?target=true`,
+      )
+      return data
+    }
+
     const { data } = await axios.get('/api/users/checkUser')
     const user = await axios.get(`/api/users/getUserInfo/${data._id}`)
     // NOTE THAT THIS USER VARIABLE IS AN ARRAY [USER, PROFILE], SO THAT YOU CAN GET USER AND PROFILE DATA IN ONE CALL

@@ -4,22 +4,6 @@ import UserReducer from './UserReducer'
 
 const initialState = {
   user: {},
-  targetUser: {
-    user: 0,
-    name: '',
-    highestGraduation: '',
-    school: '',
-    skills: [],
-    totalYearsofExperience: '',
-    currentPosition: '',
-    company: '',
-    from: '',
-    to: '',
-    githubUsername: '',
-    languages: [],
-    themePref: '222222',
-    avatartUrl: '',
-  },
   profile: {
     user: 0,
     name: '',

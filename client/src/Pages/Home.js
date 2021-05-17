@@ -78,8 +78,14 @@ const Home = () => {
     API.getUserInfo()
       .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
-        dispatch({ type: 'set user', payload: user })
-        dispatch({ type: 'set profile', payload: profile })
+        dispatch({
+          type: 'going home',
+          payload: {
+            user,
+            profile,
+          },
+        })
+        targetDispatch({ type: 'target user', payload: {} })
         setAuthenticating(false)
       })
       .catch((err) => {

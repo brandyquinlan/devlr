@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
+import { TargetUserContext } from '../utils/TargetUserState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -20,6 +21,7 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
@@ -28,8 +30,6 @@ const Home = () => {
   const userId = useQuery().get('user')
   const [projects, setProjects] = useState([])
 
-  // checking if the user just came from a redirect by searching the url for a code
-  // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
     if (!userId) window.location.href = '/login'
     window.history.pushState({}, null, `/profile`)
@@ -38,7 +38,8 @@ const Home = () => {
         const { _id, accessToken } = user
         const { githubUsername } = profile
         if (_id) {
-          dispatch({ type: 'target user', payload: profile })
+          targetDispatch({ type: 'set target', payload: { profile } })
+
           API.getGithubInfo(githubUsername, accessToken).then((info) => {
             setProjects(info.user.pinnedItems.nodes)
           })
@@ -53,7 +54,7 @@ const Home = () => {
         console.error(e)
         // window.location.href = `/login`
       })
-  }, [userId])
+  }, [])
 
   // load all user data and then set authenticating(false) to render the page
   useEffect(() => {
@@ -61,7 +62,7 @@ const Home = () => {
       .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
-        // dispatch({ type: 'set profile', payload: profile })
+        dispatch({ type: 'set profile', payload: profile })
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -72,10 +73,10 @@ const Home = () => {
 
   const { width } = useViewport()
   const breakpoint = 768
-  const { themePref } = store.targetUser
 
   useEffect(() => {
-    if (!themePref) return
+    if (!targetUser.profile) return
+    const { themePref } = targetUser?.profile
 
     const r = document.querySelector(':root')
     const color = themePref
@@ -89,7 +90,7 @@ const Home = () => {
       r.style.setProperty('--main-text-color', 'linen')
       r.style.setProperty('--secondary-bg-color', 'transparent')
     }
-  }, [store.targetUser])
+  }, [targetUser])
 
   return (
     <div className="container">

@@ -2,6 +2,8 @@ import API from './API'
 
 function UserReducer(state, action) {
   switch (action.type) {
+    case 'going home':
+      return action.payload
     case 'change theme':
       return {
         ...state,
@@ -15,12 +17,6 @@ function UserReducer(state, action) {
         ...state,
         user: action.payload,
       }
-    case 'target user':
-      console.log(action.payload)
-      return {
-        ...state,
-        targetUser: action.payload,
-      }
     case 'set profile':
       return {
         ...state,
@@ -33,7 +29,6 @@ function UserReducer(state, action) {
           _id: action.payload,
         },
       }
-
     case 'logout':
       API.logout()
       window.location.href = '/login'

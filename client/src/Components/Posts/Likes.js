@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
 import { Overlay, Tooltip } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
@@ -11,14 +11,15 @@ function Likes({ likes, postId, state }) {
   const [thisPost, setThisPost] = state
   const target = useRef(null)
 
+  useEffect(() => {
+    if (thisPost.likes.findIndex((l) => l.user === store.user._id) > -1)
+      setLiked(true)
+  }, [])
+
   function incrementLike(event) {
     event.preventDefault()
-
-    // This is the handler for if you have already liked a post
-    if (
-      thisPost.likes.findIndex((l) => l.user === store.user._id) > -1 ||
-      liked
-    ) {
+    if (liked) {
+      // This is the handler for if you have already liked a post
       // Have to update the state in a somewhat complicated manner
       // First find the index of the like belonging to the user
       const index = thisPost.likes.findIndex((i) => i.user === store.user._id)

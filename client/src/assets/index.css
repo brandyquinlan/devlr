@@ -510,10 +510,10 @@ footer {
   min-width: 160px;
 }
 
-.footerLink,
-.footerLink:hover,
-.footerLink:active,
-.footerLink:focus {
+.underlineLink,
+.underlineLink:hover,
+.underlineLink:active,
+.underlineLink:focus {
   text-decoration: underline;
 }
 
@@ -682,5 +682,8 @@ a > span.devLink:hover {
   }
   #col3 {
     display: none !important;
+  }
+  footer > img {
+    margin-left: .5rem;
   }
 }

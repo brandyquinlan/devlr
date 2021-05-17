@@ -26,7 +26,6 @@ const Home = () => {
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  // const [posts, setPosts] = useState([])ƒ
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -63,7 +62,6 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-              // setPosts(postRes)
               postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
@@ -100,34 +98,6 @@ const Home = () => {
   const { width } = useViewport()
   const breakpoint = 768
   const { themePref } = store.profile
-
-  // function createPost(event, title, body) {
-  //   event.preventDefault()
-  //   if (!title || !body) {
-  //     Toast('success', 'Posts require some content, silly', 500)
-  //     return
-  //   }
-
-  //   const postData = {
-  //     title,
-  //     body,
-  //     author: store.profile.name,
-  //     user: store.user._id,
-  //   }
-
-  //   API.post(postData)
-  //     .then((res) => {
-  //       // setPosts([res, ...posts])
-  //       postDispatch({ type: 'set posts', payload: [res, ...posts] })
-  //     })
-  //     .catch((err) => {
-  //       Toast(
-  //         'error',
-  //         `We're sorry, we are unable to process this request! Error: ${err}`,
-  //         3000,
-  //       )
-  //     })
-  // }
 
   useEffect(() => {
     if (!themePref) return

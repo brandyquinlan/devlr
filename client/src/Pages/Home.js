@@ -140,7 +140,7 @@ const Home = () => {
 
   return (
     <>
-    <main className="container">
+    <main className="container mainWrapper">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (

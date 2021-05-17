@@ -13,7 +13,6 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
-import Footer from '../Components/Footer'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -180,7 +179,6 @@ const Home = () => {
                       udpateModal({ type: 'hide initial modal' })
                     }}
                   />
-                  <Footrer />
                 </>
               ) : (
                 <Redirect to="/login" />

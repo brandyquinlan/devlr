@@ -31,10 +31,10 @@ const Home = () => {
   // checking if the user just came from a redirect by searching the url for a code
   // If there is a code, its what we use to get an access token and set it on the user
   useEffect(() => {
+    if (!userId) window.location.href = '/login'
     window.history.pushState({}, null, `/profile`)
     API.getUserInfo(userId)
       .then(([user, profile]) => {
-        console.log(user, profile)
         const { _id, accessToken } = user
         const { githubUsername } = profile
         if (_id) {
@@ -49,8 +49,9 @@ const Home = () => {
           })
         }
       })
-      .catch(() => {
-        window.location.href = `/login`
+      .catch((e) => {
+        console.error(e)
+        // window.location.href = `/login`
       })
   }, [userId])
 
@@ -60,7 +61,7 @@ const Home = () => {
       .then(([user, profile]) => {
         // Storing the user and the profile in the context seperately, since that is how they are in the db
         dispatch({ type: 'set user', payload: user })
-        dispatch({ type: 'set profile', payload: profile })
+        // dispatch({ type: 'set profile', payload: profile })
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -88,7 +89,7 @@ const Home = () => {
       r.style.setProperty('--main-text-color', 'linen')
       r.style.setProperty('--secondary-bg-color', 'transparent')
     }
-  }, [store.profile])
+  }, [store.targetUser])
 
   return (
     <div className="container">

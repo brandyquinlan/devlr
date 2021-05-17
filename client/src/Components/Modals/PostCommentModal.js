@@ -21,7 +21,6 @@ function PostCommentModal(props) {
         userId: store.user._id,
       },
     }
-    console.log(newComment, postId)
 
     API.addComment(newComment).then((res) => {
       setThisPost({

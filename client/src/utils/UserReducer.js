@@ -16,6 +16,7 @@ function UserReducer(state, action) {
         user: action.payload,
       }
     case 'target user':
+      console.log(action.payload)
       return {
         ...state,
         targetUser: action.payload,

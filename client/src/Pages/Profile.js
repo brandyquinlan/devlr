@@ -32,7 +32,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!userId) window.location.href = '/login'
-    window.history.pushState({}, null, `/profile`)
+    // window.history.pushState({}, null, `/profile`)
     API.getUserInfo(userId)
       .then(([user, profile]) => {
         const { _id, accessToken } = user

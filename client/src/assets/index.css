@@ -185,7 +185,7 @@ input::placeholder {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -293,10 +293,6 @@ hr {
 
 footer {
   width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,

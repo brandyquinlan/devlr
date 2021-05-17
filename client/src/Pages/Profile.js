@@ -10,6 +10,7 @@ import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
 import ProfileNavbar from '../Components/Nav/ProfileNavbar'
 import Tab from '../Components/Tab'
+import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
@@ -18,7 +19,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
-const Home = () => {
+const Profile = () => {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [modals, udpateModal] = useContext(ModalContext)
@@ -65,7 +66,7 @@ const Home = () => {
         setAuthenticating(false)
       })
       .catch((err) => {
-        console.error('Failed to get user information', err)
+        console.error('Failed to load user information', err)
         setAuthenticating(false)
       })
   }, [loadingData])
@@ -93,23 +94,53 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div
-        className="d-flex flex-row align-items-top justify-content-around"
-        id="col1"
-      >
-        {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
-        <div className="d-flex flex-column align-items-left" id="col2">
-          <ProfileNavbar />
-        </div>
-        <div className="d-flex flex-column align-items-right ml-4" id="col3">
-          <NoExpandTab title="Featured Devs">
-            <FeaturedDevs />
-          </NoExpandTab>
-          <Tab title="Ad" />
-        </div>
-      </div>
+      {authenticating ? (
+        <Spinner animation="border" />
+      ) : (
+        [
+          loadingData ? (
+            <Spinner animation="border" />
+          ) : (
+            [
+              authenticated === true ? (
+                <>
+                  <div
+                    className="d-flex flex-row align-items-top justify-content-around"
+                    id="col1"
+                  >
+                    {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                    <div
+                      className="d-flex flex-column align-items-left"
+                      id="col2"
+                    >
+                      <ProfileNavbar posts={posts} projects={projects} />
+                    </div>
+                    <div
+                      className="d-flex flex-column align-items-right ml-4"
+                      id="col3"
+                    >
+                      <NoExpandTab title="Featured Devs">
+                        <FeaturedDevs />
+                      </NoExpandTab>
+                      <Tab title="Ad" />
+                    </div>
+                  </div>
+                  <InitialLoginModal
+                    show={modals.initialModalShow}
+                    onHide={() => {
+                      udpateModal({ type: 'hide initial modal' })
+                    }}
+                  />
+                </>
+              ) : (
+                <Redirect to="/login" />
+              ),
+            ]
+          ),
+        ]
+      )}
     </div>
   )
 }
 
-export default Home
+export default Profile

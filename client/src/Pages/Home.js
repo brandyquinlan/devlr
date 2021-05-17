@@ -167,7 +167,7 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar createPost={createPost} projects={projects} />
+                      <Navbar projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

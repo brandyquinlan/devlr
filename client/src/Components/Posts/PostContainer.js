@@ -1,12 +1,46 @@
 import React, { useContext } from 'react'
+import { UserContext } from '../../utils/UserState'
 import { PostContext } from '../../utils/PostState'
+import { TargetUserContext } from '../../utils/TargetUserState'
+import API from '../../utils/API'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 
 function PostContainer({ /* posts, */ createPost, home = true }) {
+  const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)
 
   let viewPosts = posts.length > 0 ? posts : []
+  let { profile } = targetUser.profile ? targetUser : store
+
+  function createPost(event, title, body) {
+    event.preventDefault()
+    if (!title || !body) {
+      Toast('success', 'Posts require some content, silly', 500)
+      return
+    }
+
+    const postData = {
+      title,
+      body,
+      author: profile.name,
+      user: store.user._id,
+    }
+
+    API.post(postData)
+      .then((res) => {
+        // setPosts([res, ...posts])
+        postDispatch({ type: 'set posts', payload: [res, ...posts] })
+      })
+      .catch((err) => {
+        Toast(
+          'error',
+          `We're sorry, we are unable to process this request! Error: ${err}`,
+          3000,
+        )
+      })
+  }
 
   return (
     <div>

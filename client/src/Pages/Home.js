@@ -101,33 +101,33 @@ const Home = () => {
   const breakpoint = 768
   const { themePref } = store.profile
 
-  function createPost(event, title, body) {
-    event.preventDefault()
-    if (!title || !body) {
-      Toast('success', 'Posts require some content, silly', 500)
-      return
-    }
+  // function createPost(event, title, body) {
+  //   event.preventDefault()
+  //   if (!title || !body) {
+  //     Toast('success', 'Posts require some content, silly', 500)
+  //     return
+  //   }
 
-    const postData = {
-      title,
-      body,
-      author: store.profile.name,
-      user: store.user._id,
-    }
+  //   const postData = {
+  //     title,
+  //     body,
+  //     author: store.profile.name,
+  //     user: store.user._id,
+  //   }
 
-    API.post(postData)
-      .then((res) => {
-        // setPosts([res, ...posts])
-        postDispatch({ type: 'set posts', payload: [res, ...posts] })
-      })
-      .catch((err) => {
-        Toast(
-          'error',
-          `We're sorry, we are unable to process this request! Error: ${err}`,
-          3000,
-        )
-      })
-  }
+  //   API.post(postData)
+  //     .then((res) => {
+  //       // setPosts([res, ...posts])
+  //       postDispatch({ type: 'set posts', payload: [res, ...posts] })
+  //     })
+  //     .catch((err) => {
+  //       Toast(
+  //         'error',
+  //         `We're sorry, we are unable to process this request! Error: ${err}`,
+  //         3000,
+  //       )
+  //     })
+  // }
 
   useEffect(() => {
     if (!themePref) return
@@ -167,11 +167,7 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar
-                        posts={posts}
-                        createPost={createPost}
-                        projects={projects}
-                      />
+                      <Navbar createPost={createPost} projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

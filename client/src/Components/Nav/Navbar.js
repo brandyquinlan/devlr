@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import NavTabs from './NavTabs'
-import Activity from '../Feeds/Activity'
+import Posts from '../Feeds/Posts'
 import Profile from '../Feeds/Profile'
-import Explore from '../Feeds/Explore'
+import Network from '../Feeds/Network'
 
 function Navbar({ posts, projects, createPost }) {
   const [page, setPage] = useState('Activity')
@@ -12,13 +12,13 @@ function Navbar({ posts, projects, createPost }) {
   }
 
   function renderPage() {
-    if (page === 'Explore') {
-      return <Explore />
+    if (page === 'Network') {
+      return <Network />
     }
     if (page === 'Profile') {
       return <Profile projects={projects} />
     }
-    return <Activity posts={posts} createPost={createPost} />
+    return <Posts posts={posts} createPost={createPost} />
   }
 
   return (

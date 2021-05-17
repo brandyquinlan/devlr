@@ -44,9 +44,9 @@ function PostContainer({ createPost, home = true }) {
   return (
     <div>
       {home ? <NewPostBox createPost={createPost} /> : null}
-      {posts
+      {viewPosts
         ? [
-            posts.map((post, i) => (
+            viewPosts.map((post, i) => (
               <LazyPostTab key={i} title={post.title} expanded post={post} />
             )),
           ]

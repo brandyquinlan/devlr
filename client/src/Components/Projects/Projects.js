@@ -6,7 +6,7 @@ function Projects({ projects, profile }) {
   return (
     <div>
       <Tab title="My Pinned Projects" expanded>
-        {projects.length === 0 ? (
+        {projects?.length === 0 || !projects ? (
           <div>
             <p>
               You have not pinned any projects yet! Visit your{' '}

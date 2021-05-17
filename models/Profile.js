@@ -13,6 +13,8 @@ const profileSchema = new Schema({
     type: String,
     // required: true,
   },
+  following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   highestGraduation: {
     type: String,
     // required: true,

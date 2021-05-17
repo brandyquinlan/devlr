@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import UserStore from './utils/UserState'
 import ModalStore from './utils/ModalState'
+import TargetStore from './utils/TargetUserState'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
@@ -18,9 +19,11 @@ function App() {
           <Switch>
             <Route exact path="/" component={Signup} />
             <Route exact path="/login" component={Login} />
+            <TargetStore>
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/profile" component={Profile} />
+            </TargetStore>
             <Route exact path="/home/settings" component={Settings} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/profile" component={Profile} />
           </Switch>
         </Router>
       </ModalStore>

@@ -140,7 +140,7 @@ const Home = () => {
 
   return (
     <>
-    <div className="container">
+    <main className="container">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (
@@ -190,7 +190,7 @@ const Home = () => {
           ),
         ]
       )}
-    </div>
+    </main>
     <Footer />
     </>
   )

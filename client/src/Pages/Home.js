@@ -13,6 +13,7 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
+import Footer from '../Components/Footer'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -89,7 +90,7 @@ const Home = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 768
+  const breakpoint = 875
   const { themePref } = store.profile
 
   function createPost(event, title, body) {
@@ -138,6 +139,7 @@ const Home = () => {
   }, [store.profile]) // setTheme end tag
 
   return (
+    <>
     <div className="container">
       {authenticating ? (
         <Spinner animation="border" />
@@ -189,6 +191,8 @@ const Home = () => {
         ]
       )}
     </div>
+    <Footer />
+    </>
   )
 }
 

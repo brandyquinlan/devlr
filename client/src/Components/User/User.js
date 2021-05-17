@@ -40,15 +40,15 @@ function User() {
         />
       </div>
       <div>
-        <h5 className="text-center">{store.profile.name}</h5>
+        <h5 className="text-center">{profile.name}</h5>
         <h6 className="text-center">
           GitHub:{' '}
           <a
-            href={`https://github.com/${store.profile.githubUsername}`}
+            href={`https://github.com/${profile.githubUsername}`}
             target="_blank"
           >
             {' '}
-            {store.profile.githubUsername}
+            {profile.githubUsername}
           </a>
         </h6>
       </div>

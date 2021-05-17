@@ -21,9 +21,9 @@ function App() {
             <Route exact path="/login" component={Login} />
             <TargetStore>
               <Route exact path="/home" component={Home} />
+              <Route exact path="/home/settings" component={Settings} />
               <Route exact path="/profile" component={Profile} />
             </TargetStore>
-            <Route exact path="/home/settings" component={Settings} />
           </Switch>
         </Router>
       </ModalStore>

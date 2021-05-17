@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
+import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -20,11 +21,12 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
+  const [posts, postDispatch] = useContext(PostContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, setPosts] = useState([])
+  // const [posts, setPosts] = useState([])ƒ
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -61,7 +63,8 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-              setPosts(postRes)
+              // setPosts(postRes)
+              postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -114,7 +117,8 @@ const Home = () => {
 
     API.post(postData)
       .then((res) => {
-        setPosts([res, ...posts])
+        // setPosts([res, ...posts])
+        postDispatch({ type: 'set posts', payload: [res, ...posts] })
       })
       .catch((err) => {
         Toast(

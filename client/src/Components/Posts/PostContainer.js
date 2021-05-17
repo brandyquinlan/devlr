@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { PostContext } from '../../utils/PostState'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 
-function PostContainer({ posts, createPost, home = true }) {
+function PostContainer({ /* posts, */ createPost, home = true }) {
+  const [posts, postDispatch] = useContext(PostContext)
+
+  let viewPosts = posts.length > 0 ? posts : []
+
   return (
     <div>
       {home ? <NewPostBox createPost={createPost} /> : null}

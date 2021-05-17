@@ -3,6 +3,7 @@ import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
 import { TargetUserContext } from '../utils/TargetUserState'
+import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -21,12 +22,13 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
+  const [posts, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, setPosts] = useState([])
+  // const [posts, setPosts] = useState([])
   const userId = useQuery().get('user')
   const [projects, setProjects] = useState([])
 
@@ -44,7 +46,8 @@ const Home = () => {
             setProjects(info.user.pinnedItems.nodes)
           })
           API.getPosts(_id).then((postRes) => {
-            setPosts(postRes)
+            // setPosts(postRes)
+            postDispatch({ type: 'set posts', payload: postRes })
             setAuthenticated(true)
             setLoadingData(false)
           })

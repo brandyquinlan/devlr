@@ -3,7 +3,7 @@ import Logo from '../assets/img/logo.png'
 
 function Footer() {
   return (
-    <footer className="d-flex flex-row align-items-center justify-content-center py-2 mt-4">
+    <footer className="footer d-flex flex-row align-items-center justify-content-center py-2 mt-4">
       <div>
         <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       </div>

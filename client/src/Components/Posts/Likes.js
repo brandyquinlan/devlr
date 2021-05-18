@@ -44,8 +44,6 @@ function Likes({ likes, postId, state }) {
       },
     }
 
-    console.log(newLike)
-
     API.addLike(newLike)
       .then(() => {
         setLiked(true)

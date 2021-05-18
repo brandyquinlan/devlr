@@ -5,7 +5,7 @@ import Profile from '../Feeds/Profile'
 import Network from '../Feeds/Network'
 
 function Navbar({ posts, projects, createPost }) {
-  const [page, setPage] = useState('Activity')
+  const [page, setPage] = useState('Posts')
 
   function handlePageChange(newPage) {
     setPage(newPage)
@@ -23,7 +23,11 @@ function Navbar({ posts, projects, createPost }) {
 
   return (
     <>
-      <NavTabs currentPage={page} handlePageChange={handlePageChange} />
+      <NavTabs
+        currentPage={page}
+        handlePageChange={handlePageChange}
+        projects={projects}
+      />
       {renderPage()}
     </>
   )

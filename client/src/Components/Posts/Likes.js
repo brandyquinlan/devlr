@@ -59,6 +59,10 @@ function Likes({ likes, postId, state }) {
     // socket.io?
   }
 
+  let likedStyle = {color:'palegoldenrod'}
+
+  liked ? likedStyle : likedStyle = {color:'linen'}
+
   return (
     <div>
       {likes.length === 0 ? (
@@ -75,7 +79,7 @@ function Likes({ likes, postId, state }) {
             onMouseLeave={() => setShow(!show)}
             onClick={(e) => incrementLike(e, postId)}
           >
-            <span className="material-icons">auto_awesome</span>
+            <span className="material-icons like" style={likedStyle}>auto_awesome</span>
             {likes.length}
           </button>
           <Overlay target={target.current} show={show} placement="left">

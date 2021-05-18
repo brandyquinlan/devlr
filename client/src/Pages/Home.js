@@ -16,6 +16,8 @@ import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
+import StackOverflow from '../assets/img/stackoverflow.png'
+import KUad from '../assets/img/KU-ad.png'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)

@@ -19,17 +19,14 @@ function LangsModal(props) {
 
   function addLang(e, lang) {
     e.preventDefault()
-    console.log(lang)
     newLangs.push(lang)
     setNewLangs(newLangs)
-    console.log(newLangs)
     dispatch({ type: 'update profile', payload: { languages: newLangs } })
   }
   function removeLang(e, index) {
     e.preventDefault()
     newLangs.splice([index], 1)
     setNewLangs(newLangs)
-    console.log(newLangs)
     dispatch({ type: 'update profile', payload: { languages: newLangs } })
   }
 

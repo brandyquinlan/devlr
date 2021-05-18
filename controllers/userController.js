@@ -79,7 +79,6 @@ router.post('/signup', async (request, response) => {
       response.json(user)
     })
   } catch (error) {
-    // console.log(error)
     response.status(500).send(error)
   }
 })
@@ -92,8 +91,6 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 router.get('/getUserInfo/:userId', async (request, response) => {
   let { userId } = request.params
   if (request.query.target) userId = mongoose.Types.ObjectId(userId)
-
-  console.log(userId)
 
   // having to destructure and restructure so that the password does not get sent to the client
   try {

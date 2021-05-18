@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
-import API from '../../utils/API'
 import { PostContext } from '../../utils/PostState'
+import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
+import Toast from '../../utils/Toast'
 
 function PostBox({ post, state }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
@@ -13,11 +14,10 @@ function PostBox({ post, state }) {
     event.preventDefault
     API.removePost(postId)
       .then((data) => {
-        console.log(data)
         const remPost = posts.filter((post) => post._id !== postId)
         postDispatch({ type: 'set posts', payload: remPost })
       })
-      .catch((err) => console.log(err))
+      .catch(() => Toast('error', "We're sorry, something went wrong", 2000))
   }
 
   return (

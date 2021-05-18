@@ -1,6 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import socketClient from 'socket.io-client'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'

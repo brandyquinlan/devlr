@@ -1,6 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import dayjs from 'dayjs'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
@@ -59,7 +58,7 @@ function PostCommentModal(props) {
         <Modal.Title id="contained-modal-title-vcenter">Comments</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="scroll">
+        <div className="scroll" style={{ maxHeight: '35vh' }}>
           {!thisPost.comments ? (
             'No Comments Yet'
           ) : (

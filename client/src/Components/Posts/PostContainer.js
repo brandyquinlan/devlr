@@ -7,7 +7,7 @@ import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 import Toast from '../../utils/Toast'
 
-function PostContainer({ home = true }) {
+function PostContainer({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)

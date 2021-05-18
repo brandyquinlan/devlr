@@ -113,7 +113,7 @@ const Profile = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar projects={projects} />
+                      <Navbar projects={projects} home={false} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

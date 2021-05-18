@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react'
+import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
@@ -9,10 +9,15 @@ function PostCommentModal(props) {
   const [text, setText] = useState('')
   const [thisPost, setThisPost] = props.state
   const textRef = useRef()
+  const commentsRef = useRef()
 
   function handleInputChange(event) {
     event.preventDefault()
     setText(textRef.current.value)
+  }
+
+  function scrollToBottom() {
+    commentsRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   function createComment(event) {
@@ -36,6 +41,11 @@ function PostCommentModal(props) {
       .catch((err) => console.warn(err))
   }
 
+  useEffect(() => {
+    if (!props.show) return
+    scrollToBottom()
+  }, [props.show, thisPost.comments])
+
   return (
     <Modal
       {...props}
@@ -51,7 +61,10 @@ function PostCommentModal(props) {
           {!thisPost.comments ? (
             'No Comments Yet'
           ) : (
-            <CurrentComments comments={thisPost.comments} />
+            <CurrentComments
+              comments={thisPost.comments}
+              commentsRef={commentsRef}
+            />
           )}
         </div>
         <div className="tab bg-secondary mt-3 mb-1 gradient" id="commentBox">

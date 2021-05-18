@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CurrentComments({ comments }) {
+function CurrentComments({ comments, commentsRef }) {
   return (
     <div>
       {comments.map((c, i) => (
@@ -11,6 +11,7 @@ function CurrentComments({ comments }) {
           <hr className="75"></hr>
         </div>
       ))}
+      <div ref={commentsRef} />
     </div>
   )
 }

@@ -15,6 +15,8 @@ import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
 import { TargetUserContext } from '../utils/TargetUserState'
+import StackOverflow from '../assets/img/stackoverflow.png'
+import KUad from '../assets/img/KU-ad.png'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -148,7 +150,14 @@ const Home = () => {
                       <NoExpandTab title="Featured Devs">
                         <FeaturedDevs />
                       </NoExpandTab>
-                      <Tab title="Ad"></Tab>
+                      <Tab title="Ads" expanded>
+                        <a href="https://stackoverflow.com/" target="_blank">
+                      <img src={StackOverflow} style={{ width: '250px' }} alt="stackoverflow" className="my-3"></img>
+                      </a>
+                      <a href="https://bootcamp.ku.edu/coding/landing/" target="_blank" className="my-3">
+                      <img src={KUad} style={{ width: '250px' }} alt="KU"></img>
+                      </a>
+                      </Tab>
                     </div>
                   </div>
                   <InitialLoginModal

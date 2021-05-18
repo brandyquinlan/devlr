@@ -1,6 +1,4 @@
-import React, { createContext, useReducer } from 'react'
-
-function ModalReducer(state, action) {
+export default function ModalReducer(state, action) {
   switch (action.type) {
     case 'show user modal':
       return {
@@ -48,23 +46,3 @@ function ModalReducer(state, action) {
       throw new Error('Error in Modal Reducer')
   }
 }
-
-const initialState = {
-  userModalShow: false,
-  profileModalShow: false,
-  initialModalShow: false,
-  initialLogin: false,
-}
-
-const ModalProvider = ({ children }) => {
-  const [modals, modalDispatch] = useReducer(ModalReducer, initialState)
-
-  return (
-    <ModalContext.Provider value={[modals, modalDispatch]}>
-      {children}
-    </ModalContext.Provider>
-  )
-}
-
-export const ModalContext = createContext(initialState)
-export default ModalProvider

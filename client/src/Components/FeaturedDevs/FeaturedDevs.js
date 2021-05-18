@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import DevCard from '../User/DevCard'
 
 function FeaturedDevs() {
+  const [store, dispatch] = useContext(UserContext)
   const [users, setUsers] = useState([])
   useEffect(() => {
     API.getAllUsers().then((response) => {
+      response = response.filter((user) => user.user !== store.user._id)
       const devUser = []
       for (let i = 0; i < 3; i += 1) {
         const len = response.length

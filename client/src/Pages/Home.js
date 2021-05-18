@@ -66,7 +66,7 @@ const Home = () => {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
             })
-            API.getPosts(_id).then((postRes) => {
+            API.getFollowingPosts(_id).then((postRes) => {
               postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)

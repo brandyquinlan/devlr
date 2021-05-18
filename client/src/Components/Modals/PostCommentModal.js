@@ -43,7 +43,7 @@ function PostCommentModal(props) {
         <Modal.Title id="contained-modal-title-vcenter">Comments</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
+        <div className="scroll">
           {!thisPost.comments ? (
             'No Comments Yet'
           ) : (

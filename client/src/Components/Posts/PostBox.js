@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import API from '../../utils/API';
+import {PostContext} from '../../utils/PostState'
 import Likes from './Likes';
 import PostCommentModal from '../Modals/PostCommentModal';
 
 function PostBox({ post, state }) {
 	const [ commentsModalShow, setCommentsModalShow ] = useState(false);
-  const [ posts, setPosts ] = useState([]);
+  // const [ posts, postDispatch ] = useContext(PostContext);
+  const[posts, setPosts] = useState([])
 	const { postId, author, user, body, date, likes, comments } = post;
   
-  
     const deletePostHandler = ()=>{
-      return API.removePost(postId).then(data=> 
+     API.removePost(postId).then(data=> 
        {console.log(data)
-        const remPost = posts.filter(post =>post.id !== postId)
+        const remPost = posts.filter(post =>post._id !== postId)
+        // postDispatch({type:'set posts', payload:remPost})
         setPosts(remPost)
        })
        .catch(err=> console.log(err))

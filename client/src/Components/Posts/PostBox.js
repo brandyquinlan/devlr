@@ -3,10 +3,12 @@ import { PostContext } from '../../utils/PostState'
 import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
+import DeletePostModal from '../Modals/DeletePostModal'
 import Toast from '../../utils/Toast'
 
 function PostBox({ post, state, home }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
+  const [delPostModalShow, setDelPostModalShow] = useState(false)
   const [posts, postDispatch] = useContext(PostContext)
   const { postId, author, user, body, date, likes, comments } = post
 
@@ -47,9 +49,16 @@ function PostBox({ post, state, home }) {
           {!comments ? 0 : comments.length}
         </button>
         {home ? (
-          <button type="button" onClick={deletePostHandler}>
-            <span className="material-icons pl-3">delete</span>
-          </button>
+          <>
+            <DeletePostModal
+              show={delPostModalShow}
+              hide={() => setDelPostModalShow(false)}
+              deletePost={deletePostHandler}
+            />
+            <button type="button" onClick={() => setDelPostModalShow(true)}>
+              <span className="material-icons pl-3">delete</span>
+            </button>
+          </>
         ) : null}
       </div>
     </div>

@@ -31,7 +31,8 @@ function PostContainer({ home }) {
     API.post(postData)
       .then((res) => {
         console.log(res)
-        postDispatch({ type: 'set posts', payload: [res, ...posts] })
+        postDispatch({ type: 'reload posts' })
+        // postDispatch({ type: 'set posts', payload: [res, ...posts] })
       })
       .catch((err) => {
         Toast(

@@ -10,13 +10,13 @@ function PostBox({ post, state, home }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const [delPostModalShow, setDelPostModalShow] = useState(false)
   const [posts, postDispatch] = useContext(PostContext)
-  const { postId, author, user, body, date, likes, comments } = post
+  const { _id, author, user, body, date, likes, comments } = post
 
   const deletePostHandler = (event) => {
     event.preventDefault
-    API.removePost(postId)
+    API.removePost(_id)
       .then((data) => {
-        const remPost = posts.filter((post) => post._id !== postId)
+        const remPost = posts.filter((post) => post._id !== _id)
         postDispatch({ type: 'set posts', payload: remPost })
       })
       .catch(() => Toast('error', "We're sorry, something went wrong", 2000))
@@ -24,7 +24,7 @@ function PostBox({ post, state, home }) {
 
   return (
     <div>
-      <div id={postId}>
+      <div id={_id}>
         <p className="mb-1">{body} </p>
         <p className="small" id={user}>
           {' '}
@@ -33,11 +33,11 @@ function PostBox({ post, state, home }) {
       </div>
       <hr className="75" />
       <div className="d-flex justify-content-end vertical-align-center">
-        <Likes likes={likes} postId={postId} state={state} />{' '}
+        <Likes likes={likes} postId={_id} state={state} />{' '}
         <PostCommentModal
           show={commentsModalShow}
           onHide={() => setCommentsModalShow(false)}
-          postId={postId}
+          postId={_id}
           state={state}
         />
         <button

@@ -30,6 +30,7 @@ function PostContainer({ home }) {
 
     API.post(postData)
       .then((res) => {
+        console.log(res)
         postDispatch({ type: 'set posts', payload: [res, ...posts] })
       })
       .catch((err) => {
@@ -47,13 +48,7 @@ function PostContainer({ home }) {
       {posts
         ? [
             posts.map((post, i) => (
-              <LazyPostTab
-                key={i}
-                title={post.title}
-                expanded
-                post={post}
-                home={home}
-              />
+              <LazyPostTab key={i} expanded post={post} home={home} />
             )),
           ]
         : [

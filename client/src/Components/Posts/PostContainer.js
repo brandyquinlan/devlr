@@ -11,7 +11,6 @@ function PostContainer({ createPost, home = true }) {
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)
 
-  let viewPosts = posts.length > 0 ? posts : []
   let { profile } = targetUser.profile ? targetUser : store
 
   function createPost(event, title, body) {
@@ -44,9 +43,9 @@ function PostContainer({ createPost, home = true }) {
   return (
     <div>
       {home ? <NewPostBox createPost={createPost} /> : null}
-      {viewPosts
+      {posts
         ? [
-            viewPosts.map((post, i) => (
+            posts.map((post, i) => (
               <LazyPostTab key={i} title={post.title} expanded post={post} />
             )),
           ]

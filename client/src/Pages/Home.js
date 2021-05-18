@@ -14,6 +14,7 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
+import { TargetUserContext } from '../utils/TargetUserState'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -21,6 +22,7 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
@@ -86,7 +88,7 @@ const Home = () => {
             profile,
           },
         })
-        targetDispatch({ type: 'target user', payload: {} })
+        targetDispatch({ type: 'set target', payload: {} })
         setAuthenticating(false)
       })
       .catch((err) => {

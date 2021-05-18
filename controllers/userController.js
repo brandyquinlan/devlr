@@ -71,6 +71,8 @@ router.post('/signup', async (request, response) => {
         languages: [],
         themePref: '222222',
         avatarUrl: '',
+        followers: [],
+        following: [],
       }).catch((e) => {
         throw new Error(e)
       })

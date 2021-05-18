@@ -67,11 +67,9 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-             
               postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
-              
             })
           }
         })
@@ -145,7 +143,12 @@ const Home = () => {
                         className="d-flex flex-column align-items-left"
                         id="col2"
                       >
-                        <Navbar projects={projects} home={true} followers={store.profile.followers} following={store.profile.following} />
+                        <Navbar
+                          projects={projects}
+                          home={true}
+                          followers={store.profile.followers}
+                          following={store.profile.following}
+                        />
                       </div>
                       <div
                         className="d-flex flex-column align-items-right ml-4"
@@ -155,11 +158,24 @@ const Home = () => {
                           <FeaturedDevs />
                         </NoExpandTab>
                         <Tab title="Ad" expanded>
-                          <a href="https://bootcamp.ku.edu/coding/landing" target="_blank">
-                            <img src={KUad} style={{ width: '250px' }} alt="KU Coding Boot Camp" className="my-3"></img>
+                          <a
+                            href="https://bootcamp.ku.edu/coding/landing"
+                            target="_blank"
+                          >
+                            <img
+                              src={KUad}
+                              style={{ width: '250px' }}
+                              alt="KU Coding Boot Camp"
+                              className="my-3"
+                            ></img>
                           </a>
                           <a href="https://stackoverflow.com/" target="_blank">
-                            <img src={StackOverflow} style={{ width: '250px' }} alt="Stack Overflow" className="my-3"></img>
+                            <img
+                              src={StackOverflow}
+                              style={{ width: '250px' }}
+                              alt="Stack Overflow"
+                              className="my-3"
+                            ></img>
                           </a>
                         </Tab>
                       </div>

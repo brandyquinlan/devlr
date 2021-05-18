@@ -12,8 +12,7 @@ function PostBox({ post, state }) {
   const deletePostHandler = (event) => {
     event.preventDefault
     API.removePost(postId)
-      .then((data) => {
-        console.log(data)
+      .then(() => {
         const remPost = posts.filter((post) => post._id !== postId)
         postDispatch({ type: 'set posts', payload: remPost })
       })
@@ -29,7 +28,10 @@ function PostBox({ post, state }) {
             <span className="material-icons pl-3">delete</span>
           </button>
         </p>
-        <p className="small" id={user}> Posted by {author}, {date.split('T')[0]}</p>
+        <p className="small" id={user}>
+          {' '}
+          Posted by {author}, {date.split('T')[0]}
+        </p>
       </div>
       <hr className="75" />
       <div className="d-flex justify-content-end vertical-align-center">

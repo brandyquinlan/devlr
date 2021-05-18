@@ -5,6 +5,7 @@ import ForgotPasswordModal from '../Components/Modals/ForgotPassword'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
 import Toast from '../utils/Toast'
+import Footer from '../Components/Footer'
 
 function Login() {
   const [store, dispatch] = useContext(UserContext)
@@ -41,7 +42,7 @@ function Login() {
 
   return (
     <>
-      <div id="logIn">
+      <div id="logIn" className="entryWrapper">
         <ToastContainer
           transition={Flip}
           position="top-center"
@@ -107,6 +108,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

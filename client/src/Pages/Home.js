@@ -145,7 +145,7 @@ const Home = () => {
                         className="d-flex flex-column align-items-left"
                         id="col2"
                       >
-                        <Navbar projects={projects} home={true} />
+                        <Navbar projects={projects} home={true} followers={store.profile.followers} following={store.profile.following} />
                       </div>
                       <div
                         className="d-flex flex-column align-items-right ml-4"

@@ -68,7 +68,7 @@ function DevCard(props) {
         </div>
       ) : (
         <div>
-          <a href={`/profile?user=${props.id}`}>
+          <a href={`/profile?user=${props.user}`}>
             <img
               src={props.avatarUrl}
               alt="user avatar"

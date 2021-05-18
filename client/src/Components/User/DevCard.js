@@ -1,30 +1,48 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 
 function DevCard(props) {
   const [store, dispatch] = useContext(UserContext)
+  const [isFollowing, setFollowing] = useState()
   const { following } = store.profile
+
+  // Check if the user that is signed in is already following this dev or not
+  useEffect(() => {
+    following.some((f) => f === props.user)
+      ? setFollowing(true)
+      : setFollowing(false)
+  }, [])
 
   function addFollow(event, user) {
     event.preventDefault()
     const userObj = {
       user,
     }
-    // send to db  -  can we link to profile instead of user?
-    // also need to somehow update the other user and list this person as a follower
-    dispatch({ type: 'add following', payload: userObj })
+
+    API.followUser(props.user, store.user._id)
+      .then(() => {
+        setFollowing(true)
+        dispatch({ type: 'add following', payload: userObj })
+      })
+      .catch(() => {
+        Toast('error', "We're sorry, something went wrong", 1000)
+      })
   }
 
   function unFollow(e, user) {
     e.preventDefault()
-    const userObj = {
-      user,
-    }
     const newFollowing = [...following]
     const splicedFollowing = newFollowing.filter((u) => u.user !== user)
 
-    dispatch({ type: 'remove following', payload: splicedFollowing })
+    API.unfollowUser(props.user, store.user._id)
+      .then(() => {
+        setFollowing(false)
+        dispatch({ type: 'remove following', payload: splicedFollowing })
+      })
+      .catch(() => {
+        Toast('error', "We're sorry, something went wrong", 1000)
+      })
   }
 
   return (
@@ -58,7 +76,7 @@ function DevCard(props) {
             />{' '}
             <span className="h6 devLink">{props.name}</span>
           </a>{' '}
-          {following.some((f) => f.user === props.user) ? (
+          {isFollowing ? (
             <button
               type="button"
               className="btn-sm newBtn mt-0 ml-2 text-sm"

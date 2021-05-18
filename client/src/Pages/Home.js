@@ -154,7 +154,14 @@ const Home = () => {
                         <NoExpandTab title="Featured Devs">
                           <FeaturedDevs />
                         </NoExpandTab>
-                        <Tab title="Ad"></Tab>
+                        <Tab title="Ad" expanded>
+                          <a href="https://bootcamp.ku.edu/coding/landing">
+                            <img src={KUad} style={{ width: '250px' }} alt="KU Coding Boot Camp" className="my-3"></img>
+                          </a>
+                          <a href="https://stackoverflow.com/">
+                            <img src={StackOverflow} style={{ width: '250px' }} alt="Stack Overflow" className="my-3"></img>
+                          </a>
+                        </Tab>
                       </div>
                     </div>
                     <InitialLoginModal

@@ -8,7 +8,7 @@ function CurrentComments({ comments }) {
         <div key={i}>
           <p>{c.text}</p>
           <p className="small text-muted">
-            Posted by {c.userName}, {c.date}
+            Posted by {c.userName}, {c.date.split('T')[0]}
           </p>
           <hr className="75"></hr>
         </div>

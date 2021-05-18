@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
 
+
 router.post('/newPost', async (request, response) => {
   // assuming that the post will be send in its object from from the client
   const { post } = request.body
@@ -80,7 +81,30 @@ router.get('/getPosts/:_id', async (request, response) => {
     response.senjson(err)
   }
 })
-
+//delete post
+router.delete('/:_id', async(req,res)=>{
+  //was trying to catch not logged in user from req.user but it returns undefined
+  //   const { _id } = req.user
+  // const user = await db.User.find({_id})
+  const {_id} = req.params
+  
+  try {
+    
+    const post = await db.Post.findById({_id})
+    
+    if(!post) {
+     return res.status(404).json({msg: 'post not found!'})
+    }
+    // if(post.user.toString() !== user){
+    //  return res.status(401).json({msg: 'not authorized'})
+    // }
+    await post.remove()
+    res.status(200).send(post)
+  } catch (error) {
+    console.error(error)
+  }
+    
+  })
 // Get the posts of all the people you are following
 router.get('/getPosts/following', async (request, response) => {
   const { _id } = request.user
@@ -94,5 +118,6 @@ router.get('/getPosts/following', async (request, response) => {
     response.senjson(err)
   }
 })
+
 
 module.exports = router

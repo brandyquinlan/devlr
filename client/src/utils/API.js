@@ -51,6 +51,10 @@ const API = {
     const posts = await axios.get(`/api/posts/getPosts/${_id}`)
     return posts.data
   },
+  async removePost(_id){
+    const post = await axios.delete(`/api/posts/${_id}`)
+    return post.data
+  },
   addLike(newLike) {
     return axios.put('/api/posts/addLike', newLike)
   },

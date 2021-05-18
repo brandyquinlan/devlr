@@ -67,9 +67,11 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
+             
               postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
+              
             })
           }
         })

@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import DevCard from '../User/DevCard'
 
 function BrowseUsersModal(props) {
+  const [store, dispatch] = useContext(UserContext)
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState(users)
   const [search, setSearch] = useState('')
@@ -18,7 +20,9 @@ function BrowseUsersModal(props) {
   // When component opens, call the db
   useEffect(() => {
     if (!props.show) return
-    API.getAllUsers().then((res) => setUsers(res))
+    API.getAllUsers().then((res) =>
+      setUsers(res.filter((user) => user.user !== store.user._id)),
+    )
   }, [props.show])
 
   // when the component is opened, make sure to sync users with filtered users

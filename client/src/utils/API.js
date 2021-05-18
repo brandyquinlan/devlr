@@ -125,6 +125,12 @@ const API = {
     )
     return queryResult.data.data
   },
+  followUser(targetId, userId) {
+    return axios.put('/api/profiles/followUser', { targetId, userId })
+  },
+  unfollowUser(targetId, userId) {
+    return axios.put('/api/profiles/unfollowUser', { targetId, userId })
+  },
 }
 
 export default API

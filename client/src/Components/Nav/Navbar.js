@@ -1,29 +1,33 @@
 import React, { useState } from 'react'
 import NavTabs from './NavTabs'
-import Activity from '../Feeds/Activity'
+import Posts from '../Feeds/Posts'
 import Profile from '../Feeds/Profile'
-import Explore from '../Feeds/Explore'
+import Network from '../Feeds/Network'
 
 function Navbar({ posts, projects, createPost }) {
-  const [page, setPage] = useState('Activity')
+  const [page, setPage] = useState('Posts')
 
   function handlePageChange(newPage) {
     setPage(newPage)
   }
 
   function renderPage() {
-    if (page === 'Explore') {
-      return <Explore />
+    if (page === 'Network') {
+      return <Network />
     }
     if (page === 'Profile') {
       return <Profile projects={projects} />
     }
-    return <Activity />
+    return <Posts posts={posts} createPost={createPost} />
   }
 
   return (
     <>
-      <NavTabs currentPage={page} handlePageChange={handlePageChange} />
+      <NavTabs
+        currentPage={page}
+        handlePageChange={handlePageChange}
+        projects={projects}
+      />
       {renderPage()}
     </>
   )

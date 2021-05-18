@@ -12,6 +12,7 @@ import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
+import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
 import { TargetUserContext } from '../utils/TargetUserState'
@@ -98,7 +99,7 @@ const Home = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 768
+  const breakpoint = 875
   const { themePref } = store.profile
 
   useEffect(() => {
@@ -119,7 +120,8 @@ const Home = () => {
   }, [store.profile])
 
   return (
-    <div className="container">
+    <>
+    <main className="container mainWrapper">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (
@@ -165,7 +167,9 @@ const Home = () => {
           ),
         ]
       )}
-    </div>
+    </main>
+    <Footer />
+    </>
   )
 }
 

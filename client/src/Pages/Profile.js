@@ -9,7 +9,7 @@ import API from '../utils/API'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
-import ProfileNavbar from '../Components/Nav/ProfileNavbar'
+import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
@@ -20,7 +20,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
-const Home = () => {
+const Profile = () => {
   const [store, dispatch] = useContext(UserContext)
   const [posts, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
@@ -66,13 +66,13 @@ const Home = () => {
         setAuthenticating(false)
       })
       .catch((err) => {
-        console.error('Failed to get use information', err)
+        console.error('Failed to load user information', err)
         setAuthenticating(false)
       })
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 768
+  const breakpoint = 875
 
   useEffect(() => {
     if (!targetUser.profile) return
@@ -113,7 +113,7 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <ProfileNavbar projects={projects} />
+                      <Navbar posts={posts} projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"
@@ -143,4 +143,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Profile

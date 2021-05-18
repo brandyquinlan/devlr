@@ -1,5 +1,6 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import dayjs from 'dayjs'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
@@ -33,6 +34,7 @@ function PostCommentModal(props) {
 
     API.addComment(newComment)
       .then(() => {
+        newComment.comment.date = Date.now()
         setThisPost({
           ...thisPost,
           comments: [...thisPost.comments, newComment.comment],

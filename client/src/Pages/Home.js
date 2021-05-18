@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
+import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -11,9 +12,10 @@ import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
+import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
-import Footer from '../Components/Footer'
+import { TargetUserContext } from '../utils/TargetUserState'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -21,11 +23,12 @@ function useQuery() {
 
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
+  const [posts, postDispatch] = useContext(PostContext)
   const [modals, udpateModal] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  const [posts, setPosts] = useState([])
   const code = useQuery().get('code')
   const [projects, setProjects] = useState([])
 
@@ -62,7 +65,7 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-              setPosts(postRes)
+              postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -86,7 +89,7 @@ const Home = () => {
             profile,
           },
         })
-        targetDispatch({ type: 'target user', payload: {} })
+        targetDispatch({ type: 'set target', payload: {} })
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -98,33 +101,6 @@ const Home = () => {
   const { width } = useViewport()
   const breakpoint = 875
   const { themePref } = store.profile
-
-  function createPost(event, title, body) {
-    event.preventDefault()
-    if (!title || !body) {
-      Toast('success', 'Posts require some content, silly', 500)
-      return
-    }
-
-    const postData = {
-      title,
-      body,
-      author: store.profile.name,
-      user: store.user._id,
-    }
-
-    API.post(postData)
-      .then((res) => {
-        setPosts([res, ...posts])
-      })
-      .catch((err) => {
-        Toast(
-          'error',
-          `We're sorry, we are unable to process this request! Error: ${err}`,
-          3000,
-        )
-      })
-  }
 
   useEffect(() => {
     if (!themePref) return
@@ -165,11 +141,7 @@ const Home = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar
-                        posts={posts}
-                        createPost={createPost}
-                        projects={projects}
-                      />
+                      <Navbar projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"
@@ -178,7 +150,7 @@ const Home = () => {
                       <NoExpandTab title="Featured Devs">
                         <FeaturedDevs />
                       </NoExpandTab>
-                      <Tab title="Ad" />
+                      <Tab title="Ad"></Tab>
                     </div>
                   </div>
                   <InitialLoginModal

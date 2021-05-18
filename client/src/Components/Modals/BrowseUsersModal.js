@@ -70,8 +70,9 @@ function BrowseUsersModal(props) {
         <div>
           {filteredUsers.map((user, i) => (
             <DevCard
-              key={i}
-              id={user.user}
+              key={`filter${user._id}`}
+              id={user._id}
+              user={user.user}
               avatarUrl={user.avatarUrl}
               name={user.name}
             />

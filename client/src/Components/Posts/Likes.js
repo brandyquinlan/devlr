@@ -18,15 +18,12 @@ function Likes({ likes, postId, state }) {
 
   function incrementLike(event) {
     event.preventDefault()
+
+    // This if statement is the handler for if you have already liked a post
     if (liked) {
-      // This is the handler for if you have already liked a post
-      // Have to update the state in a somewhat complicated manner
-      // First find the index of the like belonging to the user
-      const index = thisPost.likes.findIndex((i) => i.user === store.user._id)
-      // Then set up the new array of likes.
-      let splicedLikes =
-        // For some reason it gets buggy when the post only has one like, so just check for that first
-        thisPost.likes.length < 2 ? [] : thisPost.likes.splice(index, 1)
+      let splicedLikes = thisPost.likes.filter(
+        (like) => like.user !== store.user._id,
+      )
 
       API.removeLike({ userId: store.user._id, postId }).then(() =>
         setThisPost({
@@ -43,6 +40,7 @@ function Likes({ likes, postId, state }) {
       like: {
         user: store.user._id,
         userName: store.profile.name,
+        _id: postId,
       },
     }
 

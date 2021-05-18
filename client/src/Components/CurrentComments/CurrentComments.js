@@ -1,6 +1,7 @@
 import React from 'react'
+import dayjs from 'dayjs'
 
-function CurrentComments({ comments }) {
+function CurrentComments({ comments, commentsRef }) {
   return (
     <div>
       {comments.map((c, i) => (
@@ -8,11 +9,12 @@ function CurrentComments({ comments }) {
         <div key={i}>
           <p>{c.text}</p>
           <p className="small text-muted">
-            Posted by {c.userName}, {c.date.split('T')[0]}
+            {c.userName} - {dayjs(c.date).format(`HH:mm - M-DD-YY`)}
           </p>
           <hr className="75"></hr>
         </div>
       ))}
+      <div ref={commentsRef} />
     </div>
   )
 }

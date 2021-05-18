@@ -42,7 +42,6 @@ function BrowseUsersModal(props) {
         return searchCredentials.includes(search.toLowerCase())
       }),
     )
-    console.log(filteredUsers)
 
     return () => {
       setFilteredUsers(users)

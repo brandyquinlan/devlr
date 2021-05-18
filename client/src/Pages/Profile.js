@@ -24,7 +24,7 @@ const Profile = () => {
   const [store, dispatch] = useContext(UserContext)
   const [posts, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
-  const [modals, udpateModal] = useContext(ModalContext)
+  const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
@@ -133,7 +133,7 @@ const Profile = () => {
                   <InitialLoginModal
                     show={modals.initialModalShow}
                     onHide={() => {
-                      udpateModal({ type: 'hide initial modal' })
+                      modalDispatch({ type: 'hide initial modal' })
                     }}
                   />
                 </>

@@ -1,33 +1,31 @@
 import React, { useState, useContext } from 'react'
-import API from '../../utils/API'
 import { PostContext } from '../../utils/PostState'
+import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
+import DeletePostModal from '../Modals/DeletePostModal'
+import Toast from '../../utils/Toast'
 
-function PostBox({ post, state }) {
+function PostBox({ post, state, home }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
+  const [delPostModalShow, setDelPostModalShow] = useState(false)
   const [posts, postDispatch] = useContext(PostContext)
   const { postId, author, user, body, date, likes, comments } = post
 
   const deletePostHandler = (event) => {
     event.preventDefault
     API.removePost(postId)
-      .then(() => {
+      .then((data) => {
         const remPost = posts.filter((post) => post._id !== postId)
         postDispatch({ type: 'set posts', payload: remPost })
       })
-      .catch((err) => console.log(err))
+      .catch(() => Toast('error', "We're sorry, something went wrong", 2000))
   }
 
   return (
     <div>
       <div id={postId}>
-        <p className="mb-1">
-          {body}{' '}
-          <button type="button" onClick={deletePostHandler}>
-            <span className="material-icons pl-3">delete</span>
-          </button>
-        </p>
+        <p className="mb-1">{body} </p>
         <p className="small" id={user}>
           {' '}
           Posted by {author}, {date.split('T')[0]}
@@ -50,6 +48,18 @@ function PostBox({ post, state }) {
           <span className="material-icons pl-3">question_answer</span>
           {!comments ? 0 : comments.length}
         </button>
+        {home ? (
+          <>
+            <DeletePostModal
+              show={delPostModalShow}
+              hide={() => setDelPostModalShow(false)}
+              deletePost={deletePostHandler}
+            />
+            <button type="button" onClick={() => setDelPostModalShow(true)}>
+              <span className="material-icons pl-3">delete</span>
+            </button>
+          </>
+        ) : null}
       </div>
     </div>
   )

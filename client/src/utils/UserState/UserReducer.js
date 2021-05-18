@@ -1,4 +1,4 @@
-import API from './API'
+import API from '../API'
 
 function UserReducer(state, action) {
   switch (action.type) {

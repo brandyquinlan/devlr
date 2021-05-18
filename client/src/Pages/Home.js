@@ -3,6 +3,7 @@ import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
 import { PostContext } from '../utils/PostState'
+import { TargetUserContext } from '../utils/TargetUserState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -15,7 +16,6 @@ import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
-import { TargetUserContext } from '../utils/TargetUserState'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -121,54 +121,54 @@ const Home = () => {
 
   return (
     <>
-    <main className="container mainWrapper">
-      {authenticating ? (
-        <Spinner animation="border" />
-      ) : (
-        [
-          loadingData ? (
-            <Spinner animation="border" />
-          ) : (
-            [
-              authenticated === true ? (
-                <>
-                  <div
-                    className="d-flex flex-row align-items-top justify-content-around"
-                    id="col1"
-                  >
-                    {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+      <main className="container mainWrapper">
+        {authenticating ? (
+          <Spinner animation="border" />
+        ) : (
+          [
+            loadingData ? (
+              <Spinner animation="border" />
+            ) : (
+              [
+                authenticated === true ? (
+                  <>
                     <div
-                      className="d-flex flex-column align-items-left"
-                      id="col2"
+                      className="d-flex flex-row align-items-top justify-content-around"
+                      id="col1"
                     >
-                      <Navbar projects={projects} />
+                      {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col2"
+                      >
+                        <Navbar projects={projects} />
+                      </div>
+                      <div
+                        className="d-flex flex-column align-items-right ml-4"
+                        id="col3"
+                      >
+                        <NoExpandTab title="Featured Devs">
+                          <FeaturedDevs />
+                        </NoExpandTab>
+                        <Tab title="Ad"></Tab>
+                      </div>
                     </div>
-                    <div
-                      className="d-flex flex-column align-items-right ml-4"
-                      id="col3"
-                    >
-                      <NoExpandTab title="Featured Devs">
-                        <FeaturedDevs />
-                      </NoExpandTab>
-                      <Tab title="Ad"></Tab>
-                    </div>
-                  </div>
-                  <InitialLoginModal
-                    show={modals.initialModalShow}
-                    onHide={() => {
-                      udpateModal({ type: 'hide initial modal' })
-                    }}
-                  />
-                </>
-              ) : (
-                <Redirect to="/login" />
-              ),
-            ]
-          ),
-        ]
-      )}
-    </main>
-    <Footer />
+                    <InitialLoginModal
+                      show={modals.initialModalShow}
+                      onHide={() => {
+                        udpateModal({ type: 'hide initial modal' })
+                      }}
+                    />
+                  </>
+                ) : (
+                  <Redirect to="/login" />
+                ),
+              ]
+            ),
+          ]
+        )}
+      </main>
+      <Footer />
     </>
   )
 }

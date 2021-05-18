@@ -32,7 +32,7 @@ function BrowseUsersModal(props) {
 
   // Running the filter on the displayed users
   useEffect(() => {
-    // Imediately, if the searchvalue is anything less than one character, there is no point in filtering the array
+    // Immediately, if the searchvalue is anything less than one character, there is no point in filtering the array
     if (!search) return
 
     setFilteredUsers(

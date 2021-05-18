@@ -65,8 +65,8 @@ router.post('/signup', async (request, response) => {
         totalYearsofExperience: '',
         currentPosition: '',
         company: '',
-        from: new Date('0000-00-00T00:00:00'),
-        to: new Date('0000-00-00T00:00:00'),
+        from: new Date('1995-12-17T03:24:00'),
+        to: new Date('1995-12-17T03:24:00'),
         githubUsername: request.body.githubUsername,
         languages: [],
         themePref: '222222',
@@ -92,6 +92,8 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 router.get('/getUserInfo/:userId', async (request, response) => {
   let { userId } = request.params
   if (request.query.target) userId = mongoose.Types.ObjectId(userId)
+
+  console.log(userId)
 
   // having to destructure and restructure so that the password does not get sent to the client
   try {

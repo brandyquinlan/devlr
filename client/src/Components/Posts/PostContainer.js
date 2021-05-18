@@ -5,8 +5,9 @@ import { TargetUserContext } from '../../utils/TargetUserState'
 import API from '../../utils/API'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
+import Toast from '../../utils/Toast'
 
-function PostContainer({ createPost, home = true }) {
+function PostContainer({ home = true }) {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)

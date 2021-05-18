@@ -8,7 +8,7 @@ import API from '../utils/API'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
 import MobileSidenav from '../Components/Sidenav/MobileSidenav'
-import ProfileNavbar from '../Components/Nav/ProfileNavbar'
+import Navbar from '../Components/Nav/Navbar'
 import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
@@ -113,7 +113,7 @@ const Profile = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <ProfileNavbar posts={posts} projects={projects} />
+                      <Navbar posts={posts} projects={projects} />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

@@ -557,7 +557,7 @@ button.disabled {
 #logIn,
 #settings {
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;

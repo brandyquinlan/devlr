@@ -6,13 +6,14 @@ function Projects({ projects, profile }) {
   return (
     <div>
       <Tab title="My Pinned Projects" expanded>
-        {projects.length === 0 ? (
+        {projects?.length === 0 || !projects ? (
           <div>
             <p>
               You have not pinned any projects yet! Visit your{' '}
               <a
                 href={`https://github.com/${profile.githubUsername}`}
                 target="_blank"
+                className="underlineLink"
               >
                 GitHub profile
               </a>{' '}
@@ -23,6 +24,7 @@ function Projects({ projects, profile }) {
               <a
                 href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/pinning-items-to-your-profile"
                 target="_blank"
+                className="underlineLink"
               >
                 tutorial
               </a>
@@ -39,8 +41,13 @@ function Projects({ projects, profile }) {
                     ? project.description
                     : 'The project does not have description yet'}
                 </p>
-                <a href={project.url} target="_blank" rel="noreferrer">
-                  Project repo
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="small underlineLink"
+                >
+                  Project Repo
                 </a>
                 <hr />
               </Col>

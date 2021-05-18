@@ -2,24 +2,24 @@ import React, { createContext, useReducer } from 'react'
 
 function Reducer(state, action) {
   switch (action.type) {
-    case 'set posts':
+    case 'set target':
       return action.payload
     default:
       throw new Error('Something broke in TargetUser reducer')
   }
 }
 
-const initialState = []
+const initialState = {}
 
 const Store = ({ children }) => {
-  const [posts, postDispatch] = useReducer(Reducer, initialState)
+  const [targetUser, targetDispatch] = useReducer(Reducer, initialState)
 
   return (
-    <PostContext.Provider value={[posts, postDispatch]}>
+    <TargetUserContext.Provider value={[targetUser, targetDispatch]}>
       {children}
-    </PostContext.Provider>
+    </TargetUserContext.Provider>
   )
 }
 
-export const PostContext = createContext(initialState)
+export const TargetUserContext = createContext(initialState)
 export default Store

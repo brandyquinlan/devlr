@@ -17,7 +17,14 @@ const API = {
   logout() {
     return axios.get('/api/users/logout')
   },
-  async getUserInfo() {
+  async getUserInfo(userId) {
+    if (userId) {
+      const { data } = await axios.get(
+        `/api/users/getUserInfo/${userId}?target=true`,
+      )
+      return data
+    }
+
     const { data } = await axios.get('/api/users/checkUser')
     const user = await axios.get(`/api/users/getUserInfo/${data._id}`)
     // NOTE THAT THIS USER VARIABLE IS AN ARRAY [USER, PROFILE], SO THAT YOU CAN GET USER AND PROFILE DATA IN ONE CALL
@@ -44,9 +51,18 @@ const API = {
     const posts = await axios.get(`/api/posts/getPosts/${_id}`)
     return posts.data
   },
-  async addLike(newLike) {
-    const like = await axios.put('/api/posts/likePost', newLike)
-    return like.data
+  async removePost(_id){
+    const post = await axios.delete(`/api/posts/${_id}`)
+    return post.data
+  },
+  addLike(newLike) {
+    return axios.put('/api/posts/addLike', newLike)
+  },
+  removeLike(oldLike) {
+    return axios.put('/api/posts/removeLike', oldLike)
+  },
+  addComment(newComment) {
+    return axios.put('/api/posts/addComment', newComment)
   },
   async getAllUsers() {
     const { data } = await axios.get('/api/users/getAllUsers')
@@ -55,8 +71,9 @@ const API = {
   sendResetLink(user) {
     return axios.get(`/api/users/sendResetLink/${user}`)
   },
-  verifyResetCode(resetCode) {
-    return axios.get(`/api/users/verifyResetCode/${resetCode}`)
+  async verifyResetCode(resetCode) {
+    const { data } = await axios.get(`/api/users/verifyResetCode/${resetCode}`)
+    return data
   },
   resetPassword(newPassword, _id) {
     return axios.put('/api/users/resetPassword', { newPassword, _id })
@@ -111,6 +128,12 @@ const API = {
       },
     )
     return queryResult.data.data
+  },
+  followUser(targetId, userId) {
+    return axios.put('/api/profiles/followUser', { targetId, userId })
+  },
+  unfollowUser(targetId, userId) {
+    return axios.put('/api/profiles/unfollowUser', { targetId, userId })
   },
 }
 

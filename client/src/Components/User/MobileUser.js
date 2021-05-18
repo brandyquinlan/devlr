@@ -1,18 +1,22 @@
 import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
-import AppearanceModal from '../Modals/AppearanceModal'
 import { UserContext } from '../../utils/UserState'
+import { TargetUserContext } from '../../utils/TargetUserState'
+import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
   const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
+
+  const { profile } = targetUser.profile ? targetUser : store
 
   return (
     <div className="d-flex flex-column align-items-center">
       <img
-        src={store.profile.avatarUrl}
+        src={profile.avatarUrl}
         alt="user avatar"
         className="circle"
         height="50"

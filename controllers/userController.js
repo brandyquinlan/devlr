@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const axios = require('axios')
 const dotenv = require('dotenv')
 const { v4: uuid } = require('uuid')
+const mongoose = require('mongoose')
 const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
@@ -38,7 +39,6 @@ router.put('/setAccessToken', async (req, res) => {
     }
     res.status(200).json(user)
   } catch (err) {
-    console.error(err)
     res.status(500).json({ message: err.message })
   }
 })
@@ -71,6 +71,8 @@ router.post('/signup', async (request, response) => {
         languages: [],
         themePref: '222222',
         avatarUrl: '',
+        following: [],
+        followers: [],
       }).catch((e) => {
         throw new Error(e)
       })
@@ -88,7 +90,10 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 })
 
 router.get('/getUserInfo/:userId', async (request, response) => {
-  const { userId } = request.params
+  let { userId } = request.params
+  if (request.query.target) userId = mongoose.Types.ObjectId(userId)
+
+  console.log(userId)
 
   // having to destructure and restructure so that the password does not get sent to the client
   try {
@@ -104,6 +109,7 @@ router.get('/getUserInfo/:userId', async (request, response) => {
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])
   } catch (error) {
+    console.error(error)
     response.sendStatus(500)
   }
 })
@@ -154,7 +160,7 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
     text: `Just follow this link to reset the password to your devlr account! ${resetLink}`,
   }
 
-  mailer.verify((err, success) => {
+  mailer.verify((err) => {
     if (err) throw new Error(err)
   })
 
@@ -163,12 +169,7 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
       { email: userEmail },
       { resetCode: uniqueCode, resetCodeExpires: Date.now() + 360000 },
     )
-      .then((user) => {
-        const userInfo = {
-          email: user.email,
-          _id: user._id,
-          resetCode: user.resetCode,
-        }
+      .then(() => {
         mailer.sendMail(mail)
         response.sendStatus(200)
       })
@@ -187,7 +188,6 @@ router.get('/verifyResetCode/:resetCode', (request, response) => {
     db.User.findOne({ resetCode }).then((user) => {
       if (user.resetCodeExpires > Date.now()) {
         const userInfo = {
-          email: user.email,
           _id: user._id,
         }
         response.send(userInfo).status(200)

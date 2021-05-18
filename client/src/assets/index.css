@@ -112,6 +112,24 @@ button {
   border: none;
 }
 
+button#addSkill {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
+button#addLang {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
 button:hover {
   opacity: 0.8;
 }
@@ -167,7 +185,7 @@ input::placeholder {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -275,10 +293,6 @@ hr {
 
 footer {
   width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
@@ -496,6 +510,13 @@ footer {
   min-width: 160px;
 }
 
+.underlineLink,
+.underlineLink:hover,
+.underlineLink:active,
+.underlineLink:focus {
+  text-decoration: underline;
+}
+
 button.disabled {
   opacity: 0.8;
 }
@@ -627,25 +648,42 @@ a > span.devLink:hover {
 
 #col2 {
   width: 100%;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+#col3 {
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
 }
 
 /* Media Queries */
+@media screen and (max-width: 875px) {
+  #mobile-side-nav {
+    margin-right: 1rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .container {
     margin: 0.25rem;
   }
-  .tab {
-    max-width: 340px;
-  }
   #mobile-side-nav {
     margin-top: 2rem;
+    margin-right: 0.15rem;
   }
   #col2 {
     margin-top: 1.5rem;
-    margin-left: 0.75rem;
-    margin-right: 1rem;
+    margin-left: 0.25rem;
+    margin-right: 0.5rem;
+    max-width: 350px;
+    min-width: 300px;
   }
   #col3 {
     display: none !important;
+  }
+  footer > img {
+    margin-left: .5rem;
   }
 }

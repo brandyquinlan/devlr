@@ -2,6 +2,8 @@ import API from './API'
 
 function UserReducer(state, action) {
   switch (action.type) {
+    case 'going home':
+      return action.payload
     case 'change theme':
       return {
         ...state,
@@ -20,10 +22,12 @@ function UserReducer(state, action) {
         ...state,
         profile: action.payload,
       }
-    case 'set user token':
+    case 'set user id for password reset':
       return {
         ...state,
-        accessToken: action.payload,
+        user: {
+          _id: action.payload,
+        },
       }
     case 'logout':
       API.logout()
@@ -44,6 +48,24 @@ function UserReducer(state, action) {
       return {
         ...state,
         profile: newProfile,
+      }
+    case 'add following':
+      const newFollowing = JSON.parse(JSON.stringify(state.profile.following))
+      newFollowing.push(action.payload)
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          following: newFollowing,
+        },
+      }
+    case 'remove following':
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          following: action.payload,
+        },
       }
     default:
       throw new Error('something went wrong with UserReducer switch case')

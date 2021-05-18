@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import NoExpandTab from '../NoExpandTab'
-
 function AddLangs(props) {
   const langRef = useRef()
   return (
@@ -26,7 +25,6 @@ function AddLangs(props) {
             </button>
           </div>
         </div>
-
         <div>
           <ul>
             {!props.newLangs ? (
@@ -38,7 +36,7 @@ function AddLangs(props) {
                   <button
                     type="button"
                     data-value={lang}
-                    className="bg-danger"
+                    className="btn-outline-secondary"
                     onClick={(e) => props.removeLang(e, index)}
                   >
                     x
@@ -52,5 +50,4 @@ function AddLangs(props) {
     </div>
   )
 }
-
 export default AddLangs

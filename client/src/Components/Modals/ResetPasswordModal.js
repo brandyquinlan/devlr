@@ -1,9 +1,25 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { ToastContainer, Flip } from 'react-toastify'
+import PasswordValidator from 'password-validator'
 import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 import 'react-toastify/dist/ReactToastify.css'
+
+const schema = new PasswordValidator()
+schema
+  .is()
+  .min(8)
+  .is()
+  .max(100)
+  .has()
+  .digits(1)
+  .has()
+  .not()
+  .spaces()
+  .is()
+  .not()
+  .oneOf(['Passw0rd', 'Password123'])
 
 function ResetPasswordModal(props) {
   const [password, setPassword] = useState({})
@@ -23,12 +39,21 @@ function ResetPasswordModal(props) {
   function resetPassword(event) {
     event.preventDefault()
     if (password.password !== password.passwordConfirm) {
-      Toast('error', 'Passwords must match', 2000)
+      Toast('error', 'Passwords must match', 3000)
+      return
+    }
+
+    if (!schema.validate(password.password)) {
+      Toast(
+        'error',
+        'Your password must be at lest 8 characters long, cannot contain spaces, and must include one number ',
+        3000,
+      )
       return
     }
 
     API.resetPassword(password.password, user._id)
-      .then((res) => {
+      .then(() => {
         API.login({
           email: user.email,
           password: password.password,

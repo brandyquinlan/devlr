@@ -20,7 +20,13 @@ function FeaturedDevs() {
   return (
     <div>
       {users.map((u) => (
-        <DevCard key={u._id} id={u._id} name={u.name} avatarUrl={u.avatarUrl} />
+        <DevCard
+          key={u._id}
+          id={u._id}
+          user={u.user}
+          name={u.name}
+          avatarUrl={u.avatarUrl}
+        />
       ))}
     </div>
   )

@@ -70,6 +70,7 @@ function BrowseUsersModal(props) {
             <DevCard
               key={user._id}
               id={user._id}
+              user={user.user}
               avatarUrl={user.avatarUrl}
               name={user.name}
             />

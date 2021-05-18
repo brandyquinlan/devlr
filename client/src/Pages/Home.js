@@ -200,7 +200,7 @@ const Home = () => {
                       <NoExpandTab title="Featured Devs">
                         <FeaturedDevs />
                       </NoExpandTab>
-                      <Tab title="Ad" />
+                      <Tab title="Ad"></Tab>
                     </div>
                   </div>
                   <InitialLoginModal

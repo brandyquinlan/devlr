@@ -45,6 +45,24 @@ function UserReducer(state, action) {
         ...state,
         profile: newProfile,
       }
+    case 'add following':
+      const newFollowing = JSON.parse(JSON.stringify(state.profile.following))
+      newFollowing.push(action.payload)
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          following: newFollowing,
+        },
+      }
+    case 'remove following':
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          following: action.payload,
+        },
+      }
     default:
       throw new Error('something went wrong with UserReducer switch case')
   }

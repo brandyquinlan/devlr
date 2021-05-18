@@ -59,6 +59,8 @@ const profileSchema = new Schema({
   avatarUrl: {
     type: String,
   },
+  following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 })
 
 const Profile = mongoose.model('Profile', profileSchema)

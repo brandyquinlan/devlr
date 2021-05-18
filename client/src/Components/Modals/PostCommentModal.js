@@ -3,33 +3,37 @@ import { Modal, Button } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
-// import API from '../../utils/API'
 
 function PostCommentModal(props) {
   const [store, dispatch] = useContext(UserContext)
+  const [text, setText] = useState('')
   const [thisPost, setThisPost] = props.state
-  // Do I use this here and pass as props or on the modal page where the text box actually is?
   const textRef = useRef()
 
-  function createComment(event, textRef, postId) {
+  function handleInputChange(event) {
+    event.preventDefault()
+    setText(textRef.current.value)
+  }
+
+  function createComment(event) {
     event.preventDefault()
     const newComment = {
       postId: props.postId,
       comment: {
-        text: textRef,
+        text,
         userName: store.profile.name,
         userId: store.user._id,
       },
     }
 
-    API.addComment(newComment).then((res) => {
-      setThisPost({
-        ...thisPost,
-        comments: [...thisPost.comments, newComment.comment],
+    API.addComment(newComment)
+      .then(() => {
+        setThisPost({
+          ...thisPost,
+          comments: [...thisPost.comments, newComment.comment],
+        })
       })
-    })
-    // const updatedPost = postStore.find((p) => p._id === postId)
-    // updatedPost.comments = [...updatedPost.comments, newComment]
+      .catch((err) => console.warn(err))
   }
 
   return (
@@ -55,16 +59,10 @@ function PostCommentModal(props) {
             ref={textRef}
             id="comment"
             placeholder="Add comment"
-            onChange={props.handleInputChange}
+            onChange={handleInputChange}
           ></textarea>
         </div>
-        <Button
-          variant="secondary"
-          type="button"
-          onClick={(e) => {
-            createComment(e, textRef.current.value, props.postId)
-          }}
-        >
+        <Button variant="secondary" type="button" onClick={createComment}>
           Add Comment
         </Button>
       </Modal.Body>

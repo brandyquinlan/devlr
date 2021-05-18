@@ -106,7 +106,6 @@ router.get('/getUserInfo/:userId', async (request, response) => {
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])
   } catch (error) {
-    console.error(error)
     response.sendStatus(500)
   }
 })
@@ -171,7 +170,6 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
         response.sendStatus(200)
       })
       .catch((err) => {
-        console.error(err)
         response.sendStatus(404)
       })
   } catch (error) {

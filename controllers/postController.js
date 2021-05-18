@@ -68,7 +68,7 @@ router.put('/addComment', (request, response) => {
 })
 
 // Get the posts of the users specefied in the ID
-router.get('/getPosts/:_id', async (request, response) => {
+router.get('/getPosts/:_id', (request, response) => {
   const { _id } = request.params
 
   try {
@@ -104,14 +104,18 @@ router.delete('/:_id', async (req, res) => {
   }
 })
 // Get the posts of all the people you are following
-router.get('/getPosts/following', async (request, response) => {
-  const { _id } = request.user
-  const user = await db.User.find({ _id })
+router.get('/getFollowingPosts/:_id', async (request, response) => {
+  const { _id } = request.params
+  const user = await db.Profile.findOne({ user: _id })
+  console.log(user)
 
   try {
-    db.Post.find({ user: { $in: user.following } }).then((posts) => {
-      response.send(posts)
-    })
+    db.Post.find({ $or: [{ user: _id }, { user: { $in: user.following } }] })
+      .sort({ date: -1 })
+      .then((posts) => {
+        response.send(posts)
+      })
+      .catch((err) => response.send(err).status(400))
   } catch (err) {
     response.senjson(err)
   }

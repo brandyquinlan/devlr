@@ -5,7 +5,7 @@ import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
 import Toast from '../../utils/Toast'
 
-function PostBox({ post, state }) {
+function PostBox({ post, state, home }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const [posts, postDispatch] = useContext(PostContext)
   const { postId, author, user, body, date, likes, comments } = post
@@ -23,13 +23,11 @@ function PostBox({ post, state }) {
   return (
     <div>
       <div id={postId}>
-        <p className="mb-1">
-          {body}{' '}
-          <button type="button" onClick={deletePostHandler}>
-            <span className="material-icons pl-3">delete</span>
-          </button>
+        <p className="mb-1">{body} </p>
+        <p className="small" id={user}>
+          {' '}
+          Posted by {author}, {date.split('T')[0]}
         </p>
-        <p className="small" id={user}> Posted by {author}, {date.split('T')[0]}</p>
       </div>
       <hr className="75" />
       <div className="d-flex justify-content-end vertical-align-center">
@@ -48,6 +46,11 @@ function PostBox({ post, state }) {
           <span className="material-icons pl-3">question_answer</span>
           {!comments ? 0 : comments.length}
         </button>
+        {home ? (
+          <button type="button" onClick={deletePostHandler}>
+            <span className="material-icons pl-3">delete</span>
+          </button>
+        ) : null}
       </div>
     </div>
   )

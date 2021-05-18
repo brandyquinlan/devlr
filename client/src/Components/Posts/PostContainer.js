@@ -47,7 +47,13 @@ function PostContainer({ home }) {
       {posts
         ? [
             posts.map((post, i) => (
-              <LazyPostTab key={i} title={post.title} expanded post={post} />
+              <LazyPostTab
+                key={i}
+                title={post.title}
+                expanded
+                post={post}
+                home={home}
+              />
             )),
           ]
         : [

@@ -107,7 +107,6 @@ router.delete('/:_id', async (req, res) => {
 router.get('/getFollowingPosts/:_id', async (request, response) => {
   const { _id } = request.params
   const user = await db.Profile.findOne({ user: _id })
-  console.log(user)
 
   try {
     db.Post.find({ $or: [{ user: _id }, { user: { $in: user.following } }] })

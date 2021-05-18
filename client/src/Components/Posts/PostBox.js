@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { PostContext } from '../../utils/PostState'
+import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
@@ -7,6 +8,8 @@ import DeletePostModal from '../Modals/DeletePostModal'
 import Toast from '../../utils/Toast'
 
 function PostBox({ post, state, home }) {
+  const [posts, postDispatch] = useContext(PostContext)
+  const [store, dispatch] = useContext(UserContext)
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const [delPostModalShow, setDelPostModalShow] = useState(false)
   const [posts, postDispatch] = useContext(PostContext)
@@ -21,6 +24,10 @@ function PostBox({ post, state, home }) {
       })
       .catch(() => Toast('error', "We're sorry, something went wrong", 2000))
   }
+
+  useEffect(() => {
+    if (user === store.user._id) setIsOwned(true)
+  }, [store])
 
   return (
     <div>
@@ -48,7 +55,7 @@ function PostBox({ post, state, home }) {
           <span className="material-icons pl-3">question_answer</span>
           {!comments ? 0 : comments.length}
         </button>
-        {home ? (
+        {home && isOwned ? (
           <>
             <DeletePostModal
               show={delPostModalShow}

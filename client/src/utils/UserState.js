@@ -19,6 +19,7 @@ const initialState = {
     languages: [],
     themePref: '222222',
     avatartUrl: '',
+    following: [],
   },
 }
 

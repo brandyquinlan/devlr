@@ -57,6 +57,8 @@ const profileSeed = [
     to: '2021-03-26',
     githubUsername: 'brandyquinlan',
     languages: ['JavaScript', 'Python'],
+    avatarUrl:
+      'avatars.githubusercontent.com/u/73489664?s=400&u=d04ff688c61322f6f737ce805be049871747b0e9&v=4',
   },
   {
     _id: 7,
@@ -72,6 +74,7 @@ const profileSeed = [
     to: '2021-03-26',
     githubUsername: 'bmcleod12',
     languages: ['JavaScript', 'Python'],
+    avatarUrl: 'https://avatars.githubusercontent.com/u/73400680?v=4',
   },
   {
     _id: 8,
@@ -87,6 +90,7 @@ const profileSeed = [
     to: '2021-03-26',
     githubUsername: 'maggiemaywilder',
     languages: ['JavaScript', 'Python'],
+    avatarUrl: 'https://avatars.githubusercontent.com/u/72891601?v=4',
   },
   {
     _id: 9,
@@ -102,6 +106,7 @@ const profileSeed = [
     to: '2021-03-26',
     githubUsername: 'koltondecker',
     languages: ['JavaScript', 'Python'],
+    avatarUrl: 'https://avatars.githubusercontent.com/u/71789549?v=4',
   },
   {
     _id: 10,
@@ -117,6 +122,7 @@ const profileSeed = [
     to: '2021-03-26',
     githubUsername: 'verusbabb',
     languages: ['JavaScript', 'Python'],
+    avatarUrl: 'https://avatars.githubusercontent.com/u/72149563?v=4',
   },
 ]
 db.User.deleteMany({})

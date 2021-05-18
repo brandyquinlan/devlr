@@ -155,10 +155,10 @@ const Home = () => {
                           <FeaturedDevs />
                         </NoExpandTab>
                         <Tab title="Ad" expanded>
-                          <a href="https://bootcamp.ku.edu/coding/landing">
+                          <a href="https://bootcamp.ku.edu/coding/landing" target="_blank">
                             <img src={KUad} style={{ width: '250px' }} alt="KU Coding Boot Camp" className="my-3"></img>
                           </a>
-                          <a href="https://stackoverflow.com/">
+                          <a href="https://stackoverflow.com/" target="_blank">
                             <img src={StackOverflow} style={{ width: '250px' }} alt="Stack Overflow" className="my-3"></img>
                           </a>
                         </Tab>

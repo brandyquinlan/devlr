@@ -26,6 +26,7 @@ function ModalReducer(state, action) {
       return {
         ...state,
         initialModalShow: true,
+        initialLogin: true,
       }
     case 'hide inital modal':
       return {
@@ -38,6 +39,11 @@ function ModalReducer(state, action) {
         profileModalShow: true,
         initialModalShow: false,
       }
+    case 'init profile done':
+      return {
+        ...state,
+        initialLogin: false,
+      }
     default:
       throw new Error('Error in Modal Reducer')
   }
@@ -47,13 +53,14 @@ const initialState = {
   userModalShow: false,
   profileModalShow: false,
   initialModalShow: false,
+  initialLogin: false,
 }
 
 const ModalProvider = ({ children }) => {
-  const [modals, updateModal] = useReducer(ModalReducer, initialState)
+  const [modals, modalDispatch] = useReducer(ModalReducer, initialState)
 
   return (
-    <ModalContext.Provider value={[modals, updateModal]}>
+    <ModalContext.Provider value={[modals, modalDispatch]}>
       {children}
     </ModalContext.Provider>
   )

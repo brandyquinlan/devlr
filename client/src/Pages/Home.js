@@ -27,7 +27,7 @@ const Home = () => {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [posts, postDispatch] = useContext(PostContext)
-  const [modals, udpateModal] = useContext(ModalContext)
+  const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
@@ -53,7 +53,7 @@ const Home = () => {
           })
           API.getAndSaveProfilePic(githubUsername, token, _id).then(() => {
             setLoadingData(false)
-            udpateModal({ type: 'show initial modal' })
+            modalDispatch({ type: 'show initial modal' })
           })
         })
       })
@@ -67,11 +67,9 @@ const Home = () => {
               setProjects(info.user.pinnedItems.nodes)
             })
             API.getPosts(_id).then((postRes) => {
-             
               postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
-              
             })
           }
         })
@@ -160,7 +158,7 @@ const Home = () => {
                     <InitialLoginModal
                       show={modals.initialModalShow}
                       onHide={() => {
-                        udpateModal({ type: 'hide initial modal' })
+                        modalDispatch({ type: 'hide initial modal' })
                       }}
                     />
                   </>

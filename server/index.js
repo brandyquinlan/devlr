@@ -49,6 +49,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/devlr', {
   useCreateIndex: true,
 })
 
+// Set up for initializing socket as a part of our server
 const server = http.createServer(app)
 const io = socket(server)
 let clients = []
@@ -70,15 +71,6 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     clients = clients.filter((client) => client.socketId !== socket.id)
-
-    // for (var i = 0, len = clients.length; i < len; ++i) {
-    //   var c = clients[i]
-
-    //   if (c.clientId == socket.id) {
-    //     clients.splice(i, 1)
-    //     break
-    //   }
-    // }
   })
 })
 

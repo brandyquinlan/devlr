@@ -10,10 +10,14 @@ function FeaturedDevs() {
     API.getAllUsers().then((response) => {
       response = response.filter((user) => user.user !== store.user._id)
       const devUser = []
-      for (let i = 0; i < 3; i += 1) {
+      const numItemsArr = []
+      let numItems = 0
+      while (!numItemsArr[2]) {
         const len = response.length
         const devIndex = Math.floor(Math.random() * Math.floor(len))
-        devUser.push(response[devIndex])
+        devUser.indexOf(response[devIndex]) === -1
+          ? devUser.push(response[devIndex]) && numItemsArr.push(numItems++)
+          : console.log('Index already exists')
       }
       setUsers(devUser)
     })
@@ -21,6 +25,7 @@ function FeaturedDevs() {
 
   return (
     <div>
+      <br></br>
       {users.map((u) => (
         <DevCard
           key={u._id}

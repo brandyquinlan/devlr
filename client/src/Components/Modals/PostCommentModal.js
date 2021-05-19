@@ -27,7 +27,8 @@ function PostCommentModal(props) {
       comment: {
         text,
         userName: store.profile.name,
-        userId: store.user._id,
+        user: store.user._id,
+        avatarUrl: store.profile.avatarUrl
       },
     }
 

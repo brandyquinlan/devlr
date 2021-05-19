@@ -77,7 +77,7 @@ WHEN I click on Logout
 * [Link to demo - https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing](https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing)
 
 ## Screenshots
-![Screenshots](/public/img/screenshots.png)
+![Screenshots](/client/public/img/screenshots.png)
 
 
 ## Functionality

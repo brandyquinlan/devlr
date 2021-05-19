@@ -6,7 +6,7 @@ import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
 import Logo from '../../assets/img/logo.png'
 
-function Sidenav() {
+function Sidenav({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [modals, modalDispatch] = useContext(ModalContext)
 
@@ -71,7 +71,7 @@ function Sidenav() {
           </button>
         </li>
       </ul>
-      <User />
+      <User home={home} />
     </div>
   )
 }

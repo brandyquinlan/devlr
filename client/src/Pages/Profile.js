@@ -108,7 +108,7 @@ const Profile = () => {
                     className="d-flex flex-row align-items-top justify-content-around"
                     id="col1"
                   >
-                    {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                    {width < breakpoint ? <MobileSidenav home={false} /> : <Sidenav home={false} />}
                     <div
                       className="d-flex flex-column align-items-left"
                       id="col2"

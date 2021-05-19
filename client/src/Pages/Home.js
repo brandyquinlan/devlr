@@ -138,7 +138,7 @@ const Home = () => {
                       className="d-flex flex-row align-items-top justify-content-around"
                       id="col1"
                     >
-                      {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                      {width < breakpoint ? <MobileSidenav  home={true} /> : <Sidenav home={true} />}
                       <div
                         className="d-flex flex-column align-items-left"
                         id="col2"

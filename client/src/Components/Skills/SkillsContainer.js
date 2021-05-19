@@ -4,7 +4,7 @@ import Tab from '../Tab'
 import Skills from './Skills'
 import SkillsModal from '../Modals/SkillsModal'
 
-function SkillsContainer({ skills }) {
+function SkillsContainer({ skills, home }) {
   const [skillsModalShow, setSkillsModalShow] = React.useState(false)
 
   return (
@@ -14,6 +14,8 @@ function SkillsContainer({ skills }) {
           <Skills skill={skill} key={skill} />
         ))}
         <br></br>
+        {home ? (
+          <div>
         <Button
           variant="secondary"
           size="sm"
@@ -26,6 +28,8 @@ function SkillsContainer({ skills }) {
           show={skillsModalShow}
           onHide={() => setSkillsModalShow(false)}
         />
+      </div>
+        ) : '' }
       </Tab>
     </div>
   )

@@ -18,6 +18,10 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  avatarUrl: {
+    type: String,
+    required: true,
+  },
   likes: [
     {
       user: {
@@ -39,6 +43,9 @@ const postSchema = new Schema({
         type: String,
       },
       text: {
+        type: String,
+      },
+      avatarUrl: {
         type: String,
       },
       date: {

@@ -44,7 +44,7 @@ const userSeed = [
 
 const profileSeed = [
   {
-    _id: 6,
+    // _id: 6,
     user: 1,
     name: 'Brandy Quinlan',
     highestGraduation: 'Masters',
@@ -61,7 +61,7 @@ const profileSeed = [
       'avatars.githubusercontent.com/u/73489664?s=400&u=d04ff688c61322f6f737ce805be049871747b0e9&v=4',
   },
   {
-    _id: 7,
+    // _id: 7,
     user: 2,
     name: 'Brenna McLeod',
     highestGraduation: 'Masters',
@@ -77,7 +77,7 @@ const profileSeed = [
     avatarUrl: 'https://avatars.githubusercontent.com/u/73400680?v=4',
   },
   {
-    _id: 8,
+    // _id: 8,
     user: 3,
     name: 'Maggie May Wilder',
     highestGraduation: 'Masters',
@@ -93,7 +93,7 @@ const profileSeed = [
     avatarUrl: 'https://avatars.githubusercontent.com/u/72891601?v=4',
   },
   {
-    _id: 9,
+    // _id: 9,
     user: 4,
     name: 'Kolton Decker',
     highestGraduation: 'Masters',
@@ -109,7 +109,7 @@ const profileSeed = [
     avatarUrl: 'https://avatars.githubusercontent.com/u/71789549?v=4',
   },
   {
-    _id: 10,
+    // _id: 10,
     user: 5,
     name: 'Steve Babb',
     highestGraduation: 'Masters',

@@ -6,6 +6,7 @@ import Likes from './Likes'
 import PostCommentModal from '../Modals/PostCommentModal'
 import DeletePostModal from '../Modals/DeletePostModal'
 import Toast from '../../utils/Toast'
+import dayjs from 'dayjs'
 
 function PostBox({ post, state, home }) {
   const [posts, postDispatch] = useContext(PostContext)
@@ -35,7 +36,7 @@ function PostBox({ post, state, home }) {
         <p className="mb-1">{body} </p>
         <p className="small" id={user}>
           {' '}
-          Posted by {author}, {date.split('T')[0]}
+          Posted by <a href={`/profile?user=${user}`}>{author}</a>, {dayjs(date).format(`HH:mm - M-DD-YY`)}
         </p>
       </div>
       <hr className="75" />

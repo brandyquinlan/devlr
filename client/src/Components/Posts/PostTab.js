@@ -9,7 +9,10 @@ function PostTab(props) {
   return (
     <div className="tab scroll gradient">
       <div className="d-flex flex-row align-items-center justify-content-between">
-        <h5>{props.title}</h5>
+      <div>
+        <a href={`/profile?user=${props.user}`}>
+        <img src={props.avatarUrl} style={{ width: 40, height: 40 }} className="devPic float-left mr-3 mt-n2 mb-3"></img></a>
+        <span className="h5">{props.title}</span></div>
         <button
           type="button"
           onClick={() => setOpen(!props.open)}

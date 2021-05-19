@@ -3,7 +3,7 @@ import Loading from '../Loading'
 const LazyPostTab = lazy(() => import('./PostTab'))
 
 function component({ post, title, home }) {
-  const { _id, author, user, body, date, comments, likes } = post
+  const { _id, author, user, body, date, comments, likes, avatarUrl } = post
   const [thisPost, setThisPost] = useState({
     postId: _id,
     author,
@@ -26,6 +26,8 @@ function component({ post, title, home }) {
           comments: thisPost.comments,
           likes: thisPost.likes,
         }}
+        avatarUrl={avatarUrl}
+        user={user}
         title={title}
         state={[thisPost, setThisPost]}
         home={home}

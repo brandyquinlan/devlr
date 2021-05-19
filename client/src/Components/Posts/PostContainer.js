@@ -26,6 +26,7 @@ function PostContainer({ home }) {
       body,
       author: profile.name,
       user: store.user._id,
+      avatarUrl: profile.avatarUrl,
     }
 
     API.post(postData)

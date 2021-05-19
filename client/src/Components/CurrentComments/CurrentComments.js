@@ -7,10 +7,17 @@ function CurrentComments({ comments, commentsRef }) {
       {comments.map((c, i) => (
         // Dont forget to add a key
         <div key={i}>
+          <div>
+          <a href={`/profile?user=${c.user}`}>
+        <img src={c.avatarUrl} style={{ width: 40, height: 40 }} className="devPic float-left mx-2 mb-3 mt-1"></img></a>
+          </div>
+          <div>
           <p>{c.text}</p>
           <p className="small text-muted">
-            {c.userName} - {dayjs(c.date).format(`HH:mm - M-DD-YY`)}
+          <a href={`/profile?user=${c.user}`}>
+            {c.userName} - {dayjs(c.date).format(`HH:mm - M-DD-YY`)}</a>
           </p>
+          </div>
           <hr className="75"></hr>
         </div>
       ))}

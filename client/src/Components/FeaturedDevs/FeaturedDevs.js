@@ -25,6 +25,7 @@ function FeaturedDevs() {
 
   return (
     <div>
+      <br></br>
       {users.map((u) => (
         <DevCard
           key={u._id}

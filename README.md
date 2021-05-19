@@ -19,12 +19,19 @@
 - [devlr Team](#devlr-team)
 
 ## Program Description
-Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide. <devlr> is a social media/portfolio/networking site designed just for developers. 
-<br>There is nothing like it on the open market, the nearest competitor would be Stack Overflow or GitHub for code sharing or Reddit for social interaction. 
+Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide. devlr is a social media/portfolio/networking site designed just for developers. There is nothing like it on the open market, the nearest competitor would be Stack Overflow or GitHub for code sharing or Reddit for social interaction. 
 <br>Our project combines the benefits of GitHub for sharing your code, and Twitter and other social media for sharing your life. 
-<br>Using OAuth, our application reaches out to the GitHub API to retrieve projects to highlight your work. 
-<br>Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
-<br> In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
+* Using OAuth, our application reaches out to the GitHub API to retrieve projects to highlight your work. 
+* Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
+* In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
+
+## Group Members and Rolls:
+
+Brandy Quinlan: Project Manager/Git Controller, Front End Development
+Kat Buchanan: Front End Development
+Liz Townsend: Front End Development
+Vinitha Kumar: Back End/DB Development
+Keaton Brewster: Back End/DB Development/Dev Ops
 
 ## New Features
 OAuth
@@ -82,8 +89,8 @@ WHEN I click on Logout
 ```
 
 ## Development
-### Wireframe
-![Wireframe](/client/public/img/devspace-wireframe.png)
+### Updated Wireframe
+![Wireframe](/client/public/img/project3_devlr_wireframe.png)
 
 ## Usage
 ### To begin using devlr, sign up for an account.

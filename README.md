@@ -26,6 +26,21 @@ Create a customized profile to display your development background, pinned proje
 <br>Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
 <br> In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
 
+## New Features
+OAuth
+Edit Profile Information
+Edit Posts
+Reset Password
+Comments/Likes
+Follow users
+Star comments
+Pinned projects instead of just last 5
+Posting links in posts/comments
+Upload images
+Notification
+Chat Feature
+Mentor matching
+Job Board
 
 ## Repo and Heroku App Links
 * [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)

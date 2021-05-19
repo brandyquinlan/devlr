@@ -5,6 +5,7 @@ import { UserContext } from '../utils/UserState'
 import { PostContext } from '../utils/PostState'
 import { TargetUserContext } from '../utils/TargetUserState'
 import { ModalContext } from '../utils/ModalState'
+import { socket } from '../utils/socket'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
 import Sidenav from '../Components/Sidenav/Sidenav'
@@ -15,7 +16,6 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
-import Toast from '../utils/Toast'
 import ScrollToTop from '../utils/ScrollToTop'
 import StackOverflow from '../assets/img/stackoverflow.png'
 import KUad from '../assets/img/KU-ad.png'
@@ -93,6 +93,9 @@ const Home = () => {
           },
         })
         targetDispatch({ type: 'set target', payload: {} })
+
+        socket.emit('storeClientInfo', { userId: user._id })
+
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -139,7 +142,11 @@ const Home = () => {
                       className="d-flex flex-row align-items-top justify-content-around"
                       id="col1"
                     >
-                      {width < breakpoint ? <MobileSidenav  home={true} /> : <Sidenav home={true} />}
+                      {width < breakpoint ? (
+                        <MobileSidenav home={true} />
+                      ) : (
+                        <Sidenav home={true} />
+                      )}
                       <div
                         className="d-flex flex-column align-items-left"
                         id="col2"

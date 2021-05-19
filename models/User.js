@@ -19,6 +19,8 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  resetCode: String,
+  resetCodeExpires: Number,
 })
 
 const User = mongoose.model('User', userSchema)

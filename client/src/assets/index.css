@@ -112,6 +112,24 @@ button {
   border: none;
 }
 
+button#addSkill {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
+button#addLang {
+  display: inline-block;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--main-text-color);
+  background: transparent;
+  /* border: none; */
+}
+
 button:hover {
   opacity: 0.8;
 }
@@ -167,11 +185,16 @@ input::placeholder {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
 }
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
+}
+
+button.close {
+  margin: 0;
+  padding: 0;
 }
 
 .modal-header,
@@ -184,13 +207,10 @@ input::placeholder {
   border-radius: 20px;
 }
 
-.toast-header,
-.toast-body {
-  background-color: var(--main-bg-color) !important;
-}
-
-.toast {
-  border: 1px solid linen !important;
+.tooltip ul {
+  max-width: min-content;
+  padding: 0;
+  margin: 0;
 }
 
 .dropdown-menu {
@@ -210,40 +230,10 @@ input::placeholder {
   background-color: transparent !important;
 }
 
-div.pp-scroll {
-  width: 100%;
-  max-height: 750px;
-  overflow: auto;
-  text-align: justify;
-}
-
-div.feed {
+div.scroll {
   width: 100%;
   max-height: 400px;
   overflow: auto;
-  text-align: left;
-}
-
-div.feed-profile {
-  width: 100%;
-  height: 440px;
-  overflow: auto;
-  text-align: left;
-  min-width: 576px;
-}
-
-div.bg-scroll {
-  width: 100%;
-  max-height: 220px;
-  overflow: auto;
-  text-align: left;
-}
-
-div.bg-scroll-profile {
-  width: 100%;
-  max-height: 450px;
-  overflow: auto;
-  text-align: left;
 }
 
 ul {
@@ -255,7 +245,32 @@ li,
   font-weight: 400;
 }
 
+a {
+  color: var(--main-text-color);
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: var(--main-text-color);
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+a.switchLink:hover,
+a.switchLink:active,
+a.switchLink:focus {
+  color: var(--main-text-color);
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
 li > a {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-left: 6px;
+  padding-right: 6px;
   color: var(--main-text-color);
 }
 
@@ -278,10 +293,6 @@ hr {
 
 footer {
   width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
@@ -320,17 +331,30 @@ footer {
   background-color: transparent;
   border-color: linen;
 }
-
 .btn-secondary:hover {
+  background-color: transparent;
+  border-color: linen;
+}
+.btn-secondary:focus,
+.btn-secondary.focus {
   background-color: transparent;
   border-color: linen;
   box-shadow: 0 0 0 0.2rem transparent !important;
 }
-
-.btn-secondary:active,
-.btn-secondary:focus {
+.btn-secondary.disabled,
+.btn-secondary:disabled {
   background-color: transparent;
-  border-color: linen !important;
+  border-color: linen;
+}
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  background-color: transparent;
+  border-color: linen;
+}
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem transparent !important;
 }
 
@@ -481,6 +505,22 @@ footer {
   margin-right: 1.5rem;
 }
 
+#profile-side-nav {
+  margin-right: 1.5rem;
+  min-width: 160px;
+}
+
+.underlineLink,
+.underlineLink:hover,
+.underlineLink:active,
+.underlineLink:focus {
+  text-decoration: underline;
+}
+
+button.disabled {
+  opacity: 0.8;
+}
+
 #modalCloseBtn {
   background: rgb(245, 245, 245);
   background: linear-gradient(
@@ -488,7 +528,6 @@ footer {
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
-
 }
 
 #mobileBtn {
@@ -504,12 +543,17 @@ footer {
 }
 
 #signUp,
-#logIn {
+#logIn,
+#settings {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#accountMsg {
+  max-width: 260px;
 }
 
 #backgroundWrapper {
@@ -518,14 +562,16 @@ footer {
   margin-block-end: 0;
 }
 
-#newBtn {
+.newBtn {
   border-radius: 20px;
+  color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
+  font-size: 1rem;
 }
 
 #postBox {
@@ -540,23 +586,26 @@ footer {
 #postBtn {
   width: 100px;
   border-radius: 20px;
+  color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
+  font-size: 1rem;
 }
 
 #appearanceBtn {
   display: inline-flex;
   border-radius: 20px;
-  background-color: var(--main-text-color);
+  color: var(--main-text-color) !important;
   background: linear-gradient(
     180deg,
     rgba(245, 245, 245, 0.1) 0%,
     rgba(250, 240, 230, 0.1) 49.48%
   );
+  font-size: 1rem;
 }
 
 #userPic {
@@ -568,39 +617,73 @@ footer {
   vertical-align: middle;
 }
 
+#mobileUserPic {
+  background-color: var(--main-text-color);
+  width: 50px;
+  height: 50px;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+  vertical-align: middle;
+}
+
 #PinnedProjects {
   min-width: 275px;
 }
 
 .devPic {
-  background-color: var(--main-text-color);
   width: 50px;
   height: 50px;
-  margin-left: 0.5rem;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
 }
 
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
 }
 
+a > span.devLink:hover {
+  text-decoration: none !important;
+}
+
 #col2 {
   width: 100%;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+#col3 {
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
 }
 
 /* Media Queries */
+@media screen and (max-width: 875px) {
+  #mobile-side-nav {
+    margin-right: 1rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .container {
     margin: 0.25rem;
   }
   #mobile-side-nav {
     margin-top: 2rem;
+    margin-right: 0.15rem;
   }
   #col2 {
     margin-top: 1.5rem;
-    margin-left: 0.5rem;
-    margin-right: 1rem;
+    margin-left: 0.25rem;
+    margin-right: 0.5rem;
+    max-width: 350px;
+    min-width: 300px;
   }
   #col3 {
     display: none !important;
+  }
+  footer > img {
+    margin-left: .5rem;
   }
 }

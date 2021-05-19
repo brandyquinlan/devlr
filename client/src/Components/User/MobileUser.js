@@ -1,27 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
+import { UserContext } from '../../utils/UserState'
+import { TargetUserContext } from '../../utils/TargetUserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
+  const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
 
+  const { profile } = targetUser.profile ? targetUser : store
+
   return (
     <div className="d-flex flex-column align-items-center">
-      <Button
-        type="button"
-        variant="secondary"
-        id="mobileBtn"
-        onClick={() => setPostModalShow(true)}
-      >
-        <span className="material-icons" style={{ fontSize: '26px' }}>
-          post_add
-        </span>
-      </Button>
-      <NewPostModal
-        show={postModalShow}
-        onHide={() => setPostModalShow(false)}
+      <img
+        src={profile.avatarUrl}
+        alt="user avatar"
+        className="circle"
+        height="50"
+        width="50"
       />
       <Button
         type="button"
@@ -29,7 +28,7 @@ function User() {
         id="mobileBtn"
         onClick={() => setAppearanceModalShow(true)}
       >
-        <span className="material-icons" style={{ fontSize: '26px' }}>
+        <span className="material-icons" style={{ fontSize: '25px' }}>
           palette
         </span>
       </Button>

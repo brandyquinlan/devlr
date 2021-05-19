@@ -1,32 +1,36 @@
-import React, { useEffect, useContext } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { StoreContext } from './utils/GlobalState'
-import API from './utils/API'
+import UserStore from './utils/UserState'
+import ModalStore from './utils/ModalState'
+import PostStore from './utils/PostState'
+import TargetStore from './utils/TargetUserState'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
+import Settings from './Pages/Settings'
+import Profile from './Pages/Profile'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/index.css'
 
 function App() {
-  const [store, dispatch] = useContext(StoreContext)
-
-  useEffect(() => {
-    API.getUser().then((user) => {
-      dispatch({ type: 'set user', payload: user.data })
-    })
-  }, [])
-
   return (
-    <Router>
-      <div className="container">
-        <Switch>
-          <Route exact path="/" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/home" component={Home} />
-        </Switch>
-      </div>
-    </Router>
+    <UserStore>
+      <PostStore>
+        <ModalStore>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Signup} />
+              <Route exact path="/login" component={Login} />
+              <TargetStore>
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/home/settings" component={Settings} />
+                <Route exact path="/profile" component={Profile} />
+              </TargetStore>
+            </Switch>
+          </Router>
+        </ModalStore>
+      </PostStore>
+    </UserStore>
   )
 }
 

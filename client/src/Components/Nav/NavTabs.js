@@ -4,31 +4,31 @@ function NavTab({ currentPage, handlePageChange }) {
   return (
     <ul className="nav nav-tabs mb-3">
       <li className="nav-item">
-        <a
-          href="#activity"
-          onClick={() => handlePageChange('Activity')}
-          className={currentPage === 'Acivity' ? 'nav-link active' : 'nav-link'}
+        <button
+          type="button"
+          onClick={() => handlePageChange('Posts')}
+          className={currentPage === 'Posts' ? 'nav-link active' : 'nav-link'}
         >
-          Activity
-        </a>
+          Posts
+        </button>
       </li>
       <li className="nav-item">
-        <a
-          href="#profile"
+        <button
+          type="button"
           onClick={() => handlePageChange('Profile')}
           className={currentPage === 'Profile' ? 'nav-link active' : 'nav-link'}
         >
           Profile
-        </a>
+        </button>
       </li>
       <li className="nav-item">
-        <a
-          href="#explore"
-          onClick={() => handlePageChange('Explore')}
-          className={currentPage === 'Explore' ? 'nav-link active' : 'nav-link'}
+        <button
+          type="button"
+          onClick={() => handlePageChange('Network')}
+          className={currentPage === 'Network' ? 'nav-link active' : 'nav-link'}
         >
-          Explore
-        </a>
+          Network
+        </button>
       </li>
     </ul>
   )

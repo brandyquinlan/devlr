@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
+import { TargetUserContext } from '../../utils/TargetUserState'
+import { UserContext } from '../../utils/UserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 
 function User() {
+  const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
   const [appearanceModalShow, setAppearanceModalShow] = React.useState(false)
 
+  const { profile } = targetUser.profile ? targetUser : store
+
   return (
     <div className="d-flex flex-column align-items-center">
-      <Button
+      {/* <Button
         variant="secondary"
         size="lg"
         id="newBtn"
@@ -23,8 +29,29 @@ function User() {
       <NewPostModal
         show={postModalShow}
         onHide={() => setPostModalShow(false)}
-      />
-      <div className="circle" id="userPic"></div>
+      /> */}
+      <div className="circle" id="userPic">
+        <img
+          src={profile.avatarUrl}
+          alt="User profile"
+          className="img-fluid circle"
+          height="250"
+          width="250"
+        />
+      </div>
+      <div>
+        <h5 className="text-center">{profile.name}</h5>
+        <h6 className="text-center">
+          GitHub:{' '}
+          <a
+            href={`https://github.com/${profile.githubUsername}`}
+            target="_blank"
+          >
+            {' '}
+            {profile.githubUsername}
+          </a>
+        </h6>
+      </div>
       <Button
         variant="secondary"
         size="lg"

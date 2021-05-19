@@ -86,22 +86,19 @@ The following technologies were used:
 ```
 Node.js
 Express
-Express-handlebars
 Express-session
 Passport-local
-Passort Middleware Authentication
+Passport Middleware Authentication
 Bcrypt(password hashing)
 dotenv
-Sequelize
-MySQL
-JAWSDB
 HTML
 CSS
 JavaScript
 JQuery
 Axios
 Heroku
-GoDaddy
+AtlasDB
+<!-- GoDaddy -->
 ```
 
 ## devlr Team

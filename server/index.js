@@ -67,9 +67,7 @@ io.on('connection', (socket) => {
     console.log('comment left')
     const index = clients.findIndex((client) => client.userId === targetId)
     if (index < 0) return
-    io.to(clients[index].socketId).emit('commentOnYourPost', {
-      from: socket.id,
-    })
+    io.to(clients[index].socketId).emit('commentOnYourPost')
   })
 
   socket.on('disconnect', () => {

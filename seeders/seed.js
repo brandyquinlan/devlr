@@ -13,7 +13,7 @@ const userSeed = [
     _id: ObjectId('60a298987ec6b108b107ddb7'),
     following: [],
     followers: [],
-    email: 'b@gmail.com',
+    email: 'brandyquinlan@gmail.com',
     password: '$2a$10$QSxpvRPve2WG7xL2/LoM4eGiFWo345Fi7ckwgjIECLihO2NJJpTVq',
     date: ISODate('2021-05-17T16:23:52.132Z'),
     __v: 0,

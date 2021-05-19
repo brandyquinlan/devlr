@@ -146,8 +146,6 @@ const Home = () => {
                         <Navbar
                           projects={projects}
                           home={true}
-                          followers={store.profile.followers}
-                          following={store.profile.following}
                         />
                       </div>
                       <div

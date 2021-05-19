@@ -585,6 +585,10 @@ button.disabled {
   font-size: 1rem;
 }
 
+.newBtn > .material-icons {
+  margin-right: 0;
+}
+
 #postBox {
   width: 30rem;
   border: none;
@@ -609,6 +613,7 @@ button.disabled {
 
 #appearanceBtn {
   display: inline-flex;
+  width: 153.06px;
   border-radius: 20px;
   color: var(--main-text-color) !important;
   background: linear-gradient(

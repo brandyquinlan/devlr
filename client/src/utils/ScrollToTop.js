@@ -28,7 +28,7 @@ export default function ScrollToTop() {
   return (
     <div className="scroll-to-top">
       {isVisible && (
-        <div className="btn btn-secondary float-right" onClick={scrollToTop}>
+        <div className="btn btn-secondary mb-3 float-right" onClick={scrollToTop}>
           <span className="material-icons" style={{fontSize: '18px'}}>north</span>
           <span>Back to Top</span>
         </div>

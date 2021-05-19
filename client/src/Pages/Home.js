@@ -102,7 +102,7 @@ const Home = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 875
+  const breakpoint = 900
   const { themePref } = store.profile
 
   useEffect(() => {

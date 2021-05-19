@@ -16,6 +16,7 @@ import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
 import ScrollToTop from '../utils/ScrollToTop'
+import Footer from '../Components/Footer'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -73,7 +74,7 @@ const Profile = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 875
+  const breakpoint = 900
 
   useEffect(() => {
     if (!targetUser.profile) return
@@ -94,7 +95,8 @@ const Profile = () => {
   }, [targetUser])
 
   return (
-    <div className="container">
+    <>
+    <div className="container mainWrapper">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (
@@ -147,6 +149,8 @@ const Profile = () => {
         ]
       )}
     </div>
+    <Footer />
+    </>
   )
 }
 

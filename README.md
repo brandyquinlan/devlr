@@ -68,7 +68,7 @@ WHEN I click on Logout
 ## Usage
 ### To begin using devlr, sign up for an account.
 
-- Go to http://devlr.herokuapp.com/
+- Go to http://devlrapp.herokuapp.com/
 - Create an account on the "Signup" screen
 - Create a Profile
 - Have fun!

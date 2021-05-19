@@ -54,7 +54,7 @@ function FollowBtn({ profile }) {
         >
           <span
             className="material-icons"
-            style={{ fontSize: '26px', marginLeft: '.5rem' }}
+            style={{ marginLeft: '.5rem' }}
           >
             person_remove
           </span>
@@ -69,7 +69,7 @@ function FollowBtn({ profile }) {
         >
           <span
             className="material-icons"
-            style={{ fontSize: '26px', marginLeft: '.5rem' }}
+            style={{ marginLeft: '1rem' }}
           >
             person_add
           </span>

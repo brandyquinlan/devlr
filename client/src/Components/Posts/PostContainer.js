@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../utils/UserState'
 import { PostContext } from '../../utils/PostState'
 import { TargetUserContext } from '../../utils/TargetUserState'
-import { socket } from '../../utils/socket'
 import API from '../../utils/API'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
@@ -15,12 +14,6 @@ function PostContainer({ home }) {
   const [posts, setPosts] = useState([])
 
   let { profile } = targetUser.profile ? targetUser : store
-
-  socket.on('commentOnYourPost', () => {
-    API.getFollowingPosts(store.user._id).then((res) => {
-      postDispatch({ type: 'set posts', payload: res })
-    })
-  })
 
   function createPost(event, title, body) {
     event.preventDefault()

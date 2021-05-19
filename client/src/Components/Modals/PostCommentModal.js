@@ -45,6 +45,7 @@ function PostCommentModal(props) {
       .catch((err) => console.warn(err))
   }
 
+  // This is how the scroll to bottom happens
   useEffect(() => {
     if (!props.show) return
     scrollToBottom()

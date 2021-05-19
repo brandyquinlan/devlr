@@ -9,6 +9,7 @@
 
 - [Program Description](#program-description)
 - [Team Members and Rolls](#team-members-and-rolls)
+- [New Features](#team-members-and-rolls)
 - [Repo and Heroku App Links](#repo-and-heroku-app-links)
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
@@ -34,7 +35,7 @@ Liz Townsend: Front End Development
 Vinitha Kumar: Back End/DB Development
 Keaton Brewster: Back End/DB Development/Dev Ops
 
-## New Features
+## New Features | devlr2.0
 OAuth
 Edit Profile Information
 Edit Posts

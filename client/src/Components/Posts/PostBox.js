@@ -12,7 +12,7 @@ function PostBox({ post, state, home }) {
   const [store, dispatch] = useContext(UserContext)
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const [delPostModalShow, setDelPostModalShow] = useState(false)
-  const [posts, postDispatch] = useContext(PostContext)
+  const [isOwned, setIsOwned] = useState(false)
   const { _id, author, user, body, date, likes, comments } = post
 
   const deletePostHandler = (event) => {

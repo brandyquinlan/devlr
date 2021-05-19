@@ -3,7 +3,7 @@
 
 ### Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide.
 
-### 📍 [Visit devlr on Heroku](http://devlr.herokuapp.com/) 📍
+### 📍 [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) 📍
 
 ## Table of Contents
 

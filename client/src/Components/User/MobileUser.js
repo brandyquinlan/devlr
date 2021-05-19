@@ -4,8 +4,9 @@ import { UserContext } from '../../utils/UserState'
 import { TargetUserContext } from '../../utils/TargetUserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
+import MobileFollowBtn from './MobileFollowBtn'
 
-function User() {
+function User({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
@@ -22,20 +23,26 @@ function User() {
         height="50"
         width="50"
       />
-      <Button
-        type="button"
-        variant="secondary"
-        id="mobileBtn"
-        onClick={() => setAppearanceModalShow(true)}
-      >
-        <span className="material-icons" style={{ fontSize: '25px' }}>
-          palette
+      {home ? (
+        <div>
+          <Button
+            type="button"
+            variant="secondary"
+            id="mobileBtn"
+            onClick={() => setAppearanceModalShow(true)}
+          >
+            <span className="material-icons" style={{ fontSize: '25px' }}>
+              palette
         </span>
-      </Button>
-      <AppearanceModal
-        show={appearanceModalShow}
-        onHide={() => setAppearanceModalShow(false)}
-      />
+          </Button>
+          <AppearanceModal
+            show={appearanceModalShow}
+            onHide={() => setAppearanceModalShow(false)}
+          />
+        </div>) : (
+        <MobileFollowBtn profile={profile} />
+      )}
+
     </div>
   )
 }

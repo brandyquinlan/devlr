@@ -4,7 +4,7 @@ import Tab from '../Tab'
 import LangBtn from './LangBtn'
 import LangsModal from '../Modals/LangsModal'
 
-function Languages({ languages }) {
+function Languages({ languages, home }) {
   const [langModalShow, setLangModalShow] = React.useState(false)
 
   return (
@@ -14,6 +14,8 @@ function Languages({ languages }) {
           <LangBtn key={lang} lang={lang} />
         ))}
         <br></br>
+        {home ? (
+          <div>
         <Button
           variant="secondary"
           size="sm"
@@ -26,6 +28,8 @@ function Languages({ languages }) {
           show={langModalShow}
           onHide={() => setLangModalShow(false)}
         />
+    </div>
+        ) : '' } 
       </Tab>
     </div>
   )

@@ -16,7 +16,7 @@ function Navbar({ projects, home, followers, following }) {
       return <Network />
     }
     if (page === 'Profile') {
-      return <Profile projects={projects} />
+      return <Profile projects={projects} home={home} />
     }
     return <Posts home={home} />
   }

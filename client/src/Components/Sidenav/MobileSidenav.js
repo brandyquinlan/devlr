@@ -6,7 +6,7 @@ import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
 import Logo from '../../assets/img/logo.png'
 
-function MobileSidenav() {
+function MobileSidenav({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [modals, modalDispatch] = useContext(ModalContext)
 
@@ -64,7 +64,7 @@ function MobileSidenav() {
           </button>
         </li>
       </ul>
-      <MobileUser />
+      <MobileUser home={home} />
     </div>
   )
 }

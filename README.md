@@ -23,7 +23,7 @@ Create a customized profile to display your development background, pinned proje
 
 
 ## Repo and Heroku App Links
-* [Link to GitHub Repo - https://github.com/liztownd/devlr](https://github.com/liztownd/devlr)
+* [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
 * [Link to Heroku App - http://devlr.herokuapp.com](http://devlr.herokuapp.com)
 * [Link to live App (COMING SOON) - http://devlrapp.com](http://devlrapp.com)
 

@@ -8,122 +8,241 @@ mongoose.connect('mongodb://localhost:27017/devlr', {
   useCreateIndex: true,
 })
 
+var ObjectId = require('mongodb').ObjectID;
 const userSeed = [
   {
-    _id: 1,
+    _id: ObjectId('60a298987ec6b108b107ddb7'),
+    following: [],
+    followers: [],
     email: 'brandyquinlan@gmail.com',
-    password: 'brandyquinlan',
-    accessToken: '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',
-    date: Date.now,
+    password: '$2a$10$QSxpvRPve2WG7xL2/LoM4eGiFWo345Fi7ckwgjIECLihO2NJJpTVq',
+    date: Date('2021-05-17T16:23:52.132Z'),
+    __v: 0,
+    accessToken: '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',
   },
   {
-    _id: 2,
-    email: 'brenna.mcleod94@gmail.com',
-    password: 'brenna',
-    date: Date.now,
+    _id: ObjectId('60a532c9266a4f2cc69925f6'),
+    email: 'brenna.mcleod@gmail.com',
+    password: '$2a$10$/YLBRz8HtKmosuFpSXPhPeOHraXN8R6xN9H7NB/H4h/vnPh3GxFwa',
+    date: Date('2021-05-19T15:46:17.512Z'),
+    __v: 0,
+    accessToken: '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',
   },
   {
-    _id: 3,
+    _id: ObjectId('60a5336e266a4f2cc69925f8'),
     email: 'maggiemaywilder@gmail.com',
-    password: 'maggie',
-    date: Date.now,
+    password: '$2a$10$J6GpHjELcfHGAP5FK09KH.G1u.VSpiChBvDvH09KGl48.fOjPZWOy',
+    date: Date('2021-05-19T15:49:02.441Z'),
+    __v: 0,
+    accessToken: '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',
   },
   {
-    _id: 4,
+    _id: ObjectId('60a533d0266a4f2cc69925fa'),
     email: 'kolton.c.decker@gmail.com',
-    password: 'kolton',
-    date: Date.now,
+    password: '$2a$10$wwufUMA88PNQlCyvA4lj2eJPTfRrBVDAAnTwtJWThTStFkq6phGCm',
+    date: Date('2021-05-19T15:50:40.443Z'),
+    __v: 0,
+    accessToken: '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',
   },
   {
-    _id: 5,
+    _id: ObjectId('60a5344d266a4f2cc69925fc'),
     email: 'steve.babb@outlook.com',
-    password: 'steve',
-    date: Date.now,
+    password: '$2a$10$YFATTMrJQuOUgo/4qTsjEuQADymcbMXqM1xpqNnE2t/97p027lZVO',
+    date: Date('2021-05-19T15:52:45.669Z'),
+    __v: 0,
+    accessToken: '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',
   },
 ]
 
 const profileSeed = [
   {
-    _id: 6,
-    user: 1,
+    _id: ObjectId('60a298987ec6b108b107ddb8'),
+    user: ObjectId('60a298987ec6b108b107ddb7'),
+    skills: ['Web Dev', 'Full Stack'],
+    languages: ['Javascript', 'CSS'],
+    themePref: '222222',
+    user: ObjectId('60a298987ec6b108b107ddb7'),
     name: 'Brandy Quinlan',
     highestGraduation: 'Masters',
     school: 'KU',
-    skills: ['Web Dev', 'Full Stack Development'],
     totalYearsofExperience: 1,
-    Company: 'none',
-    currentPosition: 'Student',
-    from: '2021-03-09',
-    to: '2021-03-26',
+    currentPosition: 'None',
+    company: 'None',
+    from: Date('2021-05-05T00:00:00.000Z'),
+    to: Date('2021-05-14T00:00:00.000Z'),
     githubUsername: 'brandyquinlan',
-    languages: ['JavaScript', 'Python'],
     avatarUrl:
-      'avatars.githubusercontent.com/u/73489664?s=400&u=d04ff688c61322f6f737ce805be049871747b0e9&v=4',
+      'https://avatars.githubusercontent.com/u/73489664?u=d04ff688c61322f6f737ce805be049871747b0e9&v=4',
+    __v: 0,
   },
   {
-    _id: 7,
-    user: 2,
+    _id: ObjectId('60a532c9266a4f2cc69925f7'),
+    user: ObjectId('60a532c9266a4f2cc69925f6'),
+    following: [],
+    followers: [],
+    skills: [],
+    languages: [],
+    themePref: '222222',
+    user: ObjectId('60a532c9266a4f2cc69925f6'),
     name: 'Brenna McLeod',
     highestGraduation: 'Masters',
     school: 'KU',
-    skills: ['Web Dev', 'Full Stack Development'],
-    totalYearsofExperience: 1,
-    Company: 'none',
+    totalYearsofExperience: 3,
     currentPosition: 'Student',
-    from: '2021-03-09',
-    to: '2021-03-26',
+    company: 'None',
+    from: Date('2021-04-28T00:00:00.000Z'),
+    to: Date('2021-05-18T00:00:00.000Z'),
     githubUsername: 'bmcleod12',
-    languages: ['JavaScript', 'Python'],
-    avatarUrl: 'https://avatars.githubusercontent.com/u/73400680?v=4',
+    avatarUrl:
+      'https://avatars.githubusercontent.com/u/73400680?u=d41d9b8afdf5c9a4408cc831f03c8247a5762883&v=4',
+    __v: 0,
   },
   {
-    _id: 8,
-    user: 3,
+    _id: ObjectId('60a5336e266a4f2cc69925f9'),
+    user: ObjectId('60a5336e266a4f2cc69925f8'),
+    following: [],
+    followers: [],
+    skills: [],
+    languages: [],
+    themePref: '222222',
+    user: ObjectId('60a5336e266a4f2cc69925f8'),
     name: 'Maggie May Wilder',
     highestGraduation: 'Masters',
     school: 'KU',
-    skills: ['Web Dev', 'Full Stack Development'],
     totalYearsofExperience: 1,
-    Company: 'none',
     currentPosition: 'Student',
-    from: '2021-03-09',
-    to: '2021-03-26',
+    company: 'None',
+    from: Date('2021-05-05T00:00:00.000Z'),
+    to: Date('2021-05-14T00:00:00.000Z'),
     githubUsername: 'maggiemaywilder',
-    languages: ['JavaScript', 'Python'],
-    avatarUrl: 'https://avatars.githubusercontent.com/u/72891601?v=4',
+    avatarUrl:
+      'https://avatars.githubusercontent.com/u/72891601?u=22b3a392a8e7c0b7aff4ec6aa8129738bdbc196b&v=4',
+    __v: 0,
   },
   {
-    _id: 9,
-    user: 4,
+    _id: ObjectId('60a533d0266a4f2cc69925fb'),
+    user: ObjectId('60a533d0266a4f2cc69925fa'),
+    following: [],
+    followers: [],
+    skills: [],
+    languages: [],
+    themePref: '222222',
+    user: ObjectId('60a533d0266a4f2cc69925fa'),
     name: 'Kolton Decker',
     highestGraduation: 'Masters',
     school: 'KU',
-    skills: ['Web Dev', 'Full Stack Development'],
-    totalYearsofExperience: 1,
-    Company: 'none',
+    totalYearsofExperience: 4,
     currentPosition: 'Student',
-    from: '2021-03-09',
-    to: '2021-03-26',
+    company: 'None',
+    from: Date('2021-05-07T00:00:00.000Z'),
+    to: Date('2021-05-18T00:00:00.000Z'),
     githubUsername: 'koltondecker',
-    languages: ['JavaScript', 'Python'],
-    avatarUrl: 'https://avatars.githubusercontent.com/u/71789549?v=4',
+    avatarUrl:
+      'https://avatars.githubusercontent.com/u/71789549?u=1334b2c305f481963f9ee5be7d3f8992ac9168b6&v=4',
+    __v: 0,
   },
   {
-    _id: 10,
-    user: 5,
+    _id: ObjectId('60a5344d266a4f2cc69925fd'),
+    user: ObjectId('60a5344d266a4f2cc69925fc'),
+    following: [],
+    followers: [],
+    skills: [],
+    languages: [],
+    themePref: '222222',
+    user: ObjectId('60a5344d266a4f2cc69925fc'),
     name: 'Steve Babb',
     highestGraduation: 'Masters',
     school: 'KU',
-    skills: ['Web Dev', 'Full Stack Development'],
-    totalYearsofExperience: 1,
-    Company: 'none',
+    totalYearsofExperience: 3,
     currentPosition: 'Student',
-    from: '2021-03-09',
-    to: '2021-03-26',
+    company: 'None',
+    from: Date('2021-04-28T00:00:00.000Z'),
+    to: Date('2021-05-12T00:00:00.000Z'),
     githubUsername: 'verusbabb',
-    languages: ['JavaScript', 'Python'],
-    avatarUrl: 'https://avatars.githubusercontent.com/u/72149563?v=4',
+    avatarUrl:
+      'https://avatars.githubusercontent.com/u/72149563?u=48be23f0175ac203672304c40610a8b12990919f&v=4',
+    __v: 0,
   },
+]
+const postSeed = [
+  {
+    "_id" : ObjectId("60a01f99b2c70a0c3cd20a13"),
+    "title" : "Post #1",
+    "body" : "Post #1",
+    "author" : "Brandy Quinlan",
+    "user" : ObjectId("60a298987ec6b108b107ddb7"),
+    "likes" : [],
+    "comments" : [],
+    "date" : Date("2021-05-15T19:23:05.854Z"),
+    "__v" : 0
+},
+{
+    "_id" : ObjectId("60a298cc7ec6b108b107ddb9"),
+    "title" : "post 1",
+    "body" : "post 1",
+    "author" : "Brandy Quinlan",
+    "user" : ObjectId("60a298987ec6b108b107ddb7"),
+    "likes" : [ 
+        {
+            "_id" : ObjectId("60a298d97ec6b108b107ddba"),
+            "user" : ObjectId("60a298987ec6b108b107ddb7"),
+            "userName" : "Brandy Quinlan"
+        }
+    ],
+    "comments" : [],
+    "date" : Date("2021-05-17T16:24:44.556Z"),
+    "__v" : 0
+},
+{
+    "_id" : ObjectId("60a403a228847b1dc5a73a6e"),
+    "title" : "post 2",
+    "body" : "post 2",
+    "author" : "Brandy Quinlan",
+    "user" : ObjectId("60a298987ec6b108b107ddb7"),
+    "likes" : [],
+    "comments" : [],
+    "date" : Date("2021-05-18T18:12:50.324Z"),
+    "__v" : 0
+},
+  {
+    "_id" : ObjectId("60a01f99b2c70a0c3cd20a28"),
+    "title" : "Post #1",
+    "body" : "Post #1",
+    "author" : "Kolton Decker",
+    "user" : ObjectId("60a533d0266a4f2cc69925fa"),
+    "likes" : [],
+    "comments" : [],
+    "date" : Date("2021-05-15T19:23:05.854Z"),
+    "__v" : 0
+},
+{
+    "_id" : ObjectId("60a298cc7ec6b108b107dd29"),
+    "title" : "post 1",
+    "body" : "post 1",
+    "author" : "Kolton Decker",
+    "user" : ObjectId("60a533d0266a4f2cc69925fa"),
+    "likes" : [ 
+        {
+            "_id" : ObjectId("60a298d97ec6b108b107dd30"),
+            "user" : ObjectId("60a533d0266a4f2cc69925fa"),
+            "userName" : "Kolton Decker"
+        }
+    ],
+    "comments" : [],
+    "date" : Date("2021-05-17T16:24:44.556Z"),
+    "__v" : 0
+},
+{
+    "_id" : ObjectId("60a403a228847b1dc5a73a31"),
+    "title" : "post 2",
+    "body" : "post 2",
+    "author" : "Kolton Decker",
+    "user" : ObjectId("60a533d0266a4f2cc69925fa"),
+    "likes" : [],
+    "comments" : [],
+    "date" : Date("2021-05-18T18:12:50.324Z"),
+    "__v" : 0
+},
 ]
 db.User.deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
@@ -139,6 +258,18 @@ db.User.deleteMany({})
 
 db.Profile.deleteMany({})
   .then(() => db.Profile.collection.insertMany(profileSeed))
+  .then((data) => {
+    console.log(data)
+    console.log(`${data.result.n}  'profile records inserted!'`)
+    // process.exit(0)
+  })
+  .catch((err) => {
+    console.error(err)
+    // process.exit(1)
+  })
+
+db.Post.deleteMany({})
+  .then(() => db.Post.collection.insertMany(postSeed))
   .then((data) => {
     console.log(data)
     console.log(`${data.result.n}  'profile records inserted!'`)

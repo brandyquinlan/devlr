@@ -1,13 +1,15 @@
-# ![logo](/public/img/devlr-logo-dark-sm.png) devlr | show your skills, share your life
+# ![logo](/client/public/img/devlr-logo-dark-sm.png) devlr | show your skills, share your life
 ![GitHub license](https://img.shields.io/badge/License-MIT-orange)
 
 ### Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide.
 
-### 📍 [Visit devlr on Heroku](http://devlr.herokuapp.com/) 📍
+### 📍 [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) 📍
 
 ## Table of Contents
 
-- [Description](#program-description)
+- [Program Description](#program-description)
+- [Team Members and Rolls](#team-members-and-rolls)
+- [New Features](#team-members-and-rolls)
 - [Repo and Heroku App Links](#repo-and-heroku-app-links)
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
@@ -19,12 +21,39 @@
 - [devlr Team](#devlr-team)
 
 ## Program Description
-Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide.
+Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide. devlr is a social media/portfolio/networking site designed just for developers. There is nothing like it on the open market, the nearest competitor would be Stack Overflow or GitHub for code sharing or Reddit for social interaction. 
+<br>Our project combines the benefits of GitHub for sharing your code, and Twitter and other social media for sharing your life. 
+* Using OAuth, our application reaches out to the GitHub API to retrieve projects to highlight your work. 
+* Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
+* In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
 
+## Team Members and Rolls:
+
+Brandy Quinlan: Project Manager/Git Controller, Front End Development
+Kat Buchanan: Front End Development
+Liz Townsend: Front End Development
+Vinitha Kumar: Back End/DB Development
+Keaton Brewster: Back End/DB Development/Dev Ops
+
+## New Features | devlr2.0
+OAuth
+Edit Profile Information
+Edit Posts
+Reset Password
+Comments/Likes
+Follow users
+Star comments
+Pinned projects instead of just last 5
+Posting links in posts/comments
+Upload images
+Notification
+Chat Feature
+Mentor matching
+Job Board
 
 ## Repo and Heroku App Links
-* [Link to GitHub Repo - https://github.com/liztownd/devlr](https://github.com/liztownd/devlr)
-* [Link to Heroku App - http://devlr.herokuapp.com](http://devlr.herokuapp.com)
+* [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
+* [Link to Heroku App - http://devlrapp.herokuapp.com](http://devlrapp.herokuapp.com)
 * [Link to live App (COMING SOON) - http://devlrapp.com](http://devlrapp.com)
 
 
@@ -62,13 +91,13 @@ WHEN I click on Logout
 ```
 
 ## Development
-### Wireframe
-![Wireframe](/public/img/devspace-wireframe.png)
+### Updated Wireframe
+![Wireframe](/client/public/img/project3_devlr_wireframe.png)
 
 ## Usage
 ### To begin using devlr, sign up for an account.
 
-- Go to http://devlr.herokuapp.com/
+- Go to http://devlrapp.herokuapp.com/
 - Create an account on the "Signup" screen
 - Create a Profile
 - Have fun!
@@ -77,7 +106,7 @@ WHEN I click on Logout
 * [Link to demo - https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing](https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing)
 
 ## Screenshots
-![Screenshots](/public/img/screenshots.png)
+![Screenshots](/client/public/img/screenshots.png)
 
 
 ## Functionality
@@ -98,7 +127,6 @@ JQuery
 Axios
 Heroku
 AtlasDB
-<!-- GoDaddy -->
 ```
 
 ## devlr Team

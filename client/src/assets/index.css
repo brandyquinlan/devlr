@@ -647,6 +647,9 @@ button.disabled {
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
 }
+#featDev{
+padding: 8px 0;
+}
 
 a > span.devLink:hover {
   text-decoration: none !important;

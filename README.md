@@ -19,12 +19,17 @@
 - [devlr Team](#devlr-team)
 
 ## Program Description
-Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide.
+Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide. <devlr> is a social media/portfolio/networking site designed just for developers. 
+<br>There is nothing like it on the open market, the nearest competitor would be Stack Overflow or GitHub for code sharing or Reddit for social interaction. 
+<br>Our project combines the benefits of GitHub for sharing your code, and Twitter and other social media for sharing your life. 
+<br>Using OAuth, our application reaches out to the GitHub API to retrieve projects to highlight your work. 
+<br>Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
+<br> In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
 
 
 ## Repo and Heroku App Links
 * [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
-* [Link to Heroku App - http://devlr.herokuapp.com](http://devlr.herokuapp.com)
+* [Link to Heroku App - http://devlrapp.herokuapp.com](http://devlrapp.herokuapp.com)
 * [Link to live App (COMING SOON) - http://devlrapp.com](http://devlrapp.com)
 
 
@@ -98,7 +103,6 @@ JQuery
 Axios
 Heroku
 AtlasDB
-<!-- GoDaddy -->
 ```
 
 ## devlr Team

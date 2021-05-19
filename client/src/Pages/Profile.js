@@ -15,6 +15,7 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
+import ScrollToTop from '../utils/ScrollToTop'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -113,7 +114,13 @@ const Profile = () => {
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar projects={projects} home={false} />
+                      <Navbar
+                        projects={projects}
+                        home={false}
+                        followers={targetUser.profile.followers}
+                        following={targetUser.profile.following}
+                      />
+                      <ScrollToTop />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"

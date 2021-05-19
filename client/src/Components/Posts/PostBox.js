@@ -36,7 +36,8 @@ function PostBox({ post, state, home }) {
         <p className="mb-1">{body} </p>
         <p className="small" id={user}>
           {' '}
-          Posted by <a href={`/profile?user=${user}`}>{author}</a>, {dayjs(date).format(`HH:mm - M-DD-YY`)}
+          Posted by <a href={`/profile?user=${user}`}>{author}</a>,{' '}
+          {dayjs(date).format(`h:mma - M-DD-YY`)}
         </p>
       </div>
       <hr className="75" />

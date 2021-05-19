@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../utils/UserState'
+import { TargetUserContext } from '../../utils/TargetUserState'
 import Tab from '../Tab'
 import API from '../../utils/API'
 import DevCard from '../User/DevCard'
 
-function Network({ followers, following }) {
-  const [users, setUsers] = useState()
+function Network() {
   const [newFollowing, setNewFollowing] = useState([])
   const [newFollowers, setNewFollowers] = useState([])
+  const [store, dispatch] = useContext(UserContext)
+  const [targetUser, targetDispatch] = useContext(TargetUserContext)
+
+  let { profile } = targetUser.profile ? targetUser : store
+  const { followers, following } = profile;
 
   useEffect(() => {
     API.getAllUsers().then((res) => {
@@ -16,6 +21,7 @@ function Network({ followers, following }) {
   }, [followers, following])
 
   function filterFollowing(res) {
+ 
     const filteredFollowing = []
     if (following.length === 0) {
       return
@@ -29,7 +35,6 @@ function Network({ followers, following }) {
       }
     }
     setNewFollowing(filteredFollowing)
-    // console.log('new following', newFollowing)
   }
 
   function filterFollowers(res) {

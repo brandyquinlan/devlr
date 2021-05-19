@@ -67,7 +67,7 @@ const Home = () => {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
             })
-            API.getPosts(_id).then((postRes) => {
+            API.getFollowingPosts(_id).then((postRes) => {
               postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
@@ -144,12 +144,7 @@ const Home = () => {
                         className="d-flex flex-column align-items-left"
                         id="col2"
                       >
-                        <Navbar
-                          projects={projects}
-                          home={true}
-                          followers={store.profile.followers}
-                          following={store.profile.following}
-                        />
+                        <Navbar projects={projects} home={true} />
                         <ScrollToTop />
                       </div>
                       <div

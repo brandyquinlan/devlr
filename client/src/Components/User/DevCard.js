@@ -38,7 +38,7 @@ function DevCard(props) {
     API.unfollowUser(props.user, store.user._id)
       .then(() => {
         setFollowing(false)
-        dispatch({ type: 'remove following', payload: splicedFollowing })
+        dispatch({ type: 'remove following', payload: splicedFollowing });
       })
       .catch(() => {
         Toast('error', "We're sorry, something went wrong", 1000)

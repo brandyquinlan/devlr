@@ -63,7 +63,7 @@ WHEN I click on Logout
 
 ## Development
 ### Wireframe
-![Wireframe](/public/img/devspace-wireframe.png)
+![Wireframe](/client/public/img/devspace-wireframe.png)
 
 ## Usage
 ### To begin using devlr, sign up for an account.

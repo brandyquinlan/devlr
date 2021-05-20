@@ -78,6 +78,10 @@ body {
   margin-right: 0.5rem;
 }
 
+.nav-link.active{
+  background-color: #777 !important;
+}
+
 .nav-tabs {
   border-bottom: 1px solid var(--main-text-color);
 }
@@ -252,7 +256,7 @@ button.close {
 
 div.scroll {
   width: 100%;
-  max-height: 800px;
+  max-height: 600px;
   overflow: auto;
   padding: 1rem 2rem;
 }

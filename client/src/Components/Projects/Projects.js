@@ -2,11 +2,13 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Tab from '../Tab'
 
-function Projects({ projects, profile }) {
+function Projects({ projects, profile, home }) {
   return (
     <div>
       <Tab title="My Pinned Projects" expanded>
         {projects?.length === 0 || !projects ? (
+          <div>
+          {home ? 
           <div>
             <p>
               You have not pinned any projects yet! Visit your{' '}
@@ -30,7 +32,9 @@ function Projects({ projects, profile }) {
               </a>
               .
             </p>
-          </div>
+          </div> : <div>This user does not have any pinned projects yet.</div>
+        }
+        </div>
         ) : (
           projects.map((project) => (
             <Row key={project.name}>

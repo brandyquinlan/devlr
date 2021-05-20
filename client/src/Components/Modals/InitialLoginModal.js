@@ -19,7 +19,7 @@ export default function InitialLoginModal(props) {
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex flex-column align-items-center">
-          First things first, lets get your profile set up..
+          First things first, let's get your profile set up...
         </div>
         <Button
           variant="secondary"
@@ -28,7 +28,7 @@ export default function InitialLoginModal(props) {
           }}
           className="btn-block"
         >
-          Lets go!
+          Let's go!
         </Button>
       </Modal.Body>
     </Modal>

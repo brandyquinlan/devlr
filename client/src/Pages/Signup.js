@@ -182,7 +182,7 @@ function Signup() {
                   {pWordMatch.msg}
                 </Badge>
                 <div className="form-group">
-                  <label htmlFor="githubUsername">Github username</label>
+                  <label htmlFor="githubUsername">GitHub username</label>
                   <input
                     ref={githubRef}
                     onChange={handleInputChange}

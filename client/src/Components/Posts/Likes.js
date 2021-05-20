@@ -92,7 +92,9 @@ function Likes({ likes, postId, state }) {
               <Tooltip id="likes" {...props}>
                 <ul>
                   {likes.map((l, i) => (
-                    <li key={i}>{l.userName}</li>
+                    <li key={i}>
+                      {l.userName === store.profile.name ? 'You' : l.userName}
+                    </li>
                   ))}
                 </ul>
               </Tooltip>

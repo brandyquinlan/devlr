@@ -78,8 +78,8 @@ function Likes({ likes, postId, state }) {
           <button
             ref={target}
             type="button"
-            onMouseEnter={() => setShow(!show)}
-            onMouseLeave={() => setShow(!show)}
+            onMouseEnter={() => setShow(true)}
+            onMouseLeave={() => setShow(false)}
             onClick={(e) => incrementLike(e, postId)}
           >
             <span className="material-icons like" style={likedStyle}>
@@ -87,7 +87,7 @@ function Likes({ likes, postId, state }) {
             </span>
             {likes.length}
           </button>
-          <Overlay target={target.current} show={show} placement="left">
+          <Overlay target={target} show={show} placement="left">
             {(props) => (
               <Tooltip id="likes" {...props}>
                 <ul>

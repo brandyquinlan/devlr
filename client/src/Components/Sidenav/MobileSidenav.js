@@ -6,9 +6,9 @@ import BrowseUsersModal from '../Modals/BrowseUsersModal'
 import UpdateProfileModal from '../Modals/UpdateProfileModal'
 import Logo from '../../assets/img/logo.png'
 
-function MobileSidenav() {
+function MobileSidenav({ home }) {
   const [store, dispatch] = useContext(UserContext)
-  const [modals, updateModal] = useContext(ModalContext)
+  const [modals, modalDispatch] = useContext(ModalContext)
 
   return (
     <div id="mobile-side-nav">
@@ -22,26 +22,26 @@ function MobileSidenav() {
         <li>
           <button
             type="button"
-            onClick={() => updateModal({ type: 'show user modal' })}
+            onClick={() => modalDispatch({ type: 'show user modal' })}
           >
             <i className="material-icons">groups</i>
           </button>
         </li>
         <BrowseUsersModal
           show={modals.userModalShow}
-          onHide={() => updateModal({ type: 'hide user modal' })}
+          onHide={() => modalDispatch({ type: 'hide user modal' })}
         />
         <li>
           <button
             type="button"
-            onClick={() => updateModal({ type: 'show profile modal' })}
+            onClick={() => modalDispatch({ type: 'show profile modal' })}
           >
             <i className="material-icons">dashboard</i>
           </button>
         </li>
         <UpdateProfileModal
           show={modals.profileModalShow}
-          onHide={() => updateModal({ type: 'hide profile modal' })}
+          onHide={() => modalDispatch({ type: 'hide profile modal' })}
         />
         <li>
           <button
@@ -64,7 +64,7 @@ function MobileSidenav() {
           </button>
         </li>
       </ul>
-      <MobileUser />
+      <MobileUser home={home} />
     </div>
   )
 }

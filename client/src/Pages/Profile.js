@@ -15,6 +15,8 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
+import ScrollToTop from '../utils/ScrollToTop'
+import Footer from '../Components/Footer'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -24,7 +26,7 @@ const Profile = () => {
   const [store, dispatch] = useContext(UserContext)
   const [posts, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
-  const [modals, udpateModal] = useContext(ModalContext)
+  const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
@@ -72,7 +74,7 @@ const Profile = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 875
+  const breakpoint = 900
 
   useEffect(() => {
     if (!targetUser.profile) return
@@ -93,7 +95,8 @@ const Profile = () => {
   }, [targetUser])
 
   return (
-    <div className="container">
+    <>
+    <div className="container mainWrapper">
       {authenticating ? (
         <Spinner animation="border" />
       ) : (
@@ -108,12 +111,18 @@ const Profile = () => {
                     className="d-flex flex-row align-items-top justify-content-around"
                     id="col1"
                   >
-                    {width < breakpoint ? <MobileSidenav /> : <Sidenav />}
+                    {width < breakpoint ? <MobileSidenav home={false} /> : <Sidenav home={false} />}
                     <div
                       className="d-flex flex-column align-items-left"
                       id="col2"
                     >
-                      <Navbar projects={projects} home={false} />
+                      <Navbar
+                        projects={projects}
+                        home={false}
+                        followers={targetUser.profile.followers}
+                        following={targetUser.profile.following}
+                      />
+                      <ScrollToTop />
                     </div>
                     <div
                       className="d-flex flex-column align-items-right ml-4"
@@ -128,7 +137,7 @@ const Profile = () => {
                   <InitialLoginModal
                     show={modals.initialModalShow}
                     onHide={() => {
-                      udpateModal({ type: 'hide initial modal' })
+                      modalDispatch({ type: 'hide initial modal' })
                     }}
                   />
                 </>
@@ -140,6 +149,8 @@ const Profile = () => {
         ]
       )}
     </div>
+    <Footer />
+    </>
   )
 }
 

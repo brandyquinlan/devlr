@@ -5,6 +5,7 @@ import PasswordValidator from 'password-validator'
 import Toast from '../utils/Toast'
 import API from '../utils/API'
 import 'react-toastify/dist/ReactToastify.css'
+import Footer from '../Components/Footer'
 
 const schema = new PasswordValidator()
 
@@ -211,6 +212,7 @@ function Signup() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

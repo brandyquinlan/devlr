@@ -1,36 +1,55 @@
-import React, { useRef, useState, useContext } from 'react'
+import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
+import { socket } from '../../utils/socket'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
-// import API from '../../utils/API'
 
 function PostCommentModal(props) {
   const [store, dispatch] = useContext(UserContext)
+  const [text, setText] = useState('')
   const [thisPost, setThisPost] = props.state
-  // Do I use this here and pass as props or on the modal page where the text box actually is?
   const textRef = useRef()
+  const commentsRef = useRef()
 
-  function createComment(event, textRef, postId) {
+  function handleInputChange(event) {
+    event.preventDefault()
+    setText(textRef.current.value)
+  }
+
+  function scrollToBottom() {
+    commentsRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  function createComment(event) {
     event.preventDefault()
     const newComment = {
       postId: props.postId,
       comment: {
-        text: textRef,
+        text,
         userName: store.profile.name,
-        userId: store.user._id,
+        user: store.user._id,
+        avatarUrl: store.profile.avatarUrl,
       },
     }
 
-    API.addComment(newComment).then((res) => {
-      setThisPost({
-        ...thisPost,
-        comments: [...thisPost.comments, newComment.comment],
+    API.addComment(newComment)
+      .then(() => {
+        newComment.comment.date = Date.now()
+        setThisPost({
+          ...thisPost,
+          comments: [...thisPost.comments, newComment.comment],
+        })
+        socket.emit('leftComment', { targetId: thisPost.user })
       })
-    })
-    // const updatedPost = postStore.find((p) => p._id === postId)
-    // updatedPost.comments = [...updatedPost.comments, newComment]
+      .catch((err) => console.warn(err))
   }
+
+  // This is how the scroll to bottom happens
+  useEffect(() => {
+    if (!props.show) return
+    scrollToBottom()
+  }, [props.show, thisPost.comments])
 
   return (
     <Modal
@@ -43,11 +62,14 @@ function PostCommentModal(props) {
         <Modal.Title id="contained-modal-title-vcenter">Comments</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
+        <div className="scroll" style={{ maxHeight: '35vh' }}>
           {!thisPost.comments ? (
             'No Comments Yet'
           ) : (
-            <CurrentComments comments={thisPost.comments} />
+            <CurrentComments
+              comments={thisPost.comments}
+              commentsRef={commentsRef}
+            />
           )}
         </div>
         <div className="tab bg-secondary mt-3 mb-1 gradient" id="commentBox">
@@ -55,16 +77,10 @@ function PostCommentModal(props) {
             ref={textRef}
             id="comment"
             placeholder="Add comment"
-            onChange={props.handleInputChange}
+            onChange={handleInputChange}
           ></textarea>
         </div>
-        <Button
-          variant="secondary"
-          type="button"
-          onClick={(e) => {
-            createComment(e, textRef.current.value, props.postId)
-          }}
-        >
+        <Button variant="secondary" type="button" onClick={createComment}>
           Add Comment
         </Button>
       </Modal.Body>

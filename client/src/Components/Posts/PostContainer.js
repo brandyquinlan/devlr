@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../utils/UserState'
 import { PostContext } from '../../utils/PostState'
 import { TargetUserContext } from '../../utils/TargetUserState'
@@ -10,7 +10,8 @@ import Toast from '../../utils/Toast'
 function PostContainer({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
-  const [posts, postDispatch] = useContext(PostContext)
+  const [postStore, postDispatch] = useContext(PostContext)
+  const [posts, setPosts] = useState([])
 
   let { profile } = targetUser.profile ? targetUser : store
 
@@ -26,11 +27,14 @@ function PostContainer({ home }) {
       body,
       author: profile.name,
       user: store.user._id,
+      avatarUrl: profile.avatarUrl,
     }
 
     API.post(postData)
-      .then((res) => {
-        postDispatch({ type: 'set posts', payload: [res, ...posts] })
+      .then(() => {
+        API.getFollowingPosts(store.user._id).then((res) => {
+          postDispatch({ type: 'set posts', payload: res })
+        })
       })
       .catch((err) => {
         Toast(
@@ -41,13 +45,17 @@ function PostContainer({ home }) {
       })
   }
 
+  useEffect(() => {
+    setPosts(postStore)
+  }, [postStore])
+
   return (
     <div>
       {home ? <NewPostBox createPost={createPost} /> : null}
-      {posts
+      {posts && posts.length > 0
         ? [
             posts.map((post, i) => (
-              <LazyPostTab key={i} title={post.title} expanded post={post} />
+              <LazyPostTab key={i} expanded post={post} home={home} />
             )),
           ]
         : [

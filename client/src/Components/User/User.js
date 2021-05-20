@@ -4,8 +4,9 @@ import { TargetUserContext } from '../../utils/TargetUserState'
 import { UserContext } from '../../utils/UserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
+import FollowBtn from './FollowBtn'
 
-function User() {
+function User({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [postModalShow, setPostModalShow] = React.useState(false)
@@ -52,13 +53,16 @@ function User() {
           </a>
         </h6>
       </div>
+      
+      {home ? (
+      <div>
       <Button
         variant="secondary"
         size="lg"
         id="appearanceBtn"
         onClick={() => setAppearanceModalShow(true)}
       >
-        <span className="material-icons" style={{ fontSize: '26px' }}>
+        <span className="material-icons">
           palette
         </span>
         Appearance
@@ -67,6 +71,21 @@ function User() {
         show={appearanceModalShow}
         onHide={() => setAppearanceModalShow(false)}
       />
+      </div>) : (      
+        <FollowBtn profile={profile} />
+      // <Button
+      //   variant="secondary"
+      //   size="lg"
+      //   id="appearanceBtn"
+      //   onClick={(e) => addFollow(e)}
+      // >
+      //   <span className="material-icons" style={{ fontSize: '26px' }}>
+      //     person_add
+      //   </span>
+      //   Follow
+      // </Button>
+      ) }
+      
     </div>
   )
 }

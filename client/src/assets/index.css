@@ -9,6 +9,7 @@ body {
 :root {
   --main-bg-color: #222222;
   --main-text-color: linen;
+  --placeholder-color: #969696;
   --secondary-bg-color: transparent;
 
   /* --light: linen;
@@ -32,6 +33,16 @@ body {
   align-items: center;
   padding: 0;
   margin-top: 3rem;
+}
+
+.mainWrapper {
+  min-height: calc(100vh - 118px);
+}
+
+.footerPin {
+  position: relative;
+  left: 0;
+  bottom: 0;
 }
 
 .tab {
@@ -149,7 +160,7 @@ textarea {
 }
 
 textarea::placeholder {
-  color: var(--main-text-color) !important;
+  color: var(--placeholder-color) !important;
 }
 
 input {
@@ -160,28 +171,33 @@ input {
   resize: none;
 }
 
+input::date {
+  color: var(--placeholder-color) !important;
+}
+
 input::placeholder {
-  color: var(--main-text-color) !important;
+  /* color: var(--main-text-color) !important; */
+  color: var(--placeholder-color) !important;
 }
 
 ::-webkit-input-placeholder {
   /* WebKit browsers */
-  color: var(--main-text-color);
+  color: var(--placeholder-color) !important;
 }
 
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: var(--main-text-color);
+  color: var(--placeholder-color) !important;
 }
 
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: var(--main-text-color);
+  color: var(--placeholder-color) !important;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10+ */
-  color: var(--main-text-color);
+  color: var(--placeholder-color) !important;
 }
 
 ::-webkit-scrollbar {
@@ -293,6 +309,7 @@ hr {
 
 footer {
   width: 100%;
+  height: 70px;
   background: rgb(245, 245, 245);
   background: linear-gradient(
     180deg,
@@ -546,7 +563,7 @@ button.disabled {
 #logIn,
 #settings {
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -574,6 +591,10 @@ button.disabled {
   font-size: 1rem;
 }
 
+.newBtn > .material-icons {
+  margin-right: 0;
+}
+
 #postBox {
   width: 30rem;
   border: none;
@@ -598,6 +619,7 @@ button.disabled {
 
 #appearanceBtn {
   display: inline-flex;
+  width: 153.06px;
   border-radius: 20px;
   color: var(--main-text-color) !important;
   background: linear-gradient(
@@ -641,6 +663,9 @@ button.disabled {
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
 }
+#featDev{
+padding: 8px 0;
+}
 
 a > span.devLink:hover {
   text-decoration: none !important;
@@ -666,15 +691,15 @@ a > span.devLink:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .container {
-    margin: 0.25rem;
+  .mainWrapper {
+    margin-top: 1.5rem!important;
+    min-height: calc(100vh - 94px);
   }
   #mobile-side-nav {
-    margin-top: 2rem;
     margin-right: 0.15rem;
+    margin-left: 0.15rem;
   }
   #col2 {
-    margin-top: 1.5rem;
     margin-left: 0.25rem;
     margin-right: 0.5rem;
     max-width: 350px;
@@ -684,6 +709,6 @@ a > span.devLink:hover {
     display: none !important;
   }
   footer > img {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 }

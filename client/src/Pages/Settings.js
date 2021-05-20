@@ -6,6 +6,7 @@ import API from '../utils/API'
 import ResetPasswordModal from '../Components/Modals/ResetPasswordModal'
 import DeleteAccountModal from '../Components/Modals/DeleteAccountModal'
 import ConfirmDeleteModal from '../Components/Modals/ConfrimDeleteModal'
+import Footer from '../Components/Footer'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -69,67 +70,74 @@ export default function Settings() {
   }, [loadingData])
 
   return (
-    <div id="settings">
-      {authenticating ? (
-        <Spinner animation="border" />
-      ) : (
-        [
-          authenticated === true ? (
-            <div className="d-flex flex-column align-items-start">
-              <a href="/home" className="mb-2">
-                <span className="material-icons">west</span>Go Back
-              </a>
-              <div className="tab gradient">
-                <h4>
-                  Account Settings{' '}
-                  <span className="material-icons" style={{ fontSize: '26px' }}>
-                    manage_accounts
-                  </span>
-                </h4>
-                <hr />
-                <p className="small" id="accountMsg">
-                  Use the buttons below to manage your devlr account settings.
-                  These actions will have no effect your linked GitHub account.
-                </p>
-                <div className="separator mt-4"></div>
-                <ResetPasswordModal
-                  show={resetPasswordModal}
-                  onHide={() => setResetPasswordModal(false)}
-                  user={store.user}
-                />
-                <Button
-                  type="button"
-                  variant="secondary"
-                  className="gradient"
-                  onClick={() => setResetPasswordModal(true)}
-                >
-                  Reset Password
-                </Button>
-                <DeleteAccountModal
-                  show={deleteAccountModal}
-                  onHide={() => setDeleteAccountModal(false)}
-                  user={store.user}
-                  setConfirmDeleteModal={setConfirmDeleteModal}
-                />
-                <Button
-                  type="button"
-                  variant="secondary"
-                  className="gradient ml-2"
-                  onClick={() => setDeleteAccountModal(true)}
-                >
-                  Delete Account
-                </Button>
-                <ConfirmDeleteModal
-                  show={confrimDeleteModal}
-                  onHide={() => setConfirmDeleteModal(false)}
-                />
+    <>
+      <div id="settings">
+        {authenticating ? (
+          <Spinner animation="border" />
+        ) : (
+          [
+            authenticated === true ? (
+              <div className="d-flex flex-column align-items-start">
+                <a href="/home" className="mb-2">
+                  <span className="material-icons">west</span>Go Back
+                </a>
+                <div className="tab gradient">
+                  <h4>
+                    Account Settings{' '}
+                    <span
+                      className="material-icons"
+                      style={{ fontSize: '26px' }}
+                    >
+                      manage_accounts
+                    </span>
+                  </h4>
+                  <hr />
+                  <p className="small" id="accountMsg">
+                    Use the buttons below to manage your devlr account settings.
+                    These actions will have no effect your linked GitHub
+                    account.
+                  </p>
+                  <div className="separator mt-4"></div>
+                  <ResetPasswordModal
+                    show={resetPasswordModal}
+                    onHide={() => setResetPasswordModal(false)}
+                    user={store.user}
+                  />
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    className="gradient"
+                    onClick={() => setResetPasswordModal(true)}
+                  >
+                    Reset Password
+                  </Button>
+                  <DeleteAccountModal
+                    show={deleteAccountModal}
+                    onHide={() => setDeleteAccountModal(false)}
+                    user={store.user}
+                    setConfirmDeleteModal={setConfirmDeleteModal}
+                  />
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    className="gradient ml-2"
+                    onClick={() => setDeleteAccountModal(true)}
+                  >
+                    Delete Account
+                  </Button>
+                  <ConfirmDeleteModal
+                    show={confrimDeleteModal}
+                    onHide={() => setConfirmDeleteModal(false)}
+                  />
+                </div>
               </div>
-            </div>
-          ) : (
-            <Redirect to="/login" />
-          ),
-        ]
-      )}
-    </div>
+            ) : (
+              <Redirect to="/login" />
+            ),
+          ]
+        )}
+      </div>
+      <Footer />
+    </>
   )
 }

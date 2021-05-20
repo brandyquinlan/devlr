@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { ModalContext } from '../../utils/ModalState'
 
 export default function InitialLoginModal(props) {
-  const [modals, updateModal] = useContext(ModalContext)
+  const [modals, modalDispatch] = useContext(ModalContext)
 
   return (
     <Modal
@@ -24,7 +24,7 @@ export default function InitialLoginModal(props) {
         <Button
           variant="secondary"
           onClick={() => {
-            updateModal({ type: 'lets go' })
+            modalDispatch({ type: 'lets go' })
           }}
           className="btn-block"
         >

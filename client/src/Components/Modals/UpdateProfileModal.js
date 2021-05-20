@@ -1,13 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { ToastContainer, Flip } from 'react-toastify'
 import { useForm } from 'react-hook-form'
-import API from '../../utils/API'
 import { UserContext } from '../../utils/UserState'
+import { ModalContext } from '../../utils/ModalState'
+import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 
 function UpdateProfileModal(props) {
   const [store, dispatch] = useContext(UserContext)
+  const [modals, modalsDispatch] = useContext(ModalContext)
+  const [init, setInit] = useState(false)
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: store.profile.name,
@@ -22,17 +26,20 @@ function UpdateProfileModal(props) {
     },
   })
 
-  const onSubmit = (data) => {
+  function onSubmit(data) {
     API.updateProfile(data, store.user._id)
-      .then((res) => {
+      .then(() => {
+        if (modals.initialLogin) modalsDispatch({ type: 'init profile done' })
         dispatch({ type: 'update profile', payload: data })
         Toast('success', 'Your profile has been updated', 2000)
       })
       .catch(() => Toast('error', 'Error updating your profile', 3000))
   }
-  // can we access the store and get current profile data to pre-populate so the user can update it?
-  // if we put it in as a conditional for placeholder text will it save if they don't retype it?
-  // I believe this got this up?^^^^^^^ -Keaton
+
+  useEffect(() => {
+    if (modals.initialLogin) return setInit(true)
+    setInit(false)
+  }, [modals])
 
   return (
     <>
@@ -55,7 +62,7 @@ function UpdateProfileModal(props) {
         centered
         scrollable
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton={!init}>
           <Modal.Title id="contained-modal-title-vcenter">
             Update Profile
           </Modal.Title>
@@ -96,34 +103,6 @@ function UpdateProfileModal(props) {
                   {...register('school')}
                 />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="skills">
-                  Skills <p className="small">Separate skills with commas</p>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="skills"
-                  required="true"
-                  placeholder="Relevant Skills"
-                  {...register('skills')}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="languages">
-                  Languages
-                  <p className="small">Separate languages with commas</p>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="languages"
-                  required="true"
-                  placeholder="Languages"
-                  {...register('languages')}
-                />
-              </div> */}
-
               <div className="form-group">
                 <label htmlFor="totalYearsofExperience">Experience</label>
                 <input
@@ -204,9 +183,11 @@ function UpdateProfileModal(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>
-            Close
-          </Button>
+          {!init ? (
+            <Button variant="secondary" onClick={props.onHide}>
+              Close
+            </Button>
+          ) : null}
         </Modal.Footer>
       </Modal>
     </>

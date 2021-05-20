@@ -62,7 +62,7 @@ function User({ home }) {
         id="appearanceBtn"
         onClick={() => setAppearanceModalShow(true)}
       >
-        <span className="material-icons" style={{ fontSize: '26px' }}>
+        <span className="material-icons">
           palette
         </span>
         Appearance

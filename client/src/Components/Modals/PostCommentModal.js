@@ -1,6 +1,7 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
+import { socket } from '../../utils/socket'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
 
@@ -28,7 +29,7 @@ function PostCommentModal(props) {
         text,
         userName: store.profile.name,
         user: store.user._id,
-        avatarUrl: store.profile.avatarUrl
+        avatarUrl: store.profile.avatarUrl,
       },
     }
 
@@ -39,10 +40,12 @@ function PostCommentModal(props) {
           ...thisPost,
           comments: [...thisPost.comments, newComment.comment],
         })
+        socket.emit('leftComment', { targetId: thisPost.user })
       })
       .catch((err) => console.warn(err))
   }
 
+  // This is how the scroll to bottom happens
   useEffect(() => {
     if (!props.show) return
     scrollToBottom()

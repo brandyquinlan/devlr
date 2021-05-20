@@ -17,7 +17,7 @@ function FeaturedDevs() {
         const devIndex = Math.floor(Math.random() * Math.floor(len))
         devUser.indexOf(response[devIndex]) === -1
           ? devUser.push(response[devIndex]) && numItemsArr.push(numItems++)
-          : console.log('Index already exists')
+          : null
       }
       setUsers(devUser)
     })

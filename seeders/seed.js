@@ -165,85 +165,132 @@ const profileSeed = [
   },
 ]
 const postSeed = [
-  {
-    "_id" : ObjectId("60a01f99b2c70a0c3cd20a13"),
-    "title" : "Post #1",
-    "body" : "Post #1",
-    "author" : "Brandy Quinlan",
-    "user" : ObjectId("60a298987ec6b108b107ddb7"),
-    "likes" : [],
-    "comments" : [],
-    "date" : Date("2021-05-15T19:23:05.854Z"),
-    "__v" : 0
-},
 {
-    "_id" : ObjectId("60a298cc7ec6b108b107ddb9"),
-    "title" : "post 1",
-    "body" : "post 1",
-    "author" : "Brandy Quinlan",
-    "user" : ObjectId("60a298987ec6b108b107ddb7"),
-    "likes" : [ 
+    _id : ObjectId("60a298cc7ec6b108b107ddb9"),
+    title : "post 1",
+    body : "post 1",
+    author : "Brandy Quinlan",
+    user : ObjectId("60a298987ec6b108b107ddb7"),
+    likes : [ 
         {
-            "_id" : ObjectId("60a298d97ec6b108b107ddba"),
-            "user" : ObjectId("60a298987ec6b108b107ddb7"),
-            "userName" : "Brandy Quinlan"
+            _id : ObjectId("60a298d97ec6b108b107ddba"),
+            user : ObjectId("60a298987ec6b108b107ddb7"),
+            userName : "Brandy Quinlan"
         }
     ],
-    "comments" : [],
-    "date" : Date("2021-05-17T16:24:44.556Z"),
-    "__v" : 0
+    comments : [],
+    date : Date("2021-05-17T16:24:44.556Z"),
+    __v : 0
 },
 {
-    "_id" : ObjectId("60a403a228847b1dc5a73a6e"),
-    "title" : "post 2",
-    "body" : "post 2",
-    "author" : "Brandy Quinlan",
-    "user" : ObjectId("60a298987ec6b108b107ddb7"),
-    "likes" : [],
-    "comments" : [],
-    "date" : Date("2021-05-18T18:12:50.324Z"),
-    "__v" : 0
-},
-  {
-    "_id" : ObjectId("60a01f99b2c70a0c3cd20a28"),
-    "title" : "Post #1",
-    "body" : "Post #1",
-    "author" : "Kolton Decker",
-    "user" : ObjectId("60a533d0266a4f2cc69925fa"),
-    "likes" : [],
-    "comments" : [],
-    "date" : Date("2021-05-15T19:23:05.854Z"),
-    "__v" : 0
+    _id : ObjectId("60a403a228847b1dc5a73a6e"),
+    title : "post 2",
+    body : "post 2",
+    author : "Brandy Quinlan",
+    user : ObjectId("60a298987ec6b108b107ddb7"),
+    likes : [],
+    comments : [],
+    date : Date("2021-05-18T18:12:50.324Z"),
+    __v : 0
 },
 {
-    "_id" : ObjectId("60a298cc7ec6b108b107dd29"),
-    "title" : "post 1",
-    "body" : "post 1",
-    "author" : "Kolton Decker",
-    "user" : ObjectId("60a533d0266a4f2cc69925fa"),
-    "likes" : [ 
-        {
-            "_id" : ObjectId("60a298d97ec6b108b107dd30"),
-            "user" : ObjectId("60a533d0266a4f2cc69925fa"),
-            "userName" : "Kolton Decker"
-        }
-    ],
-    "comments" : [],
-    "date" : Date("2021-05-17T16:24:44.556Z"),
-    "__v" : 0
+  _id : ObjectId("60a298cc7ec6b108b107ddb9"),
+  title : "post 1",
+  body : "post 1",
+  author : "Brandy Quinlan",
+  user : ObjectId("60a298987ec6b108b107ddb7"),
+  likes : [ 
+      {
+          _id : ObjectId("60a298d97ec6b108b107ddba"),
+          user : ObjectId("60a298987ec6b108b107ddb7"),
+          userName : "Brandy Quinlan"
+      }
+  ],
+  comments : [],
+  date : "Wed May 19 2021 13:28:53 GMT-0500 (Central Daylight Time)",
+  __v : 0
 },
 {
-    "_id" : ObjectId("60a403a228847b1dc5a73a31"),
-    "title" : "post 2",
-    "body" : "post 2",
-    "author" : "Kolton Decker",
-    "user" : ObjectId("60a533d0266a4f2cc69925fa"),
-    "likes" : [],
-    "comments" : [],
-    "date" : Date("2021-05-18T18:12:50.324Z"),
-    "__v" : 0
+  _id : ObjectId("60a403a228847b1dc5a73a6e"),
+  title : "post 2",
+  body : "post 2",
+  author : "Brandy Quinlan",
+  user : ObjectId("60a298987ec6b108b107ddb7"),
+  likes : [],
+  comments : [],
+  date : "Wed May 19 2021 13:28:53 GMT-0500 (Central Daylight Time)",
+  __v : 0
 },
+{
+  _id : ObjectId("60a5a6f1f7513c5524b49d51"),
+  title : "Maggie Post 1",
+  body : "Maggie's first post",
+  author : "Maggie May Wilder",
+  user : ObjectId("60a5336e266a4f2cc69925f8"),
+  likes : [ 
+      {
+          _id : ObjectId("60a5a6f1f7513c5524b49d51"),
+          user : ObjectId("60a5336e266a4f2cc69925f8"),
+          userName : "Maggie May Wilder"
+      }
+  ],
+  comments : [],
+  date : Date("2021-05-20T00:01:53.497Z"),
+  __v : 0
+},
+{
+  _id : ObjectId("60a5a74cf7513c5524b49d53"),
+  title : "Brenna's Post 1",
+  body : "Brenna's first post",
+  author : "Brenna McLeod",
+  user : ObjectId("60a532c9266a4f2cc69925f6"),
+  likes : [ 
+      {
+          _id : ObjectId("60a5a74cf7513c5524b49d53"),
+          user : ObjectId("60a532c9266a4f2cc69925f6"),
+          userName : "Brenna McLeod"
+      }
+  ],
+  comments : [],
+  date : Date("2021-05-20T00:03:24.770Z"),
+  __v : 0
+},
+{
+  _id : ObjectId("60a5a77ef7513c5524b49d55"),
+  title : "Kolton Post 1",
+  body : "Kolton's first post",
+  author : "Kolton Decker",
+  user : ObjectId("60a533d0266a4f2cc69925fa"),
+  likes : [ 
+      {
+          _id : ObjectId("60a5a77ef7513c5524b49d55"),
+          user : ObjectId("60a533d0266a4f2cc69925fa"),
+          userName : "Kolton Decker"
+      }
+  ],
+  comments : [],
+  date : Date("2021-05-20T00:04:14.120Z"),
+  __v : 0
+},
+{
+  _id : ObjectId("60a5a7a9f7513c5524b49d57"),
+  title : "Steve Post 1",
+  body : "Steve's first post",
+  author : "Steve Babb",
+  user : ObjectId("60a5344d266a4f2cc69925fc"),
+  likes : [ 
+      {
+          _id : ObjectId("60a5a7a9f7513c5524b49d57"),
+          user : ObjectId("60a5344d266a4f2cc69925fc"),
+          userName : "Steve Babb"
+      }
+  ],
+  comments : [],
+  date : Date("2021-05-20T00:04:57.095Z"),
+  __v : 0
+}
 ]
+
 db.User.deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then((data) => {

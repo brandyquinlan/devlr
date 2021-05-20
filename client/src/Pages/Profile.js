@@ -73,7 +73,7 @@ const Profile = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 900
+  const breakpoint = 960
 
   useEffect(() => {
     if (!targetUser.profile) return

@@ -76,6 +76,7 @@ body {
 
 .nav-link.active {
   opacity: 0.8;
+  cursor: default;
 }
 
 .nav-tabs {

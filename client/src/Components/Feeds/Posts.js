@@ -33,6 +33,7 @@ export default function Posts({ home }) {
 
   useEffect(() => {
     loadPosts()
+    return () => postDispatch({ type: 'set posts', payload: [] })
   }, [])
 
   useEffect(() => {

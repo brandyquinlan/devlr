@@ -9,7 +9,7 @@ body {
 :root {
   --main-bg-color: #222222;
   --main-text-color: linen;
-  --placeholder-color: #969696;
+  --placeholder-color: #d7cfc5;
   --secondary-bg-color: transparent;
 
   /* --light: linen;
@@ -72,14 +72,14 @@ body {
 .nav-link,
 .nav-link.active,
 .nav-item.show .nav-link {
-  color: var(--main-text-color) !important;
+  color: #777;
   background-color: transparent !important;
   border-color: var(--main-text-color) !important;
   margin-right: 0.5rem;
 }
 
-.nav-link.active{
-  background-color: #777 !important;
+.nav-link.active {
+  color: var(--main-text-color) !important;
 }
 
 .nav-tabs {
@@ -118,6 +118,10 @@ body {
 
 .logo {
   max-width: 100px;
+}
+
+.scroll-to-top{
+  color: var(--main-text-color) !important;
 }
 
 /* HTML element styles*/

@@ -52,6 +52,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.tab.scroll {
+  padding: 2rem 2rem;
+}
+
 .separator {
   min-width: calc(100% + 48px);
   height: 0px;
@@ -68,7 +72,6 @@ body {
 
 .nav-link,
 .nav-item.show .nav-link {
-  color: var(--main-text-color) !important;
   background-color: transparent !important;
   border-color: var(--main-text-color) !important;
   margin-right: 0.5rem;
@@ -114,6 +117,10 @@ body {
 
 .logo {
   max-width: 100px;
+}
+
+.scroll-to-top{
+  color: var(--main-text-color) !important;
 }
 
 /* HTML element styles*/
@@ -252,8 +259,9 @@ button.close {
 
 div.scroll {
   width: 100%;
-  max-height: 400px;
+  max-height: 600px;
   overflow: auto;
+  padding: 1rem 2rem;
 }
 
 ul {
@@ -305,6 +313,7 @@ li > a:focus {
 p {
   margin-bottom: 0;
   text-align: left;
+  font-size: 14px;
 }
 
 hr {
@@ -322,6 +331,14 @@ footer {
   );
 }
 
+p.small {
+  padding: 0.5rem 0;
+}
+
+#post-btns {
+  margin: -1rem 0;
+  padding: 0;
+}
 /* Color Utilities*/
 
 .gradient {
@@ -592,7 +609,7 @@ button.disabled {
 }
 
 #postBox {
-  width: 30rem;
+  width: 60rem;
   border: none;
 }
 
@@ -658,8 +675,9 @@ button.disabled {
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
 }
+
 #featDev {
-  padding: 8px 0;
+  padding: 0 0 8px 0;
 }
 
 a > span.devLink:hover {
@@ -674,8 +692,8 @@ a > span.devLink:hover {
 
 #col3 {
   width: 100%;
-  min-width: 250px;
-  max-width: 300px;
+  min-width: 325px;
+  max-width: 325px;
 }
 
 /* Media Queries */

@@ -318,6 +318,10 @@ footer {
   );
 }
 
+#post-btns{
+  margin:-1rem 0;
+  padding: 0;
+}
 /* Color Utilities*/
 
 .gradient {
@@ -596,7 +600,7 @@ button.disabled {
 }
 
 #postBox {
-  width: 30rem;
+  width: 60rem;
   border: none;
 }
 

@@ -9,25 +9,27 @@ function Footer() {
       </div>
       <div className="ml-2">
         <p className="h6 m-0">
-          {'\u00A0'} {'\u00A0'} devlr {'\u00A0'} | {'\u00A0'} Show your skills,
-          share your life
+          devlr {'\u00A0'} | {'\u00A0'}{' '}
+          <span className="small">Show your skills. Share your life.</span>
         </p>
-        <small>
-          Connect with the devlr team on{' '}
+        <p className="m-0 float-right">
+        <span className="material-icons ml-2" style={{ fontSize: '16px' }}>
+            link
+          </span>
           <a
             href="https://github.com/brandyquinlan/devlr"
             target="_blank"
             className="underlineLink"
           >
-            {' '}
-            GitHub{' '}
+            <small>GitHub</small>
           </a>
-          or shoot us an{' '}
+          <span className="material-icons ml-2" style={{ fontSize: '16px' }}>
+            email
+          </span>
           <a href="mailto:devlrteam@gmail.com" className="underlineLink">
-            {' '}
-            email{' '}
+            <small>Email</small>
           </a>
-        </small>
+        </p>
       </div>
     </footer>
   )

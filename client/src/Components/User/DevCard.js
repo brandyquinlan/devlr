@@ -6,6 +6,8 @@ function DevCard(props) {
   const [store, dispatch] = useContext(UserContext)
   const [isFollowing, setFollowing] = useState()
   const { following } = store.profile
+  const href =
+    props.user === store.user._id ? '/home' : `/profile?user=${props.user}`
 
   // Check if the user that is signed in is already following this dev or not
   useEffect(() => {
@@ -36,7 +38,7 @@ function DevCard(props) {
     API.unfollowUser(props.user, store.user._id)
       .then(() => {
         setFollowing(false)
-        dispatch({ type: 'remove following', payload: splicedFollowing });
+        dispatch({ type: 'remove following', payload: splicedFollowing })
       })
       .catch(() => {
         Toast('error', "We're sorry, something went wrong", 1000)
@@ -47,7 +49,7 @@ function DevCard(props) {
     <div className="devTab">
       {following.length === 0 ? (
         <div>
-          <a href={`/profile?user=${props.user}`}>
+          <a href={href}>
             <img
               src={props.avatarUrl}
               alt="user avatar"
@@ -66,7 +68,7 @@ function DevCard(props) {
         </div>
       ) : (
         <div>
-          <a href={`/profile?user=${props.user}`}>
+          <a href={href}>
             <img
               src={props.avatarUrl}
               alt="user avatar"
@@ -74,25 +76,29 @@ function DevCard(props) {
             />{' '}
             <span className="h6 devLink">{props.name}</span>
           </a>{' '}
-          {isFollowing ? (
-            <button
-              type="button"
-              className="btn-sm newBtn mt-0 ml-2 text-sm"
-              id={props.user}
-              onClick={(event) => unFollow(event, props.user)}
-            >
-              <span className="material-icons">person_remove</span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="btn-sm newBtn mt-0 ml-2 text-sm"
-              id={props.user}
-              onClick={(event) => addFollow(event, props.user)}
-            >
-              <span className="material-icons">person_add</span>
-            </button>
-          )}
+          {href !== '/home'
+            ? [
+                isFollowing ? (
+                  <button
+                    type="button"
+                    className="btn-sm newBtn mt-0 ml-2 text-sm"
+                    id={props.user}
+                    onClick={(event) => unFollow(event, props.user)}
+                  >
+                    <span className="material-icons">person_remove</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn-sm newBtn mt-0 ml-2 text-sm"
+                    id={props.user}
+                    onClick={(event) => addFollow(event, props.user)}
+                  >
+                    <span className="material-icons">person_add</span>
+                  </button>
+                ),
+              ]
+            : null}
         </div>
       )}
       <hr />

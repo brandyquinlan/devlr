@@ -67,6 +67,10 @@ io.on('connection', (socket) => {
     socket.join(room)
   })
 
+  socket.on('leave room', ({ room }) => {
+    socket.leave(room)
+  })
+
   socket.on('post update', ({ targetId }) => {
     const index = clients.findIndex((client) => client.userId === targetId)
     if (index < 0) return

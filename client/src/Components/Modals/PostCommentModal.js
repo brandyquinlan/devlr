@@ -12,6 +12,7 @@ function PostCommentModal(props) {
   const [thisPost, setThisPost] = props.state
   const textRef = useRef()
   const commentsRef = useRef()
+  const room = thisPost.user
 
   function handleInputChange(event) {
     event.preventDefault()
@@ -52,6 +53,11 @@ function PostCommentModal(props) {
   useEffect(() => {
     if (!props.show) return
     scrollToBottom()
+    socket.emit('join room', { room })
+    // when component unmounts, we want to leave the "room" of this post, unless we are the post owner on our home page
+    return () => {
+      if (thisPost.user !== store.user._id) socket.emit('leave room', { room })
+    }
   }, [props.show, thisPost.comments])
 
   return (

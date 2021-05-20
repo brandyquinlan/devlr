@@ -52,7 +52,7 @@ function FollowBtn({ profile }) {
           id="mobileBtn"
           onClick={(e) => unFollow(e)}
         >
-          <span className="material-icons" style={{ fontSize: '25px', marginLeft: '-4px' }}>
+          <span className="material-icons" style={{ marginLeft: '-4px' }}>
             person_remove
           </span>
         </Button>
@@ -60,10 +60,10 @@ function FollowBtn({ profile }) {
         <Button
           variant="secondary"
           size="lg"
-          id="appearanceBtn"
+          id="mobileBtn"
           onClick={(e) => addFollow(e)}
         >
-          <span className="material-icons" style={{ fontSize: '25px', marginLeft: '-4px' }}>
+          <span className="material-icons" style={{ marginLeft: '-4px' }}>
             person_add
           </span>
         </Button>

@@ -13,7 +13,7 @@ function LangsModal(props) {
 
   function saveLangs() {
     API.updateProfile({ languages: newLangs }, store.user._id).then(() =>
-      Toast('success', 'Skills & Languages Saves', 1000),
+      Toast('success', 'Languages Saved', 1000),
     )
   }
 

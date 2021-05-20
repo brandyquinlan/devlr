@@ -106,15 +106,17 @@ const Profile = () => {
               [
                 authenticated === true ? (
                   <>
-                    <div
-                      className="d-flex flex-row align-items-top justify-content-around"
-                      id="col1"
-                    >
-                      {width < breakpoint ? (
-                        <MobileSidenav home={false} />
-                      ) : (
-                        <Sidenav home={false} />
-                      )}
+                    <div className="d-flex flex-row align-items-top justify-content-around">
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col1"
+                      >
+                        {width < breakpoint ? (
+                          <MobileSidenav home={false} />
+                        ) : (
+                          <Sidenav home={false} />
+                        )}
+                      </div>
                       <div
                         className="d-flex flex-column align-items-left"
                         id="col2"

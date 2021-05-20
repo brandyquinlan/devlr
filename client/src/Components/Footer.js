@@ -3,11 +3,11 @@ import Logo from '../assets/img/logo.png'
 
 function Footer() {
   return (
-    <footer className="footerPin d-flex flex-row align-items-center justify-content-center">
-      <div className="ml-2">
+    <footer className="footerPin d-flex flex-row align-items-center justify-content-around">
+      <div>
         <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       </div>
-      <div className="ml-2">
+      <div>
         <p className="h6 m-0">
           devlr {'\u00A0'} | {'\u00A0'}{' '}
           <span className="small">Show your skills. Share your life.</span>

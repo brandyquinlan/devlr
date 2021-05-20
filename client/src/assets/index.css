@@ -9,7 +9,7 @@ body {
 :root {
   --main-bg-color: #222222;
   --main-text-color: linen;
-  --placeholder-color: #969696;
+  --placeholder-color: #dfd9d3;
   --secondary-bg-color: transparent;
 
   /* --light: linen;
@@ -66,12 +66,15 @@ body {
 }
 
 .nav-link,
-.nav-link.active,
 .nav-item.show .nav-link {
   color: var(--main-text-color) !important;
   background-color: transparent !important;
   border-color: var(--main-text-color) !important;
   margin-right: 0.5rem;
+}
+
+.nav-link.active {
+  opacity: 0.8;
 }
 
 .nav-tabs {
@@ -430,20 +433,17 @@ footer {
 
 .btn-sand {
   background-color: #bbb092;
-  color: #222222;
   border-color: linen;
 }
 
 .btn-sand:hover {
   background-color: #bbb092;
-  color: #222222;
   border-color: linen;
 }
 
 .btn-sand:active,
 .btn-sand:focus {
   background-color: #bbb092;
-  color: #222222;
   border-color: linen !important;
   box-shadow: 0 0 0 0.2rem transparent !important;
 }

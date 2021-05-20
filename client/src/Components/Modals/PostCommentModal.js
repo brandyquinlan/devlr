@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
-// import { socket } from '../../utils/socket'
+import { socket } from '../../utils/socket'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
 
@@ -40,7 +40,7 @@ function PostCommentModal(props) {
           ...thisPost,
           comments: [...thisPost.comments, newComment.comment],
         })
-        // socket.emit('leftComment', { targetId: thisPost.user })
+        socket.emit('leftComment', { targetId: thisPost.user })
       })
       .catch((err) => console.warn(err))
   }

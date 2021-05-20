@@ -703,7 +703,7 @@ a > span.devLink:hover {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 820px) {
   .mainWrapper {
     margin-top: 1.5rem !important;
     min-height: calc(100vh - 94px);
@@ -714,6 +714,14 @@ a > span.devLink:hover {
     max-width: 350px;
     min-width: 300px;
   }
+  #col3 {
+    width: 100%;
+    min-width: 220px;
+    max-width: 240px;
+  }
+}
+
+@media screen and (max-width: 645px) {
   div#backgroundCols {
     column-count: 1!important;
   }

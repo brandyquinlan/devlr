@@ -13,7 +13,7 @@ function SkillsModal(props) {
 
   function saveSkills() {
     API.updateProfile({ skills: newSkills }, store.user._id).then(() =>
-      Toast('success', 'Skills & Languages Saves', 1000),
+      Toast('success', 'Skills Saved', 1000),
     )
   }
 

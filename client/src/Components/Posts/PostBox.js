@@ -44,7 +44,7 @@ function PostBox({ post, state, home }) {
         </p>
       </div>
       <hr className="75" />
-      <div className="d-flex justify-content-end vertical-align-center">
+      <div className="d-flex justify-content-end vertical-align-center" id="post-btns">
         <Likes likes={likes} postId={_id} state={state} />{' '}
         <PostCommentModal
           show={commentsModalShow}

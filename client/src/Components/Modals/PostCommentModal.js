@@ -4,6 +4,7 @@ import { UserContext } from '../../utils/UserState'
 import { socket } from '../../utils/socket'
 import API from '../../utils/API'
 import CurrentComments from '../CurrentComments/CurrentComments'
+import Toast from '../../utils/Toast'
 
 function PostCommentModal(props) {
   const [store, dispatch] = useContext(UserContext)
@@ -40,9 +41,11 @@ function PostCommentModal(props) {
           ...thisPost,
           comments: [...thisPost.comments, newComment.comment],
         })
-        socket.emit('leftComment', { targetId: thisPost.user })
+        socket.emit('post update', { targetId: thisPost.user })
       })
-      .catch((err) => console.warn(err))
+      .catch(() => {
+        Toast('error', "We're sorry, something went wrong.", 2000)
+      })
   }
 
   // This is how the scroll to bottom happens

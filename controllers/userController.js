@@ -218,7 +218,7 @@ router.delete('/destroy', async (request, response) => {
     db.Profile.deleteOne({ _id: profile })
       .then(() => {
         db.User.deleteOne({ _id: user }).then(() => {
-          response.send(200)
+          response.sendStatus(200)
         })
       })
       .catch((err) => {

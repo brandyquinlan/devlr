@@ -63,11 +63,14 @@ io.on('connection', (socket) => {
     clients.push(clientInfo)
   })
 
-  socket.on('leftComment', ({ targetId }) => {
-    console.log('comment left')
+  socket.on('join room', ({ room }) => {
+    socket.join(room)
+  })
+
+  socket.on('post update', ({ targetId }) => {
     const index = clients.findIndex((client) => client.userId === targetId)
     if (index < 0) return
-    io.to(clients[index].socketId).emit('commentOnYourPost')
+    socket.to(`${clients[index].userId}`).emit('update to feed')
   })
 
   socket.on('disconnect', () => {

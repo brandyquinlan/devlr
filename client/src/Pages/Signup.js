@@ -119,7 +119,7 @@ function Signup() {
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })
       .catch(() => {
-        Toast('error', 'That user already exists', 2000)
+        Toast('error', "We're sorry, something went wrong", 2000)
       })
   }
 

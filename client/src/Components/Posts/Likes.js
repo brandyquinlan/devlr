@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
 import { Overlay, Tooltip } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
+import { socket } from '../../utils/socket'
 import API from '../../utils/API'
 import Toast from '../../utils/Toast'
 
@@ -25,11 +26,13 @@ function Likes({ likes, postId, state }) {
         (like) => like.user !== store.user._id,
       )
 
-      API.removeLike({ userId: store.user._id, postId }).then(() =>
-        setThisPost({
-          ...thisPost,
-          likes: [...splicedLikes],
-        }),
+      API.removeLike({ userId: store.user._id, postId }).then(
+        () =>
+          setThisPost({
+            ...thisPost,
+            likes: [...splicedLikes],
+          }),
+        socket.emit('post update', { targetId: thisPost.user }),
       )
       setLiked(false)
       return
@@ -45,18 +48,18 @@ function Likes({ likes, postId, state }) {
     }
 
     API.addLike(newLike)
-      .then(() => {
-        setLiked(true)
+      .then(
+        () => setLiked(true),
         setThisPost({
           ...thisPost,
           likes: [newLike.like, ...thisPost.likes],
-        })
-      })
-      .catch(() => {
+        }),
+        socket.emit('post update', { targetId: thisPost.user }),
+      )
+      .catch((err) => {
+        console.log(err)
         Toast('error', 'Something went wrong!', 5000)
       })
-
-    // socket.io?
   }
 
   let likedStyle = { color: 'palegoldenrod' }

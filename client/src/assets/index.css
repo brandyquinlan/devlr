@@ -695,7 +695,7 @@ a > span.devLink:hover {
     min-height: calc(100vh - 94px);
   }
   #col2 {
-    margin-left: 0.25rem;
+    margin-left: 1rem;
     margin-right: 0.25rem;
     max-width: 350px;
     min-width: 300px;

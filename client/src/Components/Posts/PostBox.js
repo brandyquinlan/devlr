@@ -16,6 +16,9 @@ function PostBox({ post, state, home }) {
   const [isOwned, setIsOwned] = useState(false)
   const { _id, author, user, body, date, likes, comments } = post
 
+  // if the user clicks on themselves, we just want them to be redirected to the home page
+  const href = home ? '/home' : `/profile?user=${user}`
+
   const deletePostHandler = (event) => {
     event.preventDefault
     API.removePost(_id)
@@ -36,7 +39,7 @@ function PostBox({ post, state, home }) {
         <p className="mb-1">{body} </p>
         <p className="small" id={user}>
           {' '}
-          Posted by <a href={`/profile?user=${user}`}>{author}</a>,{' '}
+          Posted by <a href={href}>{author}</a>,{' '}
           {dayjs(date).format(`h:mma - M-DD-YY`)}
         </p>
       </div>
@@ -48,6 +51,7 @@ function PostBox({ post, state, home }) {
           onHide={() => setCommentsModalShow(false)}
           postId={_id}
           state={state}
+          home={home}
         />
         <button
           type="button"

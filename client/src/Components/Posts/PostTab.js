@@ -1,13 +1,14 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, useContext } from 'react'
 import { Collapse } from 'react-bootstrap'
+import { UserContext } from '../../utils/UserState'
 import PostBox from './PostBox'
 
 function PostTab({ post, home, expanded }) {
+  const [store, dispatch] = useContext(UserContext)
   const [open, setOpen] = useState(!!expanded)
   const [icon, setIcon] = useState('expand_less')
   const { _id, author, user, title, body, date, avatarUrl, comments, likes } =
     post
-
   const [thisPost, setThisPost] = useState({
     _id,
     author,
@@ -20,6 +21,9 @@ function PostTab({ post, home, expanded }) {
     likes,
   })
 
+  const href =
+    thisPost.user === store.user._id ? '/home' : `/profile?user=${user}`
+
   useEffect(() => {
     setThisPost(post)
   }, [post])
@@ -28,7 +32,7 @@ function PostTab({ post, home, expanded }) {
     <div className="tab scroll gradient">
       <div className="d-flex flex-row align-items-center justify-content-between">
         <div>
-          <a href={`/profile?user=${user}`}>
+          <a href={href}>
             <img
               src={avatarUrl}
               style={{ width: 40, height: 40 }}

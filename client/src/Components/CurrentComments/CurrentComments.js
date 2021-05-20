@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import dayjs from 'dayjs'
+import { UserContext } from '../../utils/UserState'
 
 function CurrentComments({ comments, commentsRef }) {
+  const [store, dispatch] = useContext(UserContext)
+
   return (
     <div>
       {comments.map((c, i) => (
         // Dont forget to add a key
         <div key={i}>
           <div>
-            <a href={`/profile?user=${c.user}`}>
+            <a
+              href={
+                c.user === store.user._id ? '/home' : `/profile?user=${c.user}`
+              }
+            >
               <img
                 src={c.avatarUrl}
                 style={{ width: 40, height: 40 }}
@@ -19,7 +26,13 @@ function CurrentComments({ comments, commentsRef }) {
           <div>
             <p>{c.text}</p>
             <p className="small text-muted">
-              <a href={`/profile?user=${c.user}`}>
+              <a
+                href={
+                  c.user === store.user._id
+                    ? '/home'
+                    : `/profile?user=${c.user}`
+                }
+              >
                 {c.userName} - {dayjs(c.date).format(`h:mma - M-DD-YY`)}
               </a>
             </p>
@@ -27,6 +40,7 @@ function CurrentComments({ comments, commentsRef }) {
           <hr className="75"></hr>
         </div>
       ))}
+      {/* This is the ref that is targeted for the scroll to bottom thing */}
       <div ref={commentsRef} />
     </div>
   )

@@ -76,7 +76,7 @@ io.on('connection', (socket) => {
 })
 
 try {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log('Server online')
   })
 } catch (error) {

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Background({ profile }) {
   return (
-    <div style={{ columnCount: 2 }}>
+    <div id="backgroundCols" style={{ columnCount: 2 }}>
       <h6>{profile.name}</h6>
       <p>{profile.githubUsername}</p>
       <hr className="75"></hr>

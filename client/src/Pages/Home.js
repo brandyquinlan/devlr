@@ -101,7 +101,7 @@ const Home = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 900
+  const breakpoint = 960
   const { themePref } = store.profile
 
   useEffect(() => {
@@ -134,15 +134,17 @@ const Home = () => {
               [
                 authenticated === true ? (
                   <>
-                    <div
-                      className="d-flex flex-row align-items-top justify-content-around"
-                      id="col1"
-                    >
-                      {width < breakpoint ? (
-                        <MobileSidenav home={true} />
-                      ) : (
-                        <Sidenav home={true} />
-                      )}
+                    <div className="d-flex flex-row align-items-top justify-content-around">
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col1"
+                      >
+                        {width < breakpoint ? (
+                          <MobileSidenav home={true} />
+                        ) : (
+                          <Sidenav home={true} />
+                        )}
+                      </div>
                       <div
                         className="d-flex flex-column align-items-left"
                         id="col2"

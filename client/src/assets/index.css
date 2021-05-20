@@ -51,6 +51,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.tab.scroll {
+  padding: 2rem 2rem;
+}
+
 .separator {
   min-width: calc(100% + 48px);
   height: 0px;
@@ -248,8 +252,9 @@ button.close {
 
 div.scroll {
   width: 100%;
-  max-height: 400px;
+  max-height: 800px;
   overflow: auto;
+  padding: 1rem 2rem;
 }
 
 ul {
@@ -301,6 +306,7 @@ li > a:focus {
 p {
   margin-bottom: 0;
   text-align: left;
+  font-size: 14px;
 }
 
 hr {
@@ -318,8 +324,12 @@ footer {
   );
 }
 
-#post-btns{
-  margin:-1rem 0;
+p.small {
+  padding: 0.5rem 0;
+}
+
+#post-btns {
+  margin: -1rem 0;
   padding: 0;
 }
 /* Color Utilities*/
@@ -667,8 +677,9 @@ button.disabled {
 .devPic:hover {
   box-shadow: 0 0 0 0.2rem linen !important;
 }
-#featDev{
-padding: 8px 0;
+
+#featDev {
+  padding: 0 0 8px 0;
 }
 
 a > span.devLink:hover {
@@ -683,8 +694,8 @@ a > span.devLink:hover {
 
 #col3 {
   width: 100%;
-  min-width: 250px;
-  max-width: 300px;
+  min-width: 325px;
+  max-width: 325px;
 }
 
 /* Media Queries */
@@ -696,7 +707,7 @@ a > span.devLink:hover {
 
 @media screen and (max-width: 768px) {
   .mainWrapper {
-    margin-top: 1.5rem!important;
+    margin-top: 1.5rem !important;
     min-height: calc(100vh - 94px);
   }
   #mobile-side-nav {

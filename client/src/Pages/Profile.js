@@ -47,9 +47,6 @@ const Profile = () => {
 
           API.getGithubInfo(githubUsername, accessToken).then((info) => {
             setProjects(info.user.pinnedItems.nodes)
-          })
-          API.getPosts(_id).then((postRes) => {
-            postDispatch({ type: 'set posts', payload: postRes })
             setAuthenticated(true)
             setLoadingData(false)
           })
@@ -98,42 +95,46 @@ const Profile = () => {
 
   return (
     <>
-    <div className="container mainWrapper">
-      {authenticating ? (
-        <Spinner animation="border" />
-      ) : (
-        [
-          loadingData ? (
-            <Spinner animation="border" />
-          ) : (
-            [
-              authenticated === true ? (
-                <>
-                  <div
-                    className="d-flex flex-row align-items-top justify-content-around"
-                    id="col1"
-                  >
-                    {width < breakpoint ? <MobileSidenav home={false} /> : <Sidenav home={false} />}
+      <div className="container mainWrapper">
+        {authenticating ? (
+          <Spinner animation="border" />
+        ) : (
+          [
+            loadingData ? (
+              <Spinner animation="border" />
+            ) : (
+              [
+                authenticated === true ? (
+                  <>
                     <div
-                      className="d-flex flex-column align-items-left"
-                      id="col2"
+                      className="d-flex flex-row align-items-top justify-content-around"
+                      id="col1"
                     >
-                      <Navbar
-                        projects={projects}
-                        home={false}
-                        followers={targetUser.profile.followers}
-                        following={targetUser.profile.following}
-                      />
-                      <ScrollToTop />
-                    </div>
-                    <div
-                      className="d-flex flex-column align-items-right ml-4"
-                      id="col3"
-                    >
-                      <NoExpandTab title="Featured Devs">
-                        <FeaturedDevs />
-                      </NoExpandTab>
-                      <Tab title="Ads" expanded>
+                      {width < breakpoint ? (
+                        <MobileSidenav home={false} />
+                      ) : (
+                        <Sidenav home={false} />
+                      )}
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col2"
+                      >
+                        <Navbar
+                          projects={projects}
+                          home={false}
+                          followers={targetUser.profile.followers}
+                          following={targetUser.profile.following}
+                        />
+                        <ScrollToTop />
+                      </div>
+                      <div
+                        className="d-flex flex-column align-items-right ml-4"
+                        id="col3"
+                      >
+                        <NoExpandTab title="Featured Devs">
+                          <FeaturedDevs />
+                        </NoExpandTab>
+                        <Tab title="Ads" expanded>
                           <a
                             href="https://bootcamp.ku.edu/coding/landing"
                             target="_blank"
@@ -154,24 +155,24 @@ const Profile = () => {
                             ></img>
                           </a>
                         </Tab>
+                      </div>
                     </div>
-                  </div>
-                  <InitialLoginModal
-                    show={modals.initialModalShow}
-                    onHide={() => {
-                      modalDispatch({ type: 'hide initial modal' })
-                    }}
-                  />
-                </>
-              ) : (
-                <Redirect to="/login" />
-              ),
-            ]
-          ),
-        ]
-      )}
-    </div>
-    <Footer />
+                    <InitialLoginModal
+                      show={modals.initialModalShow}
+                      onHide={() => {
+                        modalDispatch({ type: 'hide initial modal' })
+                      }}
+                    />
+                  </>
+                ) : (
+                  <Redirect to="/login" />
+                ),
+              ]
+            ),
+          ]
+        )}
+      </div>
+      <Footer />
     </>
   )
 }

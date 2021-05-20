@@ -66,9 +66,6 @@ const Home = () => {
           if (_id) {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
-            })
-            API.getFollowingPosts(_id).then((postRes) => {
-              postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -93,9 +90,8 @@ const Home = () => {
           },
         })
         targetDispatch({ type: 'set target', payload: {} })
-
+        // Upon loging in, send the users ID to the server for socket.io
         socket.emit('storeClientInfo', { userId: user._id })
-
         setAuthenticating(false)
       })
       .catch((err) => {

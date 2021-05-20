@@ -14,15 +14,7 @@ export default function Posts({ home }) {
 
   const homeOrAway = home ? 'home' : 'away'
 
-  useEffect(() => {
-    targetUser?.profile?.user
-      ? setRoom(targetUser.profile.user)
-      : setRoom(store.user._id)
-
-    socket.emit('join room', { room })
-  }, [store, targetUser])
-
-  socket.once('update to feed', () => {
+  function loadPosts() {
     switch (homeOrAway) {
       case 'home':
         API.getFollowingPosts(store.user._id).then((res) => {
@@ -35,8 +27,24 @@ export default function Posts({ home }) {
         })
         break
       default:
-        throw new Error()
+        throw new Error('Error loading posts --- Feeds/Post.js')
     }
+  }
+
+  useEffect(() => {
+    loadPosts()
+  }, [])
+
+  useEffect(() => {
+    targetUser?.profile?.user
+      ? setRoom(targetUser.profile.user)
+      : setRoom(store.user._id)
+
+    socket.emit('join room', { room })
+  }, [store, targetUser])
+
+  socket.once('update to feed', () => {
+    loadPosts()
   })
 
   return <PostContainer home={home} />

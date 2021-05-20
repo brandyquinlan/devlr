@@ -15,6 +15,7 @@ function Network() {
   const { followers, following } = profile;
 
   useEffect(() => {
+    console.log('inside useeffect')
     API.getAllUsers().then((res) => {
       filterFollowing(res), filterFollowers(res)
     })
@@ -34,6 +35,7 @@ function Network() {
         })
       }
     }
+    console.log(filteredFollowing)
     setNewFollowing(filteredFollowing)
   }
 
@@ -55,7 +57,7 @@ function Network() {
 
   return (
     <div>
-      <Tab title="Following">
+      <Tab title="Following" expanded>
         {newFollowing.length === 0
           ? 'You are not currently following any users.'
           : newFollowing.map((f) => (
@@ -68,7 +70,7 @@ function Network() {
               />
             ))}
       </Tab>
-      <Tab title="Followers">
+      <Tab title="Followers" expanded>
         {newFollowers.length === 0
           ? 'No one is currently following you. Follow someone and maybe they will follow you back!'
           : newFollowers.map((f) => (

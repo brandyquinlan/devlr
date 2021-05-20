@@ -69,7 +69,7 @@ function Login() {
                   type="email"
                   className="form-control"
                   id="email-input"
-                  placeholder="Email"
+                  placeholder="email"
                 ></input>
               </div>
               <div className="form-group">
@@ -80,7 +80,7 @@ function Login() {
                   type="password"
                   className="form-control"
                   id="password-input"
-                  placeholder="Password"
+                  placeholder="password"
                 ></input>
               </div>
               <button

@@ -161,7 +161,7 @@ const Home = () => {
                         <NoExpandTab title="Featured Devs">
                           <FeaturedDevs />
                         </NoExpandTab>
-                        <Tab title="Ad" expanded>
+                        <Tab title="Ads" expanded>
                           <a
                             href="https://bootcamp.ku.edu/coding/landing"
                             target="_blank"

@@ -17,6 +17,8 @@ import NoExpandTab from '../Components/NoExpandTab'
 import Toast from '../utils/Toast'
 import ScrollToTop from '../utils/ScrollToTop'
 import Footer from '../Components/Footer'
+import StackOverflow from '../assets/img/stackoverflow.png'
+import KUad from '../assets/img/KU-ad.png'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -131,7 +133,27 @@ const Profile = () => {
                       <NoExpandTab title="Featured Devs">
                         <FeaturedDevs />
                       </NoExpandTab>
-                      <Tab title="Ad" />
+                      <Tab title="Ads" expanded>
+                          <a
+                            href="https://bootcamp.ku.edu/coding/landing"
+                            target="_blank"
+                          >
+                            <img
+                              src={KUad}
+                              style={{ width: '250px' }}
+                              alt="KU Coding Boot Camp"
+                              className="my-3"
+                            ></img>
+                          </a>
+                          <a href="https://stackoverflow.com/" target="_blank">
+                            <img
+                              src={StackOverflow}
+                              style={{ width: '250px' }}
+                              alt="Stack Overflow"
+                              className="my-3"
+                            ></img>
+                          </a>
+                        </Tab>
                     </div>
                   </div>
                   <InitialLoginModal

@@ -16,9 +16,7 @@ function DevCard(props) {
 
   function addFollow(event, user) {
     event.preventDefault()
-    const userObj = {
-      user,
-    }
+    const userObj = user
 
     API.followUser(props.user, store.user._id)
       .then(() => {

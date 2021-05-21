@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
 
@@ -46,8 +47,8 @@ function DevCard(props) {
   }
 
   return (
-    <div className="devTab">
-      {following.length === 0 ? (
+    <div className="ml-3 mr-0 pr-0">
+      {/* {following.length === 0 ? (
         <div>
           <a href={href}>
             <img
@@ -66,41 +67,51 @@ function DevCard(props) {
             <span className="material-icons">person_add</span>
           </button>
         </div>
-      ) : (
-        <div>
-          <a href={href}>
-            <img
-              src={props.avatarUrl}
-              alt="user avatar"
-              className="devPic float-left mr-3"
-            />{' '}
+      ) : ( */}
+      <Row>
+        <a href={href}>
+          <img
+            src={props.avatarUrl}
+            alt="user avatar"
+            className="float-left mr-3 devPic"
+          />{' '}
+        </a>{' '}
+        <Col>
+          <Row>
             <span className="h6 devLink">{props.name}</span>
-          </a>{' '}
-          {href !== '/home'
-            ? [
-                isFollowing ? (
-                  <button
-                    type="button"
-                    className="btn-sm newBtn mt-0 ml-2 text-sm"
-                    id={props.user}
-                    onClick={(event) => unFollow(event, props.user)}
-                  >
-                    <span className="material-icons">person_remove</span>
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="btn-sm newBtn mt-0 ml-2 text-sm"
-                    id={props.user}
-                    onClick={(event) => addFollow(event, props.user)}
-                  >
-                    <span className="material-icons">person_add</span>
-                  </button>
-                ),
-              ]
-            : null}
-        </div>
-      )}
+          </Row>
+          <Row>
+            {href !== '/home'
+              ? [
+                  isFollowing ? (
+                    <>
+                      <button
+                        type="button"
+                        className="btn-sm newBtn followButton text-sm"
+                        id={props.user}
+                        onClick={(event) => unFollow(event, props.user)}
+                      >
+                        <span className="material-icons">person_remove</span>
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="btn-sm newBtn followButton text-sm"
+                        id={props.user}
+                        onClick={(event) => addFollow(event, props.user)}
+                      >
+                        <span className="material-icons">person_add</span>
+                      </button>
+                    </>
+                  ),
+                ]
+              : null}
+          </Row>
+        </Col>
+      </Row>
+      {/* )} */}
       <hr />
     </div>
   )

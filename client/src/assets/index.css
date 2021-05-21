@@ -95,11 +95,9 @@ body {
   color: var(--main-text-color);
   border-radius: 20px;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.1) 0%,
-    rgba(250, 240, 230, 0.1) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%);
   border: none;
 }
 
@@ -117,7 +115,7 @@ body {
   max-width: 100px;
 }
 
-.scroll-to-top{
+.scroll-to-top {
   color: var(--main-text-color) !important;
 }
 
@@ -242,7 +240,7 @@ button.close {
   background-color: var(--main-bg-color) !important;
 }
 
-.dropdown-menu .dropdown-item > a:hover {
+.dropdown-menu .dropdown-item>a:hover {
   background-image: none !important;
   background-color: var(--main-bg-color) !important;
 }
@@ -290,7 +288,7 @@ a.switchLink:focus {
   text-decoration: underline;
 }
 
-li > a {
+li>a {
   display: inline-block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -299,9 +297,9 @@ li > a {
   color: var(--main-text-color);
 }
 
-li > a:hover,
-li > a:active,
-li > a:focus {
+li>a:hover,
+li>a:active,
+li>a:focus {
   color: var(--main-text-color);
   opacity: 0.8;
   text-decoration: none;
@@ -321,11 +319,9 @@ footer {
   width: 100%;
   height: 70px;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.2) 0%,
-    rgba(250, 240, 230, 0.2) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.2) 0%,
+      rgba(250, 240, 230, 0.2) 49.48%);
 }
 
 p.small {
@@ -336,15 +332,14 @@ p.small {
   margin: -1rem 0;
   padding: 0;
 }
+
 /* Color Utilities*/
 
 .gradient {
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.2) 0%,
-    rgba(250, 240, 230, 0.2) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.2) 0%,
+      rgba(250, 240, 230, 0.2) 49.48%);
   border: 1px solid linen;
 }
 
@@ -366,30 +361,35 @@ p.small {
   background-color: transparent;
   border-color: linen;
 }
+
 .btn-secondary:hover {
   background-color: transparent;
   border-color: linen;
 }
+
 .btn-secondary:focus,
 .btn-secondary.focus {
   background-color: transparent;
   border-color: linen;
   box-shadow: 0 0 0 0.2rem transparent !important;
 }
+
 .btn-secondary.disabled,
 .btn-secondary:disabled {
   background-color: transparent;
   border-color: linen;
 }
+
 .btn-secondary:not(:disabled):not(.disabled):active,
 .btn-secondary:not(:disabled):not(.disabled).active,
-.show > .btn-secondary.dropdown-toggle {
+.show>.btn-secondary.dropdown-toggle {
   background-color: transparent;
   border-color: linen;
 }
+
 .btn-secondary:not(:disabled):not(.disabled):active:focus,
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-secondary.dropdown-toggle:focus {
+.show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem transparent !important;
 }
 
@@ -550,11 +550,9 @@ button.disabled {
 
 #modalCloseBtn {
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.1) 0%,
-    rgba(250, 240, 230, 0.1) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%);
 }
 
 #mobileBtn {
@@ -562,11 +560,9 @@ button.disabled {
   width: 50px;
   border-radius: 50%;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.1) 0%,
-    rgba(250, 240, 230, 0.1) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%);
 }
 
 #signUp,
@@ -593,16 +589,22 @@ button.disabled {
   border-radius: 20px;
   color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.1) 0%,
-    rgba(250, 240, 230, 0.1) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%);
   font-size: 1rem;
 }
 
-.newBtn > .material-icons {
+.newBtn>.material-icons {
   margin-right: 0;
+}
+
+.followButton {
+  float: right;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-top: -5px;
+  margin-bottom: -5px;
 }
 
 #postBox {
@@ -619,11 +621,9 @@ button.disabled {
   border-radius: 20px;
   color: var(--main-text-color) !important;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.1) 0%,
-    rgba(250, 240, 230, 0.1) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%);
   font-size: 1rem;
 }
 
@@ -631,11 +631,9 @@ button.disabled {
   display: inline-flex;
   border-radius: 20px;
   color: var(--main-text-color) !important;
-  background: linear-gradient(
-    180deg,
-    rgba(245, 245, 245, 0.1) 0%,
-    rgba(250, 240, 230, 0.1) 49.48%
-  );
+  background: linear-gradient(180deg,
+      rgba(245, 245, 245, 0.1) 0%,
+      rgba(250, 240, 230, 0.1) 49.48%);
   font-size: 1rem;
 }
 
@@ -677,7 +675,7 @@ button.disabled {
   padding: 0 0 8px 0;
 }
 
-a > span.devLink:hover {
+a>span.devLink:hover {
   text-decoration: none !important;
 }
 
@@ -699,6 +697,7 @@ a > span.devLink:hover {
   #appearanceBtn {
     width: 153.06px;
   }
+
   #col2 {
     margin-left: 1rem;
   }
@@ -709,12 +708,14 @@ a > span.devLink:hover {
     margin-top: 1.5rem !important;
     min-height: calc(100vh - 94px);
   }
+
   #col2 {
     margin-left: 1rem;
     margin-right: 0.25rem;
     max-width: 350px;
     min-width: 300px;
   }
+
   #col3 {
     width: 100%;
     min-width: 220px;
@@ -724,8 +725,9 @@ a > span.devLink:hover {
 
 @media screen and (max-width: 645px) {
   div#backgroundCols {
-    column-count: 1!important;
+    column-count: 1 !important;
   }
+
   #col3 {
     display: none !important;
   }
@@ -747,6 +749,7 @@ a > span.devLink:hover {
     max-width: 250px;
     min-width: 230px;
   }
+
   .nav-link,
   .nav-link.active,
   .nav-item.show .nav-link {

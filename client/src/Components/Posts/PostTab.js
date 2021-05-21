@@ -33,9 +33,6 @@ function PostTab({ post, home, expanded }) {
     likes,
   })
 
-  const href =
-    thisPost.user === store.user._id ? '/home' : `/profile?user=${user}`
-
   useEffect(() => {
     setThisPost(post)
   }, [post])
@@ -45,7 +42,13 @@ function PostTab({ post, home, expanded }) {
       <div className="d-flex flex-row align-items-center justify-content-between">
         {atId === null ? (
           <div>
-            <a href={href}>
+            <a
+              href={
+                thisPost.user === store.user._id
+                  ? '/home'
+                  : `/profile?user=${user}`
+              }
+            >
               <img
                 src={avatarUrl}
                 style={{ width: 40, height: 40 }}
@@ -57,7 +60,11 @@ function PostTab({ post, home, expanded }) {
         ) : (
           <div className="mb-3">
             <div>
-              <a href={href}>
+              <a
+                href={
+                  user === store.user._id ? '/home' : `/profile?user=${user}`
+                }
+              >
                 <img
                   src={avatarUrl}
                   style={{ width: 40, height: 40 }}
@@ -67,7 +74,11 @@ function PostTab({ post, home, expanded }) {
               <span class="material-icons mb-1" style={{ fontSize: '30px' }}>
                 next_plan
               </span>{' '}
-              <a href={href}>
+              <a
+                href={
+                  atId === store.user._id ? '/home' : `/profile?user=${user}`
+                }
+              >
                 <img
                   src={atAvatar}
                   style={{ width: 40, height: 40 }}

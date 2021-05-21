@@ -32,8 +32,8 @@ app.get('/api/hello', (req, res) => {
   res.sendStatus(200)
 })
 app.use(router)
-// If no API routes are hit, send the React app
 if (process.env.NODE_ENV === 'production') {
+  // If no API routes are hit, send the React app
   const root = path.join(__dirname, '../client', 'build')
   app.use(express.static(root))
   app.get('*', (req, res) => {

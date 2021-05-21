@@ -16,20 +16,22 @@ function SkillsContainer({ skills, home }) {
         <br></br>
         {home ? (
           <div>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="newBtn"
-          onClick={() => setSkillsModalShow(true)}
-        >
-          Add/Update Skills
-        </Button>
-        <SkillsModal
-          show={skillsModalShow}
-          onHide={() => setSkillsModalShow(false)}
-        />
-      </div>
-        ) : '' }
+            <Button
+              variant="secondary"
+              size="sm"
+              className="newBtn"
+              onClick={() => setSkillsModalShow(true)}
+            >
+              Add/Update Skills
+            </Button>
+            <SkillsModal
+              show={skillsModalShow}
+              onHide={() => setSkillsModalShow(false)}
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </Tab>
     </div>
   )

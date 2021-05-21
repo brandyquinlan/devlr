@@ -13,7 +13,7 @@ function Footer() {
           <span className="small">Show your skills. Share your life.</span>
         </p>
         <p className="m-0 float-right">
-        <span className="material-icons ml-2" style={{ fontSize: '16px' }}>
+          <span className="material-icons ml-2" style={{ fontSize: '16px' }}>
             link
           </span>
           <a

@@ -33,16 +33,16 @@ function User({ home }) {
           >
             <span className="material-icons" style={{ fontSize: '25px' }}>
               palette
-        </span>
+            </span>
           </Button>
           <AppearanceModal
             show={appearanceModalShow}
             onHide={() => setAppearanceModalShow(false)}
           />
-        </div>) : (
+        </div>
+      ) : (
         <MobileFollowBtn profile={profile} />
       )}
-
     </div>
   )
 }

@@ -64,7 +64,10 @@ function UpdateProfileModal(props) {
       >
         <Modal.Header closeButton={!init}>
           <Modal.Title id="contained-modal-title-vcenter">
-            Update Profile <i className="material-icons" style={{ fontSize: '26px' }}>dashboard</i>
+            Update Profile{' '}
+            <i className="material-icons" style={{ fontSize: '26px' }}>
+              dashboard
+            </i>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

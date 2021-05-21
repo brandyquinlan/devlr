@@ -8,33 +8,35 @@ function Projects({ projects, profile, home }) {
       <Tab title="My Pinned Projects" expanded>
         {projects?.length === 0 || !projects ? (
           <div>
-          {home ? 
-          <div>
-            <p>
-              You have not pinned any projects yet! Visit your{' '}
-              <a
-                href={`https://github.com/${profile.githubUsername}`}
-                target="_blank"
-                className="underlineLink"
-              >
-                GitHub profile
-              </a>{' '}
-              to pin special projects.
-            </p>
-            <p>
-              If you are not sure how to pin a project, visit this{' '}
-              <a
-                href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/pinning-items-to-your-profile"
-                target="_blank"
-                className="underlineLink"
-              >
-                tutorial
-              </a>
-              .
-            </p>
-          </div> : <div>This user does not have any pinned projects yet.</div>
-        }
-        </div>
+            {home ? (
+              <div>
+                <p>
+                  You have not pinned any projects yet! Visit your{' '}
+                  <a
+                    href={`https://github.com/${profile.githubUsername}`}
+                    target="_blank"
+                    className="underlineLink"
+                  >
+                    GitHub profile
+                  </a>{' '}
+                  to pin special projects.
+                </p>
+                <p>
+                  If you are not sure how to pin a project, visit this{' '}
+                  <a
+                    href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/pinning-items-to-your-profile"
+                    target="_blank"
+                    className="underlineLink"
+                  >
+                    tutorial
+                  </a>
+                  .
+                </p>
+              </div>
+            ) : (
+              <div>This user does not have any pinned projects yet.</div>
+            )}
+          </div>
         ) : (
           projects.map((project) => (
             <Row key={project.name}>

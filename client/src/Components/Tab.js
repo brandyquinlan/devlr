@@ -15,9 +15,11 @@ function Tab({ title, children, projects, expanded }) {
           aria-controls="children"
           aria-expanded={open}
         >
-          {!open ? <span className="material-icons">expand_more</span>
-            :
-            <span className="material-icons">expand_less</span>}
+          {!open ? (
+            <span className="material-icons">expand_more</span>
+          ) : (
+            <span className="material-icons">expand_less</span>
+          )}
         </button>
       </div>
       <div className="separator mb-3"></div>

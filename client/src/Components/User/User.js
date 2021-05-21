@@ -53,39 +53,37 @@ function User({ home }) {
           </a>
         </h6>
       </div>
-      
+
       {home ? (
-      <div>
-      <Button
-        variant="secondary"
-        size="lg"
-        id="appearanceBtn"
-        onClick={() => setAppearanceModalShow(true)}
-      >
-        <span className="material-icons">
-          palette
-        </span>
-        Appearance
-      </Button>
-      <AppearanceModal
-        show={appearanceModalShow}
-        onHide={() => setAppearanceModalShow(false)}
-      />
-      </div>) : (      
+        <div>
+          <Button
+            variant="secondary"
+            size="lg"
+            id="appearanceBtn"
+            onClick={() => setAppearanceModalShow(true)}
+          >
+            <span className="material-icons">palette</span>
+            Appearance
+          </Button>
+          <AppearanceModal
+            show={appearanceModalShow}
+            onHide={() => setAppearanceModalShow(false)}
+          />
+        </div>
+      ) : (
         <FollowBtn profile={profile} />
-      // <Button
-      //   variant="secondary"
-      //   size="lg"
-      //   id="appearanceBtn"
-      //   onClick={(e) => addFollow(e)}
-      // >
-      //   <span className="material-icons" style={{ fontSize: '26px' }}>
-      //     person_add
-      //   </span>
-      //   Follow
-      // </Button>
-      ) }
-      
+        // <Button
+        //   variant="secondary"
+        //   size="lg"
+        //   id="appearanceBtn"
+        //   onClick={(e) => addFollow(e)}
+        // >
+        //   <span className="material-icons" style={{ fontSize: '26px' }}>
+        //     person_add
+        //   </span>
+        //   Follow
+        // </Button>
+      )}
     </div>
   )
 }

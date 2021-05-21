@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
-import { PostContext } from '../utils/PostState'
 import { TargetUserContext } from '../utils/TargetUserState'
 import { ModalContext } from '../utils/ModalState'
 import { socket } from '../utils/socket'
@@ -27,7 +26,6 @@ function useQuery() {
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
-  const [posts, postDispatch] = useContext(PostContext)
   const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)

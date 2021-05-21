@@ -1,6 +1,7 @@
 import { React, useState, useEffect, useContext } from 'react'
 import { Collapse } from 'react-bootstrap'
 import { UserContext } from '../../utils/UserState'
+import { socket } from '../../utils/socket'
 import PostBox from './PostBox'
 
 function PostTab({ post, home, expanded }) {
@@ -35,6 +36,7 @@ function PostTab({ post, home, expanded }) {
 
   useEffect(() => {
     setThisPost(post)
+    socket.emit('join room', { room: user })
   }, [post])
 
   return (

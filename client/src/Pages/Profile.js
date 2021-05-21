@@ -3,7 +3,6 @@ import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
 import { TargetUserContext } from '../utils/TargetUserState'
-import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -14,7 +13,6 @@ import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
-import Toast from '../utils/Toast'
 import ScrollToTop from '../utils/ScrollToTop'
 import Footer from '../Components/Footer'
 import StackOverflow from '../assets/img/stackoverflow.png'
@@ -26,7 +24,6 @@ function useQuery() {
 
 const Profile = () => {
   const [store, dispatch] = useContext(UserContext)
-  const [posts, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
@@ -37,7 +34,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (!userId) window.location.href = '/login'
-    // window.history.pushState({}, null, `/profile`)
     API.getUserInfo(userId)
       .then(([user, profile]) => {
         const { _id, accessToken } = user

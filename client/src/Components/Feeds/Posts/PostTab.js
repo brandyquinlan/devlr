@@ -37,6 +37,9 @@ function PostTab({ post, home, expanded }) {
   useEffect(() => {
     setThisPost(post)
     socket.emit('join room', { room: user })
+    return () => {
+      socket.emit('leave room', { room: user })
+    }
   }, [post])
 
   return (

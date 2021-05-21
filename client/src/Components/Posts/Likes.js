@@ -56,8 +56,7 @@ function Likes({ likes, postId, state }) {
         }),
         socket.emit('post update', { targetId: thisPost.user }),
       )
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
         Toast('error', 'Something went wrong!', 5000)
       })
   }

@@ -55,7 +55,6 @@ const io = socket(server)
 let clients = []
 
 io.on('connection', (socket) => {
-  console.log('client connected')
   socket.on('storeClientInfo', ({ userId }) => {
     var clientInfo = new Object()
     clientInfo.userId = userId

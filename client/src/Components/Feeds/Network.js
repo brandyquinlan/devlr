@@ -12,17 +12,15 @@ function Network() {
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
 
   let { profile } = targetUser.profile ? targetUser : store
-  const { followers, following } = profile;
+  const { followers, following } = profile
 
   useEffect(() => {
-    console.log('inside useeffect')
     API.getAllUsers().then((res) => {
       filterFollowing(res), filterFollowers(res)
     })
   }, [followers, following])
 
   function filterFollowing(res) {
- 
     const filteredFollowing = []
     if (following.length === 0) {
       return
@@ -35,7 +33,6 @@ function Network() {
         })
       }
     }
-    console.log(filteredFollowing)
     setNewFollowing(filteredFollowing)
   }
 

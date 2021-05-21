@@ -5,6 +5,7 @@ import { TargetUserContext } from '../../utils/TargetUserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 import MobileFollowBtn from './MobileFollowBtn'
+import ScrollToTop from '../../utils/ScrollToTop'
 
 function User({ home }) {
   const [store, dispatch] = useContext(UserContext)
@@ -15,35 +16,40 @@ function User({ home }) {
   const { profile } = targetUser.profile ? targetUser : store
 
   return (
-    <div className="d-flex flex-column align-items-center">
-      <img
-        src={profile.avatarUrl}
-        alt="user avatar"
-        className="circle"
-        height="50"
-        width="50"
+    <>
+      <div className="d-flex flex-column align-items-center">
+        <img
+          src={profile.avatarUrl}
+          alt="user avatar"
+          className="circle"
+          height="50"
+          width="50"
+        />
+        {home ? (
+          <div>
+            <Button
+              type="button"
+              variant="secondary"
+              id="mobileBtn"
+              onClick={() => setAppearanceModalShow(true)}
+            >
+              <span className="material-icons" style={{ fontSize: '25px' }}>
+                palette
+              </span>
+            </Button>
+            <AppearanceModal
+              show={appearanceModalShow}
+              onHide={() => setAppearanceModalShow(false)}
+            />
+          </div>
+        ) : (
+          <MobileFollowBtn profile={profile} />
+        )}
+      </div>
+      <ScrollToTop
+        style={{ zIndex: '1', position: 'fixed', top: 300, left: 10 }}
       />
-      {home ? (
-        <div>
-          <Button
-            type="button"
-            variant="secondary"
-            id="mobileBtn"
-            onClick={() => setAppearanceModalShow(true)}
-          >
-            <span className="material-icons" style={{ fontSize: '25px' }}>
-              palette
-            </span>
-          </Button>
-          <AppearanceModal
-            show={appearanceModalShow}
-            onHide={() => setAppearanceModalShow(false)}
-          />
-        </div>
-      ) : (
-        <MobileFollowBtn profile={profile} />
-      )}
-    </div>
+    </>
   )
 }
 

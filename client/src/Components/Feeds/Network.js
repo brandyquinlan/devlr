@@ -70,6 +70,7 @@ function Network() {
               ))}
         </Tab>
         <Tab eventKey="followers" title="Followers">
+          <hr />
           {newFollowers.length === 0
             ? 'No one is currently following you. Follow someone and maybe they will follow you back!'
             : newFollowers.map((f) => (

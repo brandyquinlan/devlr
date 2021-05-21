@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { PostContext } from '../../utils/PostState'
-import { UserContext } from '../../utils/UserState'
-import API from '../../utils/API'
+import { PostContext } from '../../../utils/PostState'
+import { UserContext } from '../../../utils/UserState'
+import API from '../../../utils/API'
 import Likes from './Likes'
-import PostCommentModal from '../Modals/PostCommentModal'
-import DeletePostModal from '../Modals/DeletePostModal'
-import Toast from '../../utils/Toast'
+import PostCommentModal from '../../Modals/PostCommentModal'
+import DeletePostModal from '../../Modals/DeletePostModal'
+import Toast from '../../../utils/Toast'
 import dayjs from 'dayjs'
 
 function PostBox({ post, state, home }) {

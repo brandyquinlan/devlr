@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { UserContext } from '../../utils/UserState'
-import { TargetUserContext } from '../../utils/TargetUserState'
-import { PostContext } from '../../utils/PostState'
-import { socket } from '../../utils/socket'
-import API from '../../utils/API'
+import { UserContext } from '../../../utils/UserState'
+import { TargetUserContext } from '../../../utils/TargetUserState'
+import { PostContext } from '../../../utils/PostState'
+import { socket } from '../../../utils/socket'
+import API from '../../../utils/API'
 import PostContainer from '../Posts/PostContainer'
 
 export default function Posts({ home }) {

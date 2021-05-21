@@ -15,7 +15,7 @@ function DevCard(props) {
     following.some((f) => f === props.user)
       ? setFollowing(true)
       : setFollowing(false)
-  }, [])
+  }, [following])
 
   function addFollow(event, user) {
     event.preventDefault()
@@ -33,8 +33,8 @@ function DevCard(props) {
 
   function unFollow(e, user) {
     e.preventDefault()
-    const newFollowing = [...following]
-    const splicedFollowing = newFollowing.filter((u) => u.user !== user)
+    const splicedFollowing =
+      following.length > 1 ? following.filter((u) => u !== user) : []
 
     API.unfollowUser(props.user, store.user._id)
       .then(() => {

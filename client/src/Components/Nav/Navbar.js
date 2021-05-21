@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import NavTabs from './NavTabs'
-import Posts from '../Feeds/Posts'
+import Posts from '../Feeds/Posts/Posts'
 import Profile from '../Feeds/Profile'
-import Network from '../Feeds/Network'
+import Network from '../Feeds/Network/Network'
 
 function Navbar({ projects, home, followers, following }) {
   const [page, setPage] = useState('Posts')

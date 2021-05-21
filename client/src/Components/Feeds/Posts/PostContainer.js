@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../utils/UserState'
-import { PostContext } from '../../utils/PostState'
-import { TargetUserContext } from '../../utils/TargetUserState'
-import API from '../../utils/API'
+import { UserContext } from '../../../utils/UserState'
+import { PostContext } from '../../../utils/PostState'
+import { TargetUserContext } from '../../../utils/TargetUserState'
+import API from '../../../utils/API'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
-import Toast from '../../utils/Toast'
+import Toast from '../../../utils/Toast'
 
 function PostContainer({ home }) {
   const [store, dispatch] = useContext(UserContext)

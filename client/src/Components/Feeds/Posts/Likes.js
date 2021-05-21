@@ -1,9 +1,9 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
 import { Overlay, Tooltip } from 'react-bootstrap'
-import { UserContext } from '../../utils/UserState'
-import { socket } from '../../utils/socket'
-import API from '../../utils/API'
-import Toast from '../../utils/Toast'
+import { UserContext } from '../../../utils/UserState'
+import { socket } from '../../../utils/socket'
+import API from '../../../utils/API'
+import Toast from '../../../utils/Toast'
 
 function Likes({ likes, postId, state }) {
   const [store, dispatch] = useContext(UserContext)

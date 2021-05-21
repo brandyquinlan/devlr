@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-export default function ScrollToTop() {
+export default function ScrollToTop({ style }) {
   const [isVisible, setIsVisible] = useState(false)
 
-  // Show button when page is scorlled upto given distance
+  // Show button when page is scrolled given distance
   const toggleVisibility = () => {
     if (window.pageYOffset > 600) {
       setIsVisible(true)
@@ -26,16 +26,12 @@ export default function ScrollToTop() {
   }, [])
 
   return (
-    <div className="scroll-to-top">
+    <div className="scroll-to-top" style={style}>
       {isVisible && (
-        <div
-          className="btn btn-secondary mb-3 float-right"
-          onClick={scrollToTop}
-        >
-          <span className="material-icons" style={{ fontSize: '18px' }}>
+        <div className="btn btn-secondary gradient" onClick={scrollToTop}>
+          <span className="material-icons m-0" style={{ fontSize: '18px' }}>
             north
           </span>
-          <span>Back to Top</span>
         </div>
       )}
     </div>

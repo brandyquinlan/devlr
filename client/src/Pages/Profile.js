@@ -13,7 +13,6 @@ import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
-import ScrollToTop from '../utils/ScrollToTop'
 import Footer from '../Components/Footer'
 import StackOverflow from '../assets/img/stackoverflow.png'
 import KUad from '../assets/img/KU-ad.png'
@@ -118,7 +117,6 @@ const Profile = () => {
                         id="col2"
                       >
                         <Navbar projects={projects} home={false} />
-                        <ScrollToTop />
                       </div>
                       <div
                         className="d-flex flex-column align-items-right ml-4"

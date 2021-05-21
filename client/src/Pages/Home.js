@@ -15,7 +15,6 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
-import ScrollToTop from '../utils/ScrollToTop'
 import StackOverflow from '../assets/img/stackoverflow.png'
 import KUad from '../assets/img/KU-ad.png'
 
@@ -148,7 +147,6 @@ const Home = () => {
                         id="col2"
                       >
                         <Navbar projects={projects} home={true} />
-                        <ScrollToTop />
                       </div>
                       <div
                         className="d-flex flex-column align-items-right ml-4"

@@ -14,7 +14,7 @@ function PostBox({ post, state, home }) {
   const [commentsModalShow, setCommentsModalShow] = useState(false)
   const [delPostModalShow, setDelPostModalShow] = useState(false)
   const [isOwned, setIsOwned] = useState(false)
-  const { _id, author, user, body, date, likes, comments } = post
+  const { _id, author, user, body, date, likes, comments, atId } = post
 
   const deletePostHandler = (event) => {
     event.preventDefault
@@ -27,7 +27,7 @@ function PostBox({ post, state, home }) {
   }
 
   useEffect(() => {
-    if (user === store.user._id) setIsOwned(true)
+    if (user === store.user._id || atId === store.user._id) setIsOwned(true)
   }, [store])
 
   return (

@@ -1,7 +1,7 @@
 import React, { useRef, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 
-function NewPostBox({ createPost }) {
+function NewPostBox({ createPost, home }) {
   const titleRef = useRef()
   const bodyRef = useRef()
 

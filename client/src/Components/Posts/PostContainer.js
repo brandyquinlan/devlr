@@ -12,8 +12,17 @@ function PostContainer({ home }) {
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [postStore, postDispatch] = useContext(PostContext)
   const [posts, setPosts] = useState([])
+  const [userPermission, setUserPermission] = useState(false)
 
   let { profile } = targetUser.profile ? targetUser : store
+  const { followers, following } = store.profile
+
+  function getUserPermission() {
+    if (home) { return }
+    else if (followers.includes(targetUser.profile.user) && following.includes(targetUser.profile.user)) {
+      setUserPermission(true)
+    }
+  }
 
   function createPost(event, title, body) {
     event.preventDefault()
@@ -22,12 +31,21 @@ function PostContainer({ home }) {
       return
     }
 
-    const postData = {
+    let postData = {
       title,
       body,
-      author: profile.name,
+      atId: null,
+      atName: null,
+      atAvatar: null,
+      author: store.profile.name,
       user: store.user._id,
-      avatarUrl: profile.avatarUrl,
+      avatarUrl: store.profile.avatarUrl,
+    }
+
+    if (home === false) {
+      postData.atId = targetUser.profile.user,
+      postData.atName = targetUser.profile.name,
+      postData.atAvatar = targetUser.profile.avatarUrl
     }
 
     API.post(postData)
@@ -47,24 +65,28 @@ function PostContainer({ home }) {
 
   useEffect(() => {
     setPosts(postStore)
+    console.log(postStore)
+    getUserPermission()
   }, [postStore])
 
   return (
     <div>
-      {home ? <NewPostBox createPost={createPost} /> : null}
+      {home || userPermission ? <NewPostBox createPost={createPost} home={home} userPermission={userPermission} /> : <div className="tab bg-secondary mt-2 gradient">To make a post on this user's page you must Follow them and they must also Follow you. Click "Browse Users" to the left to start building your network!</div>}
       {posts && posts.length > 0
         ? [
-            posts.map((post, i) => (
-              <LazyPostTab key={i} expanded post={post} home={home} />
-            )),
-          ]
+          posts.map((post, i) => (
+            <LazyPostTab key={i} expanded post={post} home={home} />
+          )),
+        ]
         : [
-            home ? (
-              <h5>Make a post to get started</h5>
-            ) : (
-              <h5>This user has not made any posts yet</h5>
-            ),
-          ]}
+          home ? (
+            <div className="tab bg-secondary mt-2 gradient">
+            <h5>Make a post to get started</h5></div>
+          ) : (
+            <div className="tab bg-secondary mt-2 gradient">
+            <h5>This user has not made any posts yet</h5></div>
+          ),
+        ]}
     </div>
   )
 }

@@ -22,6 +22,15 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  atId: {
+    type: String,
+  },
+  atName: {
+    type: String,
+  },
+  atAvatar: {
+    type: String,
+  },
   likes: [
     {
       user: {

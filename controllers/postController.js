@@ -72,7 +72,7 @@ router.get('/getPosts/:_id', (request, response) => {
   const { _id } = request.params
 
   try {
-    db.Post.find({ user: _id })
+    db.Post.find({ $or: [{ atId: _id }, {user: _id }]})
       .sort({ date: -1 })
       .then((posts) => {
         response.send(posts)
@@ -106,13 +106,14 @@ router.delete('/:_id', async (req, res) => {
 // Get the posts of all the people you are following
 router.get('/getFollowingPosts/:_id', async (request, response) => {
   const { _id } = request.params
+  console.log('db call _id', _id)
   const user = await db.Profile.findOne({ user: _id })
 
   try {
-    db.Post.find({ $or: [{ user: _id }, { user: { $in: user.following } }] })
+    db.Post.find({ $or: [{ atId: _id }, { user: _id }, { user: { $in: user.following } } ] })
       .sort({ date: -1 })
       .then((posts) => {
-        response.send(posts)
+        response.send(posts) 
       })
       .catch((err) => response.send(err).status(400))
   } catch (err) {

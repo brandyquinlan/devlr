@@ -31,7 +31,7 @@ function PostBox({ post, state, home }) {
 
   useEffect(() => {
     if (user === store.user._id || atId === store.user._id) setIsOwned(true)
-  }, [store])
+  }, [post])
 
   return (
     <div>
@@ -44,7 +44,10 @@ function PostBox({ post, state, home }) {
         </p>
       </div>
       <hr className="75" />
-      <div className="d-flex justify-content-end vertical-align-center" id="post-btns">
+      <div
+        className="d-flex justify-content-end vertical-align-center"
+        id="post-btns"
+      >
         <Likes likes={likes} postId={_id} state={state} />{' '}
         <PostCommentModal
           show={commentsModalShow}
@@ -61,7 +64,7 @@ function PostBox({ post, state, home }) {
           <span className="material-icons pl-3">question_answer</span>
           {!comments ? 0 : comments.length}
         </button>
-        {home && isOwned ? (
+        {isOwned ? (
           <>
             <DeletePostModal
               show={delPostModalShow}

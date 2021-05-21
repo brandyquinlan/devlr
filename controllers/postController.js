@@ -8,8 +8,8 @@ router.post('/newPost', async (request, response) => {
   // we simply attempt to store it to the database
   try {
     db.Post.create(post)
-      .then((response) => {
-        response.send(response).status(200)
+      .then((res) => {
+        response.send(res).status(200)
       })
       .catch((error) => {
         console.error('Error :: ENDPOINT /api/posts/newPost ::', error)
@@ -27,8 +27,8 @@ router.put('/addLike', (request, response) => {
   const { like, postId } = request.body
   try {
     db.Post.findOneAndUpdate({ _id: postId }, { $push: { likes: like } })
-      .then((response) => {
-        response.send(response)
+      .then((res) => {
+        response.send(res)
       })
       .catch((error) => {
         console.error('Error :: ENDPOINT /api/posts/addLike ::', error)
@@ -48,8 +48,8 @@ router.put('/removeLike', (request, response) => {
       { _id: postId },
       { $pull: { likes: { user: userId } } },
     )
-      .then((response) => {
-        response.send(response)
+      .then((res) => {
+        response.send(res)
       })
       .catch((error) => {
         console.error('Error :: ENDPOINT /api/posts/removeLike ::', error)
@@ -65,8 +65,8 @@ router.put('/addComment', (request, response) => {
   const { postId, comment } = request.body
   try {
     db.Post.findOneAndUpdate({ _id: postId }, { $push: { comments: comment } })
-      .then((response) => {
-        response.send(response).status(200)
+      .then((res) => {
+        response.send(res).status(200)
       })
       .catch((error) => {
         console.error('Error :: ENDPOINT /api/posts/addComment ::', error)

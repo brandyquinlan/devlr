@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import NavTabs from './NavTabs'
 import Posts from '../Feeds/Posts/Posts'
 import Profile from '../Feeds/Profile'
-import Network from '../Feeds/Network/Network'
+import Network from '../Feeds/Network'
 
-function Navbar({ projects, home, followers, following }) {
+function Navbar({ projects, home }) {
   const [page, setPage] = useState('Posts')
 
   function handlePageChange(newPage) {

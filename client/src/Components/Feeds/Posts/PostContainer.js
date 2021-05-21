@@ -19,11 +19,15 @@ function PostContainer({ home }) {
 
   function getUserPermission() {
     if (home) return
-    if (
-      followers.includes(targetUser.profile.user) &&
-      following.includes(targetUser.profile.user)
-    )
-      setUserPermission(true)
+    try {
+      if (
+        followers.includes(targetUser.profile.user) &&
+        following.includes(targetUser.profile.user)
+      )
+        setUserPermission(true)
+    } catch {
+      window.location.href = '/login'
+    }
   }
 
   function createPost(event, title, body) {

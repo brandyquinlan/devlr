@@ -22,19 +22,21 @@ function NewPostBox({ createPost, home }) {
           placeholder="What's on your mind?"
           rows="3"
         ></textarea>
-        <Button
-          variant="secondary"
-          className="gradient"
-          type="button"
-          size="sm"
-          onClick={(e) => {
-            createPost(e, titleRef.current.value, bodyRef.current.value)
-            titleRef.current.value = ''
-            bodyRef.current.value = ''
-          }}
-        >
-          Post
-        </Button>
+        <div className="d-flex flex-row justify-content-end">
+          <Button
+            variant="secondary"
+            className="gradient"
+            type="button"
+            size="sm"
+            onClick={(e) => {
+              createPost(e, titleRef.current.value, bodyRef.current.value)
+              titleRef.current.value = ''
+              bodyRef.current.value = ''
+            }}
+          >
+            Post
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ function AppearanceModal(props) {
 
   function saveTheme() {
     API.updateProfile({ themePref }, store.user._id).then(() =>
-      Toast('success', 'Theme saved', 1000),
+      Toast('success', 'Appearance saved!', 1000),
     )
   }
 

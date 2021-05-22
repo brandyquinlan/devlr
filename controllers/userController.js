@@ -152,7 +152,7 @@ router.get('/logout', (request, response) => {
 router.get('/sendResetLink/:userEmail', (request, response) => {
   const { userEmail } = request.params
   const uniqueCode = uuid()
-  const resetLink = `http://localhost:3000/home/settings/?reset=${uniqueCode}`
+  const resetLink = `https://devlrapp.herokuapp.com/home/settings/?reset=${uniqueCode}`
 
   const mail = {
     to: userEmail,

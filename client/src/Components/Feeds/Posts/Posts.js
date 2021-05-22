@@ -5,11 +5,13 @@ import { PostContext } from '../../../utils/PostState'
 import { socket } from '../../../utils/socket'
 import API from '../../../utils/API'
 import PostContainer from '../Posts/PostContainer'
+import Loading from '../../Loading'
 
 export default function Posts({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [postStore, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
+  const [resfreshing, setRefreshing] = useState(false)
 
   const homeOrAway = home ? 'home' : 'away'
 
@@ -32,7 +34,12 @@ export default function Posts({ home }) {
 
   function refreshFeed(event) {
     event.preventDefault()
+
+    setRefreshing(true)
     loadPosts()
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 250)
   }
 
   useEffect(() => {
@@ -50,14 +57,14 @@ export default function Posts({ home }) {
         className="btn btn-secondary gradient mb-2"
         style={{ border: 'none' }}
       >
-        <a type="button" onClick={refreshFeed}>
+        <a onClick={refreshFeed}>
           <span className="material-icons m-0" style={{ fontSize: '18px' }}>
             refresh
           </span>{' '}
           <span>Refresh Feed</span>
         </a>
       </div>
-      <PostContainer home={home} />
+      {refreshing ? <Loading /> : <PostContainer home={home} />}
     </>
   )
 }

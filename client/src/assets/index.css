@@ -180,7 +180,6 @@ button#addSkill {
   display: inline-block;
   margin-top: 0rem;
   margin-bottom: 0rem;
-  color: var(--main-text-color);
   background: transparent;
   /* border: none; */
 }
@@ -189,7 +188,6 @@ button#addLang {
   display: inline-block;
   margin-top: 0rem;
   margin-bottom: 0rem;
-  color: var(--main-text-color);
   background: transparent;
   /* border: none; */
 }
@@ -428,6 +426,7 @@ p.small {
 .btn-secondary {
   background-color: transparent;
   border-color: linen;
+  color: var(--main-text-color) !important;
 }
 
 .btn-secondary:hover {

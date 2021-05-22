@@ -81,7 +81,7 @@ function PostTab({ post, home, expanded }) {
               </span>{' '}
               <a
                 href={
-                  atId === store.user._id ? '/home' : `/profile?user=${user}`
+                  atId === store.user._id ? '/home' : `/profile?user=${atId}`
                 }
               >
                 <img

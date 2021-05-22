@@ -1,3 +1,5 @@
+const db = require('../models')
+const mailer = require('../config/nodemailer')
 let clients = []
 
 module.exports = (io) => {
@@ -30,6 +32,30 @@ module.exports = (io) => {
       const index = clients.findIndex((client) => client.userId === targetId)
       if (index < 0) return
       socket.to(`${clients[index].userId}`).emit('update to feed')
+    })
+
+    socket.on('post email notif', (data) => {
+      const [userData, targetId, postData] = data
+
+      try {
+        db.User.findOne({ _id: targetId }).then((user) => {
+          const mail = {
+            to: user.email,
+            from: process.env.DEVLR_EMAIL,
+            subject: 'New post on your page!',
+            text: `You have a new post on your page! User: ${userData.name}, Title: ${postData.title}, Body: ${postData.body}`,
+          }
+          console.log(mail)
+
+          mailer.verify((err) => {
+            if (err) throw new Error(err)
+          })
+
+          mailer.sendMail(mail)
+        })
+      } catch (error) {
+        console.error(error)
+      }
     })
 
     // When the client disconnects, we want to remove them from our clients array, so that no weird client id duplications happen

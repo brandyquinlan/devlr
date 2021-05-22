@@ -6,6 +6,7 @@ import API from '../../../utils/API'
 import LazyPostTab from './LazyPostTab'
 import NewPostBox from './NewPostBox'
 import Toast from '../../../utils/Toast'
+import { socket } from '../../../utils/socket'
 
 function PostContainer({ home }) {
   const [store, dispatch] = useContext(UserContext)
@@ -59,13 +60,15 @@ function PostContainer({ home }) {
         API.getFollowingPosts(store.user._id).then((res) => {
           postDispatch({ type: 'set posts', payload: res })
         })
+        if (!home && userPermission)
+          socket.emit('post email notif', [
+            store.profile,
+            targetUser.profile.user,
+            postData,
+          ])
       })
-      .catch(() => {
-        Toast(
-          'error',
-          `We're sorry, we are unable to process this request!`,
-          3000,
-        )
+      .catch((err) => {
+        Toast('error', `${err}`, 3000)
       })
   }
 

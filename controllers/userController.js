@@ -1,13 +1,11 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const axios = require('axios')
-const dotenv = require('dotenv')
 const { v4: uuid } = require('uuid')
 const mongoose = require('mongoose')
 const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
-dotenv.config()
 
 // github redirects the user back to url that we provided during setting up our oauth app
 router.post('/getAccessToken', (req, res) => {

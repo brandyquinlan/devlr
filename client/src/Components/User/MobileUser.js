@@ -5,7 +5,6 @@ import { TargetUserContext } from '../../utils/TargetUserState'
 import AppearanceModal from '../Modals/AppearanceModal'
 import NewPostModal from '../Modals/NewPostModal'
 import MobileFollowBtn from './MobileFollowBtn'
-import ScrollToTop from '../../utils/ScrollToTop'
 
 function User({ home }) {
   const [store, dispatch] = useContext(UserContext)
@@ -46,9 +45,6 @@ function User({ home }) {
           <MobileFollowBtn profile={profile} />
         )}
       </div>
-      <ScrollToTop
-        style={{ zIndex: '1', position: 'fixed', top: 300, left: 10 }}
-      />
     </>
   )
 }

@@ -60,7 +60,7 @@ function PostContainer({ home }) {
           postDispatch({ type: 'set posts', payload: res })
         })
       })
-      .catch((err) => {
+      .catch(() => {
         Toast(
           'error',
           `We're sorry, we are unable to process this request!`,

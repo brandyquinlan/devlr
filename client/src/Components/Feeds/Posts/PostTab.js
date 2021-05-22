@@ -76,7 +76,10 @@ function PostTab({ post, home, expanded }) {
                   className="devPic mr-2 mt-n2 mb-3"
                 ></img>
               </a>{' '}
-              <span class="material-icons mb-1" style={{ fontSize: '30px' }}>
+              <span
+                className="material-icons mb-1"
+                style={{ fontSize: '30px' }}
+              >
                 next_plan
               </span>{' '}
               <a

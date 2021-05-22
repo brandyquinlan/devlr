@@ -11,7 +11,7 @@ export default function Posts({ home }) {
   const [store, dispatch] = useContext(UserContext)
   const [postStore, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
-  const [resfreshing, setRefreshing] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
 
   const homeOrAway = home ? 'home' : 'away'
 

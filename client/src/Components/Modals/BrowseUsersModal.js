@@ -57,12 +57,12 @@ function BrowseUsersModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <p>
+          <h4>
             Browse Users{' '}
-            <i className="material-icons" style={{ fontSize: '26px' }}>
+            <span className="material-icons" style={{ fontSize: '26px' }}>
               groups
-            </i>
-          </p>
+            </span>
+          </h4>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

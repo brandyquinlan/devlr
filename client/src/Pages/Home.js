@@ -15,6 +15,8 @@ import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
+import ScrollToTop from '../utils/ScrollToTop'
+import ScrollToTopMobile from '../utils/ScrollToTopMobile'
 import StackOverflow from '../assets/img/stackoverflow.png'
 import KUad from '../assets/img/KU-ad.png'
 
@@ -140,6 +142,11 @@ const Home = () => {
                           <MobileSidenav home={true} />
                         ) : (
                           <Sidenav home={true} />
+                        )}
+                        {width < breakpoint ? (
+                          <ScrollToTopMobile />
+                        ) : (
+                          <ScrollToTop />
                         )}
                       </div>
                       <div

@@ -3,7 +3,6 @@ import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
 import { TargetUserContext } from '../utils/TargetUserState'
-import { PostContext } from '../utils/PostState'
 import { ModalContext } from '../utils/ModalState'
 import API from '../utils/API'
 import useViewport from '../utils/useViewport'
@@ -14,9 +13,11 @@ import Tab from '../Components/Tab'
 import InitialLoginModal from '../Components/Modals/InitialLoginModal'
 import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import NoExpandTab from '../Components/NoExpandTab'
-import Toast from '../utils/Toast'
-import ScrollToTop from '../utils/ScrollToTop'
 import Footer from '../Components/Footer'
+import ScrollToTop from '../utils/ScrollToTop'
+import ScrollToTopMobile from '../utils/ScrollToTopMobile'
+import StackOverflow from '../assets/img/stackoverflow.png'
+import KUad from '../assets/img/KU-ad.png'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -24,7 +25,6 @@ function useQuery() {
 
 const Profile = () => {
   const [store, dispatch] = useContext(UserContext)
-  const [posts, postDispatch] = useContext(PostContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
   const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
@@ -35,7 +35,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (!userId) window.location.href = '/login'
-    // window.history.pushState({}, null, `/profile`)
     API.getUserInfo(userId)
       .then(([user, profile]) => {
         const { _id, accessToken } = user
@@ -45,9 +44,6 @@ const Profile = () => {
 
           API.getGithubInfo(githubUsername, accessToken).then((info) => {
             setProjects(info.user.pinnedItems.nodes)
-          })
-          API.getPosts(_id).then((postRes) => {
-            postDispatch({ type: 'set posts', payload: postRes })
             setAuthenticated(true)
             setLoadingData(false)
           })
@@ -74,7 +70,7 @@ const Profile = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 900
+  const breakpoint = 960
 
   useEffect(() => {
     if (!targetUser.profile) return
@@ -86,7 +82,6 @@ const Profile = () => {
     if (color === 'linen') {
       r.style.setProperty('--main-bg-color', `#${color}`)
       r.style.setProperty('--main-text-color', '#222222')
-      // r.style.setProperty('--secondary-bg-color', '#979797')
     } else {
       r.style.setProperty('--main-bg-color', `#${color}`)
       r.style.setProperty('--main-text-color', 'linen')
@@ -96,60 +91,85 @@ const Profile = () => {
 
   return (
     <>
-    <div className="container mainWrapper">
-      {authenticating ? (
-        <Spinner animation="border" />
-      ) : (
-        [
-          loadingData ? (
-            <Spinner animation="border" />
-          ) : (
-            [
-              authenticated === true ? (
-                <>
-                  <div
-                    className="d-flex flex-row align-items-top justify-content-around"
-                    id="col1"
-                  >
-                    {width < breakpoint ? <MobileSidenav home={false} /> : <Sidenav home={false} />}
-                    <div
-                      className="d-flex flex-column align-items-left"
-                      id="col2"
-                    >
-                      <Navbar
-                        projects={projects}
-                        home={false}
-                        followers={targetUser.profile.followers}
-                        following={targetUser.profile.following}
-                      />
-                      <ScrollToTop />
+      <div className="container mainWrapper">
+        {authenticating ? (
+          <Spinner animation="border" />
+        ) : (
+          [
+            loadingData ? (
+              <Spinner animation="border" />
+            ) : (
+              [
+                authenticated === true ? (
+                  <>
+                    <div className="d-flex flex-row align-items-top justify-content-around">
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col1"
+                      >
+                        {width < breakpoint ? (
+                          <MobileSidenav home={false} />
+                        ) : (
+                          <Sidenav home={false} />
+                        )}
+                        {width < breakpoint ? (
+                          <ScrollToTopMobile />
+                        ) : (
+                          <ScrollToTop />
+                        )}
+                      </div>
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col2"
+                      >
+                        <Navbar projects={projects} home={false} />
+                      </div>
+                      <div
+                        className="d-flex flex-column align-items-right ml-4"
+                        id="col3"
+                      >
+                        <NoExpandTab title="Featured Devs">
+                          <FeaturedDevs />
+                        </NoExpandTab>
+                        <Tab title="Ads" expanded>
+                          <a
+                            href="https://bootcamp.ku.edu/coding/landing"
+                            target="_blank"
+                          >
+                            <img
+                              src={KUad}
+                              style={{ width: '250px' }}
+                              alt="KU Coding Boot Camp"
+                              className="my-3"
+                            ></img>
+                          </a>
+                          <a href="https://stackoverflow.com/" target="_blank">
+                            <img
+                              src={StackOverflow}
+                              style={{ width: '250px' }}
+                              alt="Stack Overflow"
+                              className="my-3"
+                            ></img>
+                          </a>
+                        </Tab>
+                      </div>
                     </div>
-                    <div
-                      className="d-flex flex-column align-items-right ml-4"
-                      id="col3"
-                    >
-                      <NoExpandTab title="Featured Devs">
-                        <FeaturedDevs />
-                      </NoExpandTab>
-                      <Tab title="Ad" />
-                    </div>
-                  </div>
-                  <InitialLoginModal
-                    show={modals.initialModalShow}
-                    onHide={() => {
-                      modalDispatch({ type: 'hide initial modal' })
-                    }}
-                  />
-                </>
-              ) : (
-                <Redirect to="/login" />
-              ),
-            ]
-          ),
-        ]
-      )}
-    </div>
-    <Footer />
+                    <InitialLoginModal
+                      show={modals.initialModalShow}
+                      onHide={() => {
+                        modalDispatch({ type: 'hide initial modal' })
+                      }}
+                    />
+                  </>
+                ) : (
+                  <Redirect to="/login" />
+                ),
+              ]
+            ),
+          ]
+        )}
+      </div>
+      <Footer />
     </>
   )
 }

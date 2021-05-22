@@ -20,7 +20,7 @@ function Profile({ projects, home }) {
       <BackgroundContainer profile={profile} />
       <SkillsContainer skills={profile.skills} home={home} />
       <LanguagesContainer languages={profile.languages} home={home} />
-      <Projects projects={projects} profile={profile} />
+      <Projects projects={projects} profile={profile} home={home} />
     </div>
   )
 }

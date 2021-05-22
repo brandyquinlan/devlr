@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 import { UserContext } from '../utils/UserState'
-import { PostContext } from '../utils/PostState'
 import { TargetUserContext } from '../utils/TargetUserState'
 import { ModalContext } from '../utils/ModalState'
 import { socket } from '../utils/socket'
@@ -17,6 +16,7 @@ import FeaturedDevs from '../Components/FeaturedDevs/FeaturedDevs'
 import Footer from '../Components/Footer'
 import NoExpandTab from '../Components/NoExpandTab'
 import ScrollToTop from '../utils/ScrollToTop'
+import ScrollToTopMobile from '../utils/ScrollToTopMobile'
 import StackOverflow from '../assets/img/stackoverflow.png'
 import KUad from '../assets/img/KU-ad.png'
 
@@ -27,7 +27,6 @@ function useQuery() {
 const Home = () => {
   const [store, dispatch] = useContext(UserContext)
   const [targetUser, targetDispatch] = useContext(TargetUserContext)
-  const [posts, postDispatch] = useContext(PostContext)
   const [modals, modalDispatch] = useContext(ModalContext)
   const [authenticating, setAuthenticating] = useState(true)
   const [loadingData, setLoadingData] = useState(true)
@@ -66,9 +65,6 @@ const Home = () => {
           if (_id) {
             API.getGithubInfo(githubUsername, accessToken).then((info) => {
               setProjects(info.user.pinnedItems.nodes)
-            })
-            API.getFollowingPosts(_id).then((postRes) => {
-              postDispatch({ type: 'set posts', payload: postRes })
               setAuthenticated(true)
               setLoadingData(false)
             })
@@ -93,9 +89,8 @@ const Home = () => {
           },
         })
         targetDispatch({ type: 'set target', payload: {} })
-
+        // Upon loging in, send the users ID to the server for socket.io
         socket.emit('storeClientInfo', { userId: user._id })
-
         setAuthenticating(false)
       })
       .catch((err) => {
@@ -105,7 +100,7 @@ const Home = () => {
   }, [loadingData])
 
   const { width } = useViewport()
-  const breakpoint = 900
+  const breakpoint = 960
   const { themePref } = store.profile
 
   useEffect(() => {
@@ -117,7 +112,6 @@ const Home = () => {
     if (color === 'linen') {
       r.style.setProperty('--main-bg-color', `#${color}`)
       r.style.setProperty('--main-text-color', '#222222')
-      // r.style.setProperty('--secondary-bg-color', '#979797')
     } else {
       r.style.setProperty('--main-bg-color', `#${color}`)
       r.style.setProperty('--main-text-color', 'linen')
@@ -129,30 +123,36 @@ const Home = () => {
     <>
       <main className="container mainWrapper">
         {authenticating ? (
-          <Spinner animation="border" />
+          <Spinner animation="border" key="authenticating" />
         ) : (
           [
             loadingData ? (
-              <Spinner animation="border" />
+              <Spinner animation="border" key="loading" />
             ) : (
               [
                 authenticated === true ? (
-                  <>
-                    <div
-                      className="d-flex flex-row align-items-top justify-content-around"
-                      id="col1"
-                    >
-                      {width < breakpoint ? (
-                        <MobileSidenav home={true} />
-                      ) : (
-                        <Sidenav home={true} />
-                      )}
+                  <div key="home">
+                    <div className="d-flex flex-row align-items-top justify-content-around">
+                      <div
+                        className="d-flex flex-column align-items-left"
+                        id="col1"
+                      >
+                        {width < breakpoint ? (
+                          <MobileSidenav home={true} />
+                        ) : (
+                          <Sidenav home={true} />
+                        )}
+                        {width < breakpoint ? (
+                          <ScrollToTopMobile />
+                        ) : (
+                          <ScrollToTop />
+                        )}
+                      </div>
                       <div
                         className="d-flex flex-column align-items-left"
                         id="col2"
                       >
                         <Navbar projects={projects} home={true} />
-                        <ScrollToTop />
                       </div>
                       <div
                         className="d-flex flex-column align-items-right ml-4"
@@ -161,24 +161,24 @@ const Home = () => {
                         <NoExpandTab title="Featured Devs">
                           <FeaturedDevs />
                         </NoExpandTab>
-                        <Tab title="Ad" expanded>
+                        <Tab title="Ads" id="ads" expanded>
                           <a
                             href="https://bootcamp.ku.edu/coding/landing"
                             target="_blank"
                           >
                             <img
                               src={KUad}
-                              style={{ width: '250px' }}
+                              style={{ width: '265px' }}
                               alt="KU Coding Boot Camp"
-                              className="my-3"
+                              className="my-3 ad"
                             ></img>
                           </a>
                           <a href="https://stackoverflow.com/" target="_blank">
                             <img
                               src={StackOverflow}
-                              style={{ width: '250px' }}
+                              style={{ width: '265px' }}
                               alt="Stack Overflow"
-                              className="my-3"
+                              className="my-3 ad"
                             ></img>
                           </a>
                         </Tab>
@@ -190,9 +190,9 @@ const Home = () => {
                         modalDispatch({ type: 'hide initial modal' })
                       }}
                     />
-                  </>
+                  </div>
                 ) : (
-                  <Redirect to="/login" />
+                  <Redirect to="/login" key="redirect" />
                 ),
               ]
             ),

@@ -119,7 +119,7 @@ function Signup() {
           'https://github.com/login/oauth/authorize?client_id=4e245c141737668a0fe8'
       })
       .catch(() => {
-        Toast('error', 'That user already exists', 2000)
+        Toast('error', "We're sorry, something went wrong", 2000)
       })
   }
 
@@ -182,7 +182,7 @@ function Signup() {
                   {pWordMatch.msg}
                 </Badge>
                 <div className="form-group">
-                  <label htmlFor="githubUsername">Github username</label>
+                  <label htmlFor="githubUsername">GitHub username</label>
                   <input
                     ref={githubRef}
                     onChange={handleInputChange}

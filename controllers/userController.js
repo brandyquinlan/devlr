@@ -1,13 +1,11 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const axios = require('axios')
-const dotenv = require('dotenv')
 const { v4: uuid } = require('uuid')
 const mongoose = require('mongoose')
 const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
-dotenv.config()
 
 // github redirects the user back to url that we provided during setting up our oauth app
 router.post('/getAccessToken', (req, res) => {
@@ -23,8 +21,9 @@ router.post('/getAccessToken', (req, res) => {
     .then((token) => {
       res.json({ token })
     })
-    .catch((err) => {
-      res.status(500).json({ message: err.message })
+    .catch((error) => {
+      console.error('Error :: ENDPOINT /api/users/getAccessToken', error)
+      res.sendStatus(500)
     })
 })
 
@@ -38,8 +37,9 @@ router.put('/setAccessToken', async (req, res) => {
       _id: user._id,
     }
     res.status(200).json(user)
-  } catch (err) {
-    res.status(500).json({ message: err.message })
+  } catch (error) {
+    console.error('Error :: ENDPOINT /api/users/setAccessToken', error)
+    res.sendStatus(500)
   }
 })
 
@@ -73,13 +73,15 @@ router.post('/signup', async (request, response) => {
         avatarUrl: '',
         following: [],
         followers: [],
-      }).catch((e) => {
-        throw new Error(e)
+      }).catch((error) => {
+        console.error('Error :: ENDPOINT /api/users/signup', error)
+        response.sendStatus(400)
       })
       response.json(user)
     })
   } catch (error) {
-    response.status(500).send(error)
+    console.error('Error :: ENDPOINT /api/users/signup', error)
+    response.sendStatus(500)
   }
 })
 
@@ -118,8 +120,8 @@ router.get('/checkUser', (request, response) => {
       _id: request.user._id,
     }
     response.send(user)
-  } catch (err) {
-    response.send(err)
+  } catch (error) {
+    response.send(error)
   }
 })
 
@@ -128,8 +130,9 @@ router.get('/getAllUsers', (request, response) => {
     db.Profile.find({}).then((users) => {
       response.send(users)
     })
-  } catch (err) {
-    response.json({ error: err }).status(500)
+  } catch (error) {
+    console.error('Error :: ENDPOINT /api/users/getAllUsers', error)
+    response.sendStatus(500)
   }
 })
 
@@ -138,8 +141,9 @@ router.get('/logout', (request, response) => {
   try {
     request.logout()
     response.sendStatus(200)
-  } catch (err) {
-    response.status(500).json({ error: err.message })
+  } catch (error) {
+    console.error('Error :: ENDPOINT /api/users/logout', error)
+    response.sendStatus(500)
   }
 })
 
@@ -169,10 +173,20 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
         mailer.sendMail(mail)
         response.sendStatus(200)
       })
-      .catch((err) => {
-        response.sendStatus(404)
+      .catch((error) => {
+        console.error(
+          'Error :: ENDPOINT /api/users/sendResetLink/:userEmail',
+          `USER EMAIL ${userEmail}`,
+          error,
+        )
+        response.sendStatus(40)
       })
   } catch (error) {
+    console.error(
+      'Error :: ENDPOINT /api/users/sendResetLink/:userEmail',
+      `USER EMAIL ${userEmail}`,
+      error,
+    )
     response.sendStatus(500)
   }
 })
@@ -180,17 +194,23 @@ router.get('/sendResetLink/:userEmail', (request, response) => {
 router.get('/verifyResetCode/:resetCode', (request, response) => {
   const { resetCode } = request.params
   try {
-    db.User.findOne({ resetCode }).then((user) => {
-      if (user.resetCodeExpires > Date.now()) {
-        const userInfo = {
-          _id: user._id,
+    db.User.findOne({ resetCode })
+      .then((user) => {
+        if (user.resetCodeExpires > Date.now()) {
+          const userInfo = {
+            _id: user._id,
+          }
+          response.send(userInfo).status(200)
+        } else {
+          response.sendSstatus(404)
         }
-        response.send(userInfo).status(200)
-      } else {
-        response.send('No user found').status(404)
-      }
-    })
+      })
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/users/verifyResetCode', error)
+        response.sendStatus(400)
+      })
   } catch (error) {
+    console.error('Error :: ENDPOINT /api/users/verifyResetCode', error)
     response.send(500)
   }
 })
@@ -203,11 +223,13 @@ router.put('/resetPassword', (request, response) => {
       .then(() => {
         response.send('Password updated').status(200)
       })
-      .catch((e) => {
-        response.send(e).status(401)
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/users/resetPassword', error)
+        response.sendStatus(401)
       })
   } catch (error) {
-    response.send(error).status(500)
+    console.error('Error :: ENDPOINT /api/users/resetPassword', error)
+    response.sendStatus(500)
   }
 })
 
@@ -218,14 +240,16 @@ router.delete('/destroy', async (request, response) => {
     db.Profile.deleteOne({ _id: profile })
       .then(() => {
         db.User.deleteOne({ _id: user }).then(() => {
-          response.send(200)
+          response.sendStatus(200)
         })
       })
-      .catch((err) => {
-        response.json({ error: err.message }).status(404)
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/users/delete', error)
+        response.sendStatus(400)
       })
-  } catch (err) {
-    response.json({ error: err.message }).status(500)
+  } catch (error) {
+    console.error('Error :: ENDPOINT /api/users/delete', error)
+    response.sendStatus(500)
   }
 })
 

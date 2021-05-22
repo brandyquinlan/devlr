@@ -57,7 +57,12 @@ function BrowseUsersModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Browse Users
+          <h4>
+            Browse Users{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              groups
+            </span>
+          </h4>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -73,7 +78,7 @@ function BrowseUsersModal(props) {
         <div>
           {filteredUsers.map((user, i) => (
             <DevCard
-              key={`filter${user._id}`}
+              key={user._id}
               id={user._id}
               user={user.user}
               avatarUrl={user.avatarUrl}

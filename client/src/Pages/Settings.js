@@ -91,13 +91,13 @@ export default function Settings() {
                       manage_accounts
                     </span>
                   </h4>
-                  <hr />
-                  <p className="small" id="accountMsg">
+                  <div className="separator mb-4"></div>
+                  <p id="accountMsg">
                     Use the buttons below to manage your devlr account settings.
-                    These actions will have no effect your linked GitHub
+                    These actions will have no effect on your linked GitHub
                     account.
                   </p>
-                  <div className="separator mt-4"></div>
+                  <div className="separator mt-4 mb-2"></div>
                   <ResetPasswordModal
                     show={resetPasswordModal}
                     onHide={() => setResetPasswordModal(false)}

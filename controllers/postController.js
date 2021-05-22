@@ -7,10 +7,16 @@ router.post('/newPost', async (request, response) => {
 
   // we simply attempt to store it to the database
   try {
-    db.Post.create(post).then((res) => {
-      response.send(res).status(200)
-    })
+    db.Post.create(post)
+      .then((res) => {
+        response.send(res).status(200)
+      })
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/posts/newPost ::', error)
+        response.sendStatus(400)
+      })
   } catch (error) {
+    console.error('Error :: ENDPOINT /api/posts/newPost ::', error)
     response.sendStatus(500)
   }
 })
@@ -24,10 +30,12 @@ router.put('/addLike', (request, response) => {
       .then((res) => {
         response.send(res)
       })
-      .catch((err) => {
-        response.send(err)
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/posts/addLike ::', error)
+        response.sendStatus(400)
       })
   } catch (error) {
+    console.error('Error :: ENDPOINT /api/posts/addLike ::', error)
     response.sendStatus(500)
   }
 })
@@ -43,11 +51,13 @@ router.put('/removeLike', (request, response) => {
       .then((res) => {
         response.send(res)
       })
-      .catch((err) => {
-        response.send(err).status(404)
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/posts/removeLike ::', error)
+        response.sendStatus(400)
       })
-  } catch (err) {
-    response.send(err).statusMessage(500)
+  } catch (error) {
+    console.error('Error :: ENDPOINT /api/posts/removeLike ::', error)
+    response.sendStatus(500)
   }
 })
 
@@ -58,12 +68,13 @@ router.put('/addComment', (request, response) => {
       .then((res) => {
         response.send(res).status(200)
       })
-      .catch((err) => {
-        console.error(err)
-        response.sendStatus(404)
+      .catch((error) => {
+        console.error('Error :: ENDPOINT /api/posts/addComment ::', error)
+        response.sendStatus(400)
       })
-  } catch (err) {
-    response.send(err).status(500)
+  } catch (error) {
+    console.error('Error :: ENDPOINT /api/posts/addComment ::', error)
+    response.sendStatus(500)
   }
 })
 
@@ -72,35 +83,42 @@ router.get('/getPosts/:_id', (request, response) => {
   const { _id } = request.params
 
   try {
-    db.Post.find({ user: _id })
+    db.Post.find({ $or: [{ atId: _id }, { user: _id }] })
       .sort({ date: -1 })
       .then((posts) => {
         response.send(posts)
       })
-  } catch (err) {
-    response.senjson(err)
+      .catch((error) => {
+        console.error(
+          'Error :: ENDPOINT /api/posts/getPosts/:_id',
+          `USER ID: ${_id} ::`,
+          error,
+        )
+        response.sendStatus(400)
+      })
+  } catch (error) {
+    console.error(
+      'Error :: ENDPOINT /api/posts/getPosts/:_id',
+      `USER ID: ${_id} ::`,
+      error,
+    )
+    response.sendStatus(500)
   }
 })
 //delete post
-router.delete('/:_id', async (req, res) => {
-  //was trying to catch not logged in user from req.user but it returns undefined
-  //   const { _id } = req.user
-  // const user = await db.User.find({_id})
-  const { _id } = req.params
+router.delete('/:_id', async (request, response) => {
+  const { _id } = request.params
 
   try {
     const post = await db.Post.findById({ _id })
 
     if (!post) {
-      return res.status(404).json({ msg: 'post not found!' })
+      return response.status(404).json({ msg: 'post not found!' })
     }
-    // if(post.user.toString() !== user){
-    //  return res.status(401).json({msg: 'not authorized'})
-    // }
     await post.remove()
-    res.status(200).send(post)
+    response.status(200).send(post)
   } catch (error) {
-    console.error(error)
+    console.error('Error :: ENDPOINT /api/posts/delete_id', error)
   }
 })
 // Get the posts of all the people you are following
@@ -109,14 +127,28 @@ router.get('/getFollowingPosts/:_id', async (request, response) => {
   const user = await db.Profile.findOne({ user: _id })
 
   try {
-    db.Post.find({ $or: [{ user: _id }, { user: { $in: user.following } }] })
+    db.Post.find({
+      $or: [{ atId: _id }, { user: _id }, { user: { $in: user.following } }],
+    })
       .sort({ date: -1 })
       .then((posts) => {
         response.send(posts)
       })
-      .catch((err) => response.send(err).status(400))
-  } catch (err) {
-    response.senjson(err)
+      .catch((error) => {
+        console.error(
+          'Error :: ENDPOINT /api/posts/getPosts/:_id',
+          `USER ID: ${_id} ::`,
+          error,
+        )
+        response.sendStatus(500)
+      })
+  } catch (error) {
+    console.error(
+      'Error :: ENDPOINT /api/posts/getPosts/:_id',
+      `USER ID: ${_id} ::`,
+      error,
+    )
+    response.sendStatus(500)
   }
 })
 

@@ -66,6 +66,18 @@ function AppearanceModal(props) {
           <Button
             type="button"
             variant="secondary"
+            className="btn btn-nightsea theme m-2"
+            id="033649"
+            onClick={() =>
+              dispatch({ type: 'change theme', payload: '033649' })
+            }
+          >
+            Night Sea
+          </Button>
+
+          <Button
+            type="button"
+            variant="secondary"
             className="btn btn-sand theme m-2"
             id="BBB092"
             onClick={() =>
@@ -73,6 +85,17 @@ function AppearanceModal(props) {
             }
           >
             Sand
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            className="btn btn-mocha theme m-2"
+            id="87796F"
+            onClick={() =>
+              dispatch({ type: 'change theme', payload: '87796F' })
+            }
+          >
+            Mocha
           </Button>
           <Button
             type="button"
@@ -89,9 +112,9 @@ function AppearanceModal(props) {
             type="button"
             variant="secondary"
             className="btn btn-seaglass theme m-2"
-            id="8FBC8F"
+            id="83AF9B"
             onClick={() =>
-              dispatch({ type: 'change theme', payload: '8FBC8F' })
+              dispatch({ type: 'change theme', payload: '83AF9B' })
             }
           >
             Seaglass
@@ -117,6 +140,17 @@ function AppearanceModal(props) {
             }
           >
             Thistle
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            className="btn btn-plum theme m-2"
+            id="5D4157"
+            onClick={() =>
+              dispatch({ type: 'change theme', payload: '5D4157' })
+            }
+          >
+            Plum
           </Button>
         </Modal.Body>
         <Modal.Footer>

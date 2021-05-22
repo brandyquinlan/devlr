@@ -13,7 +13,7 @@ function SkillsModal(props) {
 
   function saveSkills() {
     API.updateProfile({ skills: newSkills }, store.user._id).then(() =>
-      Toast('success', 'Skills & Languages Saves', 1000),
+      Toast('success', 'Skills Saved', 1000),
     )
   }
 
@@ -53,7 +53,10 @@ function SkillsModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add Skills and Languages
+            Add Skills{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              fact_check
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

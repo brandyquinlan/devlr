@@ -32,8 +32,8 @@ app.get('/api/hello', (req, res) => {
   res.sendStatus(200)
 })
 app.use(router)
-// If no API routes are hit, send the React app
 if (process.env.NODE_ENV === 'production') {
+  // If no API routes are hit, send the React app
   const root = path.join(__dirname, '../client', 'build')
   app.use(express.static(root))
   app.get('*', (req, res) => {
@@ -52,28 +52,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/devlr', {
 // Set up for initializing socket as a part of our server
 const server = http.createServer(app)
 const io = socket(server)
-let clients = []
-
-io.on('connection', (socket) => {
-  console.log('client connected')
-  socket.on('storeClientInfo', ({ userId }) => {
-    var clientInfo = new Object()
-    clientInfo.userId = userId
-    clientInfo.socketId = socket.id
-    clients.push(clientInfo)
-  })
-
-  socket.on('leftComment', ({ targetId }) => {
-    console.log('comment left')
-    const index = clients.findIndex((client) => client.userId === targetId)
-    if (index < 0) return
-    io.to(clients[index].socketId).emit('commentOnYourPost')
-  })
-
-  socket.on('disconnect', () => {
-    clients = clients.filter((client) => client.socketId !== socket.id)
-  })
-})
+require('./socket')(io)
 
 try {
   server.listen(PORT, () => {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-export default function ScrollToTop() {
+export default function ScrollToTopMobile() {
   const [isVisible, setIsVisible] = useState(false)
 
   // Show button when page is scrolled given distance
   const toggleVisibility = () => {
-    if (window.pageYOffset > 600) {
+    if (window.pageYOffset > 400) {
       setIsVisible(true)
     } else {
       setIsVisible(false)
@@ -36,8 +36,7 @@ export default function ScrollToTop() {
         <div className="btn btn-secondary gradient" onClick={scrollToTop}>
           <span className="material-icons m-0" style={{ fontSize: '18px' }}>
             north
-          </span>{' '}
-          <span>Back to Top</span>
+          </span>
         </div>
       )}
     </div>

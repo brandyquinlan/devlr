@@ -16,20 +16,22 @@ function Languages({ languages, home }) {
         <br></br>
         {home ? (
           <div>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="newBtn"
-          onClick={() => setLangModalShow(true)}
-        >
-          Add/Update Languages
-        </Button>
-        <LangsModal
-          show={langModalShow}
-          onHide={() => setLangModalShow(false)}
-        />
-    </div>
-        ) : '' } 
+            <Button
+              variant="secondary"
+              size="sm"
+              className="gradient float-right"
+              onClick={() => setLangModalShow(true)}
+            >
+              Add/Update Languages
+            </Button>
+            <LangsModal
+              show={langModalShow}
+              onHide={() => setLangModalShow(false)}
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </Tab>
     </div>
   )

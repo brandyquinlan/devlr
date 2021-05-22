@@ -13,7 +13,7 @@ function LangsModal(props) {
 
   function saveLangs() {
     API.updateProfile({ languages: newLangs }, store.user._id).then(() =>
-      Toast('success', 'Skills & Languages Saves', 1000),
+      Toast('success', 'Languages Saved', 1000),
     )
   }
 
@@ -52,7 +52,10 @@ function LangsModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add Skills and Languages
+            Add Languages{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              language
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

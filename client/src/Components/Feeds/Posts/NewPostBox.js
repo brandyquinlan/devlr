@@ -1,7 +1,7 @@
 import React, { useRef, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 
-function NewPostBox({ createPost }) {
+function NewPostBox({ createPost, home }) {
   const titleRef = useRef()
   const bodyRef = useRef()
 
@@ -22,19 +22,21 @@ function NewPostBox({ createPost }) {
           placeholder="What's on your mind?"
           rows="3"
         ></textarea>
-        <Button
-          variant="secondary"
-          className="gradient"
-          type="button"
-          size="sm"
-          onClick={(e) => {
-            createPost(e, titleRef.current.value, bodyRef.current.value)
-            titleRef.current.value = ''
-            bodyRef.current.value = ''
-          }}
-        >
-          Post
-        </Button>
+        <div className="d-flex flex-row justify-content-end">
+          <Button
+            variant="secondary"
+            className="gradient"
+            type="button"
+            size="sm"
+            onClick={(e) => {
+              createPost(e, titleRef.current.value, bodyRef.current.value)
+              titleRef.current.value = ''
+              bodyRef.current.value = ''
+            }}
+          >
+            Post
+          </Button>
+        </div>
       </div>
     </div>
   )

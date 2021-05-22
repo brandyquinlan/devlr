@@ -57,6 +57,7 @@ body {
   height: 0px;
   margin-left: -24px;
   border: 1px solid var(--main-text-color);
+  opacity: 0.4;
 }
 
 .list-group {
@@ -402,7 +403,6 @@ p.small {
     rgba(245, 245, 245, 0.2) 0%,
     rgba(250, 240, 230, 0.2) 49.48%
   );
-  border: 1px solid linen;
 }
 
 .bg-light {

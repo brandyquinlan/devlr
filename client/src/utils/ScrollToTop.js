@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function ScrollToTop({ style }) {
+export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
   // Show button when page is scrolled given distance
@@ -26,12 +26,13 @@ export default function ScrollToTop({ style }) {
   }, [])
 
   return (
-    <div className="scroll-to-top" style={style}>
+    <div className="scroll-to-top">
       {isVisible && (
         <div className="btn btn-secondary gradient" onClick={scrollToTop}>
           <span className="material-icons m-0" style={{ fontSize: '18px' }}>
             north
-          </span>
+          </span>{' '}
+          <span>Back to Top</span>
         </div>
       )}
     </div>

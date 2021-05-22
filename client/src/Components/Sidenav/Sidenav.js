@@ -18,7 +18,7 @@ function Sidenav({ home }) {
       </div>
       <ul className="list-group">
         <li>
-          <a href="/home">
+          <a href="/home" alt="Home">
             <i className="material-icons">home</i>
             Home
           </a>
@@ -26,6 +26,7 @@ function Sidenav({ home }) {
         <li>
           <button
             type="button"
+            alt="Browse Users"
             onClick={() => modalDispatch({ type: 'show user modal' })}
           >
             <i className="material-icons">groups</i>
@@ -39,6 +40,7 @@ function Sidenav({ home }) {
         <li>
           <button
             type="button"
+            alt="Update Profile"
             onClick={() => modalDispatch({ type: 'show profile modal' })}
           >
             <i className="material-icons">dashboard</i>Update Profile
@@ -51,6 +53,7 @@ function Sidenav({ home }) {
         <li>
           <button
             type="button"
+            alt="Account Settings"
             onClick={(event) => {
               event.preventDefault()
               window.location.href = '/home/settings'
@@ -63,6 +66,7 @@ function Sidenav({ home }) {
         <li>
           <button
             type="button"
+            alt="Logout"
             href="/"
             onClick={() => dispatch({ type: 'logout' })}
           >

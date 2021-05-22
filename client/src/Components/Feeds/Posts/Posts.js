@@ -64,7 +64,13 @@ export default function Posts({ home }) {
           <span>Refresh Feed</span>
         </a>
       </div>
-      {refreshing ? <Loading /> : <PostContainer home={home} />}
+      {refreshing ? (
+        <div className="mx-auto my-5">
+          <Loading />
+        </div>
+      ) : (
+        <PostContainer home={home} />
+      )}
     </>
   )
 }

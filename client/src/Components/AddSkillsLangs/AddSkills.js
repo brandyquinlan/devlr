@@ -17,7 +17,7 @@ function AddSkills(props) {
           ></input>
           <div className="input-group-append">
             <button
-              className="btn btn-outline-secondary"
+              className="btn btn-secondary"
               type="button"
               id="addSkill"
               onClick={(e) => props.addSkill(e, skillRef.current.value)}
@@ -38,10 +38,15 @@ function AddSkills(props) {
                   <button
                     type="button"
                     data-value={skill}
-                    className="btn-outline-secondary"
+                    className="btn-secondary"
                     onClick={(e) => props.removeSkill(e, index)}
                   >
-                    x
+                    <span
+                      className="material-icons remove"
+                      style={{ fontSize: '20px' }}
+                    >
+                      clear
+                    </span>
                   </button>
                 </li>
               ))

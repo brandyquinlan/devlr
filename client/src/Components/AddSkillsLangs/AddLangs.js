@@ -16,7 +16,7 @@ function AddLangs(props) {
           ></input>
           <div className="input-group-append">
             <button
-              className="btn btn-outline-secondary"
+              className="btn btn-secondary"
               type="button"
               id="addLang"
               onClick={(e) => props.addLang(e, langRef.current.value)}
@@ -36,10 +36,15 @@ function AddLangs(props) {
                   <button
                     type="button"
                     data-value={lang}
-                    className="btn-outline-secondary"
+                    className="btn-secondary"
                     onClick={(e) => props.removeLang(e, index)}
                   >
-                    x
+                    <span
+                      className="material-icons remove"
+                      style={{ fontSize: '20px' }}
+                    >
+                      clear
+                    </span>
                   </button>
                 </li>
               ))

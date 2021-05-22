@@ -39,5 +39,20 @@ export default function Posts({ home }) {
     loadPosts()
   })
 
-  return <PostContainer home={home} />
+  return (
+    <>
+      <div
+        className="btn btn-secondary gradient mb-2"
+        style={{ border: 'none' }}
+      >
+        <a href="/home">
+          <span className="material-icons m-0" style={{ fontSize: '18px' }}>
+            refresh
+          </span>{' '}
+          <span>Refresh Feed</span>
+        </a>
+      </div>
+      <PostContainer home={home} />
+    </>
+  )
 }

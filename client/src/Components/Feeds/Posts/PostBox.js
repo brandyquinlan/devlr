@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { PostContext } from '../../../utils/PostState'
-import { UserContext } from '../../../utils/UserState'
-import API from '../../../utils/API'
+import Linkify from 'linkifyjs/react'
+import { PostContext } from '../../utils/PostState'
+import { UserContext } from '../../utils/UserState'
+import API from '../../utils/API'
 import Likes from './Likes'
 import PostCommentModal from '../../Modals/PostCommentModal'
 import DeletePostModal from '../../Modals/DeletePostModal'
@@ -34,50 +35,52 @@ function PostBox({ post, state, home }) {
   }, [post])
 
   return (
-    <div>
-      <div id={_id}>
-        <p className="mb-1">{body} </p>
-        <p className="small" id={user}>
-          {' '}
-          Posted by <a href={href}>{author}</a>,{' '}
-          {dayjs(date).format(`h:mma - M-DD-YY`)}
-        </p>
-      </div>
-      <hr className="75" />
-      <div
-        className="d-flex justify-content-end vertical-align-center"
-        id="post-btns"
-      >
-        <Likes likes={likes} postId={_id} state={state} />{' '}
-        <PostCommentModal
-          show={commentsModalShow}
-          onHide={() => setCommentsModalShow(false)}
-          postId={_id}
-          state={state}
-          home={home}
-        />
-        <button
-          type="button"
-          className="p-0"
-          onClick={() => setCommentsModalShow(true)}
+    <Linkify>
+      <div>
+        <div id={_id}>
+          <p className="mb-1">{body} </p>
+          <p className="small" id={user}>
+            {' '}
+            Posted by <a href={href}>{author}</a>,{' '}
+            {dayjs(date).format(`h:mma - M-DD-YY`)}
+          </p>
+        </div>
+        <hr className="75" />
+        <div
+          className="d-flex justify-content-end vertical-align-center"
+          id="post-btns"
         >
-          <span className="material-icons pl-3">question_answer</span>
-          {!comments ? 0 : comments.length}
-        </button>
-        {isOwned ? (
-          <>
-            <DeletePostModal
-              show={delPostModalShow}
-              hide={() => setDelPostModalShow(false)}
-              deletePost={deletePostHandler}
-            />
-            <button type="button" onClick={() => setDelPostModalShow(true)}>
-              <span className="material-icons pl-3">delete</span>
-            </button>
-          </>
-        ) : null}
+          <Likes likes={likes} postId={_id} state={state} />{' '}
+          <PostCommentModal
+            show={commentsModalShow}
+            onHide={() => setCommentsModalShow(false)}
+            postId={_id}
+            state={state}
+            home={home}
+          />
+          <button
+            type="button"
+            className="p-0"
+            onClick={() => setCommentsModalShow(true)}
+          >
+            <span className="material-icons pl-3">question_answer</span>
+            {!comments ? 0 : comments.length}
+          </button>
+          {isOwned ? (
+            <>
+              <DeletePostModal
+                show={delPostModalShow}
+                hide={() => setDelPostModalShow(false)}
+                deletePost={deletePostHandler}
+              />
+              <button type="button" onClick={() => setDelPostModalShow(true)}>
+                <span className="material-icons pl-3">delete</span>
+              </button>
+            </>
+          ) : null}
+        </div>
       </div>
-    </div>
+    </Linkify>
   )
 }
 

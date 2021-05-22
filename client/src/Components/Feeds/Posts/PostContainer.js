@@ -100,11 +100,14 @@ function PostContainer({ home }) {
           ]
         : [
             home ? (
-              <div className="tab bg-secondary mt-2 gradient">
+              <div key="make a post" className="tab bg-secondary mt-2 gradient">
                 <h5>Make a post to get started</h5>
               </div>
             ) : (
-              <div className="tab bg-secondary mt-2 gradient">
+              <div
+                key="this user hasn't posted"
+                className="tab bg-secondary mt-2 gradient"
+              >
                 <h5>This user has not made any posts yet</h5>
               </div>
             ),

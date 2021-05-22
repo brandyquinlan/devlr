@@ -84,27 +84,25 @@ function DevCard(props) {
             {href !== '/home'
               ? [
                   isFollowing ? (
-                    <>
-                      <button
-                        type="button"
-                        className="btn-sm newBtn followButton text-sm"
-                        id={props.user}
-                        onClick={(event) => unFollow(event, props.user)}
-                      >
-                        <span className="material-icons">person_remove</span>
-                      </button>
-                    </>
+                    <button
+                      key="unfollow button"
+                      type="button"
+                      className="btn-sm newBtn followButton text-sm"
+                      id={props.user}
+                      onClick={(event) => unFollow(event, props.user)}
+                    >
+                      <span className="material-icons">person_remove</span>
+                    </button>
                   ) : (
-                    <>
-                      <button
-                        type="button"
-                        className="btn-sm newBtn followButton text-sm"
-                        id={props.user}
-                        onClick={(event) => addFollow(event, props.user)}
-                      >
-                        <span className="material-icons">person_add</span>
-                      </button>
-                    </>
+                    <button
+                      key="follow button"
+                      type="button"
+                      className="btn-sm newBtn followButton text-sm"
+                      id={props.user}
+                      onClick={(event) => addFollow(event, props.user)}
+                    >
+                      <span className="material-icons">person_add</span>
+                    </button>
                   ),
                 ]
               : null}

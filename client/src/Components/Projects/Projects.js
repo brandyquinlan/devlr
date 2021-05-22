@@ -40,7 +40,7 @@ function Projects({ projects, profile, home }) {
         ) : (
           projects.map((project) => (
             <Row key={project.name}>
-              <Col key={project.name}>
+              <Col>
                 <h5>{project.name}</h5>
                 <p>
                   {project.description

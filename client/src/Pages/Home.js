@@ -123,15 +123,15 @@ const Home = () => {
     <>
       <main className="container mainWrapper">
         {authenticating ? (
-          <Spinner animation="border" />
+          <Spinner animation="border" key="authenticating" />
         ) : (
           [
             loadingData ? (
-              <Spinner animation="border" />
+              <Spinner animation="border" key="loading" />
             ) : (
               [
                 authenticated === true ? (
-                  <>
+                  <div key="home">
                     <div className="d-flex flex-row align-items-top justify-content-around">
                       <div
                         className="d-flex flex-column align-items-left"
@@ -190,9 +190,9 @@ const Home = () => {
                         modalDispatch({ type: 'hide initial modal' })
                       }}
                     />
-                  </>
+                  </div>
                 ) : (
-                  <Redirect to="/login" />
+                  <Redirect to="/login" key="redirect" />
                 ),
               ]
             ),

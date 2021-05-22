@@ -18,7 +18,7 @@ body {
       --keycap: #90959A;
       --sand: #BBB092;
       --putty: #D4ADA9;
-      --seaglass: #8FBC8F;
+      --seaglass: #6e8d6e;
       --lagoon: #7FAEB9;
       --thistle: #9F879F; */
 }
@@ -548,18 +548,69 @@ p.small {
 }
 
 .btn-seaglass {
-  background-color: #8fbc8f;
+  background-color: #83AF9B;
   border-color: linen;
 }
 
 .btn-seaglass:hover {
-  background-color: #8fbc8f;
+  background-color: #83AF9B;
   border-color: linen;
 }
 
 .btn-seaglass:active,
 .btn-seaglass:focus {
-  background-color: #8fbc8f;
+  background-color: #83AF9B;
+  border-color: linen !important;
+  box-shadow: 0 0 0 0.2rem transparent !important;
+}
+
+.btn-nightsea {
+  background-color: #033649;
+  border-color: linen;
+}
+
+.btn-nightsea:hover {
+  background-color: #033649;
+  border-color: linen;
+}
+
+.btn-nightsea:active,
+.btn-nightsea:focus {
+  background-color: #033649;
+  border-color: linen !important;
+  box-shadow: 0 0 0 0.2rem transparent !important;
+}
+
+.btn-mocha {
+  background-color: #87796F;
+  border-color: linen;
+}
+
+.btn-mocha:hover {
+  background-color: #87796F;
+  border-color: linen;
+}
+
+.btn-mocha:active,
+.btn-mocha:focus {
+  background-color: #87796F;
+  border-color: linen !important;
+  box-shadow: 0 0 0 0.2rem transparent !important;
+}
+
+.btn-plum {
+  background-color: #5D4157;
+  border-color: linen;
+}
+
+.btn-plum:hover {
+  background-color: #5D4157;
+  border-color: linen;
+}
+
+.btn-plum:active,
+.btn-p0lum:focus {
+  background-color: #5D4157;
   border-color: linen !important;
   box-shadow: 0 0 0 0.2rem transparent !important;
 }

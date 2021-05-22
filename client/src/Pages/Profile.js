@@ -131,24 +131,24 @@ const Profile = () => {
                         <NoExpandTab title="Featured Devs">
                           <FeaturedDevs />
                         </NoExpandTab>
-                        <Tab title="Ads" expanded>
+                        <Tab title="Ads" id="ads" expanded>
                           <a
                             href="https://bootcamp.ku.edu/coding/landing"
                             target="_blank"
                           >
                             <img
                               src={KUad}
-                              style={{ width: '250px' }}
+                              style={{ width: '265px' }}
                               alt="KU Coding Boot Camp"
-                              className="my-3"
+                              className="my-3 ad"
                             ></img>
                           </a>
                           <a href="https://stackoverflow.com/" target="_blank">
                             <img
                               src={StackOverflow}
-                              style={{ width: '250px' }}
+                              style={{ width: '265px' }}
                               alt="Stack Overflow"
-                              className="my-3"
+                              className="my-3 ad"
                             ></img>
                           </a>
                         </Tab>

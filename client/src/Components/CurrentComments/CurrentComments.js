@@ -1,8 +1,10 @@
 import React from 'react'
+import Linkify from 'linkifyjs/react'
 import dayjs from 'dayjs'
 
 function CurrentComments({ comments, commentsRef }) {
   return (
+    <Linkify>
     <div>
       {comments.map((c, i) => (
         // Dont forget to add a key
@@ -29,6 +31,7 @@ function CurrentComments({ comments, commentsRef }) {
       ))}
       <div ref={commentsRef} />
     </div>
+    </Linkify>
   )
 }
 

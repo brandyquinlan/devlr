@@ -54,6 +54,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
+    "linkifyjs": "^3.0.0-beta.3",
     "mongoose": "^5.12.7",
     "nodemailer": "^6.6.0",
     "passport": "^0.4.1",

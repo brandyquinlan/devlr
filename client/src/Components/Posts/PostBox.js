@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import Linkify from 'linkifyjs/react'
 import { PostContext } from '../../utils/PostState'
 import { UserContext } from '../../utils/UserState'
 import API from '../../utils/API'
@@ -31,6 +32,7 @@ function PostBox({ post, state, home }) {
   }, [store])
 
   return (
+    <Linkify>
     <div>
       <div id={_id}>
         <p className="mb-1">{body} </p>
@@ -71,6 +73,7 @@ function PostBox({ post, state, home }) {
         ) : null}
       </div>
     </div>
+    </Linkify>
   )
 }
 

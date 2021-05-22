@@ -47,14 +47,19 @@ function Projects({ projects, profile, home }) {
                     ? project.description
                     : 'The project does not have description yet'}
                 </p>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="small underlineLink"
-                >
-                  Project Repo
-                </a>
+                <p className="text-right">
+                  <span className="material-icons" style={{ fontSize: '16px' }}>
+                    link{' '}
+                  </span>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="small underlineLink"
+                  >
+                    GitHub Repo
+                  </a>
+                </p>
                 <hr />
               </Col>
             </Row>

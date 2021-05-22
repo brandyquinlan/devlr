@@ -15,7 +15,7 @@ export default function ScrollToTop() {
   // Set the top cordinate to 0
   // make scrolling smooth
   const scrollToTop = () => {
-    window.scrollTo({
+    window.scroll({
       top: 0,
       behavior: 'smooth',
     })

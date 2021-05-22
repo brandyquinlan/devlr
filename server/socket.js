@@ -45,7 +45,6 @@ module.exports = (io) => {
             subject: 'New post on your page!',
             text: `You have a new post on your page! User: ${userData.name}, Title: ${postData.title}, Body: ${postData.body}`,
           }
-          console.log(mail)
 
           mailer.verify((err) => {
             if (err) throw new Error(err)

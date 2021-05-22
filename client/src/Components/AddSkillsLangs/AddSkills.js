@@ -1,11 +1,10 @@
 import React, { useRef } from 'react'
-import NoExpandTab from '../NoExpandTab'
 
 function AddSkills(props) {
   const skillRef = useRef()
   return (
     <div>
-      <NoExpandTab title="Add Skills">
+      <div className="tab gradient" style={{ border: 'none' }}>
         <div className="input-group mb-3">
           <input
             type="text"
@@ -53,7 +52,7 @@ function AddSkills(props) {
             )}
           </ul>
         </div>
-      </NoExpandTab>
+      </div>
     </div>
   )
 }

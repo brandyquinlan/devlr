@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
-import NoExpandTab from '../NoExpandTab'
 function AddLangs(props) {
   const langRef = useRef()
   return (
     <div>
-      <NoExpandTab title="Add Languages">
+      <div className="tab gradient" style={{ border: 'none' }}>
         <div className="input-group mb-3">
           <input
             type="text"
@@ -51,7 +50,7 @@ function AddLangs(props) {
             )}
           </ul>
         </div>
-      </NoExpandTab>
+      </div>
     </div>
   )
 }

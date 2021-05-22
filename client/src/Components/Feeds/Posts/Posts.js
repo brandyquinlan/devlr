@@ -30,6 +30,11 @@ export default function Posts({ home }) {
     }
   }
 
+  function refreshFeed(event) {
+    event.preventDefault()
+    loadPosts()
+  }
+
   useEffect(() => {
     loadPosts()
     return () => postDispatch({ type: 'set posts', payload: [] })
@@ -45,7 +50,7 @@ export default function Posts({ home }) {
         className="btn btn-secondary gradient mb-2"
         style={{ border: 'none' }}
       >
-        <a href="/home">
+        <a type="button" onClick={refreshFeed}>
           <span className="material-icons m-0" style={{ fontSize: '18px' }}>
             refresh
           </span>{' '}

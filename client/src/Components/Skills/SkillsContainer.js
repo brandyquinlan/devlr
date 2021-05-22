@@ -19,7 +19,7 @@ function SkillsContainer({ skills, home }) {
             <Button
               variant="secondary"
               size="sm"
-              className="newBtn"
+              className="gradient float-right"
               onClick={() => setSkillsModalShow(true)}
             >
               Add/Update Skills

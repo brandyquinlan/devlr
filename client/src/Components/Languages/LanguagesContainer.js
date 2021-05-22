@@ -19,7 +19,7 @@ function Languages({ languages, home }) {
             <Button
               variant="secondary"
               size="sm"
-              className="newBtn"
+              className="gradient float-right"
               onClick={() => setLangModalShow(true)}
             >
               Add/Update Languages

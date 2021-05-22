@@ -68,7 +68,12 @@ function PostCommentModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Comments</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Comments{' '}
+          <span className="material-icons" style={{ fontSize: '26px' }}>
+            comment
+          </span>
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="scroll" style={{ maxHeight: '35vh' }}>
@@ -89,9 +94,16 @@ function PostCommentModal(props) {
             onChange={handleInputChange}
           ></textarea>
         </div>
-        <Button variant="secondary" type="button" onClick={createComment}>
-          Add Comment
-        </Button>
+        <div className="d-flex flex-row justify-content-end">
+          <Button
+            variant="secondary"
+            type="button"
+            className="gradient"
+            onClick={createComment}
+          >
+            Add Comment
+          </Button>
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>

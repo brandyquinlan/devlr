@@ -53,7 +53,10 @@ function SkillsModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add Skills and Languages
+            Add Skills{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              fact_check
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

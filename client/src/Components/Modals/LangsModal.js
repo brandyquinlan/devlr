@@ -52,7 +52,10 @@ function LangsModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add Skills and Languages
+            Add Languages{' '}
+            <span className="material-icons" style={{ fontSize: '26px' }}>
+              language
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

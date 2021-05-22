@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
+const ObjectId = require('mongodb').ObjectId
 
 // github redirects the user back to url that we provided during setting up our oauth app
 router.post('/getAccessToken', (req, res) => {
@@ -71,7 +72,7 @@ router.post('/signup', async (request, response) => {
         languages: [],
         themePref: '222222',
         avatarUrl: '',
-        following: [],
+        following: [ObjectId('60a947a5d154320028803a1b')],
         followers: [],
       }).catch((error) => {
         console.error('Error :: ENDPOINT /api/users/signup', error)

@@ -171,7 +171,7 @@ const Home = () => {
                               src={KUad}
                               style={{ width: '265px' }}
                               alt="KU Coding Boot Camp"
-                              className="my-3"
+                              className="my-3 ad"
                             ></img>
                           </a>
                           <a href="https://stackoverflow.com/" target="_blank">
@@ -179,7 +179,7 @@ const Home = () => {
                               src={StackOverflow}
                               style={{ width: '265px' }}
                               alt="Stack Overflow"
-                              className="my-3"
+                              className="my-3 ad"
                             ></img>
                           </a>
                         </Tab>

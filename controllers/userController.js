@@ -110,11 +110,6 @@ router.get('/getUserInfo/:userId', async (request, response) => {
     const profile = await db.Profile.findOne({ user: userId })
     response.send([user, profile])
   } catch (error) {
-    console.error(
-      'Error :: ENDPOINT /api/users/getUserInfo/:userId',
-      `USER ID ${userId}`,
-      error,
-    )
     response.sendStatus(500)
   }
 })
@@ -128,7 +123,6 @@ router.get('/checkUser', (request, response) => {
     }
     response.send(user)
   } catch (error) {
-    console.error('Error :: ENDPOINT /api/users/checkUser', error)
     response.send(error)
   }
 })

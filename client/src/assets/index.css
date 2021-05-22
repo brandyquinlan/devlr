@@ -117,6 +117,14 @@ body {
   margin-right: 0.5rem;
 }
 
+.btn.disabled {
+  cursor: default;
+}
+
+.material-icons.remove {
+  color: #a85050;
+}
+
 .language.disabled {
   opacity: 0.9;
   color: var(--main-text-color);
@@ -244,6 +252,14 @@ input::placeholder {
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
+}
+
+::-moz-selection {
+  background-color: rgb(224, 214, 204);
+}
+
+::selection {
+  background-color: rgb(224, 214, 204);
 }
 
 button.close {

@@ -145,6 +145,8 @@ body {
 }
 
 .scroll-to-top {
+  position: fixed;
+  top: 50%;
   color: var(--main-text-color) !important;
 }
 

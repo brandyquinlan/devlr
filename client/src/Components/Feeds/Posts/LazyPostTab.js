@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy, useEffect } from 'react'
+import React, { Suspense, lazy } from 'react'
 import Loading from '../../Loading'
 const LazyPostTab = lazy(() => import('./PostTab'))
 

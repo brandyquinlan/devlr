@@ -57,6 +57,7 @@ body {
   height: 0px;
   margin-left: -24px;
   border: 1px solid var(--main-text-color);
+  opacity: 0.4;
 }
 
 .list-group {
@@ -126,7 +127,7 @@ body {
 }
 
 .language.disabled {
-  opacity: 0.9;
+  opacity: 1;
   color: var(--main-text-color);
   border-radius: 20px;
   background: rgb(245, 245, 245);
@@ -194,6 +195,17 @@ button:hover {
 form.signup,
 form.login {
   margin-top: 2rem;
+}
+
+.form-control {
+  border: 1px solid var(--placeholder-color);
+}
+
+.form-control:focus {
+  border-color: linen;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px transparent, 0 0 2px linen;
+  box-shadow: inset 0 1px 1px transparent, 0 0 2px linen;
 }
 
 textarea {
@@ -391,7 +403,6 @@ p.small {
     rgba(245, 245, 245, 0.2) 0%,
     rgba(250, 240, 230, 0.2) 49.48%
   );
-  border: 1px solid linen;
 }
 
 .bg-light {
@@ -768,6 +779,10 @@ a > span.devLink:hover {
   .mainWrapper {
     margin-top: 1.5rem !important;
     min-height: calc(100vh - 94px);
+  }
+
+  img.ad {
+    width: 200px !important;
   }
 
   div#backgroundCols {

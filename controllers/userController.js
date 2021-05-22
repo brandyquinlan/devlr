@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const mailer = require('../config/nodemailer')
 const passport = require('../config/passport')
 const db = require('../models')
+const ObjectId = require('mongodb').ObjectId
 
 // github redirects the user back to url that we provided during setting up our oauth app
 router.post('/getAccessToken', (req, res) => {
@@ -71,7 +72,7 @@ router.post('/signup', async (request, response) => {
         languages: [],
         themePref: '222222',
         avatarUrl: '',
-        following: [],
+        following: [ObjectId('60a947a5d154320028803a1b')],
         followers: [],
       }).catch((error) => {
         console.error('Error :: ENDPOINT /api/users/signup', error)
@@ -151,7 +152,7 @@ router.get('/logout', (request, response) => {
 router.get('/sendResetLink/:userEmail', (request, response) => {
   const { userEmail } = request.params
   const uniqueCode = uuid()
-  const resetLink = `http://localhost:3000/home/settings/?reset=${uniqueCode}`
+  const resetLink = `https://devlrapp.herokuapp.com/home/settings/?reset=${uniqueCode}`
 
   const mail = {
     to: userEmail,

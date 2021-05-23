@@ -78,10 +78,10 @@ WHEN I click on Logout
 ##### Updated Wireframe
 ![Wireframe](/client/public/img/devlr-v2-slides-wireframe.png)
 
-### Technologies and Methodologies
+#### Technologies and Methodologies
 ![Technologies](/client/public/img/devlr-v2-slides-technologies.png)
 
-### npm Packages
+#### npm Packages
 ![npm Packages](/client/public/img/devlr-v2-slides-npm-packages.png)
 
 ### Successes and Challenges
@@ -104,33 +104,7 @@ WHEN I click on Logout
 ### Screenshots
 ![Screenshots](/client/public/img/screenshots.png)
 
-
-### Functionality
-
-The following technologies and methodologies were used:
-```
-HTML
-CSS
-JavaScript
-Axios
-Heroku
-AtlasDB
-MERN 
-CRUD 
-MVC 
-GitHub API 
-Node.JS
-Circle CI/CD 
-ESLint
-Socket.IO
-Context API Reducer 
-```
-The following npm packages were used:
-```
-
-```
-
-## devlr Team
+## Contact the devlr Team
 Please contact the devlr team with questions: [devlr.app.team@gmail.com](mailto:devlr.app.team@gmail.com)
   
 - 🔗 Liz Townsend | GitHub: [liztownd](https://github.com/liztownd)

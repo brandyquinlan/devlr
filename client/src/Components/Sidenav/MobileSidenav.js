@@ -15,13 +15,14 @@ function MobileSidenav({ home }) {
       <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       <ul className="list-group">
         <li>
-          <a href="/home">
+          <a href="/home" alt="Home">
             <i className="material-icons">home</i>
           </a>
         </li>
         <li>
           <button
             type="button"
+            alt="Browse Users"
             onClick={() => modalDispatch({ type: 'show user modal' })}
           >
             <i className="material-icons">groups</i>
@@ -61,6 +62,7 @@ function MobileSidenav({ home }) {
         <li>
           <button
             type="button"
+            alt="Logout"
             href="/"
             onClick={() => dispatch({ type: 'logout' })}
           >

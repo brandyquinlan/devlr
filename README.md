@@ -5,7 +5,7 @@
 
 ### 📍 [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) 📍
 
-## Table of Contents
+### Table of Contents
 
 - [Program Description](#program-description)
 - [Team Members and Rolls](#team-members-and-rolls)
@@ -20,44 +20,26 @@
 - [Functionality](#functionality)
 - [devlr Team](#devlr-team)
 
-## Program Description
+### Program Description
 Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide. devlr is a social media/portfolio/networking site designed just for developers. There is nothing like it on the open market, the nearest competitor would be Stack Overflow or GitHub for code sharing or Reddit for social interaction. 
 <br>Our project combines the benefits of GitHub for sharing your code, and Twitter and other social media for sharing your life. 
 * Using OAuth, our application reaches out to the GitHub API to retrieve projects to highlight your work. 
 * Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
 * In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
 
-## Team Members and Rolls:
+#### Team Members and Rolls:
+![New features](/client/public/img/devlr-v2-slides-team.png)
 
-Brandy Quinlan: Project Manager/Git Controller, Front End Development
-Kat Buchanan: Front End Development
-Liz Townsend: Front End Development
-Vinitha Kumar: Back End/DB Development
-Keaton Brewster: Back End/DB Development/Dev Ops
+#### New Features | devlr2.0
+![New features](/client/public/img/devlr-v2-slides-new-features.png)
 
-## New Features | devlr2.0
-OAuth
-Edit Profile Information
-Edit Posts
-Reset Password
-Comments/Likes
-Follow users
-Star comments
-Pinned projects instead of just last 5
-Posting links in posts/comments
-Upload images
-Notification
-Chat Feature
-Mentor matching
-Job Board
-
-## Repo and Heroku App Links
+#### Repo and Heroku App Links
 * [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
 * [Link to Heroku App - http://devlrapp.herokuapp.com](http://devlrapp.herokuapp.com)
 * [Link to live App (COMING SOON) - http://devlrapp.com](http://devlrapp.com)
 
 
-### User Story
+#### User Story
 
 ```
 AS an authenticated user...
@@ -65,7 +47,7 @@ I WANT to use an app to display my web development portfolio as a social media p
 SO THAT I can network with other developers
 ```
 
-### Acceptance Criteria
+#### Acceptance Criteria
 
 ```
 As an authenticated user...
@@ -90,11 +72,12 @@ WHEN I click on Logout
     THEN I follow the /logout route and am sent to the root page
 ```
 
-## Development
-### Updated Wireframe
-![Wireframe](/client/public/img/project3_devlr_wireframe.png)
+### Development
+##### Updated Wireframe
+![Wireframe](/client/public/img/devlr-v2-slides-wireframe.png)
 
-## Usage
+
+### Usage
 ### To begin using devlr, sign up for an account.
 
 - Go to http://devlrapp.herokuapp.com/
@@ -102,31 +85,36 @@ WHEN I click on Logout
 - Create a Profile
 - Have fun!
 
-## DEMO VIDEO
+### DEMO VIDEO
 * [Link to demo - https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing](https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing)
 
-## Screenshots
+### Screenshots
 ![Screenshots](/client/public/img/screenshots.png)
 
 
-## Functionality
+### Functionality
 
-The following technologies were used:
+The following technologies and methodologies were used:
 ```
-Node.js
-Express
-Express-session
-Passport-local
-Passport Middleware Authentication
-Bcrypt(password hashing)
-dotenv
 HTML
 CSS
 JavaScript
-JQuery
 Axios
 Heroku
 AtlasDB
+MERN 
+CRUD 
+MVC 
+GitHub API 
+Node.JS
+Circle CI/CD 
+ESLint
+Socket.IO
+Context API Reducer 
+```
+The following npm packages were used:
+```
+
 ```
 
 ## devlr Team
@@ -135,6 +123,7 @@ Please contact the devlr team with questions: [devlr.app.team@gmail.com](mailto:
 - 🔗 Liz Townsend | GitHub: [liztownd](https://github.com/liztownd)
 - 🔗 Kat Buchanan | GitHub: [katsign](https://github.com/katsign)
 - 🔗 Vinitha Kumar | GitHub: [selvivini](https://github.com/selvivini)
+- 🔗 Keaton Brewster | GitHub: [keaton-brewster](https://github.com/keaton-brewster)
 - 🔗 Brandy Quinlan | GitHub: [brandyquinlan](https://github.com/brandyquinlan)
 ---
 This project is MIT licensed. &copy; 2021

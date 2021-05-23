@@ -31,29 +31,33 @@ function MobileSidenav({ home }) {
           show={modals.userModalShow}
           onHide={() => modalDispatch({ type: 'hide user modal' })}
         />
-        <li>
-          <button
-            type="button"
-            onClick={() => modalDispatch({ type: 'show profile modal' })}
-          >
-            <i className="material-icons">dashboard</i>
-          </button>
-        </li>
-        <UpdateProfileModal
-          show={modals.profileModalShow}
-          onHide={() => modalDispatch({ type: 'hide profile modal' })}
-        />
-        <li>
-          <button
-            type="button"
-            onClick={(event) => {
-              event.preventDefault()
-              window.location.href = '/home/settings'
-            }}
-          >
-            <i className="material-icons">manage_accounts</i>
-          </button>
-        </li>
+        {home ? (
+          <>
+            <li>
+              <button
+                type="button"
+                onClick={() => modalDispatch({ type: 'show profile modal' })}
+              >
+                <i className="material-icons">dashboard</i>
+              </button>
+            </li>
+            <UpdateProfileModal
+              show={modals.profileModalShow}
+              onHide={() => modalDispatch({ type: 'hide profile modal' })}
+            />
+            <li>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault()
+                  window.location.href = '/home/settings'
+                }}
+              >
+                <i className="material-icons">manage_accounts</i>
+              </button>
+            </li>
+          </>
+        ) : null}
         <li>
           <button
             type="button"

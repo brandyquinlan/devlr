@@ -1,7 +1,7 @@
-# ![logo](/client/public/img/devlr-logo-dark-sm.png) devlr | show your skills, share your life
-![GitHub license](https://img.shields.io/badge/License-MIT-orange)
+![GitHub license](https://img.shields.io/badge/License-MIT-orange) 
 
-### Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide.
+![Team Rolls](/client/public/img/devlr-v2-slides-cover.png)
+
 
 ### 📍 [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) 📍
 
@@ -28,7 +28,7 @@ Create a customized profile to display your development background, pinned proje
 * In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
 
 #### Team Members and Rolls:
-![New features](/client/public/img/devlr-v2-slides-team.png)
+![Team Rolls](/client/public/img/devlr-v2-slides-team.png)
 
 #### New Features | devlr2.0
 ![New features](/client/public/img/devlr-v2-slides-new-features.png)
@@ -71,11 +71,24 @@ WHEN I click Account on the side menu
 WHEN I click on Logout
     THEN I follow the /logout route and am sent to the root page
 ```
+### Concept
+![Concept](/client/public/img/devlr-v2-slides-description.png)
 
-### Development
+### Development Process
 ##### Updated Wireframe
 ![Wireframe](/client/public/img/devlr-v2-slides-wireframe.png)
 
+### Technologies and Methodologies
+![Technologies](/client/public/img/devlr-v2-slides-technologies.png)
+
+### npm Packages
+![npm Packages](/client/public/img/devlr-v2-slides-npm-packages.png)
+
+### Successes and Challenges
+![Successes and Challenges](/client/public/img/devlr-v2-slides-success-challenge.png)
+
+### Future Development
+![npm Packages](/client/public/img/devlr-v2-slides-future.png)
 
 ### Usage
 ### To begin using devlr, sign up for an account.

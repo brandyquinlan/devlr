@@ -3,7 +3,7 @@
 ![Team Rolls](/client/public/img/devlr-v2-slides-cover.png)
 
 
-### 📍 [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) 📍
+### :star2: [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) :star2:
 
 ### Table of Contents
 

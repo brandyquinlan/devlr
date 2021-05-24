@@ -26,6 +26,9 @@ Create a customized profile to display your development background, pinned proje
 * Using a Mongo database allows users to personalize their pages, leave comments on other user’s pages, like and star comments and projects. 
 * In future enhancements, our Premiere tier will allow users to connect with other developers to further their careers, such as pairing mentors with junior developers and a job board to post opportunities for career advancement. 
 
+### :star2: New Features | devlr2.0 
+![New features](/client/public/img/devlr-v2-slides-new-features.png)
+
 #### Team Members and Rolls:
 ![Team Rolls](/client/public/img/devlr-v2-slides-team.png)
 
@@ -36,7 +39,6 @@ Create a customized profile to display your development background, pinned proje
 * [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
 * [Link to Heroku App - http://devlrapp.herokuapp.com](http://devlrapp.herokuapp.com)
 * [Link to live App (COMING SOON) - http://devlrapp.com](http://devlrapp.com)
-
 
 #### User Story
 

@@ -104,7 +104,7 @@ WHEN I click on Logout
 ### Screenshots
 ![Screenshots](/client/public/img/devlr-v2-screenshots-for-readme.png)
 
-## Contact the devlr Team
+### Contact the devlr Team
 Please contact the devlr team with questions: [devlr.app.team@gmail.com](mailto:devlr.app.team@gmail.com)
   
 - 🔗 Liz Townsend | GitHub: [liztownd](https://github.com/liztownd)

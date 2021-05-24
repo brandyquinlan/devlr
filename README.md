@@ -102,7 +102,7 @@ WHEN I click on Logout
 * [Link to demo - https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing](https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing)
 
 ### Screenshots
-![Screenshots](/client/public/img/screenshots.png)
+![Screenshots](/client/public/img/devlr-v2-screenshots-for-readme.png)
 
 ## Contact the devlr Team
 Please contact the devlr team with questions: [devlr.app.team@gmail.com](mailto:devlr.app.team@gmail.com)

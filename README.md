@@ -3,7 +3,7 @@
 ![Team Rolls](/client/public/img/devlr-v2-slides-cover.png)
 
 
-### :star2: [Visit devlr on Heroku](http://devlrapp.herokuapp.com/) :star2:
+### :star2: [Visit devlr on Heroku](https://devlrapp.herokuapp.com/) :star2:
 
 ### Table of Contents
 
@@ -34,7 +34,7 @@ Create a customized profile to display your development background, pinned proje
 
 #### Repo and Heroku App Links
 * [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
-* [Link to Heroku App - http://devlrapp.herokuapp.com](http://devlrapp.herokuapp.com)
+* [Link to Heroku App - https://devlrapp.herokuapp.com](https://devlrapp.herokuapp.com)
 * [Link to live App (COMING SOON) - http://devlrapp.com](http://devlrapp.com)
 
 #### User Story
@@ -91,7 +91,7 @@ WHEN I click on Logout
 ### Usage
 ### To begin using devlr, sign up for an account.
 
-- Go to http://devlrapp.herokuapp.com/
+- Go to https://devlrapp.herokuapp.com/
 - Create an account on the "Signup" screen
 - Create a Profile
 - Have fun!

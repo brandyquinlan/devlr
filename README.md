@@ -13,7 +13,7 @@
 - [Repo and Heroku App Links](#repo-and-heroku-app-links)
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
-- [Development](#development)
+- [Development](#development-process)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Functionality](#functionality)

@@ -6,6 +6,7 @@ function NavTab({ currentPage, handlePageChange }) {
       <li className="nav-item">
         <button
           type="button"
+          alt="Posts"
           onClick={() => handlePageChange('Posts')}
           className={currentPage === 'Posts' ? 'nav-link active' : 'nav-link'}
         >
@@ -15,6 +16,7 @@ function NavTab({ currentPage, handlePageChange }) {
       <li className="nav-item">
         <button
           type="button"
+          alt="Profile"
           onClick={() => handlePageChange('Profile')}
           className={currentPage === 'Profile' ? 'nav-link active' : 'nav-link'}
         >
@@ -24,6 +26,7 @@ function NavTab({ currentPage, handlePageChange }) {
       <li className="nav-item">
         <button
           type="button"
+          alt="Network"
           onClick={() => handlePageChange('Network')}
           className={currentPage === 'Network' ? 'nav-link active' : 'nav-link'}
         >

@@ -15,13 +15,14 @@ function MobileSidenav({ home }) {
       <img src={Logo} style={{ width: '50px' }} alt="devlr logo"></img>
       <ul className="list-group">
         <li>
-          <a href="/home">
+          <a href="/home" alt="Home">
             <i className="material-icons">home</i>
           </a>
         </li>
         <li>
           <button
             type="button"
+            alt="Browse Users"
             onClick={() => modalDispatch({ type: 'show user modal' })}
           >
             <i className="material-icons">groups</i>
@@ -31,32 +32,37 @@ function MobileSidenav({ home }) {
           show={modals.userModalShow}
           onHide={() => modalDispatch({ type: 'hide user modal' })}
         />
+        {home ? (
+          <>
+            <li>
+              <button
+                type="button"
+                onClick={() => modalDispatch({ type: 'show profile modal' })}
+              >
+                <i className="material-icons">dashboard</i>
+              </button>
+            </li>
+            <UpdateProfileModal
+              show={modals.profileModalShow}
+              onHide={() => modalDispatch({ type: 'hide profile modal' })}
+            />
+            <li>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault()
+                  window.location.href = '/home/settings'
+                }}
+              >
+                <i className="material-icons">manage_accounts</i>
+              </button>
+            </li>
+          </>
+        ) : null}
         <li>
           <button
             type="button"
-            onClick={() => modalDispatch({ type: 'show profile modal' })}
-          >
-            <i className="material-icons">dashboard</i>
-          </button>
-        </li>
-        <UpdateProfileModal
-          show={modals.profileModalShow}
-          onHide={() => modalDispatch({ type: 'hide profile modal' })}
-        />
-        <li>
-          <button
-            type="button"
-            onClick={(event) => {
-              event.preventDefault()
-              window.location.href = '/home/settings'
-            }}
-          >
-            <i className="material-icons">manage_accounts</i>
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
+            alt="Logout"
             href="/"
             onClick={() => dispatch({ type: 'logout' })}
           >

@@ -18,7 +18,7 @@ function Sidenav({ home }) {
       </div>
       <ul className="list-group">
         <li>
-          <a href="/home">
+          <a href="/home" alt="Home">
             <i className="material-icons">home</i>
             Home
           </a>
@@ -26,6 +26,7 @@ function Sidenav({ home }) {
         <li>
           <button
             type="button"
+            alt="Browse Users"
             onClick={() => modalDispatch({ type: 'show user modal' })}
           >
             <i className="material-icons">groups</i>
@@ -36,33 +37,38 @@ function Sidenav({ home }) {
           show={modals.userModalShow}
           onHide={() => modalDispatch({ type: 'hide user modal' })}
         />
+        {home ? (
+          <>
+            <li>
+              <button
+                type="button"
+                onClick={() => modalDispatch({ type: 'show profile modal' })}
+              >
+                <i className="material-icons">dashboard</i>Update Profile
+              </button>
+            </li>
+            <UpdateProfileModal
+              show={modals.profileModalShow}
+              onHide={() => modalDispatch({ type: 'hide profile modal' })}
+            />
+            <li>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault()
+                  window.location.href = '/home/settings'
+                }}
+              >
+                <i className="material-icons">manage_accounts</i>
+                Account
+              </button>
+            </li>
+          </>
+        ) : null}
         <li>
           <button
             type="button"
-            onClick={() => modalDispatch({ type: 'show profile modal' })}
-          >
-            <i className="material-icons">dashboard</i>Update Profile
-          </button>
-        </li>
-        <UpdateProfileModal
-          show={modals.profileModalShow}
-          onHide={() => modalDispatch({ type: 'hide profile modal' })}
-        />
-        <li>
-          <button
-            type="button"
-            onClick={(event) => {
-              event.preventDefault()
-              window.location.href = '/home/settings'
-            }}
-          >
-            <i className="material-icons">manage_accounts</i>
-            Account
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
+            alt="Logout"
             href="/"
             onClick={() => dispatch({ type: 'logout' })}
           >

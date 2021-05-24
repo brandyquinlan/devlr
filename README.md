@@ -32,9 +32,6 @@ Create a customized profile to display your development background, pinned proje
 #### Team Members and Rolls:
 ![Team Rolls](/client/public/img/devlr-v2-slides-team.png)
 
-#### New Features | devlr2.0
-![New features](/client/public/img/devlr-v2-slides-new-features.png)
-
 #### Repo and Heroku App Links
 * [Link to GitHub Repo - https://github.com/brandyquinlan/devlr](https://github.com/brandyquinlan/devlr)
 * [Link to Heroku App - http://devlrapp.herokuapp.com](http://devlrapp.herokuapp.com)

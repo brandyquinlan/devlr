@@ -15,10 +15,9 @@
 - [Acceptance Criteria](#acceptance-criteria)
 - [Development](#development)
 - [Usage](#usage)
-- [DEMO VIDEO](#DEMO-VIDEO)
 - [Screenshots](#screenshots)
 - [Functionality](#functionality)
-- [devlr Team](#devlr-team)
+- [devlr Team](#contact-the-devlr-team)
 
 ### Program Description
 Create a customized profile to display your development background, pinned projects and status updates to share with other developers worldwide. devlr is a social media/portfolio/networking site designed just for developers. There is nothing like it on the open market, the nearest competitor would be Stack Overflow or GitHub for code sharing or Reddit for social interaction. 
@@ -97,9 +96,6 @@ WHEN I click on Logout
 - Create an account on the "Signup" screen
 - Create a Profile
 - Have fun!
-
-### DEMO VIDEO
-* [Link to demo - https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing](https://drive.google.com/file/d/1gXhaNTOKmYi6MdRocPuC5cnHpRPc00q5/view?usp=sharing)
 
 ### Screenshots
 ![Screenshots](/client/public/img/devlr-v2-screenshots-for-readme.png)
